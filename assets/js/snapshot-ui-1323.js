@@ -21,3 +21,14 @@ script.onerror=()=>{
 };
 document.body.append(script);
 })();
+
+(function(){
+'use strict';
+if(window.TrackerSkinHoverLoading||window.TrackerSkinHover)return;
+window.TrackerSkinHoverLoading=true;
+const script=document.createElement('script');
+script.src=new URL('portrait-skin-hover.js?v=1',document.currentScript.src).href;
+script.async=false;
+script.onerror=()=>{window.TrackerSkinHoverLoading=false;};
+document.body.append(script);
+})();
