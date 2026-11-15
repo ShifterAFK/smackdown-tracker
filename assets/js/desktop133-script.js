@@ -9,6 +9,7 @@ const button=(text,action)=>{const b=el('button','',text);b.type='button';b.oncl
 function decorate(b){
  b.classList.add('solise-help');b.replaceChildren();
  const img=el('img','solise-help-image');img.alt='';img.setAttribute('aria-hidden','true');img.referrerPolicy='no-referrer';img.onerror=()=>img.hidden=true;
+ img.src=new URL('assets/img/ui/solise-assistant.webp',document.baseURI).href;
  const copy=el('span','solise-help-copy');copy.append(el('strong','','Assistant'),el('small','','i can help u pick'));b.append(img,copy);
  b.setAttribute('aria-label','Open Assistant — choose your team');return img;
 }
@@ -34,8 +35,6 @@ function paintCatalog(){
  const label=b.getAttribute('aria-label')||b.title?.replace(/ — already drafted$/,'');
  const hero=config.heroes.find(h=>h.name===label);if(hero)b.dataset.faction=hero.faction;
  }
- const solise=config.heroes.find(h=>h.name==='Solise');
- for(const image of [desktopImage,mobileImage])if(image&&solise?.portrait_url){try{const url=new URL(solise.portrait_url);if(['https:','http:'].includes(url.protocol)&&image.getAttribute('src')!==url.href)image.src=url.href;}catch(_){}}
 }
 function sync(){
  bar.hidden=!media.matches;stop.hidden=!enabled;
