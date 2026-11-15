@@ -1,0 +1,106 @@
+name: Maintain tracker
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/**'
+      - 'portraits/**'
+      - '.github/workflows/maintain.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tracker-maintenance
+  cancel-in-progress: true
+
+jobs:
+  maintain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Apply safe maintenance fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          js_path = Path('assets/js/tracker-app.js')
+          source = js_path.read_text(encoding='utf-8')
+          updated = source
+
+          # Ensure Gala uses the existing Galahad portrait.
+          old_aliases = "const PORTRAIT_ALIASES={'taichi':'taichi-agumon','yamato':'yamato-gabumon'};"
+          new_aliases = "const PORTRAIT_ALIASES={'taichi':'taichi-agumon','yamato':'yamato-gabumon','gala':'galahad'};"
+          if old_aliases in updated:
+              updated = updated.replace(old_aliases, new_aliases, 1)
+
+          # Ensure online catalog heroes use local WebP portraits.
+          if 'function localPortraitUrl(hero)' not in updated:
+              helper = "function localPortraitUrl(hero){const id=slug(hero?.id||hero?.name||'');if(!id)return hero?.portrait_url||'';return BASE+(PORTRAIT_ALIASES[id]||id)+'.webp'}\n"
+              marker = "function portrait(h){"
+              if marker in updated:
+                  updated = updated.replace(marker, helper + marker, 1)
+
+          old_mapping = "config={...data,heroes:data.heroes.map(h=>({...h,is_allowed:h.is_allowed===true&&!isBannedHero(h)}))};"
+          new_mapping = "config={...data,heroes:data.heroes.map(h=>({...h,portrait_url:localPortraitUrl(h),is_allowed:h.is_allowed===true&&!isBannedHero(h)}))};"
+          if old_mapping in updated:
+              updated = updated.replace(old_mapping, new_mapping, 1)
+
+          # Ensure portrait images are eager and asynchronously decoded.
+          old_image = "image.loading='lazy';image.referrerPolicy='no-referrer';"
+          new_image = "image.loading='eager';image.decoding='async';image.referrerPolicy='no-referrer';"
+          if old_image in updated:
+              updated = updated.replace(old_image, new_image, 1)
+
+          # Preload catalog portraits to avoid flicker after rerenders.
+          old_config = "onlineCatalog=true;$('connection').textContent='Live hero catalog loaded';renderThemes();renderHeroes();renderSlots();"
+          new_config = "onlineCatalog=true;$('connection').textContent='Live hero catalog loaded';config.heroes.forEach(h=>{const image=new Image();image.src=h.portrait_url});renderThemes();renderHeroes();renderSlots();"
+          if old_config in updated:
+              updated = updated.replace(old_config, new_config, 1)
+
+          # Reset draft-order checkboxes to their default checked state.
+          old_reset = "function resetDraft(){window.dispatchEvent(new Event('tracker:draft-reset'));lineup={BLUE:[null,null,null],RED:[null,null,null]};phantimalOverride={BLUE:null,RED:null};active={side:'BLUE',index:0};winner='';$('notes').value='';renderSlots()}"
+          new_reset = "function resetDraft(){window.dispatchEvent(new Event('tracker:draft-reset'));lineup={BLUE:[null,null,null],RED:[null,null,null]};known={BLUE:true,RED:true};phantimalOverride={BLUE:null,RED:null};active={side:'BLUE',index:0};winner='';$('notes').value='';renderSlots()}"
+          if old_reset in updated:
+              updated = updated.replace(old_reset, new_reset, 1)
+
+          if updated != source:
+              js_path.write_text(updated, encoding='utf-8')
+              print('Applied maintenance fixes to tracker-app.js.')
+          else:
+              print('No JavaScript maintenance fixes were required.')
+
+          # Ensure extracted map references point to WebP files.
+          maps_path = Path('assets/js/tracker-app.js')
+          map_source = maps_path.read_text(encoding='utf-8')
+          map_updated = map_source.replace('assets/img/maps/map-', 'assets/img/maps/__MAP__').replace('.png"', '.webp"').replace('__MAP__', 'map-')
+          if map_updated != map_source:
+              maps_path.write_text(map_updated, encoding='utf-8')
+              print('Updated map asset extensions to WebP.')
+          else:
+              print('No map extension fixes were required.')
+          PY
+
+      - name: Commit maintenance changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --staged --quiet; then
+            echo "No maintenance changes to commit."
+          else
+            git commit -m "Apply tracker maintenance"
+            git push
+          fi
