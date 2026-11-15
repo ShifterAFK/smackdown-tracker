@@ -53,63 +53,45 @@ jobs:
             stem="${filename%.webp}"
 
             case "$stem" in
-              bg-*|class-*|faction-*|level-*|damage-*|initial-energy-*|awakening-*|wedge-of-*|synergy-*|karma-*|soulbound-*|soulshock-*|enlightening-*|healwind-*|ironwall-*|hurricane-*|blazing-*|bladestorm-*|bladesummon-*|candleflame-*|confining-*|coreforge-*|crystal-beetle-*|lamentis-*|marene-*|meteorfall-*|orion-*|peggy-*|plague-creeper-*|rolan-*|seralyth-*|starshard-*|taichi-agumon-*|thane-*|thundermight-*|tidesurge-*|voracia-*|yamato-gabumon-*|zanie-turret-*|phraesto-shadow-*|elijah-lailah-elijah-*|elijah-lailah-lailah-*)
+              acute|arcane|balanced|bear|blast|bloodlust|butcher|cheetah|combative|destructive|eagle|energy|focus|gale|glory|healer|insight|mystic|overloaded|reaper|recovering|resolute|ruthless|sorcery|sturdy|swift|titanic|vigorous|wizard)
                 continue
                 ;;
             esac
 
-            clean_name=$(printf '%s' "$stem" | sed -E 's/-[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$//; s/-[A-Za-z0-9_-]{6,}$//')
+            clean_name=$(printf '%s' "$stem" | sed -E 's/-[A-Za-z0-9_-]{8,}$//')
             curl -fsSL "https://afkstargazer.com$asset" -o "portraits/${clean_name}.webp"
           done < .stargazer/assets.txt
 
-          find portraits -type f -regextype posix-extended \
-            -regex '.*/[^/]+-[A-Za-z0-9_-]{6,}\.webp' \
-            ! -regex '.*/[^/]+-skin[0-9]+\.webp' \
-            -delete
-
           find portraits -type f \( \
-            -name 'bg-*' -o \
-            -name 'class-*' -o \
-            -name 'faction-*' -o \
-            -name 'level-*' -o \
-            -name 'damage-*' -o \
-            -name 'initial-energy-*' -o \
-            -name 'awakening-*' -o \
-            -name 'wedge-of-*' -o \
-            -name 'synergy-*' -o \
-            -name 'karma-*' -o \
-            -name 'soulbound-*' -o \
-            -name 'soulshock-*' -o \
-            -name 'enlightening-*' -o \
-            -name 'healwind-*' -o \
-            -name 'ironwall-*' -o \
-            -name 'hurricane-*' -o \
-            -name 'blazing-*' -o \
-            -name 'bladestorm-*' -o \
-            -name 'bladesummon-*' -o \
-            -name 'candleflame-*' -o \
-            -name 'confining-*' -o \
-            -name 'coreforge-*' -o \
-            -name 'crystal-beetle-*' -o \
-            -name 'lamentis-*' -o \
-            -name 'marene-*' -o \
-            -name 'meteorfall-*' -o \
-            -name 'orion-*' -o \
-            -name 'peggy-*' -o \
-            -name 'plague-creeper-*' -o \
-            -name 'rolan-*' -o \
-            -name 'seralyth-*' -o \
-            -name 'starshard-*' -o \
-            -name 'taichi-agumon-*' -o \
-            -name 'thane-*' -o \
-            -name 'thundermight-*' -o \
-            -name 'tidesurge-*' -o \
-            -name 'voracia-*' -o \
-            -name 'yamato-gabumon-*' -o \
-            -name 'zanie-turret-*' -o \
-            -name 'phraesto-shadow-*' -o \
-            -name 'elijah-lailah-elijah-*' -o \
-            -name 'elijah-lailah-lailah-*' \
+            -name 'acute.webp' -o \
+            -name 'arcane.webp' -o \
+            -name 'balanced.webp' -o \
+            -name 'bear.webp' -o \
+            -name 'blast.webp' -o \
+            -name 'bloodlust.webp' -o \
+            -name 'butcher.webp' -o \
+            -name 'cheetah.webp' -o \
+            -name 'combative.webp' -o \
+            -name 'destructive.webp' -o \
+            -name 'eagle.webp' -o \
+            -name 'energy.webp' -o \
+            -name 'focus.webp' -o \
+            -name 'gale.webp' -o \
+            -name 'glory.webp' -o \
+            -name 'healer.webp' -o \
+            -name 'insight.webp' -o \
+            -name 'mystic.webp' -o \
+            -name 'overloaded.webp' -o \
+            -name 'reaper.webp' -o \
+            -name 'recovering.webp' -o \
+            -name 'resolute.webp' -o \
+            -name 'ruthless.webp' -o \
+            -name 'sorcery.webp' -o \
+            -name 'sturdy.webp' -o \
+            -name 'swift.webp' -o \
+            -name 'titanic.webp' -o \
+            -name 'vigorous.webp' -o \
+            -name 'wizard.webp' \
           \) -delete
 
           git config user.name "github-actions[bot]"
@@ -119,7 +101,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Clean duplicate portraits and UI assets"
+            git commit -m "Fix portrait naming and remove UI assets"
             git push
           fi
 
