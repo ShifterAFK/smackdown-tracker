@@ -1,0 +1,45 @@
+.desktop133bar .solise-help{padding-left: 100px !important; min-height: 62px !important;}
+.desktop133bar .solise-help img.solise-help-image{width: 91px !important; height: 108px !important; left: 2px; object-position: 50% 8%; border-radius: 45px 45px 0px 0px;}
+.desktop133bar{margin-top: 40px;}
+@media (max-width: 1099px){html[data-ui-view="auto"] .md130dock .solise-help{padding-left: 72px !important;}
+html[data-ui-view="auto"] .md130dock .solise-help img.solise-help-image{width: 66px !important; height: 91px !important; left: 1px; object-position: 50% 8%; border-radius: 34px 34px 0px 0px;}
+html[data-ui-view="auto"] .md130dock > button:first-child{font-weight: 750; color: rgb(255, 240, 201); background: linear-gradient(125deg, rgb(59, 101, 69), rgb(34, 61, 42)) !important; border: 2px solid rgb(222, 196, 133) !important; box-shadow: rgba(255, 240, 181, 0.17) 0px 1px 0px inset, rgba(208, 182, 106, 0.07) 0px 0px 0px 2px; border-radius: 10px;}
+html[data-ui-view="auto"] .md130dock > button:first-child:hover{background: rgb(56, 93, 58) !important; border-color: rgb(255, 227, 160) !important;}
+html[data-ui-view="auto"] #page-entry .team-title{touch-action: manipulation;}
+html[data-ui-view="auto"] #mobileDraft130 .md130assist #draftAssist .da-actions button{min-height: 28px !important; height: auto !important; max-height: none !important; padding: 4px 8px !important; font-size: 10px !important; line-height: 1.25 !important; border-radius: 6px;}
+html[data-ui-view="auto"] #mobileDraft130 .md130assist #draftAssist .da-actions{gap: 8px !important; margin-top: 6px !important;}
+}
+@media (min-width:0px){html[data-ui-view="mobile"] .md130dock .solise-help{padding-left: 72px !important;}
+html[data-ui-view="mobile"] .md130dock .solise-help img.solise-help-image{width: 66px !important; height: 91px !important; left: 1px; object-position: 50% 8%; border-radius: 34px 34px 0px 0px;}
+html[data-ui-view="mobile"] .md130dock > button:first-child{font-weight: 750; color: rgb(255, 240, 201); background: linear-gradient(125deg, rgb(59, 101, 69), rgb(34, 61, 42)) !important; border: 2px solid rgb(222, 196, 133) !important; box-shadow: rgba(255, 240, 181, 0.17) 0px 1px 0px inset, rgba(208, 182, 106, 0.07) 0px 0px 0px 2px; border-radius: 10px;}
+html[data-ui-view="mobile"] .md130dock > button:first-child:hover{background: rgb(56, 93, 58) !important; border-color: rgb(255, 227, 160) !important;}
+html[data-ui-view="mobile"] #page-entry .team-title{touch-action: manipulation;}
+html[data-ui-view="mobile"] #mobileDraft130 .md130assist #draftAssist .da-actions button{min-height: 28px !important; height: auto !important; max-height: none !important; padding: 4px 8px !important; font-size: 10px !important; line-height: 1.25 !important; border-radius: 6px;}
+html[data-ui-view="mobile"] #mobileDraft130 .md130assist #draftAssist .da-actions{gap: 8px !important; margin-top: 6px !important;}
+}
+@media (max-width:0px){html[data-ui-view="desktop"] .md130dock .solise-help{padding-left: 72px !important;}
+html[data-ui-view="desktop"] .md130dock .solise-help img.solise-help-image{width: 66px !important; height: 91px !important; left: 1px; object-position: 50% 8%; border-radius: 34px 34px 0px 0px;}
+html[data-ui-view="desktop"] .md130dock > button:first-child{font-weight: 750; color: rgb(255, 240, 201); background: linear-gradient(125deg, rgb(59, 101, 69), rgb(34, 61, 42)) !important; border: 2px solid rgb(222, 196, 133) !important; box-shadow: rgba(255, 240, 181, 0.17) 0px 1px 0px inset, rgba(208, 182, 106, 0.07) 0px 0px 0px 2px; border-radius: 10px;}
+html[data-ui-view="desktop"] .md130dock > button:first-child:hover{background: rgb(56, 93, 58) !important; border-color: rgb(255, 227, 160) !important;}
+html[data-ui-view="desktop"] #page-entry .team-title{touch-action: manipulation;}
+html[data-ui-view="desktop"] #mobileDraft130 .md130assist #draftAssist .da-actions button{min-height: 28px !important; height: auto !important; max-height: none !important; padding: 4px 8px !important; font-size: 10px !important; line-height: 1.25 !important; border-radius: 6px;}
+html[data-ui-view="desktop"] #mobileDraft130 .md130assist #draftAssist .da-actions{gap: 8px !important; margin-top: 6px !important;}
+}
+#mobileDraft130[data-mode="assistant"][data-suggestion-side="BLUE"] .md130assist #draftAssist .da-side:not(.da-red){display: block !important;}
+#mobileDraft130[data-mode="assistant"][data-suggestion-side="BLUE"] .md130assist #draftAssist .da-side.da-red{display: none !important;}
+#mobileDraft130[data-mode="assistant"][data-suggestion-side="RED"] .md130assist #draftAssist .da-side.da-red{display: block !important;}
+#mobileDraft130[data-mode="assistant"][data-suggestion-side="RED"] .md130assist #draftAssist .da-side:not(.da-red){display: none !important;}
+#mobileDraft130[data-started="true"] .md130assist::before{content: attr(data-recommendation-label); display: block; font-size: 11px; line-height: 1.4; font-weight: 650; padding: 6px 0px; color: rgb(228, 216, 177);}
+#mobileDraft130[data-waiting="true"] .md130assist .da-candidate{cursor: default !important; opacity: 0.78;}
+@media (max-width: 380px){html[data-ui-view="auto"] .md130dock .solise-help{padding-left: 60px !important;}
+html[data-ui-view="auto"] .md130dock .solise-help img.solise-help-image{width: 55px !important; height: 82px !important;}
+html[data-ui-view="auto"] .md130dock .solise-help small{font-size: 8px !important;}
+}
+@media (max-width:0px){html[data-ui-view="mobile"] .md130dock .solise-help{padding-left: 60px !important;}
+html[data-ui-view="mobile"] .md130dock .solise-help img.solise-help-image{width: 55px !important; height: 82px !important;}
+html[data-ui-view="mobile"] .md130dock .solise-help small{font-size: 8px !important;}
+}
+@media (max-width:0px){html[data-ui-view="desktop"] .md130dock .solise-help{padding-left: 60px !important;}
+html[data-ui-view="desktop"] .md130dock .solise-help img.solise-help-image{width: 55px !important; height: 82px !important;}
+html[data-ui-view="desktop"] .md130dock .solise-help small{font-size: 8px !important;}
+}

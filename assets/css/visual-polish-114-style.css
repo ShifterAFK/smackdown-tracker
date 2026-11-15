@@ -1,0 +1,53 @@
+#page-entry .slot-cell > .slot{position: relative; padding-top: 24px;}
+#page-entry .slot.active{outline: rgb(240, 207, 130) solid 2px !important; outline-offset: 2px; box-shadow: rgba(240, 207, 130, 0.25) 0px 0px 0px 1px inset, rgba(228, 193, 109, 0.08) 0px 0px 0px 4px !important;}
+#page-entry .slot.active::before{content: "Picking here"; position: absolute; top: 4px; left: 5px; right: 5px; text-align: center; font-size: 10px; font-weight: 700; line-height: 14px; color: rgb(255, 228, 166); pointer-events: none;}
+#page-entry .team:has(.slot.active) .team-title h2::after{content: "Active team"; display: inline-block; margin-left: 8px; padding: 2px 5px; border: 1px solid rgba(221, 190, 121, 0.3); border-radius: 4px; color: rgb(241, 219, 166); font-size: 10px; font-weight: 600; vertical-align: middle; letter-spacing: 0px;}
+#page-entry .slot.drop-target{outline: rgb(165, 222, 192) solid 3px !important; outline-offset: 2px; background: rgb(37, 69, 53) !important;}
+.hero-panel #draftAssist .da-hide{width: 24px !important; height: 24px !important; min-width: 24px !important; min-height: 24px !important; max-width: 24px !important; max-height: 24px !important; line-height: 22px !important; font-size: 16px !important; top: 3px !important; right: 3px !important; padding: 0px !important; display: flex; align-items: center; justify-content: center;}
+.hero-panel #draftAssist .da-candidate{height: 66px !important; min-height: 66px !important; max-height: 66px !important; grid-template-rows: minmax(18px, auto) minmax(14px, auto) !important;}
+.hero-panel #draftAssist .da-candidate .da-name{padding-right: 25px !important; font-size: 12px !important; line-height: 1.25 !important;}
+.hero-panel #draftAssist .da-candidate small{font-size: 11px !important; line-height: 1.25 !important; padding-right: 2px !important; white-space: normal !important;}
+.hero-panel #draftAssist .da-candidate .da-rank{font-size: 10px !important; line-height: 14px !important;}
+#page-entry .slot-remove{width: 26px; height: 26px; min-width: 26px; min-height: 26px; line-height: 24px; top: 3px; right: 3px;}
+.hero-panel #heroes .hero-faction-heading{font-size: 11px !important; line-height: 14px !important; min-height: 26px !important; padding: 7px 0px 5px !important; color: rgb(189, 203, 191) !important;}
+.hero-panel #heroes .hero-faction-heading:first-child{min-height: 21px !important; padding-top: 2px !important;}
+#draftAssist .da-s-title, #draftAssist .da-s-hero, #draftAssist .da-nodata-heading{font-size: 11px !important; line-height: 1.3 !important;}
+#draftAssist #daScope{font-size: 11px !important; line-height: 1.4 !important;}
+.hero-panel #draftAssist .da-details, .hero-panel #draftAssist .da-details p, .hero-panel #draftAssist .da-details #daStatus{font-size: 11px !important; line-height: 1.45 !important;}
+#catalogInfo, #captchaStatus, #entryStatus, #tierStatus, #statsStatus{font-size: 12px; line-height: 1.45;}
+#matchEstimate{margin-bottom: 16px !important; border-color: rgba(113, 129, 107, 0.44) !important; box-shadow: none !important;}
+#matchEstimate .me-heading{font-size: 11px; letter-spacing: 0.08em;}
+#matchEstimate .me-tag, #matchEstimate .me-legend, #matchEstimate details{font-size: 11px !important; line-height: 1.4;}
+#matchEstimate .me-result{font-size: 13px !important; font-weight: 600 !important;}
+#winnerPicker{margin-top: 16px !important; border: 1px solid rgba(170, 149, 96, 0.47) !important; padding: 12px !important; background: rgb(17, 28, 22) !important; row-gap: 10px !important;}
+#winnerPicker > span{font-size: 13px !important; letter-spacing: 0.06em !important; color: rgb(242, 223, 181) !important;}
+#winnerPicker .winner-selected{font-size: 11px; font-weight: 700; letter-spacing: 0.03em;}
+#winnerPicker .chosen{border-width: 2px;}
+#statsTable table{width: 100%; border-collapse: separate; border-spacing: 0px; font-variant-numeric: tabular-nums;}
+#statsTable th{background: rgb(27, 42, 34); font-size: 12px; font-weight: 650; color: rgb(229, 232, 221); border-bottom: 1px solid rgba(112, 129, 107, 0.533);}
+#statsTable th, #statsTable td{padding: 10px 12px; vertical-align: middle;}
+#statsTable th:first-child, #statsTable td:first-child, #statsTable th:nth-child(n+3), #statsTable td:nth-child(n+3){text-align: right; white-space: nowrap;}
+#statsTable th:nth-child(2), #statsTable td:nth-child(2){text-align: left; min-width: 150px;}
+#statsTable tbody tr:nth-child(2n){background: rgba(209, 222, 197, 0.02);}
+#statsTable tbody tr:hover{background: rgba(195, 214, 174, 0.055);}
+#statsTable .statistics-pagination{padding: 10px 0px; margin-top: 8px; min-height: 46px;}
+#statsTable .statistics-pagination button{min-height: 34px; padding: 7px 12px;}
+#statsTable .statistics-pagination button:disabled{opacity: 0.45; cursor: default; transform: none; box-shadow: none;}
+#page-entry .slot:focus-visible, #page-entry .slot-remove:focus-visible, .hero-panel #draftAssist .da-hide:focus-visible, #statsTable button:focus-visible{outline: rgb(255, 240, 193) solid 2px !important; outline-offset: 3px;}
+@media (max-width: 420px){html[data-ui-view="auto"] .hero-panel #draftAssist .da-candidate{height: 66px !important; min-height: 66px !important; max-height: 66px !important;}
+html[data-ui-view="auto"] .hero-panel #draftAssist .da-candidate .da-name{font-size: 11px !important;}
+html[data-ui-view="auto"] .hero-panel #draftAssist .da-candidate small{font-size: 10px !important;}
+html[data-ui-view="auto"] #statsTable th,html[data-ui-view="auto"] #statsTable td{padding: 9px 8px;}
+}
+@media (max-width:0px){html[data-ui-view="mobile"] .hero-panel #draftAssist .da-candidate{height: 66px !important; min-height: 66px !important; max-height: 66px !important;}
+html[data-ui-view="mobile"] .hero-panel #draftAssist .da-candidate .da-name{font-size: 11px !important;}
+html[data-ui-view="mobile"] .hero-panel #draftAssist .da-candidate small{font-size: 10px !important;}
+html[data-ui-view="mobile"] #statsTable th,html[data-ui-view="mobile"] #statsTable td{padding: 9px 8px;}
+}
+@media (max-width:0px){html[data-ui-view="desktop"] .hero-panel #draftAssist .da-candidate{height: 66px !important; min-height: 66px !important; max-height: 66px !important;}
+html[data-ui-view="desktop"] .hero-panel #draftAssist .da-candidate .da-name{font-size: 11px !important;}
+html[data-ui-view="desktop"] .hero-panel #draftAssist .da-candidate small{font-size: 10px !important;}
+html[data-ui-view="desktop"] #statsTable th,html[data-ui-view="desktop"] #statsTable td{padding: 9px 8px;}
+}
+@media (prefers-reduced-motion: reduce){#page-entry .slot, #draftAssist button, #matchEstimate .me-blue, #matchEstimate .me-red{transition: none !important;}
+}

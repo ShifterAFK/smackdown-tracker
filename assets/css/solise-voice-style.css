@@ -1,0 +1,19 @@
+.solise-voice-toggle{flex: 0 0 auto !important; min-width: 64px !important; min-height: 40px; padding: 6px 8px !important; font-size: 10px !important; line-height: 1.25; border: 1px solid rgb(126, 141, 105) !important; border-radius: 8px; background: rgb(29, 48, 34) !important; color: rgb(216, 232, 204) !important;}
+.solise-voice-toggle[aria-pressed="false"]{opacity: 0.65;}
+.solise-voice-toggle[hidden]{display: none !important;}
+.solise-voice-status{position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;}
+@media (max-width: 420px){html[data-ui-view="auto"] .md130dock{gap: 5px !important;}
+html[data-ui-view="auto"] .md130dock .solise-voice-toggle{min-width: 44px !important; width: 44px; white-space: normal; padding: 4px !important; font-size: 9px !important;}
+html[data-ui-view="auto"] .md130dock .solise-help{padding-left: 50px !important;}
+html[data-ui-view="auto"] .md130dock .solise-help .solise-help-image{width: 45px !important; height: 60px !important;}
+}
+@media (max-width:0px){html[data-ui-view="mobile"] .md130dock{gap: 5px !important;}
+html[data-ui-view="mobile"] .md130dock .solise-voice-toggle{min-width: 44px !important; width: 44px; white-space: normal; padding: 4px !important; font-size: 9px !important;}
+html[data-ui-view="mobile"] .md130dock .solise-help{padding-left: 50px !important;}
+html[data-ui-view="mobile"] .md130dock .solise-help .solise-help-image{width: 45px !important; height: 60px !important;}
+}
+@media (max-width:0px){html[data-ui-view="desktop"] .md130dock{gap: 5px !important;}
+html[data-ui-view="desktop"] .md130dock .solise-voice-toggle{min-width: 44px !important; width: 44px; white-space: normal; padding: 4px !important; font-size: 9px !important;}
+html[data-ui-view="desktop"] .md130dock .solise-help{padding-left: 50px !important;}
+html[data-ui-view="desktop"] .md130dock .solise-help .solise-help-image{width: 45px !important; height: 60px !important;}
+}

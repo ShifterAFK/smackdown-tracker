@@ -1,0 +1,64 @@
+#heroes .hero-faction-heading{display: none !important;}
+#heroes .hero .avatar{background: var(--f-bg,#17261c) !important; border-color: var(--f-line,#8f9c80) !important; box-shadow: 0 0 0 3px var(--f-tint,transparent) !important;}
+#heroes .hero[data-faction="Lightbearer"]{--f-bg: #51411b; --f-line: #d9ba62; --f-tint: #bd9a362b;}
+#heroes .hero[data-faction="Wilder"]{--f-bg: #1c462e; --f-line: #73bd86; --f-tint: #50a96a2b;}
+#heroes .hero[data-faction="Mauler"]{--f-bg: #54301b; --f-line: #d79558; --f-tint: #c2783d2b;}
+#heroes .hero[data-faction="Graveborn"]{--f-bg: #193e3c; --f-line: #6ab4aa; --f-tint: #4b9f942b;}
+#heroes .hero[data-faction="Celestial"]{--f-bg: #3d4156; --f-line: #dfd7a2; --f-tint: #d4c8852b;}
+#heroes .hero[data-faction="Hypogean"]{--f-bg: #3b244c; --f-line: #b480d4; --f-tint: #9d62bf2b;}
+#heroes .hero[data-faction="Dimensional"]{--f-bg: #293856; --f-line: #8fa9e5; --f-tint: #688cd32b;}
+.desktop133bar{display: flex; align-items: center; gap: 12px; margin: 20px 0px 12px; flex-shrink: 0;}
+.desktop133bar[hidden], .desktop133bar button[hidden]{display: none !important;}
+.solise-help{position: relative; isolation: isolate; overflow: visible !important; display: flex !important; align-items: center; min-height: 58px !important; min-width: 185px; padding: 9px 14px 9px 82px !important; text-align: left; background: linear-gradient(110deg, rgb(38, 79, 66), rgb(28, 50, 38) 65%, rgb(60, 53, 32)) !important; border: 1px solid rgb(206, 179, 115) !important; border-radius: 11px !important; box-shadow: rgba(255, 237, 187, 0.2) 0px 1px 0px inset, rgba(0, 0, 0, 0.267) 0px 3px 12px !important;}
+.solise-help .solise-help-image{position: absolute; left: 5px; bottom: 0px; width: 73px; height: 78px; object-fit: cover; object-position: 50% 15%; border-radius: 35px 35px 0px 0px; pointer-events: none; mask-image: linear-gradient(rgb(0, 0, 0) 68%, transparent 100%);}
+.solise-help .solise-help-image[hidden]{display: none;}
+.solise-help .solise-help-copy{display: flex; flex-direction: column; gap: 3px; min-width: 0px;}
+.solise-help strong{font-size: 14px; color: rgb(255, 225, 161); font-weight: 750;}
+.solise-help small{font-size: 11px; color: rgb(208, 233, 214); line-height: 1.3;}
+.solise-help:hover{border-color: rgb(255, 224, 160) !important; background: linear-gradient(110deg, rgb(44, 96, 77), rgb(32, 61, 44) 65%, rgb(75, 64, 36)) !important;}
+.desktop133prompt{width: min(460px, 94vw); padding: 22px; background: rgb(21, 37, 27); color: rgb(240, 238, 229); border: 1px solid rgb(199, 170, 104); border-radius: 13px;}
+.desktop133prompt h2{font-size: 19px;}
+.desktop133prompt p{font-size: 13px; color: rgb(191, 205, 189); line-height: 1.5;}
+.desktop133prompt::backdrop{background: rgba(2, 10, 7, 0.75);}
+.desktop133options{display: flex; gap: 10px; margin: 18px 0px;}
+.desktop133options button{flex: 1 1 0%; min-height: 48px; font-weight: 750;}
+.desktop133options button[data-side="BLUE"]{background: rgb(20, 84, 126); border: 2px solid rgb(122, 214, 255); color: rgb(239, 251, 255);}
+.desktop133options button[data-side="RED"]{background: rgb(125, 41, 66); border: 2px solid rgb(255, 155, 178); color: rgb(255, 240, 244);}
+@media (min-width: 1100px){html[data-ui-view="auto"] #draftAssist .da-toggle{display: none !important;}
+html[data-ui-view="auto"] body:not(.desktop133-enabled) #draftAssist{display: none !important;}
+html[data-ui-view="auto"] body[data-desktop133-side="BLUE"] #draftAssist .da-side.da-red,html[data-ui-view="auto"] body[data-desktop133-side="RED"] #draftAssist .da-side:not(.da-red){display: none !important;}
+html[data-ui-view="auto"] body.desktop133-enabled[data-desktop133-ready="false"] #draftAssist .da-columns{display: none !important;}
+html[data-ui-view="auto"] body.desktop133-enabled #draftAssist .da-columns{grid-template-columns: minmax(0px, 1fr) !important;}
+}
+@media (max-width:0px){html[data-ui-view="mobile"] #draftAssist .da-toggle{display: none !important;}
+html[data-ui-view="mobile"] body:not(.desktop133-enabled) #draftAssist{display: none !important;}
+html[data-ui-view="mobile"] body[data-desktop133-side="BLUE"] #draftAssist .da-side.da-red,html[data-ui-view="mobile"] body[data-desktop133-side="RED"] #draftAssist .da-side:not(.da-red){display: none !important;}
+html[data-ui-view="mobile"] body.desktop133-enabled[data-desktop133-ready="false"] #draftAssist .da-columns{display: none !important;}
+html[data-ui-view="mobile"] body.desktop133-enabled #draftAssist .da-columns{grid-template-columns: minmax(0px, 1fr) !important;}
+}
+@media (min-width:0px){html[data-ui-view="desktop"] #draftAssist .da-toggle{display: none !important;}
+html[data-ui-view="desktop"] body:not(.desktop133-enabled) #draftAssist{display: none !important;}
+html[data-ui-view="desktop"] body[data-desktop133-side="BLUE"] #draftAssist .da-side.da-red,html[data-ui-view="desktop"] body[data-desktop133-side="RED"] #draftAssist .da-side:not(.da-red){display: none !important;}
+html[data-ui-view="desktop"] body.desktop133-enabled[data-desktop133-ready="false"] #draftAssist .da-columns{display: none !important;}
+html[data-ui-view="desktop"] body.desktop133-enabled #draftAssist .da-columns{grid-template-columns: minmax(0px, 1fr) !important;}
+}
+@media (max-width: 1099px){html[data-ui-view="auto"] .md130dock{overflow: visible !important;}
+html[data-ui-view="auto"] .md130dock .solise-help{min-width: 0px; min-height: 52px !important; padding-left: 66px !important;}
+html[data-ui-view="auto"] .md130dock .solise-help .solise-help-image{width: 58px; height: 67px;}
+html[data-ui-view="auto"] .md130dock .solise-help strong{font-size: 12px;}
+html[data-ui-view="auto"] .md130dock .solise-help small{font-size: 9px;}
+}
+@media (min-width:0px){html[data-ui-view="mobile"] .md130dock{overflow: visible !important;}
+html[data-ui-view="mobile"] .md130dock .solise-help{min-width: 0px; min-height: 52px !important; padding-left: 66px !important;}
+html[data-ui-view="mobile"] .md130dock .solise-help .solise-help-image{width: 58px; height: 67px;}
+html[data-ui-view="mobile"] .md130dock .solise-help strong{font-size: 12px;}
+html[data-ui-view="mobile"] .md130dock .solise-help small{font-size: 9px;}
+}
+@media (max-width:0px){html[data-ui-view="desktop"] .md130dock{overflow: visible !important;}
+html[data-ui-view="desktop"] .md130dock .solise-help{min-width: 0px; min-height: 52px !important; padding-left: 66px !important;}
+html[data-ui-view="desktop"] .md130dock .solise-help .solise-help-image{width: 58px; height: 67px;}
+html[data-ui-view="desktop"] .md130dock .solise-help strong{font-size: 12px;}
+html[data-ui-view="desktop"] .md130dock .solise-help small{font-size: 9px;}
+}
+@media (prefers-reduced-motion: reduce){.solise-help{transition: none !important;}
+}

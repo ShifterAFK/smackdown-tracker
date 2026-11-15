@@ -1,0 +1,6 @@
+#draftAssist .desktop-pick-order-1321{display:none}
+#draftAssist .desktop-pick-order-1321 .order-blue{color:var(--blue,#65b9ef)}
+#draftAssist .desktop-pick-order-1321 .order-red{color:var(--red,#e58191)}
+#draftAssist .desktop-pick-order-1321 .order-label,#draftAssist .desktop-pick-order-1321 .order-arrow{color:var(--muted)}
+html[data-ui-view="desktop"] body.desktop133-enabled #draftAssist .desktop-pick-order-1321{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:11px;line-height:1.5;margin:0 0 8px}
+@media(min-width:1100px){html:not([data-ui-view="mobile"]):not([data-ui-view="desktop"]) body.desktop133-enabled #draftAssist .desktop-pick-order-1321{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:11px;line-height:1.5;margin:0 0 8px}}

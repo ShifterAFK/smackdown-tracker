@@ -1,0 +1,31 @@
+/* Tracker 1.3.15: map layout only; respects forced views. */
+html[data-ui-view="mobile"] #page-entry .map-area{display:grid!important;grid-template-columns:minmax(112px,36%) minmax(0,1fr)!important;grid-template-rows:auto!important;align-items:center!important;align-content:start!important;gap:10px!important;height:auto!important;min-height:0!important;padding:9px!important;margin-bottom:0!important}
+html[data-ui-view="mobile"] #page-entry .map-area>.row,#page-entry .map-area>#currentTheme{display:none!important}
+html[data-ui-view="mobile"] #page-entry .map-area #mapOpen{grid-column:1!important;grid-row:1!important;display:block!important;width:100%!important;max-width:none!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;align-self:center!important}
+html[data-ui-view="mobile"] #page-entry .map-area #mapPreview{display:block!important;width:100%!important;height:112px!important;min-height:0!important;max-height:none!important;object-fit:contain!important;object-position:center!important;margin:0!important;padding:0!important}
+html[data-ui-view="mobile"] #page-entry .map-area #mapOpen>span{display:block!important;font-size:9px!important;line-height:1.2!important;padding:3px 2px!important;margin:0!important}
+html[data-ui-view="mobile"] #page-entry .map-area .map-heading{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:6px!important;min-width:0!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important}
+html[data-ui-view="mobile"] #page-entry .map-area .map-heading>div{gap:3px!important;min-width:0!important}
+html[data-ui-view="mobile"] #page-entry .map-area .map-eyebrow{font-size:10px!important;line-height:1.25!important}
+html[data-ui-view="mobile"] #page-entry .map-area .map-rotation-line,#page-entry .map-area .map-selected-line{font-size:11px!important;line-height:1.4!important;margin:0!important;overflow-wrap:normal!important}
+html[data-ui-view="mobile"] #page-entry .map-area #chooseMap{font-size:11px!important;padding:7px 9px!important;min-height:32px!important;margin:0!important}
+html[data-ui-view="desktop"] #page-entry .map-area .map-eyebrow{font-size:13px!important;line-height:1.3!important}
+html[data-ui-view="desktop"] #page-entry .map-area .map-rotation-line{font-size:15px!important;line-height:1.45!important;margin:3px 0!important}
+html[data-ui-view="desktop"] #page-entry .map-area .map-selected-line{font-size:14px!important;line-height:1.4!important;margin:2px 0!important}
+@media(max-width:1099px){
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area{display:grid!important;grid-template-columns:minmax(112px,36%) minmax(0,1fr)!important;grid-template-rows:auto!important;align-items:center!important;align-content:start!important;gap:10px!important;height:auto!important;min-height:0!important;padding:9px!important;margin-bottom:0!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area>.row,#page-entry .map-area>#currentTheme{display:none!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area #mapOpen{grid-column:1!important;grid-row:1!important;display:block!important;width:100%!important;max-width:none!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;align-self:center!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area #mapPreview{display:block!important;width:100%!important;height:112px!important;min-height:0!important;max-height:none!important;object-fit:contain!important;object-position:center!important;margin:0!important;padding:0!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area #mapOpen>span{display:block!important;font-size:9px!important;line-height:1.2!important;padding:3px 2px!important;margin:0!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area .map-heading{grid-column:2!important;grid-row:1!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:6px!important;min-width:0!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area .map-heading>div{gap:3px!important;min-width:0!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area .map-eyebrow{font-size:10px!important;line-height:1.25!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area .map-rotation-line,#page-entry .map-area .map-selected-line{font-size:11px!important;line-height:1.4!important;margin:0!important;overflow-wrap:normal!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area #chooseMap{font-size:11px!important;padding:7px 9px!important;min-height:32px!important;margin:0!important}
+}
+@media(min-width:1100px){
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area .map-eyebrow{font-size:13px!important;line-height:1.3!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area .map-rotation-line{font-size:15px!important;line-height:1.45!important;margin:3px 0!important}
+html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #page-entry .map-area .map-selected-line{font-size:14px!important;line-height:1.4!important;margin:2px 0!important}
+}

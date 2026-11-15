@@ -1,0 +1,17 @@
+#trackerViewTools{display: inline-flex; flex-direction: row; align-items: center; gap: 6px; margin-left: auto; font-size: 11px; flex-shrink: 0;}
+#trackerViewSelect{min-height: 36px; padding: 5px 8px; font-size: 12px; width: auto;}
+html[data-ui-view="desktop"] main{min-width: 1100px;}
+html[data-ui-view="mobile"] main{max-width: 760px !important; margin-left: auto !important; margin-right: auto !important;}
+html[data-ui-view="mobile"] .md130dock{max-width: 760px; left: 50%; right: auto; width: 100%; transform: translateX(-50%); box-sizing: border-box;}
+@media (min-width: 1100px){html[data-ui-view="auto"] #heroes .hero:enabled:hover .avatar{border-color: rgb(255, 225, 160) !important; outline: rgb(255, 240, 194) solid 1px; outline-offset: 1px; box-shadow: rgba(255, 206, 104, 0.6) 0px 0px 9px 3px, rgba(233, 173, 74, 0.333) 0px 0px 22px 6px, rgba(255, 240, 186, 0.333) 0px 0px 5px inset !important;}
+html[data-ui-view="auto"] #heroes .hero:enabled:hover{transform: translateY(-1px);}
+html[data-ui-view="auto"] #heroes .hero:focus-visible{outline: rgb(255, 240, 185) solid 2px; outline-offset: 4px;}
+}
+@media (max-width:0px){html[data-ui-view="mobile"] #heroes .hero:enabled:hover .avatar{border-color: rgb(255, 225, 160) !important; outline: rgb(255, 240, 194) solid 1px; outline-offset: 1px; box-shadow: rgba(255, 206, 104, 0.6) 0px 0px 9px 3px, rgba(233, 173, 74, 0.333) 0px 0px 22px 6px, rgba(255, 240, 186, 0.333) 0px 0px 5px inset !important;}
+html[data-ui-view="mobile"] #heroes .hero:enabled:hover{transform: translateY(-1px);}
+html[data-ui-view="mobile"] #heroes .hero:focus-visible{outline: rgb(255, 240, 185) solid 2px; outline-offset: 4px;}
+}
+@media (min-width:0px){html[data-ui-view="desktop"] #heroes .hero:enabled:hover .avatar{border-color: rgb(255, 225, 160) !important; outline: rgb(255, 240, 194) solid 1px; outline-offset: 1px; box-shadow: rgba(255, 206, 104, 0.6) 0px 0px 9px 3px, rgba(233, 173, 74, 0.333) 0px 0px 22px 6px, rgba(255, 240, 186, 0.333) 0px 0px 5px inset !important;}
+html[data-ui-view="desktop"] #heroes .hero:enabled:hover{transform: translateY(-1px);}
+html[data-ui-view="desktop"] #heroes .hero:focus-visible{outline: rgb(255, 240, 185) solid 2px; outline-offset: 4px;}
+}
