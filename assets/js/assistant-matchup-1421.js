@@ -10,20 +10,26 @@ let frame=0,lastKey='';
 const root=()=>document.getElementById('draftAssist');
 const mapId=()=>document.getElementById('theme')?.value||'';
 function heroIdFromCard(card){
- const name=card.querySelector('.da-name')?.textContent?.trim()||'';
- const hero=(window.config?.heroes||[]).find(h=>h.name===name);
- return hero?.id||'';
+ const img=card.querySelector('img[src]');
+ const src=img?.getAttribute('src')||'';
+ const match=src.match(/\/portraits\/([^/?#]+)\.webp/i);
+ return match?decodeURIComponent(match[1]):'';
 }
 function draftedIds(side){
  const ids=[];
  document.querySelectorAll(side==='RED'?'#slotsRED .slot':'#slotsBLUE .slot').forEach(slot=>{
- const img=slot.querySelector('img');
- const name=slot.querySelector('.name')?.textContent?.trim();
- if(!img||!name||name==='+')return;
- const hero=(window.config?.heroes||[]).find(h=>h.name===name);
- if(hero?.id)ids.push(hero.id);
+ const img=slot.querySelector('img[src]');
+ const src=img?.getAttribute('src')||'';
+ const match=src.match(/\/portraits\/([^/?#]+)\.webp/i);
+ if(match)ids.push(decodeURIComponent(match[1]));
  });
  return ids;
+}
+function heroName(id){
+ const hero=(window.config?.heroes||[]).find(h=>h.id===id);
+ if(hero?.name)return hero.name;
+ const card=Array.from(document.querySelectorAll('.da-candidate')).find(card=>heroIdFromCard(card)===id);
+ return card?.querySelector('.da-name')?.textContent?.trim()||id;
 }
 async function rpc(name,body){
  const key=name+JSON.stringify(body);
@@ -97,6 +103,7 @@ async function rank(){
  const draftKey=JSON.stringify([selectedMap,cards.map(heroIdFromCard),draftedIds('BLUE'),draftedIds('RED')]);
  if(draftKey===lastKey)return;
  lastKey=draftKey;
+ assistant.classList.add('matchup-updating');
  let overall,mapStats,matchups;
  try{
  [overall,mapStats,matchups]=await Promise.all([
@@ -104,7 +111,7 @@ async function rank(){
  selectedMap?loadStats(selectedMap):Promise.resolve(null),
  loadMatchups(selectedMap||null)
  ]);
- }catch{return;}
+ }catch{assistant.classList.remove('matchup-updating');return;}
  const scored=[];
  for(const card of cards){
  const id=heroIdFromCard(card);
@@ -129,9 +136,8 @@ async function rank(){
  for(const opponent of opponents){
  const row=rows.get(opponent);
  if(!row||row.appearances<MIN_SAMPLE)continue;
- const opponentName=(window.config?.heroes||[]).find(h=>h.id===opponent)?.name||opponent;
  const edge=row.confidence-heroOverall.confidence;
- matchupItems.push({opponentName,edge,appearances:row.appearances});
+ matchupItems.push({opponentName:heroName(opponent),edge,appearances:row.appearances});
  total+=row.confidence;count++;
  }
  if(count)matchupScore=total/count;
@@ -162,6 +168,7 @@ async function rank(){
  badge.textContent=matchupLabel(item.matchupItems);
  });
  }
+ requestAnimationFrame(()=>assistant.classList.remove('matchup-updating'));
 }
 function schedule(){
  if(frame)return;
@@ -171,6 +178,6 @@ new MutationObserver(schedule).observe(document.body,{childList:true,subtree:tru
 window.addEventListener('tracker:draft-changed',schedule);
 window.addEventListener('tracker:catalog-changed',schedule);
 document.getElementById('theme')?.addEventListener('change',()=>{lastKey='';schedule();});
-window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.21',refresh:schedule});
+window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.22',refresh:schedule});
 schedule();
 })();
