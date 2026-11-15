@@ -1,0 +1,59 @@
+name: Add missing hero portraits
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-missing-portraits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download missing portraits
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p portraits
+
+          download() {
+            local source="$1"
+            local target="$2"
+
+            if [[ -f "$target" ]]; then
+              echo "Skipping existing $target"
+              return
+            fi
+
+            echo "Downloading $target"
+            curl -fsSL --retry 3 --retry-delay 2 "$source" -o "$target"
+          }
+
+          download "https://afkstargazer.com/assets/peggy-CVWReyuo.webp" "portraits/peggy.webp"
+          download "https://afkstargazer.com/assets/karma-COROFFqM.webp" "portraits/karma.webp"
+          download "https://afkstargazer.com/assets/lamentis-BzgTayKr.webp" "portraits/lamentis.webp"
+          download "https://afkstargazer.com/assets/peggy-skin1-dgBg9BWy.webp" "portraits/peggy-skin1.webp"
+
+          for file in portraits/peggy.webp portraits/karma.webp portraits/lamentis.webp portraits/peggy-skin1.webp; do
+            [[ -s "$file" ]] || { echo "Missing or empty: $file"; exit 1; }
+          done
+
+      - name: Commit missing portraits
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portraits
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add missing hero portraits"
+            git push
+          fi
