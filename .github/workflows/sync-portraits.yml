@@ -59,7 +59,7 @@ jobs:
               base="${clean%-*}"
             fi
 
-            if grep -Fq "\"$base\"" index.html; then
+            if grep -Fiq "\"$base\"" index.html; then
               curl -fsSL "https://afkstargazer.com$asset" -o "portraits/${clean}.webp"
               downloaded=$((downloaded + 1))
             fi
@@ -76,7 +76,7 @@ jobs:
               base="${name%-*}"
             fi
 
-            if ! grep -Fq "\"$base\"" index.html; then
+            if ! grep -Fiq "\"$base\"" index.html; then
               rm -f "$file"
               removed=$((removed + 1))
             fi
@@ -91,7 +91,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Match portraits against tracker catalog"
+            git commit -m "Match portraits case-insensitively"
             git push
           fi
 
