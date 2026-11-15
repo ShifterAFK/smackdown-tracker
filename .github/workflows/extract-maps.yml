@@ -1,0 +1,101 @@
+name: Extract embedded map images
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extract-maps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install image tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick webp
+
+      - name: Extract base64 map images
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64
+          import hashlib
+          import re
+          from pathlib import Path
+
+          js_path = Path('assets/js/tracker-app.js')
+          img_dir = Path('assets/img/maps')
+          img_dir.mkdir(parents=True, exist_ok=True)
+
+          source = js_path.read_text(encoding='utf-8')
+          pattern = re.compile(r'data:image/(png|jpeg|jpg|webp);base64,([A-Za-z0-9+/=]+)')
+
+          matches = list(pattern.finditer(source))
+          if not matches:
+              raise SystemExit('No embedded base64 images found.')
+
+          replacements = []
+          seen = set()
+
+          for index, match in enumerate(matches, start=1):
+              mime = match.group(1).lower()
+              ext = {'jpeg': 'jpg', 'jpg': 'jpg', 'png': 'png', 'webp': 'webp'}[mime]
+              payload = match.group(2)
+              digest = hashlib.sha1(payload.encode('ascii')).hexdigest()[:10]
+              file_name = f'map-{index:02d}-{digest}.{ext}'
+
+              if file_name in seen:
+                  continue
+              seen.add(file_name)
+
+              binary = base64.b64decode(payload, validate=True)
+              (img_dir / file_name).write_bytes(binary)
+              replacements.append((match.span(), file_name))
+
+          updated = source
+          for (start, end), file_name in reversed(replacements):
+              updated = updated[:start] + f'assets/img/maps/{file_name}' + updated[end:]
+
+          js_path.write_text(updated, encoding='utf-8')
+          print(f'Extracted {len(replacements)} embedded images.')
+          PY
+
+      - name: Convert extracted maps to WebP
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          for file in assets/img/maps/*.png assets/img/maps/*.jpg; do
+            base="${file%.*}"
+            cwebp -q 82 "$file" -o "$base.webp" >/dev/null 2>&1
+            rm "$file"
+          done
+
+          if compgen -G 'assets/img/maps/*.webp' >/dev/null; then
+            echo "Converted maps to WebP."
+          else
+            echo "No WebP files were created."
+            exit 1
+          fi
+
+      - name: Commit extracted maps
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Extract embedded map images into WebP assets"
+            git push
+          fi
