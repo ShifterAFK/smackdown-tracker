@@ -22,3 +22,12 @@ html:not([data-ui-view="mobile"]):not([data-ui-view="desktop"]) #page-entry .map
 html:not([data-ui-view="mobile"]):not([data-ui-view="desktop"]) #mobileDraft130 .md130pool .md130hero{height:56px!important;min-height:56px!important;max-height:56px!important;padding:3px 0!important;gap:0!important;transition:none!important;animation:none!important}
 html:not([data-ui-view="mobile"]):not([data-ui-view="desktop"]) #mobileDraft130 .md130pool{row-gap:4px!important}
 html:not([data-ui-view="mobile"]):not([data-ui-view="desktop"]) #mobileDraft130 .md130pool .md130hero .md130portrait{transition:none!important}}
+
+/* Muted faction fills; preserve portrait pixels, borders and hover feedback. */
+#heroes .hero[data-faction="Lightbearer"],#mobileDraft130 .md130hero[data-faction="Lightbearer"]{--f-bg:#25241e;--md132-bg:#25241e;--f-tint:#bd9a3610;--md132-tint:#bd9a3610}
+#heroes .hero[data-faction="Wilder"],#mobileDraft130 .md130hero[data-faction="Wilder"]{--f-bg:#1a2720;--md132-bg:#1a2720;--f-tint:#50a96a10;--md132-tint:#50a96a10}
+#heroes .hero[data-faction="Mauler"],#mobileDraft130 .md130hero[data-faction="Mauler"]{--f-bg:#29221d;--md132-bg:#29221d;--f-tint:#c2783d10;--md132-tint:#c2783d10}
+#heroes .hero[data-faction="Graveborn"],#mobileDraft130 .md130hero[data-faction="Graveborn"]{--f-bg:#1b2625;--md132-bg:#1b2625;--f-tint:#4b9f9410;--md132-tint:#4b9f9410}
+#heroes .hero[data-faction="Celestial"],#mobileDraft130 .md130hero[data-faction="Celestial"]{--f-bg:#24252c;--md132-bg:#24252c;--f-tint:#d4c88510;--md132-tint:#d4c88510}
+#heroes .hero[data-faction="Hypogean"],#mobileDraft130 .md130hero[data-faction="Hypogean"]{--f-bg:#251f2b;--md132-bg:#251f2b;--f-tint:#9d62bf10;--md132-tint:#9d62bf10}
+#heroes .hero[data-faction="Dimensional"],#mobileDraft130 .md130hero[data-faction="Dimensional"]{--f-bg:#20242d;--md132-bg:#20242d;--f-tint:#688cd310;--md132-tint:#688cd310}
