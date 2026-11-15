@@ -115,31 +115,27 @@ function render(){
  const awaitingSide=mode==='assistant'&&!mySide;sideGate.hidden=!awaitingSide;preview.hidden=awaitingSide;content.hidden=awaitingSide;order.hidden=mode!=='assistant'||awaitingSide;
  order.hidden=mode!=='assistant';recommendations.hidden=mode!=='assistant';
  renderPreview();renderPool();
- // Mount after showModal too, so desktop Assistant is never taken unnecessarily.
  mountAssistant();dock.hidden=!media.matches||entry.classList.contains('hidden');
  if(!media.matches){close();document.body.classList.remove('md130open');mountAssistant();}
 }
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;render();});}
 document.addEventListener('click',event=>{
  if(!media.matches||entry.classList.contains('hidden'))return;
- const teamTitle=event.target.closest?.('.team-title');
- if(teamTitle){
-  const team=teamTitle.closest('.team');
-  const side=team?.querySelector('.team-title h2')?.textContent?.trim()?.toUpperCase();
-  if(side==='BLUE'||side==='RED'){
-   event.preventDefault();
-   selectSide(side);
-   queueMicrotask(()=>open('heroes'));
-   return;
-  }
- }
  const slot=event.target.closest?.('#slotsBLUE .slot,#slotsRED .slot');
- if(slot)queueMicrotask(()=>open('heroes'));
+ if(slot){queueMicrotask(()=>open('heroes'));return;}
+ const team=event.target.closest?.('.team.blue,.team.red');
+ if(!team)return;
+ const side=team.classList.contains('blue')?'BLUE':'RED';
+ const control=event.target.closest?.('.slot-remove,.phantimal-chip,input,select,label');
+ if(control)return;
+ event.preventDefault();
+ selectSide(side);
+ queueMicrotask(()=>open('heroes'));
 });
 dialog.addEventListener('close',()=>mountAssistant());
 new MutationObserver(schedule).observe(dialog,{attributes:true,attributeFilter:['open']});
 new MutationObserver(schedule).observe(entry,{attributes:true,attributeFilter:['class']});
 window.addEventListener('tracker:draft-changed',schedule);window.addEventListener('tracker:catalog-changed',schedule);media.addEventListener('change',schedule);
 const annotate=()=>{const table=$('statsTable')?.querySelector('table');if(!table)return;const labels=Array.from(table.querySelectorAll('th')).map(n=>n.textContent);table.querySelectorAll('tbody tr').forEach(row=>Array.from(row.cells).forEach((td,i)=>td.dataset.md130Label=labels[i]||''));};if($('statsTable'))new MutationObserver(annotate).observe($('statsTable'),{childList:true,subtree:true});annotate();
-window.MobileDraft130=Object.freeze({version:'1.3.6',open,close});render();
+window.MobileDraft130=Object.freeze({version:'1.3.7',open,close});render();
 })();
