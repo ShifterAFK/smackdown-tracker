@@ -1,6 +1,6 @@
 @media (max-width:1099px){
 .check{width:auto;max-width:100%;display:inline-flex;align-items:center;gap:8px;}
 .team .check{align-self:flex-start;}
-.md130pool{gap:18px;}
-.md130hero{min-height:76px;}
+.ph-icons{gap:16px;}
+.phantimal-chip{min-width:48px;min-height:48px;}
 }
