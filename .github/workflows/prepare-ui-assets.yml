@@ -1,5 +1,11 @@
 name: Prepare UI assets
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/img/source/**'
+      - 'scripts/prepare-ui-assets.py'
+      - '.github/workflows/prepare-ui-assets.yml'
   workflow_dispatch:
 permissions:
   contents: write
