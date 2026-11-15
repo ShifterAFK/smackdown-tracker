@@ -58,11 +58,59 @@ jobs:
                 ;;
             esac
 
-            clean_name=$(echo "$stem" | sed -E 's/-[A-Za-z0-9_-]{8}$//')
+            clean_name=$(printf '%s' "$stem" | sed -E 's/-[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$//; s/-[A-Za-z0-9_-]{6,}$//')
             curl -fsSL "https://afkstargazer.com$asset" -o "portraits/${clean_name}.webp"
           done < .stargazer/assets.txt
 
-          find portraits -type f -name '*-[A-Za-z0-9_-]\{8\}.webp' -delete
+          find portraits -type f -regextype posix-extended \
+            -regex '.*/[^/]+-[A-Za-z0-9_-]{6,}\.webp' \
+            ! -regex '.*/[^/]+-skin[0-9]+\.webp' \
+            -delete
+
+          find portraits -type f \( \
+            -name 'bg-*' -o \
+            -name 'class-*' -o \
+            -name 'faction-*' -o \
+            -name 'level-*' -o \
+            -name 'damage-*' -o \
+            -name 'initial-energy-*' -o \
+            -name 'awakening-*' -o \
+            -name 'wedge-of-*' -o \
+            -name 'synergy-*' -o \
+            -name 'karma-*' -o \
+            -name 'soulbound-*' -o \
+            -name 'soulshock-*' -o \
+            -name 'enlightening-*' -o \
+            -name 'healwind-*' -o \
+            -name 'ironwall-*' -o \
+            -name 'hurricane-*' -o \
+            -name 'blazing-*' -o \
+            -name 'bladestorm-*' -o \
+            -name 'bladesummon-*' -o \
+            -name 'candleflame-*' -o \
+            -name 'confining-*' -o \
+            -name 'coreforge-*' -o \
+            -name 'crystal-beetle-*' -o \
+            -name 'lamentis-*' -o \
+            -name 'marene-*' -o \
+            -name 'meteorfall-*' -o \
+            -name 'orion-*' -o \
+            -name 'peggy-*' -o \
+            -name 'plague-creeper-*' -o \
+            -name 'rolan-*' -o \
+            -name 'seralyth-*' -o \
+            -name 'starshard-*' -o \
+            -name 'taichi-agumon-*' -o \
+            -name 'thane-*' -o \
+            -name 'thundermight-*' -o \
+            -name 'tidesurge-*' -o \
+            -name 'voracia-*' -o \
+            -name 'yamato-gabumon-*' -o \
+            -name 'zanie-turret-*' -o \
+            -name 'phraesto-shadow-*' -o \
+            -name 'elijah-lailah-elijah-*' -o \
+            -name 'elijah-lailah-lailah-*' \
+          \) -delete
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -71,7 +119,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Normalize AFK Journey portrait filenames"
+            git commit -m "Clean duplicate portraits and UI assets"
             git push
           fi
 
