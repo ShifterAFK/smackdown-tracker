@@ -1,0 +1,39 @@
+name: Sync AFK Journey portraits
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout Stargazer assets
+        uses: actions/checkout@v4
+        with:
+          repository: tmdict/stargazer
+          ref: main
+          path: stargazer
+
+      - name: Copy hero portraits and skins
+        run: |
+          mkdir -p portraits
+          cp stargazer/src/pack/images/character/*.png portraits/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add portraits
+          if git diff --staged --quiet; then
+            echo "No portrait changes."
+          else
+            git commit -m "Sync AFK Journey hero portraits and skins"
+            git push
+          fi
