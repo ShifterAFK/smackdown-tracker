@@ -32,3 +32,14 @@ script.async=false;
 script.onerror=()=>{window.TrackerSkinHoverLoading=false;};
 document.body.append(script);
 })();
+
+(function(){
+'use strict';
+if(window.TrackerMatchHistoryLoading||window.TrackerMatchHistory)return;
+window.TrackerMatchHistoryLoading=true;
+const script=document.createElement('script');
+script.src=new URL('match-history.js?v=1',document.currentScript.src).href;
+script.async=false;
+script.onerror=()=>{window.TrackerMatchHistoryLoading=false;};
+document.body.append(script);
+})();
