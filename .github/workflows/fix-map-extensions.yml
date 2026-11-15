@@ -1,0 +1,51 @@
+name: Fix extracted map asset extensions
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-map-extensions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Point map references to WebP files
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('assets/js/tracker-app.js')
+          source = path.read_text(encoding='utf-8')
+          updated = source.replace('assets/img/maps/map-', 'assets/img/maps/__MAP__')
+          updated = updated.replace('.png"', '.webp"')
+          updated = updated.replace('__MAP__', 'map-')
+
+          if updated == source:
+              raise SystemExit('No .png map references found to update.')
+
+          path.write_text(updated, encoding='utf-8')
+          print('Updated map asset extensions to .webp.')
+          PY
+
+      - name: Commit map extension fix
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/tracker-app.js
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Fix extracted map asset extensions"
+            git push
+          fi
