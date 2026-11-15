@@ -44,132 +44,132 @@ jobs:
           fi
 
           cat > hero_ids.txt <<'EOF'
-alna
-alsa
-antandra
-arden
-aster
-atalanta
-athalia
-aurora
-baden
-baelran
-berial
-bonnie
-brutus
-bryon
-callan
-carolina
-cassadee
-cecia
-chippy
-contess
-cryonaia
-cyran
-daimon
-damian
-dionel
-dunlingr
-eironn
-elijah-lailah
-eryndor
-estrilda
-evie
-faramor
-fay
-florabelle
-frieren
-galahad
-gerda
-gervan
-granny-dahnie
-gunnar
-gwyneth
-hammie
-harak
-hepler
-hewynn
-himmel
-hodgkin
-hugin
-igor
-indris
-isabella
-kafra
-kazim
-koko
-kordan
-korin
-kruger
-kulu
-laios
-lenya
-lily-may
-lorsan
-lucca
-lucius
-lucy
-ludovic
-lumont
-lyca
-marcille
-marilee
-mehira
-mikola
-mirael
-nara
-natsu
-nazrik
-nerion
-niru
-odie
-orion
-pandora
-pang
-parisa
-perseus
-phraesto
-pippa
-ravion
-reinier
-rhys
-rowan
-saida
-salazer
-satrana
-scarlita
-senea
-seth
-shadewing
-shakir
-shemira
-silven
-silvina
-sinbad
-smokey-meerky
-solise
-sonja
-soren
-sylphira
-taichi-agumon
-talene
-tasi
-temesia
-thador
-thoran
-tilaya
-ulmus
-vala
-valen
-valka
-velara
-viperian
-walker
-yamato-gabumon
-zandrok
-zanie
-zorya
-EOF
+          alna
+          alsa
+          antandra
+          arden
+          aster
+          atalanta
+          athalia
+          aurora
+          baden
+          baelran
+          berial
+          bonnie
+          brutus
+          bryon
+          callan
+          carolina
+          cassadee
+          cecia
+          chippy
+          contess
+          cryonaia
+          cyran
+          daimon
+          damian
+          dionel
+          dunlingr
+          eironn
+          elijah-lailah
+          eryndor
+          estrilda
+          evie
+          faramor
+          fay
+          florabelle
+          frieren
+          galahad
+          gerda
+          gervan
+          granny-dahnie
+          gunnar
+          gwyneth
+          hammie
+          harak
+          hepler
+          hewynn
+          himmel
+          hodgkin
+          hugin
+          igor
+          indris
+          isabella
+          kafra
+          kazim
+          koko
+          kordan
+          korin
+          kruger
+          kulu
+          laios
+          lenya
+          lily-may
+          lorsan
+          lucca
+          lucius
+          lucy
+          ludovic
+          lumont
+          lyca
+          marcille
+          marilee
+          mehira
+          mikola
+          mirael
+          nara
+          natsu
+          nazrik
+          nerion
+          niru
+          odie
+          orion
+          pandora
+          pang
+          parisa
+          perseus
+          phraesto
+          pippa
+          ravion
+          reinier
+          rhys
+          rowan
+          saida
+          salazer
+          satrana
+          scarlita
+          senea
+          seth
+          shadewing
+          shakir
+          shemira
+          silven
+          silvina
+          sinbad
+          smokey-meerky
+          solise
+          sonja
+          soren
+          sylphira
+          taichi-agumon
+          talene
+          tasi
+          temesia
+          thador
+          thoran
+          tilaya
+          ulmus
+          vala
+          valen
+          valka
+          velara
+          viperian
+          walker
+          yamato-gabumon
+          zandrok
+          zanie
+          zorya
+          EOF
 
           downloaded=0
 
