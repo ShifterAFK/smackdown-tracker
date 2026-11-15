@@ -47,19 +47,31 @@ jobs:
           fi
 
           mkdir -p portraits
+
           while IFS= read -r asset; do
             filename=$(basename "$asset")
-            curl -fsSL "https://afkstargazer.com$asset" -o "portraits/$filename"
+            stem="${filename%.webp}"
+
+            case "$stem" in
+              bg-*|class-*|faction-*|level-*|damage-*|initial-energy-*|awakening-*|wedge-of-*|synergy-*|karma-*|soulbound-*|soulshock-*|enlightening-*|healwind-*|ironwall-*|hurricane-*|blazing-*|bladestorm-*|bladesummon-*|candleflame-*|confining-*|coreforge-*|crystal-beetle-*|lamentis-*|marene-*|meteorfall-*|orion-*|peggy-*|plague-creeper-*|rolan-*|seralyth-*|starshard-*|taichi-agumon-*|thane-*|thundermight-*|tidesurge-*|voracia-*|yamato-gabumon-*|zanie-turret-*|phraesto-shadow-*|elijah-lailah-elijah-*|elijah-lailah-lailah-*)
+                continue
+                ;;
+            esac
+
+            clean_name=$(echo "$stem" | sed -E 's/-[A-Za-z0-9_-]{8}$//')
+            curl -fsSL "https://afkstargazer.com$asset" -o "portraits/${clean_name}.webp"
           done < .stargazer/assets.txt
+
+          find portraits -type f -name '*-[A-Za-z0-9_-]\{8\}.webp' -delete
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add portraits
+          git add -A portraits
 
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Sync AFK Journey hero portraits and skins"
+            git commit -m "Normalize AFK Journey portrait filenames"
             git push
           fi
 
