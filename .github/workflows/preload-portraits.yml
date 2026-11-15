@@ -1,0 +1,64 @@
+name: Preload portraits to prevent flicker
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  preload-portraits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Preload portraits and disable lazy loading
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('assets/js/tracker-app.js')
+          source = path.read_text(encoding='utf-8')
+
+          old_image = "image.loading='lazy';image.referrerPolicy='no-referrer';"
+          new_image = "image.loading='eager';image.decoding='async';image.referrerPolicy='no-referrer';"
+
+          if old_image not in source:
+              raise SystemExit('Expected portrait image attributes were not found.')
+
+          updated = source.replace(old_image, new_image, 1)
+
+          old_config = "onlineCatalog=true;$('connection').textContent='Live hero catalog loaded';renderThemes();renderHeroes();renderSlots();"
+          new_config = "onlineCatalog=true;$('connection').textContent='Live hero catalog loaded';config.heroes.forEach(h=>{const image=new Image();image.src=h.portrait_url});renderThemes();renderHeroes();renderSlots();"
+
+          if old_config not in updated:
+              raise SystemExit('Expected loadConfig completion point was not found.')
+
+          updated = updated.replace(old_config, new_config, 1)
+
+          if updated == source:
+              raise SystemExit('No preload changes were applied.')
+
+          path.write_text(updated, encoding='utf-8')
+          print('Portraits are now preloaded and rendered eagerly.')
+          PY
+
+      - name: Commit portrait preload fix
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/tracker-app.js
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Preload portraits to prevent flicker"
+            git push
+          fi
