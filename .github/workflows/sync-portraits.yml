@@ -43,6 +43,134 @@ jobs:
             exit 1
           fi
 
+          cat > hero_ids.txt <<'EOF'
+alna
+alsa
+antandra
+arden
+aster
+atalanta
+athalia
+aurora
+baden
+baelran
+berial
+bonnie
+brutus
+bryon
+callan
+carolina
+cassadee
+cecia
+chippy
+contess
+cryonaia
+cyran
+daimon
+damian
+dionel
+dunlingr
+eironn
+elijah-lailah
+eryndor
+estrilda
+evie
+faramor
+fay
+florabelle
+frieren
+galahad
+gerda
+gervan
+granny-dahnie
+gunnar
+gwyneth
+hammie
+harak
+hepler
+hewynn
+himmel
+hodgkin
+hugin
+igor
+indris
+isabella
+kafra
+kazim
+koko
+kordan
+korin
+kruger
+kulu
+laios
+lenya
+lily-may
+lorsan
+lucca
+lucius
+lucy
+ludovic
+lumont
+lyca
+marcille
+marilee
+mehira
+mikola
+mirael
+nara
+natsu
+nazrik
+nerion
+niru
+odie
+orion
+pandora
+pang
+parisa
+perseus
+phraesto
+pippa
+ravion
+reinier
+rhys
+rowan
+saida
+salazer
+satrana
+scarlita
+senea
+seth
+shadewing
+shakir
+shemira
+silven
+silvina
+sinbad
+smokey-meerky
+solise
+sonja
+soren
+sylphira
+taichi-agumon
+talene
+tasi
+temesia
+thador
+thoran
+tilaya
+ulmus
+vala
+valen
+valka
+velara
+viperian
+walker
+yamato-gabumon
+zandrok
+zanie
+zorya
+EOF
+
           downloaded=0
 
           while IFS= read -r asset; do
@@ -59,7 +187,7 @@ jobs:
               base="${clean%-*}"
             fi
 
-            if grep -Fiq "\"$base\"" index.html; then
+            if grep -Fxq "$base" hero_ids.txt; then
               curl -fsSL "https://afkstargazer.com$asset" -o "portraits/${clean}.webp"
               downloaded=$((downloaded + 1))
             fi
@@ -76,7 +204,7 @@ jobs:
               base="${name%-*}"
             fi
 
-            if ! grep -Fiq "\"$base\"" index.html; then
+            if ! grep -Fxq "$base" hero_ids.txt; then
               rm -f "$file"
               removed=$((removed + 1))
             fi
@@ -91,11 +219,11 @@ jobs:
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Match portraits case-insensitively"
+            git commit -m "Sync portraits from explicit hero allowlist"
             git push
           fi
 
       - name: Clean temporary files
         if: always()
         shell: bash
-        run: rm -rf .stargazer
+        run: rm -rf .stargazer hero_ids.txt
