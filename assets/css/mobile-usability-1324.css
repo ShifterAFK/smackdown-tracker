@@ -4,49 +4,48 @@
 .ph-icons{gap:16px;}
 .phantimal-chip{min-width:48px;min-height:48px;}
 }
-
-/* Event shell stays green; draft surfaces use the battle-screen palette. */
-html body{background:radial-gradient(ellipse at 12% 0%,#29372b55,transparent 48%),#191a17!important}
-#page-entry .match-panel,#page-entry .hero-panel{--text:#332c25;--muted:#655b4e;--line:#cbbd9f;--green:#35654c;color:var(--text)!important;background:#f1ead9!important;border-color:#b9a67d!important;color-scheme:light}
-#page-entry .map-area{background:#e8dfc9!important;border-color:#c3af81!important;color:#332c25!important}
-#page-entry .map-area .map-eyebrow,#page-entry .map-area #mapSelectedName,#page-entry .map-area .map-selected-line,#page-entry .map-area .map-rotation-line{color:#51442e!important}
-#page-entry #chooseMap{background:#e1d2ad!important;border-color:#9b8045!important;color:#392f20!important}
-#page-entry .selected-map{background:#ddd2b9!important;border-color:#ae9b71!important}
-#page-entry .selected-map span{background:#e8dfc9!important;color:#534837!important}
-#page-entry .hero-panel label,#page-entry .hero-panel #catalogInfo,#page-entry .hero-panel .hero-faction-heading{color:#5c503e!important}
-#page-entry .hero-panel .hero-faction-heading{border-color:#cbbd9f!important}
-#page-entry #search,#page-entry #activeLabel,#page-entry #submitterName{background:#fffaf0!important;color:#332c25!important;border-color:#bcae92!important;box-shadow:none!important}
-#page-entry input::placeholder{color:#776a56!important;opacity:1}
-#page-entry #factionFilters .filter{background:#e7ddc5!important;color:#493c28!important;border-color:#b9a373!important;box-shadow:none!important}
-#page-entry #factionFilters .filter.active{background:#6b5630!important;color:#fff7e3!important;border-color:#6b5630!important}
-#page-entry #heroes{scrollbar-color:#a59168 #e3dac6}
-#page-entry .team.blue{--text:#fff7e9;--muted:#e1e5ef;--line:#6882a3;--green:#d9e6ca;background:#354f75!important;border-color:#607b9f!important;border-top-color:#7899c3!important;color:#fff7e9!important}
-#page-entry .team.red{--text:#fff7e9;--muted:#f0ddd6;--line:#ae776b;--green:#d9e6ca;background:#82463e!important;border-color:#b47b6b!important;border-top-color:#ce8d75!important;color:#fff7e9!important}
-#page-entry .team .team-title h2{color:#fff4d9!important}
-#page-entry .team .check,#page-entry .team .ph-status,#page-entry .team .ph-label{color:#f5ead7!important}
-#page-entry .team .check input{accent-color:#dfc17b}
-#page-entry .team .slot-cell>.slot{background:#f3ecdc!important;color:#3a3228!important;border-color:#cbb994!important;box-shadow:inset 0 1px 0 #fffaf0!important}
-#page-entry .team .slot-cell>.slot small,#page-entry .team .slot-cell>.slot .name,#page-entry .team .empty-slot-mark{color:#514531!important}
-#page-entry .team .slot-cell>.slot.active{background:#fff7df!important;border-color:#b28a34!important;outline:2px solid #dfbd64!important;outline-offset:2px;box-shadow:inset 0 0 0 1px #a67e32!important}
-#page-entry .team .slot-cell>.slot.drop-target{background:#e8dbb4!important;outline:3px solid #ad8128!important}
-#page-entry .team .slot-remove{background:#f5e9d5!important;color:#763c34!important;border-color:#b99678!important}
-#page-entry .team .slot-remove:hover{background:#eed2be!important}
-#page-entry #winnerPicker{background:#e8dfca!important;border-color:#baa67b!important;color:#3a3228!important}
-#page-entry #winnerPicker>span{color:#493c28!important}
-#page-entry #winBLUE{background:#e0e6ee!important;color:#29476e!important;border-color:#617da1!important}
-#page-entry #winRED{background:#efded4!important;color:#7f3f35!important;border-color:#ae7665!important}
-#page-entry #winBLUE.chosen{background:#354f75!important;color:#fff6df!important;outline:2px solid #b38a36!important}
-#page-entry #winRED.chosen{background:#82463e!important;color:#fff6df!important;outline:2px solid #b38a36!important}
-#page-entry #winnerPicker.missing-winner{border-color:#946927!important}
-#page-entry #winnerWarning{color:#82431f!important}
-#page-entry #submitOnline{background:#695735!important;color:#fff7e3!important;border-color:#90733c!important}
-#page-entry #submitOnline:disabled{background:#d8cdb6!important;color:#766d5d!important;border-color:#bbac90!important}
-#page-entry .secondary-actions button{background:transparent!important;color:#65523a!important;border-color:#b7a68a!important}
-#page-entry #captchaStatus,#page-entry .mh-signature label,#page-entry .mh-signature .caption{color:#655b4e!important}
-#page-entry #entryStatus{color:#35654c!important}
-#page-entry #entryStatus.error{color:#963e30!important}
-#page-entry #matchReceipt{background:#e3e8d7!important;border-color:#6b8258!important;color:#332c25!important}
-#page-entry #matchReceipt .mh-meta{color:#5b5447!important}
-#page-entry #matchReceipt .mh-team[data-side=BLUE] .mh-team-label{color:#354f75!important}
-#page-entry #matchReceipt .mh-team[data-side=RED] .mh-team-label{color:#82463e!important}
-#page-entry input:focus-visible,#page-entry .filter:focus-visible,#page-entry #chooseMap:focus-visible{outline:2px solid #806123!important;outline-offset:3px}
+/* Warm dark draft; retain the green event banner and portrait artwork. */
+html body{background:radial-gradient(ellipse at 12% 0%,#29372b33,transparent 48%),#141514!important}
+#page-entry .match-panel,#page-entry .hero-panel{--text:#e6dfcf;--muted:#b5ae9e;--line:#41423a;--green:#9abea0;color:var(--text)!important;background:#20221f!important;border-color:#41423a!important;color-scheme:dark}
+#page-entry .map-area{background:#252720!important;border-color:#514c38!important;color:#e6dfcf!important}
+#page-entry .map-area .map-eyebrow{color:#c6aa70!important}
+#page-entry .map-area #mapSelectedName,#page-entry .map-area .map-selected-line,#page-entry .map-area .map-rotation-line{color:#c6c0b2!important}
+#page-entry #chooseMap,#page-entry #factionFilters .filter{background:#302e24!important;border-color:#75613a!important;color:#e0cfaa!important;box-shadow:none!important}
+#page-entry .selected-map,#page-entry .selected-map span{background:#191c18!important;color:#bdb6a5!important;border-color:#494b3d!important}
+#page-entry .hero-panel label,#page-entry .hero-panel #catalogInfo,#page-entry .hero-panel .hero-faction-heading{color:#c6bfae!important}
+#page-entry .hero-panel .hero-faction-heading{border-color:#41423a!important}
+#page-entry #search,#page-entry #activeLabel,#page-entry #submitterName{background:#171a17!important;color:#e6dfcf!important;border-color:#484b40!important;box-shadow:none!important}
+#page-entry input::placeholder{color:#aaa391!important;opacity:1}
+#page-entry #factionFilters .filter.active{background:#574a2e!important;color:#f4e6c6!important;border-color:#b39454!important}
+#page-entry #heroes{scrollbar-color:#66675b #20221f}
+#page-entry .team.blue{background:linear-gradient(135deg,#222d39,#1e252b)!important;border-color:#3e5368!important;border-top-color:#7797b8!important;color:#e6dfcf!important}
+#page-entry .team.red{background:linear-gradient(135deg,#352927,#292221)!important;border-color:#684b43!important;border-top-color:#b97966!important;color:#e6dfcf!important}
+#page-entry .team.blue .team-title h2{color:#a2bdd7!important}
+#page-entry .team.red .team-title h2{color:#d69b87!important}
+#page-entry .team .check,#page-entry .team .ph-status,#page-entry .team .ph-label{color:#c7c0b2!important}
+#page-entry .team .check input{accent-color:#bca36a}
+#page-entry .team .slot-cell>.slot{background:#1a2025!important;color:#e6dfcf!important;border-color:#3c4850!important;box-shadow:none!important}
+#page-entry .team.red .slot-cell>.slot{background:#251e1d!important;border-color:#4f3e38!important}
+#page-entry .team .slot-cell>.slot small,#page-entry .team .slot-cell>.slot .name,#page-entry .team .empty-slot-mark{color:#d4ccba!important}
+#page-entry .team .slot-cell>.slot.active{border-color:#c2a364!important;outline:2px solid #c2a364!important;outline-offset:2px;box-shadow:inset 0 0 0 1px #72603b!important}
+#page-entry .team .slot-cell>.slot.drop-target{outline:3px solid #c2a364!important}
+#page-entry .team .slot-remove{background:#342824!important;color:#e4b6a6!important;border-color:#77584a!important}
+#page-entry #winnerPicker{background:#24251f!important;border-color:#4e4b3c!important;color:#e6dfcf!important}
+#page-entry #winnerPicker>span{color:#dfd4bc!important}
+#page-entry #winBLUE{background:#253343!important;color:#b5cce1!important;border-color:#597593!important}
+#page-entry #winRED{background:#402d29!important;color:#dfb09e!important;border-color:#946653!important}
+#page-entry #winBLUE.chosen{background:#334c67!important;outline:2px solid #c2a364!important}
+#page-entry #winRED.chosen{background:#644139!important;outline:2px solid #c2a364!important}
+#page-entry #winnerPicker.missing-winner{border-color:#bd9653!important}
+#page-entry #winnerWarning{color:#e4bc83!important}
+#page-entry #submitOnline{background:#51462e!important;color:#f0e3c5!important;border-color:#9e824b!important}
+#page-entry #submitOnline:disabled{background:#2c2d27!important;color:#aaa391!important;border-color:#48483c!important}
+#page-entry .secondary-actions button{background:transparent!important;color:#c2b6a0!important;border-color:#575044!important}
+#page-entry #captchaStatus,#page-entry .mh-signature label,#page-entry .mh-signature .caption{color:#b5ae9e!important}
+#page-entry #entryStatus{color:#a5c3a3!important}
+#page-entry #entryStatus.error{color:#e6a393!important}
+#page-entry #matchReceipt{background:#242e24!important;border-color:#627b56!important;color:#e6dfcf!important}
+#page-entry #matchReceipt .mh-meta{color:#c2bba9!important}
+#page-entry #matchReceipt .mh-team[data-side=BLUE] .mh-team-label{color:#a2bdd7!important}
+#page-entry #matchReceipt .mh-team[data-side=RED] .mh-team-label{color:#d69b87!important}
+#page-entry input:focus-visible,#page-entry .filter:focus-visible,#page-entry #chooseMap:focus-visible{outline:2px solid #c2a364!important;outline-offset:3px}
