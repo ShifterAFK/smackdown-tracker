@@ -5,22 +5,9 @@
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <meta content="no-referrer" name="referrer">
 <title>AFK Journey · Smackdown Tracker</title>
-
-
-
-
-
-
-
-
 <link rel="stylesheet" href="assets/css/tracker-styles.css">
 <link rel="stylesheet" href="assets/css/statistics-pagination-style.css">
 <link rel="stylesheet" href="assets/css/visual-polish-114-style.css">
-
-
-
-
-
 <link rel="stylesheet" href="assets/css/md130-style.css">
 <link rel="stylesheet" href="assets/css/desktop133-style.css">
 <link rel="stylesheet" href="assets/css/solise-voice-style.css">
@@ -34,11 +21,10 @@
 <link rel="stylesheet" href="assets/css/map-clear-1414-style.css">
 <link rel="stylesheet" href="assets/css/map-layout-1315.css">
 <link rel="stylesheet" href="assets/css/tracker-polish-1316-style.css">
-
 <link rel="stylesheet" href="assets/css/assistant-compact-1320-style.css">
 <link rel="stylesheet" href="assets/css/desktop-order-1321-style.css">
 </head>
-<body data-build="1.1.4-2026-11-13">
+<body data-build="1.1.4-2026-11-15">
 <main>
 <header class="header brand-header"><span aria-hidden="true" class="brand-mark">VS</span><div class="brand-copy"><h1>SHOWDOWN SMACKDOWN</h1><div class="connection">AFK Journey · Unofficial community draft tracker</div></div><div class="brand-status"><span class="badge">COMMUNITY TOOL</span><div class="connection" id="connection">Loading hero catalog…</div></div></header>
 <nav aria-label="Main navigation" class="tabs"><button class="tab active" data-page="entry">Record match</button><button class="tab" data-page="tiers">Tier List</button><button class="tab" data-page="statistics">Statistics</button><button id="openHelp" type="button">How to use</button></nav>
@@ -58,22 +44,9 @@
 </div>
 <dialog id="mapDialog"><h2 id="mapTitle"></h2><img alt="Enlarged arena preview" id="largeMap"><p class="caption">Arena layout preview — not an interactive placement map.</p><button id="mapClose">Close</button></dialog>
 <dialog aria-labelledby="helpTitle" id="helpDialog"><div class="dialog-heading"><h2 id="helpTitle">How to use</h2><button id="closeHelp" type="button">Close</button></div><p>Record only real matches from this event.</p><ol class="help-steps"><li><strong>Choose the map.</strong><p>Click Change map and select the arena used in the match. Click its preview to enlarge it.</p></li><li><strong>Build BLUE and RED.</strong><p>Select a slot and click a hero, or drag a portrait into a slot. Each hero can appear only once across both teams. Click × on an occupied slot to remove its hero. Drag between slots to move or swap heroes. Dropping outside slots leaves the teams unchanged.</p></li><li><strong>Set draft order and Phantimals.</strong><p>With Draft order known checked, Pick 1–3 means selection order, not battlefield position. The first non-Dimensional hero determines the automatic Phantimal. Celestial and Hypogean share Wedge of Matter.</p><p>If draft order is unknown, uncheck Draft order known and select the Phantimal seen in battle or on the results screen. Unknown means it was not identified; None means no Phantimal took part.</p></li><li><strong>Submit the result.</strong><p>Choose the actual winning side, complete verification and click Submit match once. Wait for Match submitted successfully. If a request times out, it may already have reached the server: keep the same match and retry after verification so the same submission ID can be reused.</p></li></ol><details><summary>Draft Assistant</summary><p>Suggestions are provided separately for BLUE and RED. Click a suggestion to add it to that side, or drag it into a slot. The assistant does not know your current draft pool. Check which suggested heroes are available in your hand.</p><p>Click × on a suggestion to hide that hero in both lists for the current draft. Restore hidden heroes reverses this; Reset teams starts a new draft. Hidden suggestions do not change event bans or statistics.</p><p>By default, suggestions use Overall — all maps in this event. Only selected map restricts suggestions to the map chosen in the form. The S-tier reference always uses Overall and shows eligible heroes only. S requires more than 85% team win rate and at least 10 appearances.</p><p>No data means no relevant observations in the chosen scope. Small sample means fewer than 10 appearances for the hero result or at least one DUO result used by the suggestion. More observations do not by themselves prove isolated synergy. Counter-picks are not evaluated.</p></details><details><summary>Match Indicator</summary><p>The experimental bar compares historical results for the completed teams on the selected map. It is not a win probability, a counter-pick analysis or a betting recommendation. Different scopes can explain differences between this indicator and Overall suggestions. Not enough data means the indicator cannot provide a supported comparison under its current rules.</p></details><details><summary>Statistics and freshness</summary><p>Overall includes all maps in this event, not other game modes. Hero and DUO win rates describe the results of teams containing those heroes, not their isolated strength or synergy. Wedge of Matter combines Celestial and Hypogean Phantimal appearances.</p><p>Statistics use cached results and may lag behind newly submitted matches. The browser shares requests and caches results briefly; the server may cache statistics for up to five minutes. Refresh requests data again but does not force the server to recalculate immediately. Check the calculation time.</p></details><button class="submit-match" id="startUsing" type="button">Got it — record a match</button><p class="caption">Reopen this guide using How to use.</p></dialog><dialog aria-labelledby="mapPickerTitle" id="mapPicker"><div class="dialog-heading"><div><h2 id="mapPickerTitle">Choose the map</h2><p class="caption">Choose by arena layout.</p></div><button id="closeMapPicker" type="button">Close</button></div><div id="mapChoices"></div></dialog><dialog aria-labelledby="tierHeroTitle" id="tierHeroDialog"><div class="dialog-heading"><h2 id="tierHeroTitle">Hero</h2><button id="closeTierHero" type="button">Close</button></div><div id="tierHeroDetail"></div></dialog><footer class="site-footer">Unofficial community tool · AFK Journey artwork belongs to its respective owners. No affiliation or endorsement implied.<span id="appVersion">Smackdown Tracker v1.3.23</span></footer></main>
-
-
-
-
-
-
-
-
 <script src="assets/js/tracker-app.js"></script>
 <script src="assets/js/visual-polish-114-script.js"></script>
-
-
-
-
-
-<script src="assets/js/md130-script.js"></script>
+<script src="assets/js/md130-script.js?v=20261115a"></script>
 <script src="assets/js/desktop133-script.js"></script>
 <script type="application/json" src="assets/js/solise-voice-data.js"></script>
 <script src="assets/js/solise-voice-script.js"></script>
@@ -86,9 +59,6 @@
 <script src="assets/js/map-compact-1412.js"></script>
 <script src="assets/js/map-clear-1414.js"></script>
 <script src="assets/js/tracker-polish-1316.js"></script>
-
-
-
 <script src="assets/js/assistant-compact-1320.js"></script>
 <script src="assets/js/desktop-order-1321.js"></script>
 <script src="assets/js/draft-rules-1322.js"></script>
