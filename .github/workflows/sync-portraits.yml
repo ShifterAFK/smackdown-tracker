@@ -18,23 +18,20 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
       - name: Download and extract Stargazer assets
+        shell: bash
         run: |
-          mkdir -p .stargazer
+          set -euo pipefail
+          mkdir -p .stargazer portraits
           curl -fsSL https://afkstargazer.com/ -o .stargazer/index.html
 
-          JS_FILES=$(grep -oE '/assets/[A-Za-z0-9._-]+\.js' .stargazer/index.html | sort -u || true)
-          if [ -z "$JS_FILES" ]; then
+          mapfile -t JS_FILES < <(grep -oE '/assets/[A-Za-z0-9._-]+\.js' .stargazer/index.html | sort -u || true)
+          if [ "${#JS_FILES[@]}" -eq 0 ]; then
             echo "No JavaScript bundles found."
             exit 1
           fi
 
-          for js in $JS_FILES; do
+          for js in "${JS_FILES[@]}"; do
             curl -fsSL "https://afkstargazer.com$js" -o ".stargazer/$(basename "$js")"
           done
 
@@ -46,53 +43,48 @@ jobs:
             exit 1
           fi
 
-          mkdir -p portraits
+          # Extract hero IDs directly from the tracker catalog.
+          grep -oE '"?id"?[[:space:]]*:[[:space:]]*"[a-z0-9_-]+"' index.html |
+            sed -E 's/.*"([a-z0-9_-]+)"$/\1/' |
+            sort -u > hero_ids.txt
+
+          if [ ! -s hero_ids.txt ]; then
+            echo "No hero IDs found in index.html."
+            exit 1
+          fi
 
           while IFS= read -r asset; do
             filename=$(basename "$asset")
             stem="${filename%.webp}"
 
-            case "$stem" in
-              acute|arcane|balanced|bear|blast|bloodlust|butcher|cheetah|combative|destructive|eagle|energy|focus|gale|glory|healer|insight|mystic|overloaded|reaper|recovering|resolute|ruthless|sorcery|sturdy|swift|titanic|vigorous|wizard)
-                continue
-                ;;
-            esac
+            clean=$(printf '%s' "$stem" | sed -E \
+              -e 's/-(skin[0-9]+)-[A-Za-z0-9_-]+$/-\1/' \
+              -e 't' \
+              -e 's/-[A-Za-z0-9_-]+$//')
 
-            clean_name=$(printf '%s' "$stem" | sed -E 's/-[A-Za-z0-9_-]{8,}$//')
-            curl -fsSL "https://afkstargazer.com$asset" -o "portraits/${clean_name}.webp"
+            base="$clean"
+            if [[ "$clean" =~ -skin[0-9]+$ ]]; then
+              base="${clean%-*}"
+            fi
+
+            if grep -Fxq "$base" hero_ids.txt; then
+              curl -fsSL "https://afkstargazer.com$asset" -o "portraits/${clean}.webp"
+            fi
           done < .stargazer/assets.txt
 
-          find portraits -type f \( \
-            -name 'acute.webp' -o \
-            -name 'arcane.webp' -o \
-            -name 'balanced.webp' -o \
-            -name 'bear.webp' -o \
-            -name 'blast.webp' -o \
-            -name 'bloodlust.webp' -o \
-            -name 'butcher.webp' -o \
-            -name 'cheetah.webp' -o \
-            -name 'combative.webp' -o \
-            -name 'destructive.webp' -o \
-            -name 'eagle.webp' -o \
-            -name 'energy.webp' -o \
-            -name 'focus.webp' -o \
-            -name 'gale.webp' -o \
-            -name 'glory.webp' -o \
-            -name 'healer.webp' -o \
-            -name 'insight.webp' -o \
-            -name 'mystic.webp' -o \
-            -name 'overloaded.webp' -o \
-            -name 'reaper.webp' -o \
-            -name 'recovering.webp' -o \
-            -name 'resolute.webp' -o \
-            -name 'ruthless.webp' -o \
-            -name 'sorcery.webp' -o \
-            -name 'sturdy.webp' -o \
-            -name 'swift.webp' -o \
-            -name 'titanic.webp' -o \
-            -name 'vigorous.webp' -o \
-            -name 'wizard.webp' \
-          \) -delete
+          # Remove anything that is not a tracker hero portrait or skin.
+          shopt -s nullglob
+          for file in portraits/*.webp; do
+            name="$(basename "$file" .webp)"
+            base="$name"
+            if [[ "$name" =~ -skin[0-9]+$ ]]; then
+              base="${name%-*}"
+            fi
+
+            if ! grep -Fxq "$base" hero_ids.txt; then
+              rm -f "$file"
+            fi
+          done
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -101,10 +93,11 @@ jobs:
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Fix portrait naming and remove UI assets"
+            git commit -m "Sync portraits using tracker hero allowlist"
             git push
           fi
 
       - name: Clean temporary files
         if: always()
-        run: rm -rf .stargazer
+        shell: bash
+        run: rm -rf .stargazer hero_ids.txt
