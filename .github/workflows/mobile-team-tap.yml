@@ -1,0 +1,66 @@
+name: Open hero list when tapping a mobile team header
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/js/md130-script.js'
+      - '.github/workflows/mobile-team-tap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tracker-maintenance
+  cancel-in-progress: true
+
+jobs:
+  mobile-team-tap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add team-header tap handling
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('assets/js/md130-script.js')
+          source = path.read_text(encoding='utf-8')
+
+          old = "document.addEventListener('click',event=>{\n if(!media.matches||entry.classList.contains('hidden'))return;\n const slot=event.target.closest?.('#slotsBLUE .slot,#slotsRED .slot');\n if(slot)queueMicrotask(()=>open('heroes'));\n});"
+          new = "document.addEventListener('click',event=>{\n if(!media.matches||entry.classList.contains('hidden'))return;\n const teamTitle=event.target.closest?.('.team-title');\n if(teamTitle){\n  const team=teamTitle.closest('.team');\n  const side=team?.querySelector('.team-title h2')?.textContent?.trim()?.toUpperCase();\n  if(side==='BLUE'||side==='RED'){\n   event.preventDefault();\n   selectSide(side);\n   queueMicrotask(()=>open('heroes'));\n   return;\n  }\n }\n const slot=event.target.closest?.('#slotsBLUE .slot,#slotsRED .slot');\n if(slot)queueMicrotask(()=>open('heroes'));\n});"
+
+          if old not in source:
+              raise SystemExit('Expected mobile click handler was not found.')
+
+          updated = source.replace(old, new, 1)
+
+          if updated == source:
+              raise SystemExit('No mobile team tap changes were applied.')
+
+          path.write_text(updated, encoding='utf-8')
+          print('Mobile team headers now open the hero list.')
+          PY
+
+      - name: Commit mobile team tap handling
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/md130-script.js
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Open hero list when tapping a mobile team header"
+            git push
+          fi
