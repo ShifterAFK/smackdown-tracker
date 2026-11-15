@@ -1,0 +1,68 @@
+name: Use local hero portraits
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  use-local-portraits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Switch hero portraits to local WebP assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('assets/js/tracker-app.js')
+          source = path.read_text(encoding='utf-8')
+
+          old_base = "const BASE='https://www.yaphalla.com/assets/images/portraits/';"
+          new_base = "const BASE='https://shifterafk.github.io/smackdown-tracker/portraits/';"
+
+          if old_base not in source:
+              raise SystemExit('Expected Yaphalla portrait base URL was not found.')
+
+          updated = source.replace(old_base, new_base)
+          updated = updated.replace(
+              "portrait_url:BASE+encodeURIComponent(name)+'.png'",
+              "portrait_url:BASE+(PORTRAIT_ALIASES[slug(name)]||slug(name))+'.webp'"
+          )
+
+          marker = "const slug=name=>"
+          aliases = "const PORTRAIT_ALIASES={'taichi':'taichi-agumon','yamato':'yamato-gabumon'};\n"
+
+          if marker not in updated:
+              raise SystemExit('Could not find slug helper insertion point.')
+
+          updated = updated.replace(marker, aliases + marker, 1)
+
+          if updated == source:
+              raise SystemExit('No portrait changes were applied.')
+
+          path.write_text(updated, encoding='utf-8')
+          print('Switched fallback portraits to local WebP assets.')
+          PY
+
+      - name: Commit local portrait configuration
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/tracker-app.js
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Use local hero portraits with aliases"
+            git push
+          fi
