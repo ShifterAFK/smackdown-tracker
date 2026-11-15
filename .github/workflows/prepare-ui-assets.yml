@@ -1,0 +1,28 @@
+name: Prepare UI assets
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: prepare-ui-assets
+  cancel-in-progress: false
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install Pillow==11.3.0
+      - run: python scripts/prepare-ui-assets.py
+      - name: Commit prepared images and activation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/img/ui index.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Prepare WebP assets and activate Solise and VS'
+          git push origin HEAD:main

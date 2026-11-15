@@ -1,0 +1,5 @@
+/* Original transparent art; no layout or assistant behavior changes. */
+body .brand-header .brand-mark.ui-vs-ready{background:transparent!important;border:0!important;box-shadow:none!important;transform:none!important;padding:0!important;overflow:visible!important;display:inline-flex;align-items:center;justify-content:center}
+body .brand-header .brand-mark.ui-vs-ready::before,body .brand-header .brand-mark.ui-vs-ready::after{content:none!important}
+body .brand-header .brand-mark.ui-vs-ready img{display:block;width:100%;height:100%;object-fit:contain}
+html body .solise-help .solise-help-image.ui-solise-ready{object-fit:contain!important;object-position:center bottom!important;border-radius:0!important;mask-image:none!important;-webkit-mask-image:none!important;background:transparent!important;box-shadow:none!important}
