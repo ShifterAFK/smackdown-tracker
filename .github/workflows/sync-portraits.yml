@@ -15,22 +15,41 @@ jobs:
       - name: Checkout tracker
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout Stargazer assets
+      - name: Checkout Stargazer
         uses: actions/checkout@v4
         with:
           repository: tmdict/stargazer
           ref: main
           path: stargazer
 
-      - name: Copy hero portraits and skins
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: stargazer/package-lock.json
+
+      - name: Install dependencies
+        working-directory: stargazer
+        run: npm ci
+
+      - name: Build Stargazer
+        working-directory: stargazer
+        run: npm run build
+
+      - name: Copy generated hero portraits
         run: |
           mkdir -p portraits
-          cp stargazer/src/pack/images/character/*.png portraits/
+          find stargazer/dist/assets -type f -name '*.webp' -print0 |
+            xargs -0 -I{} cp "{}" portraits/
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add portraits
+
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
