@@ -10,3 +10,13 @@ window.matchMedia=function(query){query=String(query);if(!relevant(query))return
 function set(value){if(!['auto','mobile','desktop'].includes(value))return;mode=value;document.documentElement.dataset.uiView=mode;try{localStorage.setItem(key,mode);}catch(_){}for(const proxy of proxies)notify(proxy);const select=document.getElementById('trackerViewSelect');if(select)select.value=mode;}
 window.TrackerView=Object.freeze({version:'1.3.7',set,get:()=>mode});
 })();
+
+// Run in head, before the fallback map can be painted.
+(function(){
+'use strict';
+document.documentElement.dataset.mapPreviewState='loading';
+document.documentElement.dataset.mapInitializing='true';
+const style=document.createElement('style');
+style.textContent='html[data-map-preview-state="loading"] #page-entry #mapOpen,html[data-map-preview-state="empty"] #page-entry #mapOpen,html[data-map-preview-state="error"] #page-entry #mapOpen{visibility:hidden!important}html[data-map-initializing="true"] #page-entry #mapSelectedName,html[data-map-initializing="true"] #page-entry .map-selected-line{visibility:hidden!important}';
+document.head.append(style);
+})();
