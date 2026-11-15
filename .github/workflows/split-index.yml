@@ -1,0 +1,90 @@
+name: Split index.html into modules
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Split index.html into CSS and JS modules
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          css_dir = Path('assets/css')
+          js_dir = Path('assets/js')
+          css_dir.mkdir(parents=True, exist_ok=True)
+          js_dir.mkdir(parents=True, exist_ok=True)
+
+          style_pattern = re.compile(r'<style\b([^>]*)>(.*?)</style>', re.DOTALL | re.IGNORECASE)
+          script_pattern = re.compile(r'<script\b([^>]*)>(.*?)</script>', re.DOTALL | re.IGNORECASE)
+
+          def attr_value(attrs, name):
+              match = re.search(rf'{name}\s*=\s*["\']([^"\']+)["\']', attrs, re.IGNORECASE)
+              return match.group(1) if match else None
+
+          replaced = 0
+
+          def replace_style(match):
+              global replaced
+              attrs, content = match.group(1), match.group(2)
+              style_id = attr_value(attrs, 'id')
+              if not style_id:
+                  return match.group(0)
+              file_name = f'{style_id}.css'
+              (css_dir / file_name).write_text(content.strip() + '\n', encoding='utf-8')
+              replaced += 1
+              return f'<link rel="stylesheet" href="assets/css/{file_name}">'
+
+          def replace_script(match):
+              global replaced
+              attrs, content = match.group(1), match.group(2)
+              script_id = attr_value(attrs, 'id')
+              if not script_id:
+                  return match.group(0)
+              file_name = f'{script_id}.js'
+              (js_dir / file_name).write_text(content.strip() + '\n', encoding='utf-8')
+              script_type = attr_value(attrs, 'type') or ''
+              type_attr = f' type="{script_type}"' if script_type else ''
+              replaced += 1
+              return f'<script{type_attr} src="assets/js/{file_name}"></script>'
+
+          html = style_pattern.sub(replace_style, html)
+          html = script_pattern.sub(replace_script, html)
+
+          if replaced == 0:
+              raise SystemExit('No id-tagged style or script blocks found; nothing to split.')
+
+          path.write_text(html, encoding='utf-8')
+          print(f'Split {replaced} style/script blocks into assets/css and assets/js.')
+          PY
+
+      - name: Commit split files
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Split index.html into CSS and JS modules"
+            git push
+          fi
