@@ -6,16 +6,17 @@ function notifyDraftChanged(){window.dispatchEvent(new Event('tracker:draft-chan
 
 const PROJECT_URL='https://rwnbxhrkjjlfuljhwdpt.supabase.co';
 const PUBLISHABLE_KEY='sb_publishable_K613s8nvoUQTzIc-BLn2VQ_8kfTLWAm';
-const BASE='https://www.yaphalla.com/assets/images/portraits/';
+const BASE='https://shifterafk.github.io/smackdown-tracker/portraits/';
 const MAPS={"fierce-duel":"assets/img/maps/map-01-b8baf68da2.webp","tranquil-grounds":"assets/img/maps/map-02-76d5cac13c.webp","tactical-grounds":"assets/img/maps/map-03-3a28b367a0.webp","siegebreaker":"assets/img/maps/map-04-72872ff116.webp","top-defender":"assets/img/maps/map-05-67e379abc7.webp"};
 const THEMES=[{id:'tranquil-grounds',name:'Tranquil Grounds'},{id:'top-defender',name:'Top Defender'},{id:'siegebreaker',name:'Siegebreaker'},{id:'fierce-duel',name:'Fierce Duel'},{id:'tactical-grounds',name:'Tactical Grounds'}];
 const ROSTER={"Lightbearer": "Atalanta|Cassadee|Chippy|Cyran|Evie|Fay|Gwyneth|Hammie|Hugin|Korin|Lucca|Lucius|Marilee|Mirael|Orion|Peggy|Perseus|Rowan|Silven|Sinbad|Sonja|Temesia|Vala|Valen|Walker|Zanie|Estrilda", "Wilder": "Arden|Bryon|Damian|Eironn|Faramor|Florabelle|Granny Dahnie|Hewynn|Indris|Kafra|Lenya|Lily May|Lorsan|Lyca|Pang|Parisa|Pippa|Ravion|Solise|Tasi|Thador|Tilaya|Ulmus|Velara", "Mauler": "Alsa|Antandra|Brutus|Gala|Gerda|Hepler|Kazim|Koko|Kordan|Kruger|Lumont|Mikola|Nazrik|Odie|Rhys|Satrana|Seth|Shakir|Smokey & Meerky|Soren|Voracia|Zandrok", "Graveborn": "Baden|Bonnie|Callan|Carolina|Cecia|Daimon|Eryndor|Hodgkin|Igor|Isabella|Karma|Ludovic|Nara|Nerion|Niru|Salazer|Senea|Shadewing|Shemira|Silvina|Thoran|Valka|Viperian|Zorya", "Celestial": "Aliceth|Alna|Athalia|Aurora|Baelran|Dionel|Dunlingr|Elijah & Lailah|Marene|Rolan|Scarlita|Sylphira|Talene", "Hypogean": "Aster|Berial|Contess|Cryonaia|Gunnar|Harak|Kulu|Lamentis|Mehira|Phraesto|Reinier|Saida", "Dimensional": "Frieren|Himmel|Laios|Lucy|Marcille|Natsu|Pandora|Taichi|Yamato"};
 const FACTIONS=Object.keys(ROSTER);
 const $=id=>document.getElementById(id);
+const PORTRAIT_ALIASES={'taichi':'taichi-agumon','yamato':'yamato-gabumon'};
 const slug=name=>name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const BANNED_HERO_IDS = new Set(["chippy", "hammie", "zanie", "voracia", "eryndor", "senea", "baden", "elijah-lailah", "alna", "sylphira", "rolan", "marene", "phraesto", "saida", "mehira", "gunnar", "contess", "aster", "pandora", "frieren", "taichi"]);
 const isBannedHero = h => BANNED_HERO_IDS.has(h.id) || BANNED_HERO_IDS.has(slug(h.name || "")) || ["roland","twins","taichi-agumon","taichi-and-agumon"].includes(slug(h.name || ""));
-const fallbackHeroes=Object.entries(ROSTER).flatMap(([faction,names])=>names.split('|').map(name=>({id:slug(name),name,faction,portrait_url:BASE+encodeURIComponent(name)+'.png',is_allowed:!BANNED_HERO_IDS.has(slug(name))})));
+const fallbackHeroes=Object.entries(ROSTER).flatMap(([faction,names])=>names.split('|').map(name=>({id:slug(name),name,faction,portrait_url:BASE+(PORTRAIT_ALIASES[slug(name)]||slug(name))+'.webp',is_allowed:!BANNED_HERO_IDS.has(slug(name))})));
 let config={event:{id:'showdown-current',name:'Showdown Smackdown',current_theme_id:'tranquil-grounds'},themes:THEMES,heroes:fallbackHeroes};
 let lineup={BLUE:[null,null,null],RED:[null,null,null]};
 let known={BLUE:true,RED:true};let phantimalOverride={BLUE:null,RED:null};
