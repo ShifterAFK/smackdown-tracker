@@ -122,6 +122,17 @@ function render(){
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;render();});}
 document.addEventListener('click',event=>{
  if(!media.matches||entry.classList.contains('hidden'))return;
+ const teamTitle=event.target.closest?.('.team-title');
+ if(teamTitle){
+  const team=teamTitle.closest('.team');
+  const side=team?.querySelector('.team-title h2')?.textContent?.trim()?.toUpperCase();
+  if(side==='BLUE'||side==='RED'){
+   event.preventDefault();
+   selectSide(side);
+   queueMicrotask(()=>open('heroes'));
+   return;
+  }
+ }
  const slot=event.target.closest?.('#slotsBLUE .slot,#slotsRED .slot');
  if(slot)queueMicrotask(()=>open('heroes'));
 });
