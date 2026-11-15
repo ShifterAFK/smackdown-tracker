@@ -9,6 +9,7 @@ const cache=new Map();
 let frame=0,lastKey='';
 const root=()=>document.getElementById('draftAssist');
 const mapId=()=>document.getElementById('theme')?.value||'';
+const cards=assistant=>Array.from(assistant.querySelectorAll('.da-candidate,.da-card'));
 function heroIdFromCard(card){
  const img=card.querySelector('img[src]');
  const src=img?.getAttribute('src')||'';
@@ -28,7 +29,7 @@ function draftedIds(side){
 function heroName(id){
  const hero=(window.config?.heroes||[]).find(h=>h.id===id);
  if(hero?.name)return hero.name;
- const card=Array.from(document.querySelectorAll('.da-candidate')).find(card=>heroIdFromCard(card)===id);
+ const card=cards(root()).find(card=>heroIdFromCard(card)===id);
  return card?.querySelector('.da-name')?.textContent?.trim()||id;
 }
 async function rpc(name,body){
@@ -97,10 +98,10 @@ function matchupLabel(items){
 async function rank(){
  const assistant=root();
  if(!assistant)return;
- const cards=Array.from(assistant.querySelectorAll('.da-candidate'));
- if(!cards.length)return;
+ const cardList=cards(assistant);
+ if(!cardList.length)return;
  const selectedMap=mapId();
- const draftKey=JSON.stringify([selectedMap,cards.map(heroIdFromCard),draftedIds('BLUE'),draftedIds('RED')]);
+ const draftKey=JSON.stringify([selectedMap,cardList.map(heroIdFromCard),draftedIds('BLUE'),draftedIds('RED')]);
  if(draftKey===lastKey)return;
  lastKey=draftKey;
  assistant.classList.add('matchup-updating');
@@ -113,7 +114,7 @@ async function rank(){
  ]);
  }catch{assistant.classList.remove('matchup-updating');return;}
  const scored=[];
- for(const card of cards){
+ for(const card of cardList){
  const id=heroIdFromCard(card);
  if(!id)continue;
  const side=card.closest('.da-side')?.classList.contains('da-red')?'RED':'BLUE';
@@ -178,6 +179,6 @@ new MutationObserver(schedule).observe(document.body,{childList:true,subtree:tru
 window.addEventListener('tracker:draft-changed',schedule);
 window.addEventListener('tracker:catalog-changed',schedule);
 document.getElementById('theme')?.addEventListener('change',()=>{lastKey='';schedule();});
-window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.22',refresh:schedule});
+window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.23',refresh:schedule});
 schedule();
 })();

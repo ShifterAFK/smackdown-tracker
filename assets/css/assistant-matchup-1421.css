@@ -1,5 +1,5 @@
 /* Subtle assistant ranking updates */
-#draftAssist .da-candidate{transition:transform .28s ease,opacity .28s ease}
-#draftAssist.matchup-updating .da-candidate{opacity:.72;transform:translateY(2px)}
+#draftAssist .da-candidate,#draftAssist .da-card{transition:transform .28s ease,opacity .28s ease}
+#draftAssist.matchup-updating .da-candidate,#draftAssist.matchup-updating .da-card{opacity:.72;transform:translateY(2px)}
 #draftAssist .matchup-reason{display:block;margin-top:3px;font-size:10px;line-height:1.25;letter-spacing:.02em;color:color-mix(in srgb,var(--muted,#9aa5a5) 88%,transparent);opacity:0;transition:opacity .35s ease}
 #draftAssist .matchup-reason:not(:empty){opacity:.82}
