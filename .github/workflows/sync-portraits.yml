@@ -44,6 +44,7 @@ jobs:
           fi
 
           cat > hero_ids.txt <<'EOF'
+          aliceth
           alna
           alsa
           antandra
@@ -114,6 +115,7 @@ jobs:
           lyca
           marcille
           marilee
+          marene
           mehira
           mikola
           mirael
@@ -193,6 +195,11 @@ jobs:
             fi
           done < .stargazer/assets.txt
 
+          # Direct fallbacks for portraits no longer referenced in the current bundle.
+          curl -fsSL "https://afkstargazer.com/assets/aliceth-J-yJC3iS.webp" -o portraits/aliceth.webp
+          curl -fsSL "https://afkstargazer.com/assets/marene-D1wWu_fT.webp" -o portraits/marene.webp
+          downloaded=$((downloaded + 2))
+
           echo "Downloaded $downloaded matching portrait assets."
 
           removed=0
@@ -219,7 +226,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Strip exactly 8-character portrait hashes"
+            git commit -m "Add direct fallback for aliceth and marene portraits"
             git push
           fi
 
