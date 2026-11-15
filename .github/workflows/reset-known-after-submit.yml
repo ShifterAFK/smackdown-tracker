@@ -1,0 +1,56 @@
+name: Reset draft-order checkboxes after submission
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reset-known-after-submit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout tracker
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Reset known draft order in resetDraft
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('assets/js/tracker-app.js')
+          source = path.read_text(encoding='utf-8')
+
+          old = "function resetDraft(){window.dispatchEvent(new Event('tracker:draft-reset'));lineup={BLUE:[null,null,null],RED:[null,null,null]};phantimalOverride={BLUE:null,RED:null};active={side:'BLUE',index:0};winner='';$('notes').value='';renderSlots()}"
+          new = "function resetDraft(){window.dispatchEvent(new Event('tracker:draft-reset'));lineup={BLUE:[null,null,null],RED:[null,null,null]};known={BLUE:true,RED:true};phantimalOverride={BLUE:null,RED:null};active={side:'BLUE',index:0};winner='';$('notes').value='';renderSlots()}"
+
+          if old not in source:
+              raise SystemExit('Expected resetDraft function was not found.')
+
+          updated = source.replace(old, new, 1)
+
+          if updated == source:
+              raise SystemExit('No resetDraft changes were applied.')
+
+          path.write_text(updated, encoding='utf-8')
+          print('Draft-order checkboxes now reset after submission.')
+          PY
+
+      - name: Commit known-order reset
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/tracker-app.js
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Reset draft-order checkboxes after submission"
+            git push
+          fi
