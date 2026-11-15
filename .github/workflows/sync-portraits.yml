@@ -18,33 +18,39 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout Stargazer
-        uses: actions/checkout@v4
-        with:
-          repository: tmdict/stargazer
-          ref: main
-          path: stargazer
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: stargazer/package-lock.json
 
-      - name: Install dependencies
-        working-directory: stargazer
-        run: npm ci
-
-      - name: Build Stargazer
-        working-directory: stargazer
-        run: npm run build
-
-      - name: Copy generated hero portraits
+      - name: Download and extract Stargazer assets
         run: |
+          mkdir -p .stargazer
+          curl -fsSL https://afkstargazer.com/ -o .stargazer/index.html
+
+          JS_FILES=$(grep -oE '/assets/[A-Za-z0-9._-]+\.js' .stargazer/index.html | sort -u || true)
+          if [ -z "$JS_FILES" ]; then
+            echo "No JavaScript bundles found."
+            exit 1
+          fi
+
+          for js in $JS_FILES; do
+            curl -fsSL "https://afkstargazer.com$js" -o ".stargazer/$(basename "$js")"
+          done
+
+          grep -hoE '/assets/[A-Za-z0-9._-]+\.webp' .stargazer/*.js .stargazer/index.html |
+            sort -u > .stargazer/assets.txt
+
+          if [ ! -s .stargazer/assets.txt ]; then
+            echo "No WebP assets found."
+            exit 1
+          fi
+
           mkdir -p portraits
-          find stargazer/dist/assets -type f -name '*.webp' -print0 |
-            xargs -0 -I{} cp "{}" portraits/
+          while IFS= read -r asset; do
+            filename=$(basename "$asset")
+            curl -fsSL "https://afkstargazer.com$asset" -o "portraits/$filename"
+          done < .stargazer/assets.txt
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -56,3 +62,7 @@ jobs:
             git commit -m "Sync AFK Journey hero portraits and skins"
             git push
           fi
+
+      - name: Clean temporary files
+        if: always()
+        run: rm -rf .stargazer
