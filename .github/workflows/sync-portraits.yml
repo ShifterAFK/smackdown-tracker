@@ -178,9 +178,9 @@ jobs:
             stem="${filename%.webp}"
 
             clean=$(printf '%s' "$stem" | sed -E \
-              -e 's/-(skin[0-9]+)-[A-Za-z0-9_-]+$/-\1/' \
+              -e 's/-(skin[0-9]+)-[A-Za-z0-9_-]{8}$/-\1/' \
               -e 't' \
-              -e 's/-[A-Za-z0-9_-]+$//')
+              -e 's/-[A-Za-z0-9_-]{8}$//')
 
             base="$clean"
             if [[ "$clean" =~ -skin[0-9]+$ ]]; then
@@ -219,7 +219,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No portrait changes."
           else
-            git commit -m "Sync portraits from explicit hero allowlist"
+            git commit -m "Strip exactly 8-character portrait hashes"
             git push
           fi
 
