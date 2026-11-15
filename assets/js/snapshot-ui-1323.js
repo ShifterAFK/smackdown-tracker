@@ -43,3 +43,18 @@ script.async=false;
 script.onerror=()=>{window.TrackerMatchHistoryLoading=false;};
 document.body.append(script);
 })();
+
+(function(){
+'use strict';
+if(window.TrackerStatisticsLoading||window.TrackerStatisticsView)return;
+window.TrackerStatisticsLoading=true;
+const script=document.createElement('script');
+script.src=new URL('statistics-view.js?v=1',document.currentScript.src).href;
+script.async=false;
+script.onerror=()=>{
+ window.TrackerStatisticsLoading=false;
+ const status=document.getElementById('statsStatus');
+ if(status){status.textContent='Statistics module could not load. Reload the page.';status.classList.add('error');}
+};
+document.body.append(script);
+})();
