@@ -1,0 +1,14 @@
+{
+  "source": "assets/js/tracker-app.js",
+  "order": [
+    "00-core.js",
+    "01-smackdown-map-card-click-v2.js",
+    "02-tracker-shared-data-v1.js",
+    "03-assistant-session-snapshot-1323.js",
+    "04-draft-assist-script-v1.js",
+    "05-draft-assist-position-script-v2.js",
+    "06-assist-visual-compact-script.js",
+    "07-assist-compact-layout-v3-script.js",
+    "08-match-estimate-script-v1.js"
+  ]
+}
