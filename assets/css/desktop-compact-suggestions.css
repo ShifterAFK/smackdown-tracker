@@ -1,0 +1,27 @@
+/* Desktop compact suggestions: portrait-only cards */
+html[data-ui-view="desktop"] .da-card .da-name,
+html[data-ui-view="desktop"] .da-card .da-rank,
+html[data-ui-view="desktop"] .da-card .da-candidate small {
+  display: none;
+}
+html[data-ui-view="desktop"] .da-card {
+  width: auto;
+}
+html[data-ui-view="desktop"] .da-card .da-candidate {
+  width: 48px;
+  height: 48px;
+  padding: 2px;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+html[data-ui-view="desktop"] .da-card .da-candidate .avatar,
+html[data-ui-view="desktop"] .da-card .da-candidate .avatar img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+html[data-ui-view="desktop"] .da-card .da-hide {
+  display: none;
+}
