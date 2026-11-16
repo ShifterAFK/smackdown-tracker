@@ -1,0 +1,48 @@
+name: Split tracker CSS modules
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/css/tracker-styles.css"
+      - "scripts/split-tracker-css.py"
+      - ".github/workflows/split-css-modules.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Split tracker-styles.css into modules
+        run: python scripts/split-tracker-css.py
+
+      - name: Create or update CSS refactor pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: refactor/css-modules
+          base: main
+          title: "Refactor: split tracker-styles.css into ordered chunks"
+          body: |
+            Automated refactor that splits `assets/css/tracker-styles.css` into safe, ordered chunks at top-level rule boundaries.
+
+            - Original `tracker-styles.css` remains unchanged.
+            - Generated chunks are in `assets/css/modules/`.
+            - `assets/css/modules/order.json` preserves the original cascade order.
+            - `index.html` is intentionally not changed yet; switch it only after the chunk list is reviewed.
+          commit-message: "Split tracker-styles.css into reviewable chunks"
+          add-paths: |
+            assets/css/modules/**
+            scripts/split-tracker-css.py
+          delete-branch: false
