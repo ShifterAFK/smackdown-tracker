@@ -1,0 +1,48 @@
+name: Split tracker JS modules
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/js/tracker-app.js"
+      - "scripts/split-tracker-js.py"
+      - ".github/workflows/split-js-modules.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Split tracker-app.js into modules
+        run: python scripts/split-tracker-js.py
+
+      - name: Create or update refactor pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: refactor/js-modules
+          base: main
+          title: "Refactor: split tracker-app.js into modules"
+          body: |
+            Automated refactor prepared from the existing `// Module:` markers in `assets/js/tracker-app.js`.
+
+            - Original `tracker-app.js` remains unchanged.
+            - Generated modules are in `assets/js/modules/`.
+            - `assets/js/modules/order.json` preserves the original execution order.
+            - `index.html` is intentionally not changed yet; switch it only after the module list is reviewed.
+          commit-message: "Split tracker-app.js into reviewable modules"
+          add-paths: |
+            assets/js/modules/**
+            scripts/split-tracker-js.py
+          delete-branch: false
