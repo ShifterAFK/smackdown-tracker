@@ -9,6 +9,7 @@ const cache=new Map();
 let frame=0,lastKey='';
 const root=()=>document.getElementById('draftAssist');
 const mapId=()=>document.getElementById('theme')?.value||'';
+const dialog=()=>document.getElementById('mobileDraft130');
 const cards=assistant=>Array.from(assistant.querySelectorAll('.da-candidate,.da-card'));
 function heroIdFromCard(card){
  const img=card.querySelector('img[src]');
@@ -31,6 +32,18 @@ function heroName(id){
  if(hero?.name)return hero.name;
  const card=cards(root()).find(card=>heroIdFromCard(card)===id);
  return card?.querySelector('.da-name')?.textContent?.trim()||id;
+}
+function ensureMobileSuggestions(){
+ const box=dialog();
+ if(!box||!box.open||box.dataset.mode!=='assistant')return;
+ const side=box.dataset.suggestionSide;
+ if(!side)return;
+ const activeSide=document.querySelector('#activeLabel')?.value?.split(' ')[0];
+ if(activeSide!==side)return;
+ if(box.dataset.started!=='true'){
+ box.dataset.started='true';
+ window.dispatchEvent(new Event('tracker:draft-changed'));
+ }
 }
 async function rpc(name,body){
  const key=name+JSON.stringify(body);
@@ -96,6 +109,7 @@ function matchupLabel(items){
  return '';
 }
 async function rank(){
+ ensureMobileSuggestions();
  const assistant=root();
  if(!assistant)return;
  const cardList=cards(assistant);
@@ -176,9 +190,10 @@ function schedule(){
  frame=requestAnimationFrame(()=>{frame=0;rank();});
 }
 new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true});
+new MutationObserver(schedule).observe(dialog(),{attributes:true,attributeFilter:['open','data-mode','data-side','data-suggestion-side','data-started']});
 window.addEventListener('tracker:draft-changed',schedule);
 window.addEventListener('tracker:catalog-changed',schedule);
 document.getElementById('theme')?.addEventListener('change',()=>{lastKey='';schedule();});
-window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.23',refresh:schedule});
+window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.24',refresh:schedule});
 schedule();
 })();
