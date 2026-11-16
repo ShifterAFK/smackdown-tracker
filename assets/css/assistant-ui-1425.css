@@ -1,0 +1,39 @@
+/* Assistant, tabs and statistics polish */
+#draftAssist .da-toggle,#draftAssist label:has(#daEnabled){display:none!important}
+
+.tabs{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tabs>button{cursor:pointer;padding:9px 16px;border-radius:10px;border:1px solid rgba(206,179,115,.45);background:rgba(255,255,255,.06);color:inherit;font-weight:650;box-shadow:0 1px 0 rgba(255,237,187,.12) inset,0 2px 6px rgba(0,0,0,.25);transition:background .2s ease,border-color .2s ease}
+.tabs>button:hover{background:rgba(206,179,115,.16);border-color:rgba(255,224,160,.8)}
+.tabs>button.active{background:linear-gradient(180deg,#e0c27c,#bf9a4f);color:#1b1608;border-color:#f0d9a0}
+.tabs>button:focus-visible{outline:2px solid #f0d9a0;outline-offset:2px}
+
+/* Desktop assistant art: keep space between the picture and the label */
+html body .desktop133bar .solise-help{padding-left:120px!important}
+
+/* Mobile assistant art: more room before the label */
+html[data-ui-view] body .md130dock .solise-help{padding-left:98px!important}
+html[data-ui-view] body .md130dock .solise-help .solise-help-image.ui-solise-ready{left:6px!important}
+#mobileDraft130 .md135-solise{margin-right:14px}
+
+/* Mobile suggestions: portraits only */
+#mobileDraft130 #draftAssist .da-candidates{display:flex!important;flex-wrap:wrap;gap:8px}
+#mobileDraft130 #draftAssist .da-candidate,#mobileDraft130 #draftAssist .da-card{flex:0 0 auto;width:auto!important;min-width:0!important;padding:4px!important}
+#mobileDraft130 #draftAssist .da-candidate>*:not(:has(img)):not(img):not(button):not([class*="hide"]):not([class*="remove"]),
+#mobileDraft130 #draftAssist .da-card>*:not(:has(img)):not(img):not(button):not([class*="hide"]):not([class*="remove"]),
+#mobileDraft130 #draftAssist .da-name,
+#mobileDraft130 #draftAssist .matchup-reason{display:none!important}
+
+/* Mobile statistics as readable cards */
+@media (max-width:1099px){
+#statsTable table{display:block;width:100%;border:0}
+#statsTable thead{display:none}
+#statsTable tbody{display:block}
+#statsTable tbody tr{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:0 0 8px;padding:10px 12px;border:1px solid rgba(206,179,115,.28);border-radius:12px;background:rgba(255,255,255,.04)}
+#statsTable tbody td{display:block;border:0;padding:0;width:auto;text-align:left}
+#statsTable tbody td:nth-child(1){order:1;flex:0 0 26px;font-weight:700;opacity:.7}
+#statsTable tbody td:nth-child(2){order:2;flex:1 1 calc(100% - 150px);min-width:0}
+#statsTable tbody td:nth-child(6){order:3;flex:0 0 auto;font-size:17px;font-weight:800;color:#f0d9a0}
+#statsTable tbody td:nth-child(3),#statsTable tbody td:nth-child(4),#statsTable tbody td:nth-child(5){order:4;flex:1 1 28%;min-width:72px;padding-top:6px;border-top:1px solid rgba(206,179,115,.2);font-size:13px}
+#statsTable tbody td:nth-child(7){display:none}
+#statsTable tbody td:nth-child(n+3):not(:nth-child(6))::before{content:attr(data-md130-label);display:block;font-size:10px;letter-spacing:.05em;text-transform:uppercase;opacity:.65}
+}

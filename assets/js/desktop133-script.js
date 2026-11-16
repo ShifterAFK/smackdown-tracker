@@ -11,7 +11,7 @@ function decorate(b){
  const img=el('img','solise-help-image');img.alt='';img.setAttribute('aria-hidden','true');img.referrerPolicy='no-referrer';img.onerror=()=>img.hidden=true;
  img.src=new URL('assets/img/ui/solise-assistant.webp',document.baseURI).href;
  const copy=el('span','solise-help-copy');copy.append(el('strong','','Assistant'),el('small','','i can help u pick'));b.append(img,copy);
- b.setAttribute('aria-label','Open Assistant — choose your team');return img;
+ b.setAttribute('aria-label','Open Assistant and choose your team');return img;
 }
 const bar=el('div','desktop133bar'),open=button('',()=>askSide()),stop=button('Close Assistant',()=>finish());
 const desktopImage=decorate(open);bar.append(open,stop);root.before(bar);
@@ -20,7 +20,7 @@ const prompt=el('dialog','desktop133prompt');prompt.setAttribute('aria-labelledb
 const heading=el('h2','','Which side are you this round?');heading.id='desktop133title';
 const options=el('div','desktop133options');
 for(const side of ['BLUE','RED']){const b=button('I play '+side,()=>start(side));b.dataset.side=side;options.append(b);}
-prompt.append(heading,el('p','','Recommendations are shown only for your side. Record both teams as usual.'),options,button('Cancel',()=>prompt.close()));document.body.append(prompt);
+prompt.append(heading,el('p','','Suggestions are shown only for your side. Record both teams as usual.'),options,button('Cancel',()=>prompt.close()));document.body.append(prompt);
 prompt.addEventListener('close',()=>{if(focusBack?.isConnected)focusBack.focus({preventScroll:true});});
 function setEnabled(value){const toggle=$('daEnabled');if(toggle&&toggle.checked!==value){toggle.checked=value;toggle.dispatchEvent(new Event('change',{bubbles:true}));}}
 function askSide(){if(!media.matches||onlineBusy)return;focusBack=document.activeElement;if(!prompt.open)prompt.showModal();}
@@ -30,16 +30,17 @@ function start(side){
 }
 function finish(){own=null;enabled=false;delete document.body.dataset.desktop133Side;document.body.dataset.desktop133Ready='false';if(media.matches)setEnabled(false);sync();}
 function full(){return ['BLUE','RED'].every(side=>lineup[side].every(Boolean));}
+function anyPick(){return [...lineup.BLUE,...lineup.RED].some(Boolean);}
 function paintCatalog(){
  for(const b of catalog.querySelectorAll('.hero')){
- const label=b.getAttribute('aria-label')||b.title?.replace(/ — already drafted$/,'');
+ const label=b.getAttribute('aria-label')||b.title?.replace(/ [-\u2014] already drafted$/,'');
  const hero=config.heroes.find(h=>h.name===label);if(hero)b.dataset.faction=hero.faction;
  }
 }
 function sync(){
  bar.hidden=!media.matches;stop.hidden=!enabled;
  document.body.classList.toggle('desktop133-enabled',enabled&&media.matches);
- document.body.dataset.desktop133Ready=String(Boolean(enabled&&own&&lineup[own].some(Boolean)));
+ document.body.dataset.desktop133Ready=String(Boolean(enabled&&own&&anyPick()));
  if(enabled&&full()){finish();return;}
  paintCatalog();
 }
@@ -73,5 +74,5 @@ window.addEventListener('tracker:draft-reset',()=>{if(enabled)finish();});
 window.addEventListener('tracker:submission-finished',event=>{if(event.detail?.saved&&enabled)finish();});
 new MutationObserver(schedule).observe(catalog,{childList:true,subtree:true});
 media.addEventListener('change',()=>{if(enabled){own=null;enabled=false;setEnabled(false);}if(prompt.open)prompt.close();sync();});
-window.TrackerDesktop133=Object.freeze({version:'1.3.4'});sync();
+window.TrackerDesktop133=Object.freeze({version:'1.3.5'});sync();
 })();

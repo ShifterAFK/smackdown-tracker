@@ -5,6 +5,11 @@ const get=id=>document.getElementById(id),select=get('theme'),image=get('mapPrev
 if(!select||!image||!button)return;
 const html=document.documentElement,baseRender=renderMap;
 let userChosen=false,internal=false,resolved=false,request=0;
+const ROTATION_START=Date.UTC(2026,10,14,0,0,0),ROTATION_CYCLE=3*24*60*60*1000,ROTATION_ORDER=['top-defender','siegebreaker','fierce-duel','tactical-grounds','tranquil-grounds'];
+function rotationTheme(){
+ const elapsed=Math.max(0,Math.floor((Date.now()-ROTATION_START)/ROTATION_CYCLE));
+ return ROTATION_ORDER[elapsed%ROTATION_ORDER.length];
+}
 const status=document.createElement('p');status.className='caption';status.setAttribute('role','status');status.textContent='Loading current map...';button.before(status);
 function state(value,text){html.dataset.mapPreviewState=value;status.textContent=text||'';status.hidden=!text;}
 function empty(text){
@@ -38,7 +43,7 @@ function apply(){
  if(!onlineCatalog)return;
  if(userChosen){resolved=true;delete html.dataset.mapInitializing;renderMap();return;}
  if(resolved)return;
- resolved=true;const wanted=config.event?.current_theme_id;
+ resolved=true;const wanted=rotationTheme()||config.event?.current_theme_id;
  if(!wanted||!Array.from(select.options).some(option=>option.value===wanted)){
   select.value='';empty('Current map unavailable. Choose the map used in this match.');return;
  }
@@ -57,5 +62,5 @@ setTimeout(()=>{
  if(!resolved&&!userChosen&&!onlineCatalog){select.value='';empty('Configuration is taking longer to load. You can choose the map manually.');}
 },20000);
 if(onlineCatalog)apply();else{state('loading','Loading current map...');failure();}
-window.TrackerDefaultMap138=Object.freeze({version:'1.3.9'});
+window.TrackerDefaultMap138=Object.freeze({version:'1.4.0'});
 })();
