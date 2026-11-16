@@ -1,0 +1,42 @@
+name: Strip base64 from tracker CSS
+
+on:
+  push:
+    branches:
+      - "feature/remove-css-base64"
+    paths:
+      - "scripts/strip-css-base64.py"
+      - "assets/css/tracker-styles.css"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  strip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Strip base64 data URIs from CSS
+        run: python scripts/strip-css-base64.py
+
+      - name: Commit stripped CSS if changed
+        id: commit
+        run: |
+          if git diff --quiet -- assets/css/tracker-styles.css; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add assets/css/tracker-styles.css
+            git commit -m "Remove inline base64 VS artwork from tracker CSS"
+            git push origin HEAD
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
