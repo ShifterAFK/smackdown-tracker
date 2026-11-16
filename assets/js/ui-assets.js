@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 if(window.TrackerUIAssets)return;
-const base=new URL('../img/ui/',document.currentScript.src);
+const base='assets/img/ui/';
 const checked=new WeakSet();
 const solise=new Image();let ready=false;
 function mount(){
@@ -19,17 +19,19 @@ function mount(){
  });
 }
 solise.onload=()=>{ready=true;mount();};
-solise.src=new URL('solise-assistant.webp',base).href;
+solise.onerror=()=>{console.warn('[ui-assets] solise-assistant.webp failed to load');};
+solise.src=base+'solise-assistant.webp';
 const brand=document.querySelector('.brand-header .brand-mark');
 if(brand){
  const vs=new Image();vs.alt='';vs.decoding='async';
  vs.onload=()=>{brand.replaceChildren(vs);brand.classList.add('ui-vs-ready');};
- vs.src=new URL('vs.webp',base).href;
+ vs.onerror=()=>{console.warn('[ui-assets] vs.webp failed to load');};
+ vs.src=base+'vs.webp';
 }
 let queued=false;
 new MutationObserver(()=>{
  if(queued)return;queued=true;
  queueMicrotask(()=>{queued=false;mount();});
 }).observe(document.body,{childList:true,subtree:true});
-window.TrackerUIAssets=Object.freeze({version:'1.0.0'});
+window.TrackerUIAssets=Object.freeze({version:'1.0.1'});
 })();
