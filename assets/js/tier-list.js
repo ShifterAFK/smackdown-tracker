@@ -19,13 +19,13 @@ function buildTiers(data){
  const buckets={A:[],B:[],C:[],N:[]};
  for(const item of items){
   if(sIds.has(item.hero.id))continue;
-  const key=item.n<10?'N':item.rate>=50?'A':item.rate>=40?'B':'C';
+  const key=item.n<10?'N':item.rate>60?'A':item.rate>=50?'B':'C';
   buckets[key].push(item);
  }
  return {sList,buckets};
 }
 function topIds(data){return new Set(buildTiers(data).sList.map(x=>x.item.hero.id));}
-const legend='S row: top 8 by Wilson conservative score. #1 SSS, #2 SS, #3 S+, #4-8 S (20+ appearances with 60%+ win rate). If fewer than eight qualify, remaining slots are filled with the best A-tier heroes (15+ appearances, 50-60% win rate) and labeled A+. A: 50-60% | B: 40-50% | C: <40%.';
+const legend='S row: top 8 by Wilson conservative score. #1 SSS, #2 SS, #3 S+, #4-8 S (20+ appearances with 60%+ win rate). If fewer than eight qualify, remaining slots are filled with heroes having 15+ appearances and 50% to below 60% win rate, ranked by Wilson and labeled A+. Remaining heroes: A >60% | B 50-60% inclusive | C <50%. Minimum 10 appearances for A/B/C; otherwise preliminary.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-tag{font-size:11px;font-weight:700;color:var(--accent,#c9a227)}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
 const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (20+ qualify, A+ fill from 15+) | SSS / SS / S+ / S / A+';
