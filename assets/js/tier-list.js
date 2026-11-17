@@ -6,14 +6,23 @@ window.tierBucket=function(rate,n){if(!Number.isFinite(rate)||!Number.isFinite(n
 function values(row){const n=Math.max(0,Number(row?.appearances)||0),wins=Math.max(0,Math.min(n,Number(row?.wins)||0));return {n,wins,rate:n?100*wins/n:0};}
 function entries(data){const byId=new Map((data?.heroes||[]).map(r=>[r.hero_id,r]));return config.heroes.map(hero=>({hero,...values(byId.get(hero.id))}));}
 function compare(a,b){return b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en')||a.hero.id.localeCompare(b.hero.id);}
-function topIds(data){return new Set(entries(data).filter(x=>x.n>=10&&x.rate>=70).sort(compare).slice(0,5).map(x=>x.hero.id));}
+function topIds(data){
+ const items=entries(data);
+ const sPool=items.filter(x=>x.n>=20&&x.rate>=70).sort(compare);
+ const sSet=new Set(sPool.slice(0,8).map(x=>x.hero.id));
+ if(sSet.size<8){
+  const fill=items.filter(x=>x.n>=15&&x.rate>=60&&x.rate<70&&!sSet.has(x.hero.id)).sort(compare).slice(0,8-sSet.size);
+  fill.forEach(x=>sSet.add(x.hero.id));
+ }
+ return sSet;
+}
 function bucket(item,ids){const key=tierBucket(item.rate,item.n);return key==='S'&&!ids.has(item.hero.id)?'A':key;}
-const legend='S: top 5 with win rate >=70% | A: >=60%, excluding S | B: 50-<60% | C: <50%. Minimum 10 appearances per view. Order: win rate, appearances, then name. S can contain fewer than five heroes. Other S candidates move to A.';
+const legend='S: top 8 (20+ appearances with 70%+ qualify; filled to 8 with 15+ appearances at 60-70%) | A: 60%+ excluding S | B: 50-60% | C: <50%. Minimum 10 appearances per view.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
-const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: maximum 5 heroes | minimum 10 appearances';
+const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 (20+ qualify, 15+ A+ fill) | minimum 10 appearances';
 const explanation=document.createElement('p');explanation.className='caption';explanation.textContent=legend;get('tierRows').before(explanation);
-for(const p of document.querySelectorAll('#helpDialog p'))if(p.textContent.includes('S requires more than 85%'))p.textContent=p.textContent.replace('S requires more than 85% team win rate and at least 10 appearances.','S contains at most five Overall heroes with at least 70% team win rate and 10 appearances. Only allowed members of that same top five are shown; banned heroes are not replaced.');
+for(const p of document.querySelectorAll('#helpDialog p'))if(p.textContent.includes('S requires more than 85%'))p.textContent=p.textContent.replace('S requires more than 85% team win rate and at least 10 appearances.','S contains up to eight Overall heroes: those with 20+ appearances and 70%+ win rate qualify; if fewer than eight, the row is filled with heroes that have 15+ appearances and 60-70% win rate.');
 renderTiers=function(){
  const root=get('tierRows');root.replaceChildren();if(!tierData)return;
  const ids=topIds(tierData),buckets={S:[],A:[],B:[],C:[],N:[]};
@@ -64,10 +73,10 @@ function paintS(){
  const ids=topIds(overallData),items=entries(overallData).filter(x=>ids.has(x.hero.id)&&x.hero.is_allowed).sort(compare);
  const signature=JSON.stringify([overallData.generated_at,items.map(x=>[x.hero.id,x.wins,x.n,x.hero.portrait_url])]);if(row.dataset.topFive===signature)return;
  row.dataset.topFive=signature;row.replaceChildren();
- const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — eligible members of the top 5';
+ const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — eligible members of the top 8';
  for(const {hero,n,rate} of items){const card=document.createElement('span');card.className='da-s-hero';card.title=hero.name+' — '+rate.toFixed(1)+'% · '+n+' appearances';const img=document.createElement('img');img.src=hero.portrait_url||'';img.alt='';img.loading='lazy';const label=document.createElement('span');label.textContent=hero.name;card.append(img,label);row.append(card);}
- if(!items.length)row.textContent='No allowed heroes in the Overall S top five (minimum 70% win rate and 10 appearances).';
+ if(!items.length)row.textContent='No allowed heroes in the Overall S top eight (20+ appearances with 70%+ win rate, filled with 15+ appearances at 60-70%).';
 }
 const sbox=get('daOverallS');if(sbox)new MutationObserver(paintS).observe(sbox,{childList:true,subtree:true});window.addEventListener('tracker:catalog-changed',()=>{paintS();});
-renderTiers();window.TrackerTransparentTiers={version:'1.3.27'};
+renderTiers();window.TrackerTransparentTiers={version:'1.3.35'};
 })();
