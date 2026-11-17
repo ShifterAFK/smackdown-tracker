@@ -49,9 +49,7 @@ function paint(){
  else{
   const blue=evaluateSide(lineup.BLUE,currentPh('BLUE'),state.data),red=evaluateSide(lineup.RED,currentPh('RED'),state.data);
   info+=formatCoverage('BLUE',blue)+'\n'+formatCoverage('RED',red)+'\n';
-  const supported=blue.heroSupported>=2&&red.heroSupported>=2;
-  if(!supported){text.textContent='Not enough data for a match indication';}
-  else if(state.model&&state.model.match_count>=100){
+  if(state.model&&state.model.match_count>=100){
    const weights=state.model.payload?.hero_weights||{};
    const intercept=Number(state.model.payload?.intercept)||0;
    let z=intercept;
@@ -61,16 +59,18 @@ function paint(){
    delta=(pBlue-0.5)*2;neutral=false;
    const favorite=pBlue>0.5?'BLUE':'RED';
    const confidence=Math.round(Math.max(pBlue,1-pBlue)*100);
-   text.textContent=Math.abs(pBlue-0.5)<.03?'No clear indication':(Math.abs(pBlue-0.5)<.10?'Slight ':'Stronger ')+favorite+' indication · '+confidence+'% · limited data';
+   const low=blue.heroSupported<2||red.heroSupported<2;
+   text.textContent=Math.abs(pBlue-0.5)<.03?'No clear indication':(Math.abs(pBlue-0.5)<.10?'Slight ':'Stronger ')+favorite+' indication · '+confidence+'% · '+(low?'low confidence':'limited data');
    info+='Model: logistic-v1 snapshot from '+(state.model.payload?.trained_at||state.model.created_at)+'.\n';
   }
-  else{
+  else if(blue.heroSupported>=2&&red.heroSupported>=2){
    delta=blue.score-red.score;neutral=false;
    text.textContent=Math.abs(delta)<.03?'No clear indication':(Math.abs(delta)<.10?'Slight ':'Stronger ')+(delta>0?'BLUE':'RED')+' indication · limited data';
   }
+  else{text.textContent='Not enough data for a match indication';}
  }
  const blueWidth=50+Math.max(-30,Math.min(30,delta*100));root.querySelector('.me-blue').style.width=blueWidth+'%';root.querySelector('.me-red').style.width=(100-blueWidth)+'%';root.classList.toggle('me-neutral',neutral);
- info+='Heuristic comparison, not a calibrated probability or a betting recommendation.\nHero, DUO and Phantimal results overlap; their sample counts must not be added together.\nEstimates from small samples are adjusted toward a neutral value. Each side needs at least two heroes with 5+ appearances before an indication is shown.\nNo direct counter-pick, battlefield-position or player-strength analysis. The bar is a score comparison, not a percentage chance.\nThis feature does not submit matches or record pre-match forecasts.';
+ info+='Heuristic comparison, not a calibrated probability or a betting recommendation.\nHero, DUO and Phantimal results overlap; their sample counts must not be added together.\nEstimates from small samples are adjusted toward a neutral value. When the logistic model snapshot is available, it can produce a low-confidence indication even when either side has fewer than two heroes with 5+ appearances.\nNo direct counter-pick, battlefield-position or player-strength analysis. The bar is a score comparison, not a percentage chance.\nThis feature does not submit matches or record pre-match forecasts.';
  details.textContent=info;
 }
 async function load(force=false,sessionStart=false){
