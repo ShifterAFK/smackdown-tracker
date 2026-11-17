@@ -22,21 +22,9 @@ const pool=el('div','md130pool');pool.setAttribute('aria-label','Full allowed he
 const recommendations=el('details','md130recommendations'),summary=el('summary','','Recommendations — optional');
 const assistHost=el('div','hero-panel md130assist');recommendations.append(summary,assistHost);
 const message=el('p','md130message');message.setAttribute('role','status');
-let mySide=null;
-const sideGate=el('section','md132sidegate');
-sideGate.setAttribute('aria-label','Choose your side for this round');
-sideGate.append(el('h3','','Which side are you this round?'),el('p','','This only controls your recommendations. Record both teams in draft order.'));
-const sideGateButtons=el('div','md132gatebuttons');
-for(const side of ['BLUE','RED']){const b=button('I play '+side,()=>{mySide=side;message.textContent='';render();});b.dataset.side=side;sideGateButtons.append(b);}
-sideGate.append(sideGateButtons);
-const forgetMySide=()=>{mySide=null;schedule();};
-window.addEventListener('tracker:draft-reset',forgetMySide);
-window.addEventListener('tracker:submission-finished',event=>{if(event.detail?.saved)forgetMySide();});
-
-content.append(recommendations,controls,pool);shell.append(head,sideGate,preview,order,message,content);dialog.append(shell);document.body.append(dialog);
+content.append(recommendations,controls,pool);shell.append(head,preview,order,message,content);dialog.append(shell);document.body.append(dialog);
 const dock=el('nav','md130dock');dock.setAttribute('aria-label','Mobile draft actions');dock.append(button('Choose hero',()=>open('heroes')),button('Assistant',()=>open('assistant')));document.body.append(dock);
 const sideControls=el('div','md130sides');sideControls.append(button('BLUE',()=>selectSide('BLUE')),button('RED',()=>selectSide('RED')));entry.querySelector('.teams')?.before(sideControls);
-const originalPanel=$('heroes')?.closest('.hero-panel');
 function nextSlot(){return sequence.find(([side,index])=>!lineup[side][index]);}
 function complete(){return ['BLUE','RED'].every(side=>lineup[side].every(Boolean));}
 function setTarget(side,index){active={side,index};renderSlots();}
@@ -59,7 +47,7 @@ function commit(id){
  if(before===JSON.stringify(lineup)){message.textContent=$('entryStatus')?.textContent||'Hero was not added.';return;}
  if(mode==='assistant'){const next=nextSlot();if(next)active={side:next[0],index:next[1]};}
  renderSlots();renderHeroes();render();
- if(complete()){mySide=null;close();}
+ if(complete()){close();}
 }
 function thumb(id,name){
  const wrap=el('span','md130portrait');
@@ -105,14 +93,13 @@ function mountAssistant(){
 }
 assistHost.addEventListener('click',event=>{
  const candidate=event.target.closest('.da-candidate');if(!candidate)return;
- if(mySide&&active.side!==mySide){event.preventDefault();event.stopImmediatePropagation();message.textContent='These suggestions are for '+mySide+'. Record the opponent pick from the full pool.';return;}
  event.preventDefault();event.stopImmediatePropagation();
  const name=candidate.querySelector('.da-name')?.textContent;const hero=config.heroes.find(h=>h.name===name);if(hero)commit(hero.id);
 },true);
 function render(){
  title.textContent=mode==='assistant'?'Assistant':'Choose hero';dialog.dataset.mode=mode;
- recommendations.open=mode==='assistant';dialog.dataset.started=String(Boolean(mySide&&lineup[mySide].some(Boolean)));dialog.dataset.suggestionSide=mySide||'';dialog.dataset.waiting=String(Boolean(mySide&&mySide!==active.side));assistHost.dataset.recommendationLabel=mySide?('Suggestions for '+mySide+(mySide!==active.side?' — waiting for your turn.':' — your turn.')):'';
- const awaitingSide=mode==='assistant'&&!mySide;sideGate.hidden=!awaitingSide;preview.hidden=awaitingSide;content.hidden=awaitingSide;order.hidden=mode!=='assistant'||awaitingSide;
+ recommendations.open=mode==='assistant';dialog.dataset.started=String(mode==='assistant');dialog.dataset.suggestionSide=active.side;dialog.dataset.waiting='false';assistHost.dataset.recommendationLabel='Suggestions for '+active.side;
+ const awaitingSide=false;preview.hidden=awaitingSide;content.hidden=awaitingSide;order.hidden=mode!=='assistant'||awaitingSide;
  order.hidden=mode!=='assistant';recommendations.hidden=mode!=='assistant';
  renderPreview();renderPool();
  mountAssistant();dock.hidden=!media.matches||entry.classList.contains('hidden');
@@ -137,5 +124,5 @@ new MutationObserver(schedule).observe(dialog,{attributes:true,attributeFilter:[
 new MutationObserver(schedule).observe(entry,{attributes:true,attributeFilter:['class']});
 window.addEventListener('tracker:draft-changed',schedule);window.addEventListener('tracker:catalog-changed',schedule);media.addEventListener('change',schedule);
 const annotate=()=>{const table=$('statsTable')?.querySelector('table');if(!table)return;const labels=Array.from(table.querySelectorAll('th')).map(n=>n.textContent);table.querySelectorAll('tbody tr').forEach(row=>Array.from(row.cells).forEach((td,i)=>td.dataset.md130Label=labels[i]||''));};if($('statsTable'))new MutationObserver(annotate).observe($('statsTable'),{childList:true,subtree:true});annotate();
-window.MobileDraft130=Object.freeze({version:'1.3.7',open,close});render();
+window.MobileDraft130=Object.freeze({version:'1.3.8',open,close});render();
 })();
