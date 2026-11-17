@@ -143,7 +143,7 @@ function render(){
    if(counters.items.length){
     counters.items.forEach((item,index)=>p.list.append(counterCard(item,side,'C'+(index+1),counters.opponent)));
    }else{
-    const empty=document.createElement('p');empty.className='da-info';empty.textContent='No reliable counter data yet (minimum '+MIN_SAMPLE+' matchups).';p.list.append(empty);
+    const empty=document.createElement('p');empty.className='da-info';empty.textContent=state.matchups?'No reliable counter data yet (minimum '+MIN_SAMPLE+' matchups).':'Opponent matchups unavailable.';p.list.append(empty);
    }
   }
   p.more.hidden=top.length>=state.limits[side];p.more.disabled=onlineBusy;

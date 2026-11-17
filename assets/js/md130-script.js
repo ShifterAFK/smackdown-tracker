@@ -24,9 +24,9 @@ const assistHost=el('div','hero-panel md130assist');recommendations.append(summa
 const message=el('p','md130message');message.setAttribute('role','status');
 const sideGate=el('section','md132sidegate');
 sideGate.setAttribute('aria-label','Choose your side for this round');
-sideGate.append(el('h3','','Which side are you this round?'),el('p','','Suggestions and counters will always be for your team.'));
+sideGate.append(el('h3','','Which side are you this round?'),el('p','','Suggestions and counters will always be for your team. The draft starts with BLUE.'));
 const sideGateButtons=el('div','md132gatebuttons');
-for(const side of ['BLUE','RED']){const b=button('I play '+side,()=>{mySide=side;message.textContent='';render();});b.dataset.side=side;sideGateButtons.append(b);}
+for(const side of ['BLUE','RED']){const b=button('I play '+side,()=>{mySide=side;message.textContent='';const next=nextSlot();if(next)setTarget(...next);render();});b.dataset.side=side;sideGateButtons.append(b);}
 sideGate.append(sideGateButtons);
 const forgetMySide=()=>{mySide=null;schedule();};
 window.addEventListener('tracker:draft-reset',forgetMySide);
@@ -141,5 +141,5 @@ new MutationObserver(schedule).observe(dialog,{attributes:true,attributeFilter:[
 new MutationObserver(schedule).observe(entry,{attributes:true,attributeFilter:['class']});
 window.addEventListener('tracker:draft-changed',schedule);window.addEventListener('tracker:catalog-changed',schedule);media.addEventListener('change',schedule);
 const annotate=()=>{const table=$('statsTable')?.querySelector('table');if(!table)return;const labels=Array.from(table.querySelectorAll('th')).map(n=>n.textContent);table.querySelectorAll('tbody tr').forEach(row=>Array.from(row.cells).forEach((td,i)=>td.dataset.md130Label=labels[i]||''));};if($('statsTable'))new MutationObserver(annotate).observe($('statsTable'),{childList:true,subtree:true});annotate();
-window.MobileDraft130=Object.freeze({version:'1.3.9',open,close});render();
+window.MobileDraft130=Object.freeze({version:'1.3.10',open,close});render();
 })();
