@@ -5,8 +5,11 @@
 if(document.getElementById('draftAssist'))return;
 const teams=document.querySelector('#page-entry .teams')||document.querySelector('.teams');if(!teams)return;
 const root=document.createElement('section');root.id='draftAssist';root.setAttribute('aria-label','Draft Assistant');
-root.innerHTML='<label class="da-toggle"><input type="checkbox" id="daEnabled"> Draft Assistant</label><div id="daBody" hidden><div id="daScope" class="da-info"></div><label id="daMapLabel"><input type="checkbox" id="daMapOnly"> Only selected map (off = Overall)</label><div id="daOverallS"></div><p class="da-info">Suggestions use team results for heroes and pairs. Check your draft pool; counter-picks are not evaluated.</p><p class="da-info" id="daStatus" role="status" aria-live="polite"></p><div class="da-columns"></div><div class="da-actions"><button type="button" id="daRestore">Restore hidden heroes</button><button type="button" id="daRefresh">Refresh suggestions</button></div></div>';
+root.innerHTML='<label class="da-toggle"><input type="checkbox" id="daEnabled"> Draft Assistant</label><div id="daBody" hidden><div id="daScope" class="da-info"></div><div id="daOverallS"></div><p class="da-info">Suggestions use results from all maps. Arena positioning is not evaluated.</p><p class="da-info" id="daStatus" role="status" aria-live="polite"></p><div class="da-columns"></div><div class="da-actions"><button type="button" id="daRestore">Restore hidden heroes</button><button type="button" id="daRefresh">Refresh suggestions</button></div></div>';
 teams.before(root);
+for(const p of document.querySelectorAll('#helpDialog p')){
+ p.textContent=p.textContent.replace('overall, on the selected map, together with','overall, together with').replace('By default suggestions use all maps. Switch to Selected map to use only the map of this match.','Suggestions always use all maps together. Changing the match map does not change suggestion data. Arena positioning is not evaluated.');
+}
 const get=id=>document.getElementById(id);
 const state={data:null,key:null,request:0,enabled:false,hidden:new Set(),limits:{BLUE:8,RED:8},cache:new Map()};
 const parts={};
@@ -81,15 +84,15 @@ function render(){
  }
 }
 async function load(force=false){
- if(!state.enabled)return;const theme=get('daMapOnly')?.checked?(get('theme')?.value||null):null;const key=theme||'__all__';
+ if(!state.enabled)return;const key='__all__';
  if(snapshotScopes.has(key)){render();return;}snapshotScopes.add(key);
  const request=++state.request;state.key=key;
- const title=theme?(config.themes.find(t=>t.id===theme)?.name||theme):'Overall — all maps in this event';
+ const title='Overall — all maps in this event';
  get('daScope').textContent='Suggestions: '+title+' · loading…';
 
  state.data=null;get('daStatus').textContent='Loading suggestions for '+title+'…';render();
  try{
-  const data=await rpc('ss_get_stats',{p_theme_id:theme,p_exclude_mirrors:true});
+  const data=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:true});
   if(request!==state.request||!state.enabled)return;
   if(!Array.isArray(data?.heroes)||!Array.isArray(data?.duos))throw Error('Invalid statistics response');
   state.data=data;
@@ -99,8 +102,7 @@ async function load(force=false){
  }catch(error){if(request!==state.request||!state.enabled)return;state.data=null;get('daScope').textContent='Suggestions: '+title+' · data unavailable';get('daStatus').textContent='Suggestions unavailable: '+error.message+'. Unranked alternatives shown; normal drafting still works.';render();}
 }
 get('daEnabled').onchange=()=>{state.enabled=get('daEnabled').checked;get('daBody').hidden=!state.enabled;document.body.classList.toggle('da-expanded',state.enabled);if(state.enabled){snapshotScopes.clear();overallStarted=false;window.TrackerSnapshot1323.begin();load();loadOverallS();window.dispatchEvent(new Event('tracker:assistant-session-started'));}else{state.request++;window.TrackerSnapshot1323.end();}};
-get('daRestore').onclick=()=>{state.hidden.clear();state.limits={BLUE:8,RED:8};render()};get('daRefresh').hidden=true;get('daRefresh').onclick=()=>{};get('daMapOnly').onchange=()=>{state.limits={BLUE:8,RED:8};load();};
-get('theme')?.addEventListener('change',()=>{state.limits={BLUE:8,RED:8};load()});
+get('daRestore').onclick=()=>{state.hidden.clear();state.limits={BLUE:8,RED:8};render()};get('daRefresh').hidden=true;get('daRefresh').onclick=()=>{};
 
 window.addEventListener('tracker:submission-finished',event=>{if(event.detail?.saved){state.cache.clear();}else render();});
 // Session snapshot: no periodic Assistant data reload.

@@ -4,11 +4,10 @@ if(window.TrackerAssistantMatchup1421)return;
 const PROJECT_URL='https://rwnbxhrkjjlfuljhwdpt.supabase.co';
 const KEY='sb_publishable_K613s8nvoUQTzIc-BLn2VQ_8kfTLWAm';
 const MIN_SAMPLE=3;
-const WEIGHTS={hero:.28,duo:.27,map:.20,matchup:.25};
+const WEIGHTS={hero:.35,duo:.3375,matchup:.3125};
 const cache=new Map();
 let frame=0,lastKey='';
 const root=()=>document.getElementById('draftAssist');
-const mapId=()=>document.getElementById('theme')?.value||'';
 const dialog=()=>document.getElementById('mobileDraft130');
 const cards=assistant=>Array.from(assistant.querySelectorAll('.da-candidate,.da-card'));
 function heroIdFromCard(card){
@@ -70,11 +69,11 @@ function metric(row){
  return {appearances:n,wins:w,rate:n?100*w/n:0,confidence:wilson(w,n)};
 }
 function pair(a,b){return [a,b].sort((x,y)=>x.localeCompare(y,'en')).join('||');}
-async function loadStats(map){
- const key=map||'overall';
+async function loadStats(){
+ const key='overall';
  if(cache.has(`stats:${key}`))return cache.get(`stats:${key}`);
  const promise=(async()=>{
- const data=await rpc('ss_get_stats',{p_theme_id:map||null,p_exclude_mirrors:false});
+ const data=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:false});
  if(!Array.isArray(data?.heroes)||!Array.isArray(data?.duos))throw new Error('Invalid stats');
  return {
  heroes:new Map(data.heroes.map(row=>[row.hero_id,metric(row)])),
@@ -84,11 +83,11 @@ async function loadStats(map){
  cache.set(`stats:${key}`,promise);
  return promise;
 }
-async function loadMatchups(map){
- const key=map||'overall';
+async function loadMatchups(){
+ const key='overall';
  if(cache.has(`matchups:${key}`))return cache.get(`matchups:${key}`);
  const promise=(async()=>{
- const rows=await rpc('ss_get_matchups',{p_theme_id:map||null,p_exclude_mirrors:false});
+ const rows=await rpc('ss_get_matchups',{p_theme_id:null,p_exclude_mirrors:false});
  if(!Array.isArray(rows))throw new Error('Invalid matchups');
  const map=new Map();
  for(const row of rows){
@@ -114,18 +113,13 @@ async function rank(){
  if(!assistant)return;
  const cardList=cards(assistant);
  if(!cardList.length)return;
- const selectedMap=mapId();
- const draftKey=JSON.stringify([selectedMap,cardList.map(heroIdFromCard),draftedIds('BLUE'),draftedIds('RED')]);
+ const draftKey=JSON.stringify([cardList.map(heroIdFromCard),draftedIds('BLUE'),draftedIds('RED')]);
  if(draftKey===lastKey)return;
  lastKey=draftKey;
  assistant.classList.add('matchup-updating');
- let overall,mapStats,matchups;
+ let overall,matchups;
  try{
- [overall,mapStats,matchups]=await Promise.all([
- loadStats(null),
- selectedMap?loadStats(selectedMap):Promise.resolve(null),
- loadMatchups(selectedMap||null)
- ]);
+ [overall,matchups]=await Promise.all([loadStats(),loadMatchups()]);
  }catch{assistant.classList.remove('matchup-updating');return;}
  const scored=[];
  for(const card of cardList){
@@ -135,7 +129,6 @@ async function rank(){
  const allies=draftedIds(side).filter(value=>value!==id);
  const opponents=draftedIds(side==='RED'?'BLUE':'RED').filter(value=>value!==id);
  const heroOverall=overall.heroes.get(id)||metric(null);
- const heroMap=mapStats?.heroes.get(id)||metric(null);
  let duoScore=0,duoCount=0;
  for(const ally of allies){
  const duo=overall.duos.get(pair(id,ally));
@@ -143,7 +136,6 @@ async function rank(){
  duoScore+=duo.confidence;duoCount++;
  }
  duoScore=duoCount?duoScore/duoCount:heroOverall.confidence;
- const mapScore=mapStats&&heroMap.appearances>=MIN_SAMPLE?heroMap.confidence:heroOverall.confidence;
  const rows=matchups.get(id);
  let matchupScore=heroOverall.confidence,matchupItems=[];
  if(rows&&opponents.length){
@@ -157,7 +149,7 @@ async function rank(){
  }
  if(count)matchupScore=total/count;
  }
- const score=WEIGHTS.hero*heroOverall.confidence+WEIGHTS.duo*duoScore+WEIGHTS.map*mapScore+WEIGHTS.matchup*matchupScore;
+ const score=WEIGHTS.hero*heroOverall.confidence+WEIGHTS.duo*duoScore+WEIGHTS.matchup*matchupScore;
  scored.push({card,id,score,matchupItems});
  }
  scored.sort((a,b)=>b.score-a.score);
@@ -193,7 +185,6 @@ new MutationObserver(schedule).observe(document.body,{childList:true,subtree:tru
 new MutationObserver(schedule).observe(dialog(),{attributes:true,attributeFilter:['open','data-mode','data-side','data-suggestion-side','data-started']});
 window.addEventListener('tracker:draft-changed',schedule);
 window.addEventListener('tracker:catalog-changed',schedule);
-document.getElementById('theme')?.addEventListener('change',()=>{lastKey='';schedule();});
-window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.24',refresh:schedule});
+window.TrackerAssistantMatchup1421=Object.freeze({version:'1.4.25',scope:'overall',refresh:schedule});
 schedule();
 })();
