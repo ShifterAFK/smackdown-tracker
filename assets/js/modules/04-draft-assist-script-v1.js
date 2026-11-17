@@ -1,5 +1,3 @@
-// Module: draft-assist-script-v1 — priority top picks + opponent counters
-
 (function(){
 'use strict';
 if(document.getElementById('draftAssist'))return;
@@ -140,9 +138,13 @@ function render(){
   p.note.textContent=full?'Remove a hero to select a replacement.':(state.data?'Top picks and opponent counters — check your draft pool.':'Statistics unavailable. Unranked alternatives only.');
   p.list.append(sectionHeading('TOP PICKS'));
   top.forEach((item,index)=>p.list.append(cardFor(item,side,'#'+(index+1))));
-  if(counters.opponent&&counters.items.length){
+  if(counters.opponent){
    p.list.append(sectionHeading('COUNTERS: '+(heroById(counters.opponent)?.name||counters.opponent)));
-   counters.items.forEach((item,index)=>p.list.append(counterCard(item,side,'C'+(index+1),counters.opponent)));
+   if(counters.items.length){
+    counters.items.forEach((item,index)=>p.list.append(counterCard(item,side,'C'+(index+1),counters.opponent)));
+   }else{
+    const empty=document.createElement('p');empty.className='da-info';empty.textContent='No reliable counter data yet (minimum '+MIN_SAMPLE+' matchups).';p.list.append(empty);
+   }
   }
   p.more.hidden=top.length>=state.limits[side];p.more.disabled=onlineBusy;
   if(!top.length){p.note.textContent='No top picks available. Restore hidden heroes or check the catalog.';}
@@ -169,8 +171,8 @@ async function load(force=false){
     const matchups=new Map();
     for(const row of matchupRows){
      const candidate=row.candidate_id,opponent=row.opponent_id;
-     if(!matchups.has(candidate))matchups.set(candidate,new Map());
-     matchups.get(candidate).set(opponent,metric(row));
+     if(!matchups.has(opponent))matchups.set(opponent,new Map());
+     matchups.get(opponent).set(candidate,metric(row));
     }
     state.matchups=matchups;
    }
