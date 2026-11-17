@@ -16,7 +16,11 @@ function topIds(data){
  }
  return sSet;
 }
-function bucket(item,ids){const key=tierBucket(item.rate,item.n);return key==='S'&&!ids.has(item.hero.id)?'A':key;}
+fufunction bucket(item,ids){
+ if(ids.has(item.hero.id))return 'S';
+ const key=tierBucket(item.rate,item.n);
+ return key==='S'?'A':key;
+}
 const legend='S: top 8 (20+ appearances with 70%+ qualify; filled to 8 with 15+ appearances at 60-70%) | A: 60%+ excluding S | B: 50-60% | C: <50%. Minimum 10 appearances per view.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
