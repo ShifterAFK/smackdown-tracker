@@ -20,16 +20,27 @@ function arrange(){
  const active=mobile&&dialog.open&&dialog.dataset.mode==='assistant';
  if(!active){restore();return;}
  const root=document.getElementById('draftAssist'),scope=document.getElementById('daScope'),mapLabel=document.getElementById('daMapLabel');
- if(!root||!dialog.contains(root)||!scope||!mapLabel){restore();return;}
- if(row?.isConnected&&row.contains(scope)&&row.contains(mapLabel))return;
+ if(!root||!dialog.contains(root)||!scope){restore();return;}
+ if(row?.isConnected&&row.contains(scope)&&(!mapLabel||row.contains(mapLabel)))return;
  restore();row=document.createElement('div');row.className='md135-scope-row';
  scope.before(row);
- for(const node of [scope,mapLabel]){const marker=document.createComment('md135 original position');node.before(marker);positions.push({node,marker});row.append(node);}
+ const nodes=[scope];if(mapLabel)nodes.push(mapLabel);
+ for(const node of nodes){const marker=document.createComment('md135 original position');node.before(marker);positions.push({node,marker});row.append(node);}
 }
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;arrange();});}
+function ensureMobileSuggestions(){
+ if(!dialog.open||dialog.dataset.mode!=='assistant')return;
+ if(!dialog.dataset.suggestionSide)return;
+ if(dialog.dataset.started!=='true'){
+  dialog.dataset.started='true';
+  window.dispatchEvent(new Event('tracker:draft-changed'));
+ }
+}
+ensureMobileSuggestions();
 new MutationObserver(schedule).observe(dialog,{attributes:true,attributeFilter:['open','data-mode'],childList:true,subtree:true});
+new MutationObserver(schedule).observe(dialog,{attributes:true,attributeFilter:['data-suggestion-side','data-started']});
 matchMedia('(max-width:1099px)').addEventListener('change',schedule);
 window.addEventListener('tracker:catalog-changed',schedule);
 window.addEventListener('tracker:draft-changed',schedule);
-window.MobileAssistant135=Object.freeze({version:'1.3.5'});arrange();
+window.MobileAssistant135=Object.freeze({version:'1.3.6'});arrange();
 })();
