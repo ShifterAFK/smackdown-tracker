@@ -1,11 +1,11 @@
-// Module: draft-assist-script-v1 — single unified Overall ranking
+// Module: draft-assist-script-v1 — priority top picks + opponent counters
 
 (function(){
 'use strict';
 if(document.getElementById('draftAssist'))return;
 const teams=document.querySelector('#page-entry .teams')||document.querySelector('.teams');if(!teams)return;
 const root=document.createElement('section');root.id='draftAssist';root.setAttribute('aria-label','Draft Assistant');
-root.innerHTML='<label class="da-toggle"><input type="checkbox" id="daEnabled"> Draft Assistant</label><div id="daBody" hidden><div id="daScope" class="da-info"></div><div id="daOverallS"></div><p class="da-info">Suggestions use Overall results for heroes, duos and opponent matchups. Arena positioning is not evaluated.</p><p class="da-info" id="daStatus" role="status" aria-live="polite"></p><div class="da-columns"></div><div class="da-actions"><button type="button" id="daRestore">Restore hidden heroes</button><button type="button" id="daRefresh">Refresh suggestions</button></div></div>';
+root.innerHTML='<label class="da-toggle"><input type="checkbox" id="daEnabled"> Draft Assistant</label><div id="daBody" hidden><div id="daScope" class="da-info"></div><div id="daOverallS"></div><p class="da-info">Top picks use Overall priority and results. Counters respond to the opponent’s latest pick. Arena positioning is not evaluated.</p><p class="da-info" id="daStatus" role="status" aria-live="polite"></p><div class="da-columns"></div><div class="da-actions"><button type="button" id="daRestore">Restore hidden heroes</button><button type="button" id="daRefresh">Refresh suggestions</button></div></div>';
 teams.before(root);
 for(const p of document.querySelectorAll('#helpDialog p')){
  p.textContent=p.textContent.replace('overall, on the selected map, together with','overall, together with').replace('By default suggestions use all maps. Switch to Selected map to use only the map of this match.','Suggestions always use all maps together. Changing the match map does not change suggestion data. Arena positioning is not evaluated.');
@@ -17,7 +17,8 @@ for(const side of ['BLUE','RED']){const box=document.createElement('div');box.cl
 
 let overallSData=null;let overallStarted=false;const snapshotScopes=new Set();
 const MIN_SAMPLE=3;
-const WEIGHTS={hero:.35,duo:.3375,matchup:.3125};
+const TOP_MIN_APPEARANCES=20;
+const TOP_MIN_RATE=.55;
 function wilson(w,n){
  n=Math.max(0,Number(n)||0);w=Math.max(0,Math.min(n,Number(w)||0));
  if(!n)return 0;
@@ -29,7 +30,7 @@ function wilson(w,n){
 function metric(row){
  const n=Math.max(0,Number(row?.appearances)||0);
  const w=Math.max(0,Math.min(n,Number(row?.wins)||0));
- return {appearances:n,wins:w,confidence:wilson(w,n)};
+ return {appearances:n,wins:w,rate:n?w/n:0,confidence:wilson(w,n)};
 }
 function pairKey(a,b){return [a,b].sort((x,y)=>x.localeCompare(y,'en')).join('||');}
 async function loadOverallS(force=false){
@@ -44,23 +45,39 @@ async function loadOverallS(force=false){
  if(!items.length){row.textContent='No eligible heroes meet the S-tier criteria (>85% team win rate, at least 10 appearances).';}
 }
 
-function mean(row){const n=Math.max(0,Number(row?.appearances)||0),w=Math.max(0,Math.min(n,Number(row?.wins)||0));return (w+5)/(n+10);}
-function rank(side){
+function availableHeroes(side){
  const used=new Set([...lineup.BLUE,...lineup.RED].filter(Boolean));
+ return config.heroes.filter(h=>h.is_allowed&&!used.has(h.id)&&!state.hidden.has(h.id));
+}
+function heroContext(side,h){
  const friends=lineup[side].filter(Boolean);
  const opponents=lineup[side==='BLUE'?'RED':'BLUE'].filter(Boolean);
  const heroStats=new Map((state.data?.heroes||[]).map(x=>[x.hero_id,x]));
  const duoStats=new Map((state.data?.duos||[]).map(x=>[pairKey(x.hero_1_id,x.hero_2_id),x]));
- return config.heroes.filter(h=>h.is_allowed&&!used.has(h.id)&&!state.hidden.has(h.id)).map(h=>{
-  const base=metric(heroStats.get(h.id));
-  const pairs=friends.map(id=>({id,row:duoStats.get(pairKey(id,h.id))})).filter(x=>Number(x.row?.appearances)>0);
-  const pairScore=pairs.length?pairs.reduce((sum,x)=>sum+metric(x.row).confidence,0)/pairs.length:base.confidence;
-  const matchupRows=state.matchups?.get(h.id);
-  const matchupPairs=opponents.map(id=>({id,row:matchupRows?.get(id)})).filter(x=>Number(x.row?.appearances)>=MIN_SAMPLE);
-  const matchupScore=matchupPairs.length?matchupPairs.reduce((sum,x)=>sum+metric(x.row).confidence,0)/matchupPairs.length:base.confidence;
-  const score=WEIGHTS.hero*base.confidence+WEIGHTS.duo*pairScore+WEIGHTS.matchup*matchupScore;
-  return {hero:h,score,n:base.appearances,pairs,matchupPairs,hasData:base.appearances>0||pairs.length>0||matchupPairs.length>0};
- }).sort((a,b)=>Number(b.hasData)-Number(a.hasData)||b.score-a.score||b.n-a.n||a.hero.name.localeCompare(b.hero.name));
+ const base=metric(heroStats.get(h.id));
+ const pairs=friends.map(id=>({id,row:duoStats.get(pairKey(id,h.id))})).filter(x=>Number(x.row?.appearances)>0);
+ const duoConfidence=pairs.length?pairs.reduce((sum,x)=>sum+metric(x.row).confidence,0)/pairs.length:base.confidence;
+ return {base,pairs,duoConfidence,opponents};
+}
+function topPicks(side){
+ const items=availableHeroes(side).map(h=>{
+  const context=heroContext(side,h);
+  return {hero:h,...context};
+ });
+ const qualified=items.filter(x=>x.base.appearances>=TOP_MIN_APPEARANCES&&x.base.rate>=TOP_MIN_RATE);
+ qualified.sort((a,b)=>b.base.appearances-a.base.appearances||b.duoConfidence-a.duoConfidence||b.base.confidence-a.base.confidence||a.hero.name.localeCompare(b.hero.name));
+ if(qualified.length>=state.limits[side])return qualified.slice(0,state.limits[side]);
+ const fallback=items.filter(x=>!qualified.includes(x)).sort((a,b)=>b.base.confidence-a.base.confidence||b.base.appearances-a.base.appearances||a.hero.name.localeCompare(b.hero.name));
+ return [...qualified,...fallback].slice(0,state.limits[side]);
+}
+function counterPicks(side){
+ const opponents=lineup[side==='BLUE'?'RED':'BLUE'].filter(Boolean);
+ const lastOpponent=opponents[opponents.length-1];
+ if(!lastOpponent||!state.matchups)return {opponent:lastOpponent,items:[]};
+ const rows=state.matchups.get(lastOpponent);
+ if(!rows)return {opponent:lastOpponent,items:[]};
+ const items=availableHeroes(side).map(h=>({hero:h,row:rows.get(h.id)})).filter(x=>Number(x.row?.appearances)>=MIN_SAMPLE).sort((a,b)=>metric(b.row).confidence-metric(a.row).confidence||metric(b.row).appearances-metric(a.row).appearances||a.hero.name.localeCompare(b.hero.name)).slice(0,3);
+ return {opponent:lastOpponent,items};
 }
 function refreshUsedState(){
  const used=new Set([...lineup.BLUE,...lineup.RED].filter(Boolean));
@@ -75,33 +92,60 @@ function refreshUsedState(){
   btn.title=isUsed?h.name+' — already drafted':h.name;
  });
 }
+function cardFor(item,side,label){
+ const h=item.hero,card=document.createElement('div');card.className='da-card';
+ const button=document.createElement('button');button.type='button';button.className='da-candidate';button.disabled=lineup[side].every(Boolean)||onlineBusy;
+ const strength=Math.max(.15,Math.min(.9,(item.base.confidence-.25)*1.6));
+ button.style.background=side==='BLUE'?`rgba(28,104,172,${strength})`:`rgba(159,45,63,${strength})`;
+ const rankLabel=document.createElement('span');rankLabel.className='da-rank';rankLabel.textContent=label;button.append(rankLabel);
+ const image=document.createElement('img');image.src=h.portrait_url||BASE+encodeURIComponent(h.name)+'.png';image.alt='';image.loading='lazy';image.onerror=()=>{image.hidden=true};button.append(image);
+ const name=document.createElement('span');name.className='da-name';name.textContent=h.name;button.append(name);
+ const samples=document.createElement('small');samples.textContent=item.base.appearances+' picks';button.append(samples);
+ const details=['Overall appearances: '+item.base.appearances,'Overall wins: '+item.base.wins+'/'+item.base.appearances,...item.pairs.map(x=>(heroById(x.id)?.name||x.id)+' + '+h.name+': '+x.row.wins+'/'+x.row.appearances+' wins'),'Top picks prioritise frequently drafted heroes with a reliable Overall result.'];
+ button.title=details.join('\n');button.setAttribute('aria-label','Pick '+h.name+' for '+side);
+ button.draggable=!lineup[side].every(Boolean)&&!onlineBusy;image.draggable=false;
+ button.ondragstart=event=>{if(onlineBusy||lineup[side].every(Boolean)){event.preventDefault();return;}startDrag(event,{kind:'hero',id:h.id},button);};
+ button.ondragend=()=>finishDrag();
+ button.onclick=()=>{if(Date.now()<blockClickUntil||onlineBusy||lineup[side].every(Boolean))return;const index=active.side===side&&!lineup[side][active.index]?active.index:lineup[side].findIndex(x=>!x);if(index<0)return;active={side,index};choose(h.id);refreshUsedState();render();};
+ const hide=document.createElement('button');hide.type='button';hide.className='da-hide';hide.textContent='×';hide.title='Hide '+h.name+' for this draft (both lists)';hide.setAttribute('aria-label',hide.title);hide.onclick=()=>{state.hidden.add(h.id);render()};
+ card.append(button,hide);
+ return card;
+}
+function counterCard(item,side,label,opponentId){
+ const h=item.hero,card=document.createElement('div');card.className='da-card';
+ const button=document.createElement('button');button.type='button';button.className='da-candidate';button.disabled=lineup[side].every(Boolean)||onlineBusy;
+ const strength=Math.max(.15,Math.min(.9,(metric(item.row).confidence-.25)*1.6));
+ button.style.background=side==='BLUE'?`rgba(28,104,172,${strength})`:`rgba(159,45,63,${strength})`;
+ const rankLabel=document.createElement('span');rankLabel.className='da-rank';rankLabel.textContent=label;button.append(rankLabel);
+ const image=document.createElement('img');image.src=h.portrait_url||BASE+encodeURIComponent(h.name)+'.png';image.alt='';image.loading='lazy';image.onerror=()=>{image.hidden=true};button.append(image);
+ const name=document.createElement('span');name.className='da-name';name.textContent=h.name;button.append(name);
+ const samples=document.createElement('small');samples.textContent=item.row.wins+'/'+item.row.appearances+' vs '+(heroById(opponentId)?.name||opponentId);button.append(samples);
+ const details=['vs '+(heroById(opponentId)?.name||opponentId)+': '+item.row.wins+'/'+item.row.appearances+' wins','Counter ranking uses the Wilson lower bound with at least '+MIN_SAMPLE+' matchups.','Counter picks are separate from Top picks.'];
+ button.title=details.join('\n');button.setAttribute('aria-label','Pick '+h.name+' against '+(heroById(opponentId)?.name||opponentId));
+ button.draggable=!lineup[side].every(Boolean)&&!onlineBusy;image.draggable=false;
+ button.ondragstart=event=>{if(onlineBusy||lineup[side].every(Boolean)){event.preventDefault();return;}startDrag(event,{kind:'hero',id:h.id},button);};
+ button.ondragend=()=>finishDrag();
+ button.onclick=()=>{if(Date.now()<blockClickUntil||onlineBusy||lineup[side].every(Boolean))return;const index=active.side===side&&!lineup[side][active.index]?active.index:lineup[side].findIndex(x=>!x);if(index<0)return;active={side,index};choose(h.id);refreshUsedState();render();};
+ const hide=document.createElement('button');hide.type='button';hide.className='da-hide';hide.textContent='×';hide.title='Hide '+h.name+' for this draft (both lists)';hide.setAttribute('aria-label',hide.title);hide.onclick=()=>{state.hidden.add(h.id);render()};
+ card.append(button,hide);
+ return card;
+}
+function sectionHeading(text){const heading=document.createElement('div');heading.className='da-section-title';heading.textContent=text;return heading;}
 function render(){
  if(!state.enabled)return;
  for(const side of ['BLUE','RED']){
   const p=parts[side];p.list.replaceChildren();const full=lineup[side].every(Boolean);
-  const candidates=rank(side);const count=Math.min(state.limits[side],candidates.length);
-  p.title.textContent=side+' — '+(full?'team complete':'next picks');p.note.textContent=full?'Remove a hero to select a replacement.':(state.data?'Suggested heroes — check your draft pool.':'Statistics unavailable. Unranked alternatives only.');
-  for(let i=0;i<count;i++){
-   const item=candidates[i],h=item.hero,card=document.createElement('div');
-   if(!item.hasData&&(i===0||candidates[i-1].hasData)){const group=document.createElement('div');group.className='da-nodata-heading';group.textContent='No data — unranked alternatives';p.list.append(group);}card.className='da-card';
-   const button=document.createElement('button');button.type='button';button.className='da-candidate'+(!item.hasData?' da-no-data':'');button.disabled=full||onlineBusy;
-   if(item.hasData){const strength=Math.max(.15,Math.min(.9,(item.score-.25)*1.6));button.style.background=side==='BLUE'?`rgba(28,104,172,${strength})`:`rgba(159,45,63,${strength})`;}
-   const rankLabel=document.createElement('span');rankLabel.className='da-rank';rankLabel.textContent=item.hasData?'#'+(i+1):'No data';button.append(rankLabel);
-   const image=document.createElement('img');image.src=h.portrait_url||BASE+encodeURIComponent(h.name)+'.png';image.alt='';image.loading='lazy';image.onerror=()=>{image.hidden=true};button.append(image);
-   const name=document.createElement('span');name.className='da-name';name.textContent=h.name;button.append(name);
-   const samples=document.createElement('small');const ns=item.pairs.map(x=>Number(x.row.appearances));
-   samples.textContent=!item.hasData?'No data':((item.pairs.length?Math.min(...ns):item.n)<10?'Small sample':'');
-   button.append(samples);
-   const details=['Hero appearances: '+item.n,...item.pairs.map(x=>(heroById(x.id)?.name||x.id)+' + '+h.name+': '+x.row.wins+'/'+x.row.appearances+' wins'),...item.matchupPairs.map(x=>'vs '+(heroById(x.id)?.name||x.id)+': '+x.row.wins+'/'+x.row.appearances+' wins'),'One unified Overall ranking; arena positioning is not evaluated.'];
-   button.title=details.join('\n');button.setAttribute('aria-label','Pick '+h.name+' for '+side);
-   const assistDragEnabled=true;button.draggable=!full&&!onlineBusy;image.draggable=false;button.ondragstart=event=>{if(onlineBusy||full){event.preventDefault();return;}startDrag(event,{kind:'hero',id:h.id},button);};button.ondragend=()=>finishDrag();
-
-   button.onclick=()=>{if(Date.now()<blockClickUntil||onlineBusy||lineup[side].every(Boolean))return;const index=active.side===side&&!lineup[side][active.index]?active.index:lineup[side].findIndex(x=>!x);if(index<0)return;active={side,index};choose(h.id);refreshUsedState();render();};
-   const hide=document.createElement('button');hide.type='button';hide.className='da-hide';hide.textContent='×';hide.title='Hide '+h.name+' for this draft (both lists)';hide.setAttribute('aria-label',hide.title);hide.onclick=()=>{state.hidden.add(h.id);render()};
-   card.append(button,hide);p.list.append(card);
+  const top=topPicks(side);const counters=counterPicks(side);
+  p.title.textContent=side+' — '+(full?'team complete':'next picks');
+  p.note.textContent=full?'Remove a hero to select a replacement.':(state.data?'Top picks and opponent counters — check your draft pool.':'Statistics unavailable. Unranked alternatives only.');
+  p.list.append(sectionHeading('TOP PICKS'));
+  top.forEach((item,index)=>p.list.append(cardFor(item,side,'#'+(index+1))));
+  if(counters.opponent&&counters.items.length){
+   p.list.append(sectionHeading('COUNTERS: '+(heroById(counters.opponent)?.name||counters.opponent)));
+   counters.items.forEach((item,index)=>p.list.append(counterCard(item,side,'C'+(index+1),counters.opponent)));
   }
-  p.more.hidden=count>=candidates.length;p.more.disabled=onlineBusy;
-  if(!candidates.length){p.note.textContent='No candidates. Restore hidden heroes or check the catalog.';}
+  p.more.hidden=top.length>=state.limits[side];p.more.disabled=onlineBusy;
+  if(!top.length){p.note.textContent='No top picks available. Restore hidden heroes or check the catalog.';}
  }
 }
 async function load(force=false){
