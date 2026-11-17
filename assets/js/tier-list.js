@@ -1,4 +1,4 @@
-// tier-list.js — partner-adjusted strength, S = top 8 (min 15 appearances), SSS/SS/S+/S + A+ fill
+// tier-list.js — partner-adjusted strength, S = top 8 (20+ qualify, 15+ fill), SSS/SS/S+/S + A+ fill
 (function(){
 'use strict';
 if(window.TrackerTransparentTiers)return;
@@ -11,7 +11,7 @@ function strengthCompare(a,b){return (b.strength||0)-(a.strength||0)||b.n-a.n||a
 function topIds(data){
  const model=window.TrackerStrength?window.TrackerStrength.fit(data):null;
  const items=entries(data).map(item=>({...item,strength:model?model.strength(item.hero.id):0}));
- const sPool=items.filter(x=>x.n>=15&&x.rate>=70).sort(strengthCompare);
+ const sPool=items.filter(x=>x.n>=20&&x.rate>=70).sort(strengthCompare);
  const sSet=new Set(sPool.slice(0,8).map(x=>x.hero.id));
  if(sSet.size<8){
   const fill=items.filter(x=>x.n>=15&&x.rate>=60&&x.rate<70&&!sSet.has(x.hero.id)).sort(strengthCompare).slice(0,8-sSet.size);
@@ -20,19 +20,19 @@ function topIds(data){
  return sSet;
 }
 function bucket(item,ids){return ids.has(item.hero.id)?'S':tierBucket(item.rate,item.n);}
-const legend='S: up to 8 heroes with at least 15 appearances, ranked by partner-adjusted strength (a hero who keeps winning with many different partners ranks higher than one who only wins in a single duo; small samples are pulled toward average). Heroes with 70%+ win rate are S; if fewer than 8 qualify, remaining slots are filled with the next best A-tier heroes (60-70%, also 15+ appearances) and labeled A+. A: 60% or more. B: 50% or more. C: below 50%. Under 10 appearances a hero is listed as preliminary.';
+const legend='S: up to 8 heroes. Qualified heroes need at least 20 appearances and 70%+ win rate, ranked by partner-adjusted strength (a hero who keeps winning with many different partners ranks higher than one who only wins in a single duo; small samples are pulled toward average). If fewer than 8 qualify, remaining slots are filled with the next best A-tier heroes (at least 15 appearances, 60-70%) and labeled A+. A: 60% or more. B: 50% or more. C: below 50%. Under 10 appearances a hero is listed as preliminary.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
-const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: up to 8 heroes (min 15 appearances), ranked by partner-adjusted strength; A+ fills remaining slots';
+const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: up to 8 heroes (20+ qualify, 15+ fill), ranked by partner-adjusted strength; A+ fills remaining slots';
 const explanation=document.createElement('p');explanation.className='caption';explanation.textContent=legend;get('tierRows').before(explanation);
-for(const p of document.querySelectorAll('#helpDialog p'))if(p.textContent.includes('S requires more than 85%'))p.textContent=p.textContent.replace('S requires more than 85% team win rate and at least 10 appearances.','S contains up to eight Overall heroes with at least 15 appearances, ranked by partner-adjusted strength. Heroes with 70%+ are S; remaining slots are filled with the next best A-tier heroes (60-70%, also 15+ appearances) and labeled A+.');
+for(const p of document.querySelectorAll('#helpDialog p'))if(p.textContent.includes('S requires more than 85%'))p.textContent=p.textContent.replace('S requires more than 85% team win rate and at least 10 appearances.','S contains up to eight Overall heroes. Qualified heroes need at least 20 appearances and 70%+ win rate. If fewer than 8 qualify, remaining slots are filled with the next best A-tier heroes (at least 15 appearances, 60-70%) and labeled A+.');
 renderTiers=function(){
  const root=get('tierRows');root.replaceChildren();if(!tierData)return;
  const model=window.TrackerStrength?window.TrackerStrength.fit(tierData):null;
  const ids=topIds(tierData),buckets={S:[],A:[],B:[],C:[],N:[]};
  for(const item of entries(tierData)){item.strength=model?model.strength(item.hero.id):0;buckets[bucket(item,ids)].push(item);}
  function fill(content,key){
-  buckets[key].sort(key==='N'?(a,b)=>b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en'):key==='S'?strengthCompare:compare);
+  buckets[key].sort(key==='N'?(a,b)=>b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en'):key==='S'?(a,b)=>((a.n>=20&&a.rate>=70)?0:1)-((b.n>=20&&b.rate>=70)?0:1)||strengthCompare(a,b):compare);
   let sIndex=0;
   for(const item of buckets[key]){
    const {hero,n,rate}=item,card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
@@ -40,7 +40,8 @@ renderTiers=function(){
    const value=document.createElement('span');value.className='tier-rate';
    if(key==='S'){
     sIndex++;
-    value.textContent=sIndex===1?'SSS':sIndex===2?'SS':sIndex===3?'S+':(rate>=70?'S':'A+');
+    const qualified=n>=20&&rate>=70;
+    value.textContent=sIndex===1?'SSS':sIndex===2?'SS':sIndex===3?'S+':(qualified?'S':'A+');
    }
    else value.textContent=n?rate.toFixed(1)+'%':'No data';
    const sample=document.createElement('small');sample.className='tier-samples';sample.textContent=key==='N'&&n?n+'/10 to rank':n+' appearances';card.append(value,sample);card.onclick=()=>showTierHero(item);content.append(card);
@@ -83,13 +84,13 @@ function paintS(){
  const ids=topIds(overallData),items=entries(overallData).filter(x=>ids.has(x.hero.id)&&x.hero.is_allowed);
  const model=window.TrackerStrength?window.TrackerStrength.fit(overallData):null;
  items.forEach(item=>item.strength=model?model.strength(item.hero.id):0);
- items.sort(strengthCompare);
+ items.sort((a,b)=>((a.n>=20&&a.rate>=70)?0:1)-((b.n>=20&&b.rate>=70)?0:1)||strengthCompare(a,b));
  const signature=JSON.stringify([overallData.generated_at,items.map(x=>[x.hero.id,x.wins,x.n,x.hero.portrait_url])]);if(row.dataset.topFive===signature)return;
  row.dataset.topFive=signature;row.replaceChildren();
- const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — top 8 by partner-adjusted strength (min 15 appearances, A+ fill)';
- items.forEach((item,index)=>{const {hero,n,rate}=item;const card=document.createElement('span');card.className='da-s-hero';card.title=hero.name+' — '+rate.toFixed(1)+'% · '+n+' appearances';const img=document.createElement('img');img.src=hero.portrait_url||'';img.alt='';img.loading='lazy';const label=document.createElement('span');const tag=index===0?'SSS':index===1?'SS':index===2?'S+':(rate>=70?'S':'A+');label.textContent=tag+' '+hero.name;card.append(img,label);row.append(card);});
+ const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — top 8 by partner-adjusted strength (20+ qualify, 15+ fill)';
+ items.forEach((item,index)=>{const {hero,n,rate}=item;const card=document.createElement('span');card.className='da-s-hero';card.title=hero.name+' — '+rate.toFixed(1)+'% · '+n+' appearances';const img=document.createElement('img');img.src=hero.portrait_url||'';img.alt='';img.loading='lazy';const label=document.createElement('span');const qualified=n>=20&&rate>=70;const tag=index===0?'SSS':index===1?'SS':index===2?'S+':(qualified?'S':'A+');label.textContent=tag+' '+hero.name;card.append(img,label);row.append(card);});
  if(!items.length)row.textContent='No heroes with at least 15 appearances yet.';
 }
 const sbox=get('daOverallS');if(sbox)new MutationObserver(paintS).observe(sbox,{childList:true,subtree:true});window.addEventListener('tracker:catalog-changed',()=>{paintS();});
-renderTiers();window.TrackerTransparentTiers={version:'1.3.32'};
+renderTiers();window.TrackerTransparentTiers={version:'1.3.33'};
 })();
