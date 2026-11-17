@@ -25,3 +25,12 @@ html[data-ui-view="desktop"] .da-card .da-candidate .avatar img {
 html[data-ui-view="desktop"] .da-card .da-hide {
   display: none;
 }
+
+/* Tier list labels: ranks replace percentages only in the S row. */
+#tierRows .tier-S .tier-rate {
+  display: none !important;
+}
+#tierRows .tier-row:not(.tier-S) .tier-tag,
+#tierRows .tier-no-data .tier-tag {
+  display: none !important;
+}
