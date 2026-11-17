@@ -1,4 +1,4 @@
-// tier-list.js — partner-adjusted strength, S = top 8 (min 15 appearances), SSS/SS/S+/S labels
+// tier-list.js — partner-adjusted strength, S = top 8 (min 15 appearances), SSS/SS/S+/S + A+ fill
 (function(){
 'use strict';
 if(window.TrackerTransparentTiers)return;
@@ -11,15 +11,21 @@ function strengthCompare(a,b){return (b.strength||0)-(a.strength||0)||b.n-a.n||a
 function topIds(data){
  const model=window.TrackerStrength?window.TrackerStrength.fit(data):null;
  const items=entries(data).map(item=>({...item,strength:model?model.strength(item.hero.id):0}));
- return new Set(items.filter(x=>x.n>=15).sort(strengthCompare).slice(0,8).map(x=>x.hero.id));
+ const sPool=items.filter(x=>x.n>=15).sort(strengthCompare);
+ const sSet=new Set(sPool.slice(0,8).map(x=>x.hero.id));
+ if(sSet.size<8){
+  const fill=items.filter(x=>x.n>=15&&!sSet.has(x.hero.id)).sort(strengthCompare).slice(0,8-sSet.size);
+  fill.forEach(x=>sSet.add(x.hero.id));
+ }
+ return sSet;
 }
 function bucket(item,ids){const key=tierBucket(item.rate,item.n);return key==='S'&&!ids.has(item.hero.id)?'A':key;}
-const legend='S: up to 8 heroes with at least 15 appearances, ranked by partner-adjusted strength (a hero who keeps winning with many different partners ranks higher than one who only wins in a single duo; small samples are pulled toward average). S is not filled with heroes below the 15-appearance threshold. A: 60% or more. B: 50% or more. C: below 50%. Under 10 appearances a hero is listed as preliminary.';
+const legend='S: up to 8 heroes with at least 15 appearances, ranked by partner-adjusted strength (a hero who keeps winning with many different partners ranks higher than one who only wins in a single duo; small samples are pulled toward average). If fewer than 8 heroes meet the S criteria, the remaining slots are filled with the next best A-tier heroes (also 15+ appearances) and labeled A+. A: 60% or more. B: 50% or more. C: below 50%. Under 10 appearances a hero is listed as preliminary.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
-const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: up to 8 heroes (min 15 appearances), ranked by partner-adjusted strength';
+const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: up to 8 heroes (min 15 appearances), ranked by partner-adjusted strength; A+ fills remaining slots';
 const explanation=document.createElement('p');explanation.className='caption';explanation.textContent=legend;get('tierRows').before(explanation);
-for(const p of document.querySelectorAll('#helpDialog p'))if(p.textContent.includes('S requires more than 85%'))p.textContent=p.textContent.replace('S requires more than 85% team win rate and at least 10 appearances.','S contains up to eight Overall heroes with at least 15 appearances, ranked by partner-adjusted strength. S is not filled with heroes below the threshold.');
+for(const p of document.querySelectorAll('#helpDialog p'))if(p.textContent.includes('S requires more than 85%'))p.textContent=p.textContent.replace('S requires more than 85% team win rate and at least 10 appearances.','S contains up to eight Overall heroes with at least 15 appearances, ranked by partner-adjusted strength. If fewer than 8 qualify, remaining slots are filled with the next best A-tier heroes (also 15+ appearances) and labeled A+.');
 renderTiers=function(){
  const root=get('tierRows');root.replaceChildren();if(!tierData)return;
  const model=window.TrackerStrength?window.TrackerStrength.fit(tierData):null;
@@ -32,7 +38,11 @@ renderTiers=function(){
    const {hero,n,rate}=item,card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
    card.title=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(!hero.is_allowed?' · Currently banned':'');card.setAttribute('aria-label',card.title);card.append(portrait(hero));
    const value=document.createElement('span');value.className='tier-rate';
-   if(key==='S'){sIndex++;value.textContent=sIndex===1?'SSS':sIndex===2?'SS':sIndex===3?'S+':'S';}
+   if(key==='S'){
+    sIndex++;
+    const isFill=item.n<15;
+    value.textContent=sIndex===1?'SSS':sIndex===2?'SS':sIndex===3?'S+':(isFill?'A+':'S');
+   }
    else value.textContent=n?rate.toFixed(1)+'%':'No data';
    const sample=document.createElement('small');sample.className='tier-samples';sample.textContent=key==='N'&&n?n+'/10 to rank':n+' appearances';card.append(value,sample);card.onclick=()=>showTierHero(item);content.append(card);
   }
@@ -77,10 +87,10 @@ function paintS(){
  items.sort(strengthCompare);
  const signature=JSON.stringify([overallData.generated_at,items.map(x=>[x.hero.id,x.wins,x.n,x.hero.portrait_url])]);if(row.dataset.topFive===signature)return;
  row.dataset.topFive=signature;row.replaceChildren();
- const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — top 8 by partner-adjusted strength (min 15 appearances)';
- items.forEach((item,index)=>{const {hero,n,rate}=item;const card=document.createElement('span');card.className='da-s-hero';card.title=hero.name+' — '+rate.toFixed(1)+'% · '+n+' appearances';const img=document.createElement('img');img.src=hero.portrait_url||'';img.alt='';img.loading='lazy';const label=document.createElement('span');const tag=index===0?'SSS':index===1?'SS':index===2?'S+':'S';label.textContent=tag+' '+hero.name;card.append(img,label);row.append(card);});
+ const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — top 8 by partner-adjusted strength (min 15 appearances, A+ fill)';
+ items.forEach((item,index)=>{const {hero,n,rate}=item;const card=document.createElement('span');card.className='da-s-hero';card.title=hero.name+' — '+rate.toFixed(1)+'% · '+n+' appearances';const img=document.createElement('img');img.src=hero.portrait_url||'';img.alt='';img.loading='lazy';const label=document.createElement('span');const isFill=item.n<15;const tag=index===0?'SSS':index===1?'SS':index===2?'S+':(isFill?'A+':'S');label.textContent=tag+' '+hero.name;card.append(img,label);row.append(card);});
  if(!items.length)row.textContent='No heroes with at least 15 appearances yet.';
 }
 const sbox=get('daOverallS');if(sbox)new MutationObserver(paintS).observe(sbox,{childList:true,subtree:true});window.addEventListener('tracker:catalog-changed',()=>{paintS();});
-renderTiers();window.TrackerTransparentTiers={version:'1.3.30'};
+renderTiers();window.TrackerTransparentTiers={version:'1.3.31'};
 })();
