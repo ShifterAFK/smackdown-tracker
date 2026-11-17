@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id),entry=$('page-entry');
 if(!entry||typeof choose!=='function'||typeof lineup==='undefined')return;
 const media=matchMedia('(max-width:1099px)');
 const sequence=[['BLUE',0],['RED',0],['RED',1],['BLUE',1],['BLUE',2],['RED',2]];
-let mode='heroes',query='',faction='',returnFocus=null,frame=0,assistantHome=null;
+let mode='heroes',query='',faction='',returnFocus=null,frame=0,assistantHome=null,mySide=null;
 const el=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
 const button=(text,fn)=>{const b=el('button','',text);b.type='button';b.onclick=fn;return b;};
 const dialog=el('dialog','md130');dialog.id='mobileDraft130';dialog.setAttribute('aria-labelledby','md130title');
@@ -22,7 +22,16 @@ const pool=el('div','md130pool');pool.setAttribute('aria-label','Full allowed he
 const recommendations=el('details','md130recommendations'),summary=el('summary','','Recommendations — optional');
 const assistHost=el('div','hero-panel md130assist');recommendations.append(summary,assistHost);
 const message=el('p','md130message');message.setAttribute('role','status');
-content.append(recommendations,controls,pool);shell.append(head,preview,order,message,content);dialog.append(shell);document.body.append(dialog);
+const sideGate=el('section','md132sidegate');
+sideGate.setAttribute('aria-label','Choose your side for this round');
+sideGate.append(el('h3','','Which side are you this round?'),el('p','','Suggestions and counters will always be for your team.'));
+const sideGateButtons=el('div','md132gatebuttons');
+for(const side of ['BLUE','RED']){const b=button('I play '+side,()=>{mySide=side;message.textContent='';render();});b.dataset.side=side;sideGateButtons.append(b);}
+sideGate.append(sideGateButtons);
+const forgetMySide=()=>{mySide=null;schedule();};
+window.addEventListener('tracker:draft-reset',forgetMySide);
+window.addEventListener('tracker:submission-finished',event=>{if(event.detail?.saved)forgetMySide();});
+content.append(recommendations,controls,pool);shell.append(head,sideGate,preview,order,message,content);dialog.append(shell);document.body.append(dialog);
 const dock=el('nav','md130dock');dock.setAttribute('aria-label','Mobile draft actions');dock.append(button('Choose hero',()=>open('heroes')),button('Assistant',()=>open('assistant')));document.body.append(dock);
 const sideControls=el('div','md130sides');sideControls.append(button('BLUE',()=>selectSide('BLUE')),button('RED',()=>selectSide('RED')));entry.querySelector('.teams')?.before(sideControls);
 function nextSlot(){return sequence.find(([side,index])=>!lineup[side][index]);}
@@ -32,7 +41,7 @@ function selectSide(side){const i=lineup[side].findIndex(x=>!x);setTarget(side,i
 function open(nextMode){
  if(!media.matches||entry.classList.contains('hidden'))return;
  mode=nextMode;message.textContent='';
- if(mode==='assistant'){const next=nextSlot();if(next)setTarget(...next);}
+ if(mode==='assistant'&&mySide){const next=nextSlot();if(next)setTarget(...next);}
  returnFocus=document.activeElement;render();
  if(!dialog.open){dialog.showModal();document.body.classList.add('md130open');}
 }
@@ -45,9 +54,9 @@ function commit(id){
  if(Object.values(lineup).flat().includes(id)){message.textContent='That hero is already selected.';return;}
  const before=JSON.stringify(lineup);choose(id);
  if(before===JSON.stringify(lineup)){message.textContent=$('entryStatus')?.textContent||'Hero was not added.';return;}
- if(mode==='assistant'){const next=nextSlot();if(next)active={side:next[0],index:next[1]};}
+ if(mode==='assistant'&&mySide){const next=nextSlot();if(next)active={side:next[0],index:next[1]};}
  renderSlots();renderHeroes();render();
- if(complete()){close();}
+ if(complete()){mySide=null;close();}
 }
 function thumb(id,name){
  const wrap=el('span','md130portrait');
@@ -83,26 +92,34 @@ function renderPool(){
  for(const hero of list){const b=button('',()=>commit(hero.id));b.className='md130hero';b.dataset.faction=hero.faction;b.title=hero.name+' — '+hero.faction;b.disabled=onlineBusy||used.has(hero.id);b.setAttribute('aria-label','Select '+hero.name+' for '+active.side+' slot '+(active.index+1));b.append(thumb(hero.id,hero.name),el('span','',md136DisplayName(hero.name)));pool.append(b);}
  if(!list.length)pool.append(el('p','','No heroes match your filters.'));
 }
+function updateAssistantColumns(){
+ const root=$('draftAssist');if(!root)return;
+ const blue=root.querySelector('.da-side:not(.da-red)'),red=root.querySelector('.da-side.da-red');
+ if(blue)blue.hidden=mySide==='RED';
+ if(red)red.hidden=mySide==='BLUE';
+}
 function mountAssistant(){
  const assistant=$('draftAssist');if(!assistant)return;
  if(media.matches&&mode==='assistant'&&dialog.open){
   if(assistant.parentNode!==assistHost){assistantHome=document.createComment('md130 assistant home');assistant.before(assistantHome);assistHost.append(assistant);}
   const toggle=$('daEnabled')||assistant.querySelector('.da-toggle input[type=checkbox]');
   if(toggle&&!toggle.checked){toggle.checked=true;toggle.dispatchEvent(new Event('change',{bubbles:true}));}
+  updateAssistantColumns();
  }else if(assistantHome?.parentNode&&assistant.parentNode===assistHost){assistantHome.replaceWith(assistant);assistantHome=null;}
 }
 assistHost.addEventListener('click',event=>{
  const candidate=event.target.closest('.da-candidate');if(!candidate)return;
+ if(!mySide){event.preventDefault();event.stopImmediatePropagation();message.textContent='Choose your side first.';return;}
  event.preventDefault();event.stopImmediatePropagation();
  const name=candidate.querySelector('.da-name')?.textContent;const hero=config.heroes.find(h=>h.name===name);if(hero)commit(hero.id);
 },true);
 function render(){
  title.textContent=mode==='assistant'?'Assistant':'Choose hero';dialog.dataset.mode=mode;
- recommendations.open=mode==='assistant';dialog.dataset.started=String(mode==='assistant');dialog.dataset.suggestionSide=active.side;dialog.dataset.waiting='false';assistHost.dataset.recommendationLabel='Suggestions for '+active.side;
- const awaitingSide=false;preview.hidden=awaitingSide;content.hidden=awaitingSide;order.hidden=mode!=='assistant'||awaitingSide;
+ recommendations.open=mode==='assistant';dialog.dataset.started=String(Boolean(mySide));dialog.dataset.suggestionSide=mySide||'';dialog.dataset.waiting='false';assistHost.dataset.recommendationLabel=mySide?('Suggestions for '+mySide):'';
+ const awaitingSide=mode==='assistant'&&!mySide;sideGate.hidden=!awaitingSide;preview.hidden=awaitingSide;content.hidden=awaitingSide;order.hidden=mode!=='assistant'||awaitingSide;
  order.hidden=mode!=='assistant';recommendations.hidden=mode!=='assistant';
  renderPreview();renderPool();
- mountAssistant();dock.hidden=!media.matches||entry.classList.contains('hidden');
+ mountAssistant();updateAssistantColumns();dock.hidden=!media.matches||entry.classList.contains('hidden');
  if(!media.matches){close();document.body.classList.remove('md130open');mountAssistant();}
 }
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;render();});}
@@ -124,5 +141,5 @@ new MutationObserver(schedule).observe(dialog,{attributes:true,attributeFilter:[
 new MutationObserver(schedule).observe(entry,{attributes:true,attributeFilter:['class']});
 window.addEventListener('tracker:draft-changed',schedule);window.addEventListener('tracker:catalog-changed',schedule);media.addEventListener('change',schedule);
 const annotate=()=>{const table=$('statsTable')?.querySelector('table');if(!table)return;const labels=Array.from(table.querySelectorAll('th')).map(n=>n.textContent);table.querySelectorAll('tbody tr').forEach(row=>Array.from(row.cells).forEach((td,i)=>td.dataset.md130Label=labels[i]||''));};if($('statsTable'))new MutationObserver(annotate).observe($('statsTable'),{childList:true,subtree:true});annotate();
-window.MobileDraft130=Object.freeze({version:'1.3.8',open,close});render();
+window.MobileDraft130=Object.freeze({version:'1.3.9',open,close});render();
 })();
