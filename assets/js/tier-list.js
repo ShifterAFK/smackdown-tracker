@@ -8,7 +8,7 @@ function wilson(n,wins){if(!n)return 0;const p=wins/n,z=1.96;const denom=1+z*z/n
 function compare(a,b){return b.wilson-a.wilson||b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en')||a.hero.id.localeCompare(b.hero.id);}
 function buildTiers(data){
  const items=entries(data).map(x=>({...x,wilson:wilson(x.n,x.wins)}));
- const sPool=items.filter(x=>x.n>=15&&x.rate>=60).sort(compare);
+ const sPool=items.filter(x=>x.n>=20&&x.rate>=60).sort(compare);
  const sList=sPool.slice(0,8).map((item,i)=>({item,label:i===0?'SSS':i===1?'SS':i===2?'S+':'S'}));
  if(sList.length<8){
   const used=new Set(sList.map(x=>x.item.hero.id));
@@ -25,10 +25,10 @@ function buildTiers(data){
  return {sList,buckets};
 }
 function topIds(data){return new Set(buildTiers(data).sList.map(x=>x.item.hero.id));}
-const legend='S row: top 8 by Wilson conservative score (min 15 appearances). #1 SSS, #2 SS, #3 S+, #4-8 S (60%+ win rate). If fewer than eight qualify, remaining slots are filled with the best A-tier heroes and labeled A+. A: 50-60% | B: 40-50% | C: <40%.';
+const legend='S row: top 8 by Wilson conservative score. #1 SSS, #2 SS, #3 S+, #4-8 S (20+ appearances with 60%+ win rate). If fewer than eight qualify, remaining slots are filled with the best A-tier heroes (15+ appearances, 50-60% win rate) and labeled A+. A: 50-60% | B: 40-50% | C: <40%.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-tag{font-size:11px;font-weight:700;color:var(--accent,#c9a227)}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
-const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (min 15 appearances) | SSS / SS / S+ / S / A+';
+const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (20+ qualify, A+ fill from 15+) | SSS / SS / S+ / S / A+';
 const explanation=document.createElement('p');explanation.className='caption';explanation.textContent=legend;get('tierRows').before(explanation);
 function makeCard(item,label){
  const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
@@ -103,8 +103,8 @@ function paintS(){
  row.dataset.topFive=signature;row.replaceChildren();
  const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — top 8 (SSS / SS / S+ / S / A+)';
  for(const {hero,n,rate} of items){const card=document.createElement('span');card.className='da-s-hero';card.title=hero.name+' — '+rate.toFixed(1)+'% · '+n+' appearances';const img=document.createElement('img');img.src=hero.portrait_url||'';img.alt='';img.loading='lazy';const label=document.createElement('span');label.textContent=hero.name;card.append(img,label);row.append(card);}
- if(!items.length)row.textContent='No allowed heroes in the Overall S top eight (min 15 appearances).';
+ if(!items.length)row.textContent='No allowed heroes in the Overall S top eight (20+ appearances with 60%+ win rate, A+ fill from 15+).';
 }
 const sbox=get('daOverallS');if(sbox)new MutationObserver(paintS).observe(sbox,{childList:true,subtree:true});window.addEventListener('tracker:catalog-changed',()=>{paintS();});
-renderTiers();window.TrackerTransparentTiers={version:'1.3.36'};
+renderTiers();window.TrackerTransparentTiers={version:'1.3.37'};
 })();
