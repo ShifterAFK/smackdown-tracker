@@ -1,36 +1,20 @@
-/* Desktop compact suggestions: portrait-only cards */
-html[data-ui-view="desktop"] .da-card .da-name,
-html[data-ui-view="desktop"] .da-card .da-rank,
-html[data-ui-view="desktop"] .da-card .da-candidate small {
-  display: none;
-}
-html[data-ui-view="desktop"] .da-card {
-  width: auto;
-}
-html[data-ui-view="desktop"] .da-card .da-candidate {
-  width: 48px;
-  height: 48px;
-  padding: 2px;
-  background: none;
-  border: none;
-  box-shadow: none;
-}
-html[data-ui-view="desktop"] .da-card .da-candidate .avatar,
-html[data-ui-view="desktop"] .da-card .da-candidate .avatar img {
-  width: 44px;
-  height: 44px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-html[data-ui-view="desktop"] .da-card .da-hide {
-  display: none;
-}
-
-/* Tier list labels: ranks replace percentages only in the S row. */
-#tierRows .tier-S .tier-rate {
-  display: none !important;
-}
+/* Structured assistant sections: containers grow with all their rows. */
+html body #draftAssist.da-clean .da-columns,
+html body #draftAssist.da-clean .da-side,
+html body #draftAssist.da-clean .da-candidates{height:auto!important;max-height:none!important;min-height:0!important;min-width:0!important;overflow:visible!important;align-self:stretch!important}
+html body #draftAssist.da-clean .da-side{display:block!important;box-sizing:border-box!important;padding-bottom:12px!important}
+html body #draftAssist.da-clean .da-side[hidden]{display:none!important}
+html body #draftAssist.da-clean .da-candidates{display:block!important;width:100%!important;columns:auto!important}
+html body #draftAssist.da-clean .da-grid{width:100%!important;box-sizing:border-box!important;flex:0 0 auto!important;float:none!important;position:static!important;clear:both!important}
+html body #draftAssist.da-clean .da-section-title{width:100%!important;box-sizing:border-box!important;position:static!important;clear:both!important}
+html body #draftAssist.da-clean .da-card>.da-candidate,
+html body #mobileDraft130 #draftAssist.da-clean .da-card>.da-candidate{position:relative!important;inset:auto!important;width:52px!important;height:auto!important;min-height:46px!important;box-sizing:border-box!important;float:none!important}
+html body #draftAssist.da-clean .da-card>.da-hide,
+html body #mobileDraft130 #draftAssist.da-clean .da-card>.da-hide{position:absolute!important;top:0!important;right:-3px!important;bottom:auto!important;left:auto!important}
+html body #draftAssist.da-clean .da-card>.da-candidate>small,
+html body #mobileDraft130 #draftAssist.da-clean .da-card>.da-candidate>small{display:block!important;position:static!important;line-height:14px!important}
+html body #draftAssist.da-clean .da-expand{display:block!important;width:auto!important;position:static!important;clear:both!important}
+/* Keep the existing tier-list label rules unchanged. */
+#tierRows .tier-S .tier-rate{display:none!important}
 #tierRows .tier-row:not(.tier-S) .tier-tag,
-#tierRows .tier-no-data .tier-tag {
-  display: none !important;
-}
+#tierRows .tier-no-data .tier-tag{display:none!important}

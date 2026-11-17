@@ -1,46 +1,17 @@
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"]{height:auto!important;max-height:94dvh!important;overflow:hidden!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130shell{display:flex!important;flex-direction:column!important;height:88dvh!important;max-height:88dvh!important;min-height:0!important;overflow:hidden!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130head,#mobileDraft130[data-mode="assistant"] .md132sidegate{flex:0 0 auto!important;position:relative!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130recommendations{position:static!important;flex:0 1 auto!important;min-height:0!important;max-height:29dvh!important;overflow-y:auto!important;overflow-x:hidden!important;margin:0 0 5px!important;overscroll-behavior:contain}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130preview{position:relative!important;flex:0 0 auto!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0 0 4px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130order{position:relative!important;flex:0 0 auto!important;margin:0 0 4px!important;font-size:10px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130content{display:block!important;flex:1 1 0!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;padding-top:4px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidates{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(66px,1fr))!important;gap:4px!important;align-items:start!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-card{position:relative!important;min-width:0!important;margin:0!important;padding:2px!important;box-shadow:none!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidate{display:flex!important;flex-direction:column!important;align-items:center!important;width:100%!important;min-width:0!important;padding:3px 1px!important;gap:2px!important;font-size:9px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidate .avatar,#mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidate img{width:34px!important;height:34px!important;min-width:34px!important;object-fit:cover;border-radius:50%}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-name{font-size:9px!important;line-height:1.2!important;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-hide{position:absolute!important;top:0;right:0;min-width:20px!important;min-height:20px!important;padding:0!important;line-height:18px!important;font-size:14px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .ui1320extra{display:none!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-actions{gap:4px!important;margin:3px 0!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-actions button{font-size:10px!important;padding:4px 7px!important;min-height:28px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .ui1320options{margin:3px 0 0!important;font-size:10px;line-height:1.3}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .ui1320options>summary{cursor:pointer;padding:5px 0;min-height:28px}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] .da-nodata-heading{grid-column:1/-1;font-size:9px}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] #daOverallS .da-s-row{gap:4px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] #daOverallS img{width:28px!important;height:28px!important}
-html[data-ui-view="mobile"] #mobileDraft130[data-mode="assistant"] [hidden]{display:none!important}
-html[data-ui-view="mobile"] body.md130open{overflow:hidden!important;overscroll-behavior:none}
-@media(max-width:1099px){html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"]{height:auto!important;max-height:94dvh!important;overflow:hidden!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130shell{display:flex!important;flex-direction:column!important;height:88dvh!important;max-height:88dvh!important;min-height:0!important;overflow:hidden!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130head,#mobileDraft130[data-mode="assistant"] .md132sidegate{flex:0 0 auto!important;position:relative!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130recommendations{position:static!important;flex:0 1 auto!important;min-height:0!important;max-height:29dvh!important;overflow-y:auto!important;overflow-x:hidden!important;margin:0 0 5px!important;overscroll-behavior:contain}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130preview{position:relative!important;flex:0 0 auto!important;min-height:0!important;height:auto!important;max-height:none!important;margin:0 0 4px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130order{position:relative!important;flex:0 0 auto!important;margin:0 0 4px!important;font-size:10px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130content{display:block!important;flex:1 1 0!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain;padding-top:4px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidates{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(66px,1fr))!important;gap:4px!important;align-items:start!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-card{position:relative!important;min-width:0!important;margin:0!important;padding:2px!important;box-shadow:none!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidate{display:flex!important;flex-direction:column!important;align-items:center!important;width:100%!important;min-width:0!important;padding:3px 1px!important;gap:2px!important;font-size:9px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidate .avatar,#mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-candidate img{width:34px!important;height:34px!important;min-width:34px!important;object-fit:cover;border-radius:50%}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-name{font-size:9px!important;line-height:1.2!important;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-hide{position:absolute!important;top:0;right:0;min-width:20px!important;min-height:20px!important;padding:0!important;line-height:18px!important;font-size:14px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .ui1320extra{display:none!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-actions{gap:4px!important;margin:3px 0!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist .da-actions button{font-size:10px!important;padding:4px 7px!important;min-height:28px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .ui1320options{margin:3px 0 0!important;font-size:10px;line-height:1.3}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .ui1320options>summary{cursor:pointer;padding:5px 0;min-height:28px}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] .da-nodata-heading{grid-column:1/-1;font-size:9px}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] #daOverallS .da-s-row{gap:4px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] #daOverallS img{width:28px!important;height:28px!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) #mobileDraft130[data-mode="assistant"] [hidden]{display:none!important}
-html:not([data-ui-view="desktop"]):not([data-ui-view="mobile"]) body.md130open{overflow:hidden!important;overscroll-behavior:none}}
+/* One scrolling shell; recommendation sections must not become grid cells. */
+#mobileDraft130[data-mode="assistant"]{height:auto!important;max-height:94dvh!important;overflow:hidden!important}
+#mobileDraft130[data-mode="assistant"] .md130shell{display:block!important;height:auto!important;max-height:88dvh!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior:contain}
+#mobileDraft130[data-mode="assistant"] .md130head{position:sticky!important;top:0!important;z-index:20!important;background:var(--panel,#15251b)!important}
+#mobileDraft130[data-mode="assistant"] .md132sidegate{position:relative!important}
+#mobileDraft130[data-mode="assistant"] .md130recommendations,
+#mobileDraft130[data-mode="assistant"] .md130content,
+#mobileDraft130[data-mode="assistant"] .md130assist{position:static!important;flex:none!important;height:auto!important;max-height:none!important;min-height:0!important;min-width:0!important;overflow:visible!important;box-sizing:border-box!important}
+#mobileDraft130[data-mode="assistant"] .md130recommendations{margin:0 0 8px!important;width:100%!important}
+#mobileDraft130[data-mode="assistant"] .md130preview,
+#mobileDraft130[data-mode="assistant"] .md130order{position:relative!important;height:auto!important;max-height:none!important;margin:0 0 6px!important}
+html body #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist.da-clean .da-candidates{display:block!important;width:100%!important;height:auto!important;max-height:none!important;overflow:visible!important}
+html body #mobileDraft130[data-mode="assistant"] .md130assist #draftAssist.da-clean .da-grid{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:flex-start!important;align-content:flex-start!important;justify-content:flex-start!important;width:100%!important;max-width:100%!important;min-width:0!important;gap:8px!important;box-sizing:border-box!important;max-height:none!important;overflow:visible!important}
+#mobileDraft130[data-mode="assistant"] .ui1320options{margin:6px 0;font-size:11px}
+#mobileDraft130[data-mode="assistant"] .ui1320options>summary{cursor:pointer;padding:6px 0}
+#mobileDraft130[data-mode="assistant"] [hidden]{display:none!important}
+body.md130open{overflow:hidden!important;overscroll-behavior:none}
