@@ -1,4 +1,4 @@
-// Module: match-estimate-script-v1
+// Module: match-estimate-script-v2 (partner-adjusted hero strength)
 
 (function(){
 'use strict';
@@ -18,7 +18,11 @@ function evaluateSide(ids,phantimal,data){
  const ph=smoothed((data?.phantimals||[]).find(x=>normalize(x.faction)===normalize(phantimal)));
  const presentHeroes=heroes.filter(x=>x.n>0),presentDuos=duos.filter(x=>x.n>0);
  const average=rows=>rows.reduce((sum,x)=>sum+x.value,0)/rows.length;
- const groups=[];if(presentHeroes.length)groups.push({weight:.4,value:average(presentHeroes)});if(presentDuos.length)groups.push({weight:.45,value:average(presentDuos)});if(ph.n&&phantimal!=='Unknown'&&phantimal!=='None')groups.push({weight:.15,value:ph.value});
+ const model=window.TrackerStrength?window.TrackerStrength.fit(data):null;
+ const groups=[];
+ if(model&&presentHeroes.length)groups.push({weight:.85,value:model.teamScore(ids)});
+ else{if(presentHeroes.length)groups.push({weight:.4,value:average(presentHeroes)});if(presentDuos.length)groups.push({weight:.45,value:average(presentDuos)});}
+ if(ph.n&&phantimal!=='Unknown'&&phantimal!=='None')groups.push({weight:.15,value:ph.value});
  const total=groups.reduce((sum,x)=>sum+x.weight,0);
  const score=total?groups.reduce((sum,x)=>sum+x.weight*x.value,0)/total:.5;
  return {score,heroCount:presentHeroes.length,duoCount:presentDuos.length,heroSupported:heroes.filter(x=>x.n>=5).length,phCount:ph.n,phantimal:phantimal||'Unknown',heroSamples:heroes.map(x=>x.n),duoSamples:duos.map(x=>x.n)};
@@ -45,7 +49,7 @@ function paint(){
   }
  }
  const blueWidth=50+Math.max(-30,Math.min(30,delta*100));root.querySelector('.me-blue').style.width=blueWidth+'%';root.querySelector('.me-red').style.width=(100-blueWidth)+'%';root.classList.toggle('me-neutral',neutral);
- info+='Heuristic comparison, not a calibrated probability or a betting recommendation.\nHero, DUO and Phantimal results overlap; their sample counts must not be added together.\nEstimates from small samples are adjusted toward a neutral value. Each side needs at least two heroes with 5+ appearances before an indication is shown.\nNo direct counter-pick, battlefield-position or player-strength analysis. The bar is a score comparison, not a percentage chance.\nThis feature does not submit matches or record pre-match forecasts.';
+ info+='Heuristic comparison, not a calibrated probability or a betting recommendation.\nTeam score uses a partner-adjusted strength for each hero: a hero who wins with many different partners counts for more than a duo that only wins together. Small samples are pulled toward average. Phantimal adds a small share.\nEach side needs at least two heroes with 5+ appearances before an indication is shown.\nNo direct counter-pick, battlefield-position or player-strength analysis. The bar is a score comparison, not a percentage chance.\nThis feature does not submit matches or record pre-match forecasts.';
  details.textContent=info;
 }
 async function load(force=false,sessionStart=false){
