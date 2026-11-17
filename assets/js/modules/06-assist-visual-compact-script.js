@@ -21,18 +21,19 @@ function boot(){
  };
  function heroFor(card){const src=card.querySelector('img')?.getAttribute('src')||'',name=card.querySelector('span')?.textContent?.trim()||'';return config.heroes.find(h=>h.portrait_url===src||h.name===name||card.title.startsWith(h.name+' —'));}
  function resetCatalog(){const search=document.getElementById('search');if(search){search.value='';search.dispatchEvent(new Event('input',{bubbles:true}));search.blur();}const all=[...document.querySelectorAll('#factionFilters .filter')].find(b=>b.textContent.trim()==='All');if(all)all.click();}
+ function nextSlot(){return sequence.find(([side,index])=>!lineup[side][index]);}
  function decorate(){
   const strip=document.getElementById('daOverallS');if(!strip)return;
   for(const old of strip.querySelectorAll('span.da-s-hero')){const b=document.createElement('button');b.type='button';b.className=old.className;b.title=old.title;b.append(...Array.from(old.childNodes));old.replaceWith(b);}
   const used=new Set([...lineup.BLUE,...lineup.RED].filter(Boolean));
-  for(const b of strip.querySelectorAll('button.da-s-hero')){const h=heroFor(b);const unavailable=!h||!h.is_allowed||isBannedHero(h)||used.has(h.id)||onlineBusy;b.disabled=unavailable;b.classList.toggle('mc29-used',Boolean(h&&used.has(h.id)));const side=(dialog.dataset.suggestionSide==='RED')?'RED':'BLUE';const index=lineup[side].findIndex(x=>!x);const label=h?(index<0?'No empty '+side+' slot':'Pick '+h.name+' for '+side+' slot '+(index+1)+(used.has(h.id)?' — already drafted':'')):'Unavailable hero';if(b.getAttribute('aria-label')!==label)b.setAttribute('aria-label',label);}
+  for(const b of strip.querySelectorAll('button.da-s-hero')){const h=heroFor(b);const unavailable=!h||!h.is_allowed||isBannedHero(h)||used.has(h.id)||onlineBusy;b.disabled=unavailable;b.classList.toggle('mc29-used',Boolean(h&&used.has(h.id)));const next=nextSlot();const label=h?(next?'Pick '+h.name+' for '+next[0]+' slot '+(next[1]+1)+(used.has(h.id)?' — already drafted':''):'Draft is full'):'Unavailable hero';if(b.getAttribute('aria-label')!==label)b.setAttribute('aria-label',label);}
  }
  root.addEventListener('click',event=>{
   const card=event.target.closest('#daOverallS .da-s-hero');if(!card)return;event.preventDefault();event.stopImmediatePropagation();
   if(onlineBusy||Date.now()<blockClickUntil||card.disabled)return;const h=heroFor(card);if(!h||!h.is_allowed||isBannedHero(h)||[...lineup.BLUE,...lineup.RED].includes(h.id))return;
-  const side=(dialog.dataset.suggestionSide==='RED')?'RED':'BLUE';const index=lineup[side].findIndex(x=>!x);
-  if(index<0){const message=dialog.querySelector('.md130message');if(message)message.textContent='No empty '+side+' slot.';return;}
-  active={side,index};choose(h.id);decorate();resetCatalog();
+  const next=nextSlot();
+  if(!next){const message=dialog.querySelector('.md130message');if(message)message.textContent='Draft is full.';return;}
+  active={side:next[0],index:next[1]};choose(h.id);decorate();resetCatalog();
  },true);
  let frame=0;function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;decorate();});}
  const strip=document.getElementById('daOverallS');if(strip)new MutationObserver(schedule).observe(strip,{childList:true,subtree:true});new MutationObserver(schedule).observe(dialog,{attributes:true,attributeFilter:['open','data-mode','data-side','data-suggestion-side']});window.addEventListener('tracker:draft-changed',schedule);window.addEventListener('tracker:catalog-changed',schedule);
@@ -48,7 +49,7 @@ html body #mobileDraft130.mc28[data-mode="assistant"] #draftAssist.da-clean .da-
 html body #mobileDraft130.mc28[data-mode="assistant"] .md130controls{gap:4px!important;margin:0!important;padding:0!important;min-height:0!important}
 html body #mobileDraft130.mc28[data-mode="assistant"] .md130controls input,html body #mobileDraft130.mc28[data-mode="assistant"] .md130controls select{height:40px!important;min-height:40px!important;max-height:40px!important;box-sizing:border-box!important;line-height:20px!important;padding:3px 7px!important;margin:0!important}
 `;document.head.append(css);
- window.TrackerMobilePick1429=Object.freeze({version:'1.4.30'});schedule();
+ window.TrackerMobilePick1429=Object.freeze({version:'1.4.31'});schedule();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
