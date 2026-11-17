@@ -113,21 +113,30 @@ async function load(force=false){
 
  state.data=null;state.matchups=null;get('daStatus').textContent='Loading suggestions for '+title+'…';render();
  try{
-  const [stats,matchupRows]=await Promise.all([
-   rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:true}),
-   rpc('ss_get_matchups',{p_theme_id:null,p_exclude_mirrors:true})
-  ]);
+  const stats=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:true});
   if(request!==state.request||!state.enabled)return;
-  if(!Array.isArray(stats?.heroes)||!Array.isArray(stats?.duos)||!Array.isArray(matchupRows))throw Error('Invalid statistics response');
-  const matchups=new Map();
-  for(const row of matchupRows){
-   const candidate=row.candidate_id,opponent=row.opponent_id;
-   if(!matchups.has(candidate))matchups.set(candidate,new Map());
-   matchups.get(candidate).set(opponent,metric(row));
+  if(!Array.isArray(stats?.heroes)||!Array.isArray(stats?.duos))throw Error('Invalid statistics response');
+  state.data=stats;
+  render();
+  try{
+   const matchupRows=await rpc('ss_get_matchups',{p_theme_id:null,p_exclude_mirrors:true});
+   if(request!==state.request||!state.enabled)return;
+   if(Array.isArray(matchupRows)){
+    const matchups=new Map();
+    for(const row of matchupRows){
+     const candidate=row.candidate_id,opponent=row.opponent_id;
+     if(!matchups.has(candidate))matchups.set(candidate,new Map());
+     matchups.get(candidate).set(opponent,metric(row));
+    }
+    state.matchups=matchups;
+   }
+  }catch(matchupError){
+   if(request!==state.request||!state.enabled)return;
+   state.matchups=null;
+   console.warn('Assistant matchups unavailable:',matchupError);
   }
-  state.data=stats;state.matchups=matchups;
   get('daScope').textContent='Suggestions: '+title+' · calculated '+(stats.generated_at?new Date(stats.generated_at).toLocaleTimeString():'time unavailable');
-  get('daStatus').textContent=title+' · '+(Number(stats.summary?.approved_matches)||0)+' approved matches · mirrors excluded by category · server cache up to 5 minutes.';
+  get('daStatus').textContent=title+' · '+(Number(stats.summary?.approved_matches)||0)+' approved matches · mirrors excluded by category · server cache up to 5 minutes.'+(state.matchups?'':' · Opponent matchups unavailable.');
   render();
  }catch(error){if(request!==state.request||!state.enabled)return;state.data=null;state.matchups=null;get('daScope').textContent='Suggestions: '+title+' · data unavailable';get('daStatus').textContent='Suggestions unavailable: '+error.message+'. Unranked alternatives shown; normal drafting still works.';render();}
 }
