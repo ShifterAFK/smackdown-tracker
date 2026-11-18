@@ -4,3 +4,23 @@
 #draftAssist .desktop-pick-order-1321 .order-label,#draftAssist .desktop-pick-order-1321 .order-arrow{color:var(--muted)}
 html[data-ui-view="desktop"] body.desktop133-enabled #draftAssist .desktop-pick-order-1321{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:11px;line-height:1.5;margin:0 0 8px}
 @media(min-width:1100px){html:not([data-ui-view="mobile"]):not([data-ui-view="desktop"]) body.desktop133-enabled #draftAssist .desktop-pick-order-1321{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:11px;line-height:1.5;margin:0 0 8px}}
+
+/* Keep desktop draft geometry independent of whether a slot contains a hero. */
+html[data-ui-view="desktop"] #page-entry .team .slot-cell{height:122px;min-width:0}
+html[data-ui-view="desktop"] #page-entry .team .slot-cell>.slot{height:122px!important;min-height:122px!important;max-height:122px!important;padding:8px 4px!important;display:grid!important;grid-template-rows:16px 54px 24px;gap:3px!important;align-content:center;justify-items:center;justify-content:stretch}
+html[data-ui-view="desktop"] #page-entry .team .slot small{grid-row:1;width:100%;padding:0 22px;line-height:16px;white-space:nowrap;text-align:center}
+html[data-ui-view="desktop"] #page-entry .team .slot .avatar{grid-row:2;width:54px!important;height:54px!important}
+html[data-ui-view="desktop"] #page-entry .team .slot .name{grid-row:3;align-self:center;line-height:12px;max-height:24px;overflow:hidden;width:100%}
+html[data-ui-view="desktop"] #page-entry .team .slot .empty-slot-mark{grid-row:2;align-self:center}
+html[data-ui-view="desktop"] #page-entry .team .slot-remove{top:8px;right:4px;width:22px;height:22px;min-width:22px;min-height:22px;padding:0;line-height:20px;font-size:17px}
+html[data-ui-view="desktop"] #page-entry .team .slot.active::before{top:-9px;left:12px;right:12px;line-height:14px;font-size:9px;background:#1a2025;border-radius:3px}
+@media(min-width:1100px){
+html[data-ui-view="auto"] #page-entry .team .slot-cell{height:122px;min-width:0}
+html[data-ui-view="auto"] #page-entry .team .slot-cell>.slot{height:122px!important;min-height:122px!important;max-height:122px!important;padding:8px 4px!important;display:grid!important;grid-template-rows:16px 54px 24px;gap:3px!important;align-content:center;justify-items:center;justify-content:stretch}
+html[data-ui-view="auto"] #page-entry .team .slot small{grid-row:1;width:100%;padding:0 22px;line-height:16px;white-space:nowrap;text-align:center}
+html[data-ui-view="auto"] #page-entry .team .slot .avatar{grid-row:2;width:54px!important;height:54px!important}
+html[data-ui-view="auto"] #page-entry .team .slot .name{grid-row:3;align-self:center;line-height:12px;max-height:24px;overflow:hidden;width:100%}
+html[data-ui-view="auto"] #page-entry .team .slot .empty-slot-mark{grid-row:2;align-self:center}
+html[data-ui-view="auto"] #page-entry .team .slot-remove{top:8px;right:4px;width:22px;height:22px;min-width:22px;min-height:22px;padding:0;line-height:20px;font-size:17px}
+html[data-ui-view="auto"] #page-entry .team .slot.active::before{top:-9px;left:12px;right:12px;line-height:14px;font-size:9px;background:#1a2025;border-radius:3px}
+}
