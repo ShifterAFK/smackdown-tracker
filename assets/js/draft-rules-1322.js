@@ -13,10 +13,7 @@ html body #draftAssist,html body .desktop133bar,html body .desktop133prompt,html
 .catalog-order-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:8px 0;font-size:12px}.catalog-order-tools button{min-height:36px;padding:5px 9px}.catalog-order-status{margin:0}.catalog-top-legend{font-size:11px;line-height:1.5;margin:5px 0}
 html body #heroes .hero{position:relative}
 html body #heroes .catalog-tier{position:absolute;top:0;left:0;font-size:10px;line-height:14px;padding:0 3px;border-radius:3px;background:#292b25;color:#e5d7b6}
-html body #heroes .catalog-top,html body #mobileDraft130.md-fast .md130pool .md130hero .md-fast-top{position:absolute!important;bottom:0!important;left:50%!important;transform:translateX(-50%)!important;white-space:nowrap!important;font-size:9px!important;line-height:13px!important;padding:0 3px!important;border-radius:3px!important;font-weight:800!important}
-html body #heroes .catalog-top[data-top=BLUE],html body #mobileDraft130.md-fast .md130pool .md130hero .md-fast-top[data-top=BLUE]{background:#82bfff!important;color:#10243b!important}
-html body #heroes .catalog-top[data-top=RED],html body #mobileDraft130.md-fast .md130pool .md130hero .md-fast-top[data-top=RED]{background:#ff9a9f!important;color:#390e14!important}
-html body #heroes .catalog-top[data-top=BOTH],html body #mobileDraft130.md-fast .md130pool .md130hero .md-fast-top[data-top=BOTH]{background:#efd078!important;color:#302308!important}
+html body #heroes .catalog-top,html body #mobileDraft130.md-fast .md130pool .md130hero .md-fast-top{position:absolute!important;bottom:0!important;left:50%!important;transform:translateX(-50%)!important;white-space:nowrap!important;font-size:9px!important;line-height:13px!important;padding:0 3px!important;border-radius:3px!important;font-weight:800!important;background:#efd078!important;color:#302308!important}
 html body #heroes .catalog-top[hidden],html body #mobileDraft130.md-fast .md130pool .md130hero .md-fast-top[hidden]{display:none!important}
 html body #heroes [data-tier=SSS],html body #heroes [data-tier=SS],html body #heroes [data-tier='S+'],html body #heroes [data-tier=S]{color:#f0ce75;border:1px solid #b89948}
 html body #heroes [data-tier='A+'],html body #heroes [data-tier=A]{color:#dcabff;border:1px solid #9467ad}
@@ -35,13 +32,12 @@ function toolbar(parent,before){
 const teams=document.querySelector('#page-entry .teams');if(teams)toolbar(teams.parentNode,teams);
 const controls=document.querySelector('#mobileDraft130 .md130controls');if(controls)toolbar(controls.parentNode,controls);
 const catalog=get('heroes');
-if(catalog){const legend=document.createElement('p');legend.className='catalog-top-legend';legend.textContent='TOP B: BLUE · TOP R: RED · gold TOP B/R: both teams. Overall results; not a guarantee of the best pick.';catalog.before(legend);}
+if(catalog){const legend=document.createElement('p');legend.className='catalog-top-legend';legend.textContent='TOP: top 6 available heroes by overall results. Not a guarantee of the best pick.';catalog.before(legend);}
 function metric(r){const n=Math.max(0,Number(r?.appearances)||0),w=Math.max(0,Math.min(n,Number(r?.wins)||0)),p=n?w/n:0,z=1.959963984540054;return {n,w,p,score:n?(p+z*z/(2*n)-z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n)))/(1+z*z/n):0};}
-function pair(a,b){return [a,b].sort((x,y)=>x.localeCompare(y,'en')).join('||');}
-function top(side){
+function top(){
  if(!statsTop)return new Set();
- const heroes=new Map(statsTop.heroes.map(r=>[r.hero_id,metric(r)])),duos=new Map(statsTop.duos.map(r=>[pair(r.hero_1_id,r.hero_2_id),metric(r)])),used=new Set(Object.values(lineup).flat().filter(Boolean));
- return new Set(config.heroes.filter(h=>h.is_allowed&&!isBannedHero(h)&&!used.has(h.id)).map(h=>{const m=heroes.get(h.id)||metric(null),pairs=lineup[side].filter(Boolean).map(id=>duos.get(pair(id,h.id))).filter(x=>x?.n>=3);return {h,m,qualified:m.n>=20&&m.p>=.55,duo:pairs.length?pairs.reduce((s,x)=>s+x.score,0)/pairs.length:m.score};}).sort((a,b)=>Number(b.qualified)-Number(a.qualified)||(a.qualified?(b.m.n-a.m.n||b.duo-a.duo||b.m.score-a.m.score):(b.m.score-a.m.score||b.m.n-a.m.n))||a.h.name.localeCompare(b.h.name)).slice(0,6).map(x=>x.h.id));
+ const heroes=new Map(statsTop.heroes.map(r=>[r.hero_id,metric(r)])),used=new Set(Object.values(lineup).flat().filter(Boolean));
+ return new Set(config.heroes.filter(h=>h.is_allowed&&!isBannedHero(h)&&!used.has(h.id)).map(h=>{const m=heroes.get(h.id)||metric(null);return {h,m,qualified:m.n>=20&&m.p>=.55};}).sort((a,b)=>Number(b.qualified)-Number(a.qualified)||(a.qualified?(b.m.n-a.m.n||b.m.score-a.m.score):(b.m.score-a.m.score||b.m.n-a.m.n))||a.h.name.localeCompare(b.h.name)).slice(0,6).map(x=>x.h.id));
 }
 function tierLabels(){
  const labels=new Map();if(!statsTier)return labels;const rows=new Map(statsTier.heroes.map(r=>[r.hero_id,r]));
@@ -53,17 +49,17 @@ function tierLabels(){
 }
 function badge(button,selector,cls){let n=button.querySelector(selector);if(!n){n=document.createElement('span');n.className=cls;button.append(n);}return n;}
 function paint(){
- const blue=top('BLUE'),red=top('RED'),tiers=tierLabels(),used=new Set(Object.values(lineup).flat().filter(Boolean));
+ const topSet=top(),tiers=tierLabels(),used=new Set(Object.values(lineup).flat().filter(Boolean));
  for(const {button,status} of toolbars){text(button,'Set draft order '+(follow?'ON':'OFF'));attr(button,'aria-pressed',follow);button.disabled=onlineBusy;text(status,(lineup[active.side][active.index]?'Editing: ':'Next: ')+active.side+' '+(active.index+1));}
  const mobileStatus=document.querySelector('#mobileDraft130 .md-fast-status [role=status]');text(mobileStatus,(lineup[active.side][active.index]?'Editing: ':'Next: ')+active.side+' '+(active.index+1));
  const buttons=document.querySelectorAll('#heroes button.hero,#mobileDraft130 button.md130hero');
  for(const b of buttons){const h=b.dataset.heroId?heroById(b.dataset.heroId):config.heroes.find(h=>b.querySelector('img')?.alt===h.name||b.title===h.name||b.title.startsWith(h.name+' —')||b.title.startsWith(h.name+' |'));if(!h)continue;
  const mobile=b.classList.contains('md130hero'),topBadge=badge(b,mobile?'.md-fast-top':'.catalog-top',mobile?'md-fast-top':'catalog-top'),tierBadge=badge(b,mobile?'.md-fast-tier':'.catalog-tier',mobile?'md-fast-tier':'catalog-tier');
- const side=blue.has(h.id)?(red.has(h.id)?'BOTH':'BLUE'):(red.has(h.id)?'RED':''),tier=tiers.get(h.id)||'-';
- text(topBadge,side==='BOTH'?'TOP B/R':side==='BLUE'?'TOP B':'TOP R');attr(topBadge,'data-top',side);topBadge.hidden=!(side&&!used.has(h.id));text(tierBadge,tier);attr(tierBadge,'data-tier',tier);
- b.dataset.heroId=h.id;const description=h.name+' | Overall tier: '+(tier==='N'?'preliminary':tier)+(side?' | TOP for '+(side==='BOTH'?'BLUE and RED':side):'')+(used.has(h.id)?' | Already drafted':'');attr(b,'aria-label',description);attr(b,'title',description);
+ const isTop=topSet.has(h.id),tier=tiers.get(h.id)||'-';
+ text(topBadge,'TOP');topBadge.hidden=!(isTop&&!used.has(h.id));text(tierBadge,tier);attr(tierBadge,'data-tier',tier);
+ b.dataset.heroId=h.id;const description=h.name+' | Overall tier: '+(tier==='N'?'preliminary':tier)+(isTop?' | TOP':'')+(used.has(h.id)?' | Already drafted':'');attr(b,'aria-label',description);attr(b,'title',description);
  }
- const legend=document.querySelector('#mobileDraft130 .md-fast-legend');text(legend,'Tier: Overall · TOP B: BLUE · TOP R: RED · gold B/R: both'+(loadState==='ready'?'':' · TOP '+loadState));
+ const legend=document.querySelector('#mobileDraft130 .md-fast-legend');text(legend,'Tier: Overall · TOP: top 6 available'+(loadState==='ready'?'':' · TOP '+loadState));
 }
 function schedule(){if(!frame)frame=requestAnimationFrame(()=>{frame=0;paint();});}
 function selectSlot(e){const b=e.target.closest?.('#slotsBLUE .slot,#slotsRED .slot,#mobileDraft130 .md130slot');if(!b||!follow||onlineBusy)return;let side,index;if(b.classList.contains('md130slot')){const group=b.closest('.md130team');side=group.dataset.side;index=[...group.querySelectorAll('.md130slot')].indexOf(b);}else{const group=b.closest('#slotsBLUE,#slotsRED');side=group.id==='slotsRED'?'RED':'BLUE';index=[...group.querySelectorAll('.slot')].indexOf(b);}const slot={side,index};if(lineup[side]?.[index])return;const expected=next();if(expected&&!same(slot,expected)){e.preventDefault();e.stopImmediatePropagation();active=expected;renderSlots();window.MobileDraft130?.open('heroes');}}
@@ -73,9 +69,9 @@ const oldDrop=applyDrop;applyDrop=function(side,index){if(onlineBusy)return;if(f
 if(window.MobileDraft130){const old=window.MobileDraft130;window.MobileDraft130=Object.freeze({...old,open:()=>old.open('heroes')});}
 const enabled=get('daEnabled');if(enabled?.checked){enabled.checked=false;enabled.dispatchEvent(new Event('change'));}
 document.body.classList.remove('desktop133-enabled','da-expanded');delete document.body.dataset.desktop133Side;
-for(const detail of document.querySelectorAll('#helpDialog details'))if(detail.querySelector('summary')?.textContent==='Draft Assistant'){detail.replaceChildren();const summary=document.createElement('summary');summary.textContent='Catalog TOP labels';const p=document.createElement('p');p.textContent='TOP B is for BLUE, TOP R for RED, and gold TOP B/R for both teams. Suggestions use Overall statistics and update after picks, independently of the selected slot. Set draft order ON follows BLUE 1, RED 1, RED 2, BLUE 2, BLUE 3, RED 3. Select an occupied slot to correct a pick. OFF lets you select any slot. TOP is not the same as tier and is not a guarantee of the best pick.';detail.append(summary,p);}
+for(const detail of document.querySelectorAll('#helpDialog details'))if(detail.querySelector('summary')?.textContent==='Draft Assistant'){detail.replaceChildren();const summary=document.createElement('summary');summary.textContent='Catalog TOP labels';const p=document.createElement('p');p.textContent='TOP marks the six best available heroes by overall results. It updates after picks and does not depend on the selected slot. Set draft order ON follows BLUE 1, RED 1, RED 2, BLUE 2, BLUE 3, RED 3. Select an occupied slot to correct a pick. OFF lets you select any slot. TOP is not the same as tier and is not a guarantee of the best pick.';detail.append(summary,p);}
 window.addEventListener('tracker:draft-changed',schedule);window.addEventListener('tracker:catalog-changed',schedule);window.addEventListener('tracker:draft-reset',schedule);
 for(const node of [get('heroes'),get('mobileDraft130')])if(node)new MutationObserver(schedule).observe(node,{childList:true,subtree:true,characterData:true});
 async function load(){try{const data=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:true});if(!Array.isArray(data?.heroes)||!Array.isArray(data?.duos))throw Error();statsTop=data;loadState='ready';}catch(_){statsTop=null;loadState='unavailable';}schedule();try{const data=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:false});if(!Array.isArray(data?.heroes))throw Error();statsTier=data;}catch(_){statsTier=null;}schedule();}
-window.TrackerDraftRules1322=Object.freeze({version:'2.0.1',next});schedule();load();
+window.TrackerDraftRules1322=Object.freeze({version:'2.0.2',next});schedule();load();
 })();
