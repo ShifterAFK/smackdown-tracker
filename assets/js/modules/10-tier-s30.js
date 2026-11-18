@@ -1,4 +1,4 @@
-// Module: tier-s30-rule-v1
+// Module: tier-s30-rule-v2
 (function(){
 'use strict';
 const get=id=>document.getElementById(id);
@@ -15,11 +15,15 @@ function render(){const root=get('tierRows30');if(!root)return;root.replaceChild
  const aPlusSet=new Set(aPlus.map(i=>i.hero.id));
  const buckets={S:[],APLUS:[],A:[],B:[],C:[],N:[]};
  for(const item of items){let key;if(item.n<10)key='N';else if(sSet.has(item.hero.id))key='S';else if(aPlusSet.has(item.hero.id))key='APLUS';else if(item.rate>60)key='A';else if(item.rate>=50)key='B';else key='C';buckets[key].push(item);}
- function fill(content,key){buckets[key].sort((a,b)=>key==='N'?b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en'):byScore(a,b));for(const item of buckets[key]){const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');const description=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(!hero.is_allowed?' · Currently banned':'');card.title=description;card.setAttribute('aria-label',description);card.append(portrait(hero));const value=document.createElement('span');value.className='tier-rate';value.textContent=key==='N'?n+'/30':rate.toFixed(1)+'%';card.append(value);card.onclick=()=>showTierHero(item);content.append(card);}}
+ function fill(content,key){buckets[key].sort((a,b)=>key==='N'?b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en'):byScore(a,b));for(const item of buckets[key]){const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');const description=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(!hero.is_allowed?' · Currently banned':'');card.title=description;card.setAttribute('aria-label',description);card.append(portrait(hero));const value=document.createElement('span');value.className='tier-rate';value.textContent=key==='N'?n+'/30':rate.toFixed(1)+'%';card.append(value);if(typeof showTierHero==='function')card.onclick=()=>showTierHero(item);content.append(card);}}
  for(const key of ['S','APLUS','A','B','C']){const row=document.createElement('section');row.className='tier-row tier-'+(key==='APLUS'?'A':key)+(!buckets[key].length?' is-empty':'');const label=document.createElement('div');label.className='tier-label';label.textContent=key==='APLUS'?'A+':key;const content=document.createElement('div');content.className='tier-content';fill(content,key);if(!buckets[key].length){const empty=document.createElement('span');empty.className='tier-empty';empty.textContent='—';content.append(empty);}row.append(label,content);root.append(row);}
  const more=document.createElement('details');more.className='tier-no-data';const summary=document.createElement('summary');summary.textContent='Below ranking threshold · '+buckets.N.length+' heroes · fewer than 10 appearances';const content=document.createElement('div');content.className='tier-content';more.append(summary,content);let populated=false;more.addEventListener('toggle',()=>{if(more.open&&!populated){fill(content,'N');populated=true;}});root.append(more);
 }
+const tab=document.querySelector('.tab[data-page="tiers30"]');
+const page=get('page-tiers30');
+function activate(){if(!tab||!page)return;for(const node of document.querySelectorAll('[id^="page-"]'))node.classList.toggle('hidden',node!==page);document.querySelectorAll('.tabs .tab').forEach(b=>b.classList.toggle('active',b===tab));if(!data)load();}
+if(tab&&page)tab.addEventListener('click',activate);
 get('refreshTiers30')?.addEventListener('click',load);
-window.addEventListener('tracker:catalog-changed',load);
-load();
+window.addEventListener('tracker:catalog-changed',()=>{if(page&&!page.classList.contains('hidden'))load();});
+if(page&&!page.classList.contains('hidden'))load();
 })();

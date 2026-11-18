@@ -1,4 +1,4 @@
-// Module: tier-side-adjusted-v1
+// Module: tier-side-adjusted-v2
 (function(){
 'use strict';
 const get=id=>document.getElementById(id);
@@ -18,7 +18,11 @@ function render(){const root=get('tierRowsSide');if(!root)return;root.replaceChi
  for(const key of ['S','A','B','C']){const row=document.createElement('section');row.className='tier-row tier-'+key+(!buckets[key].length?' is-empty':'');const label=document.createElement('div');label.className='tier-label';label.textContent=key;const content=document.createElement('div');content.className='tier-content';fill(content,key);if(!buckets[key].length){const empty=document.createElement('span');empty.className='tier-empty';empty.textContent='—';content.append(empty);}row.append(label,content);root.append(row);}
  const more=document.createElement('details');more.className='tier-no-data';const summary=document.createElement('summary');summary.textContent='Below ranking threshold · '+buckets.N.length+' heroes · fewer than 20 appearances or fewer than 5 on one side';const content=document.createElement('div');content.className='tier-content';more.append(summary,content);let populated=false;more.addEventListener('toggle',()=>{if(more.open&&!populated){fill(content,'N');populated=true;}});root.append(more);
 }
+const tab=document.querySelector('.tab[data-page="tiers-side"]');
+const page=get('page-tiers-side');
+function activate(){if(!tab||!page)return;for(const node of document.querySelectorAll('[id^="page-"]'))node.classList.toggle('hidden',node!==page);document.querySelectorAll('.tabs .tab').forEach(b=>b.classList.toggle('active',b===tab));if(!data)load();}
+if(tab&&page)tab.addEventListener('click',activate);
 get('refreshTiersSide')?.addEventListener('click',load);
-window.addEventListener('tracker:catalog-changed',load);
-load();
+window.addEventListener('tracker:catalog-changed',()=>{if(page&&!page.classList.contains('hidden'))load();});
+if(page&&!page.classList.contains('hidden'))load();
 })();
