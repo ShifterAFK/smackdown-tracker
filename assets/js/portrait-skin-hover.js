@@ -38,6 +38,7 @@ function imageAt(event){
 }
 function track(event){
  if(!hover.matches||event.pointerType==='touch')return;
+ if(event.target instanceof Element&&event.target.closest('#mobileDraft130.md-fast')){restore();return;}
  const image=imageAt(event);if(active?.image===image)return;
  restore();if(!image)return;const skin=skinURL(image);if(!skin)return;
  const state={image,skin,original:image.getAttribute('src'),swapped:false};active=state;
@@ -62,5 +63,5 @@ window.addEventListener('blur',restore);
 document.addEventListener('visibilitychange',()=>{if(document.hidden)restore();});
 hover.addEventListener('change',()=>{if(hover.matches)warm();else restore();});
 warm();
-window.TrackerSkinHover=Object.freeze({version:'1.1.0'});
+window.TrackerSkinHover=Object.freeze({version:'1.1.1'});
 })();
