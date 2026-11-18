@@ -24,3 +24,11 @@ html[data-ui-view="auto"] #page-entry .team .slot .empty-slot-mark{grid-row:2;al
 html[data-ui-view="auto"] #page-entry .team .slot-remove{top:8px;right:4px;width:22px;height:22px;min-width:22px;min-height:22px;padding:0;line-height:20px;font-size:17px}
 html[data-ui-view="auto"] #page-entry .team .slot.active::before{top:-9px;left:12px;right:12px;line-height:14px;font-size:9px;background:#1a2025;border-radius:3px}
 }
+
+/* Keep the badge in layout for both teams; only its visibility changes. */
+html[data-ui-view="desktop"] #page-entry .team .team-title h2::after{content:"Active team";display:inline-block;margin-left:8px;padding:2px 5px;border:1px solid rgba(221,190,121,.3);border-radius:4px;color:rgb(241,219,166);font-size:10px;font-weight:600;vertical-align:middle;letter-spacing:0;visibility:hidden}
+html[data-ui-view="desktop"] #page-entry .team:has(.slot.active) .team-title h2::after{visibility:visible}
+@media(min-width:1100px){
+html[data-ui-view="auto"] #page-entry .team .team-title h2::after{content:"Active team";display:inline-block;margin-left:8px;padding:2px 5px;border:1px solid rgba(221,190,121,.3);border-radius:4px;color:rgb(241,219,166);font-size:10px;font-weight:600;vertical-align:middle;letter-spacing:0;visibility:hidden}
+html[data-ui-view="auto"] #page-entry .team:has(.slot.active) .team-title h2::after{visibility:visible}
+}
