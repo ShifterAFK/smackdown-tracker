@@ -4,6 +4,7 @@ if(window.TrackerMapClear1414)return;
 const heading=document.querySelector('.map-heading');
 const name=document.getElementById('mapSelectedName');
 if(!heading||!name)return;
+heading.querySelector('.map-next-change')?.remove();
 name.hidden=true;
 const eyebrow=document.querySelector('.map-eyebrow');
 if(eyebrow)eyebrow.textContent='MAP ROTATION';
@@ -28,11 +29,13 @@ function update(){
  if(days)parts.push(days+'d');
  if(hours)parts.push(hours+'h');
  parts.push(minutes+'min');
- rotation.textContent=names[id]+' — changes in '+parts.join(' ');
+ const text=names[id]+' — changes in '+parts.join(' ');
+ if(rotation.textContent!==text)rotation.textContent=text;
  const chosen=(name.textContent||'').trim();
- const different=chosen&&chosen!==names[id];
- selected.textContent=different?('Match map: '+chosen):'';
- selected.hidden=!different;
+ const different=Boolean(chosen&&chosen!==names[id]);
+ const matchText=different?('Match map: '+chosen):'';
+ if(selected.textContent!==matchText)selected.textContent=matchText;
+ if(selected.hidden!==!different)selected.hidden=!different;
 }
 update();
 setInterval(update,30000);

@@ -11,7 +11,7 @@ function rotationTheme(){
  return ROTATION_ORDER[elapsed%ROTATION_ORDER.length];
 }
 const status=document.createElement('p');status.className='caption';status.setAttribute('role','status');status.textContent='Loading current map...';button.before(status);
-function state(value,text){html.dataset.mapPreviewState=value;status.textContent=text||'';status.hidden=!text;}
+function state(value,text){const message=text||'';if(html.dataset.mapPreviewState!==value)html.dataset.mapPreviewState=value;if(status.textContent!==message)status.textContent=message;if(status.hidden!==!text)status.hidden=!text;}
 function empty(text){
  request++;image.removeAttribute('src');image.alt='';button.disabled=true;get('mapSelectedName').textContent='Select a map';
  delete html.dataset.mapInitializing;state('empty',text);
@@ -19,8 +19,14 @@ function empty(text){
 renderMap=function(){
  if(!resolved&&!userChosen){state('loading','Loading current map...');return;}
  const id=select.value,src=MAPS[id];if(!src){empty('Choose the map used in this match.');return;}
+ const wanted=new URL(src,document.baseURI).href;
+ if(html.dataset.mapPreviewState==='ready'&&image.complete&&image.naturalWidth&&new URL(image.currentSrc||image.src,document.baseURI).href===wanted){
+  button.disabled=false;
+  const label=get('mapSelectedName'),text=themeName(id);if(label.textContent!==text)label.textContent=text;
+  return;
+ }
  const token=++request;state('loading','Loading map preview...');baseRender();button.disabled=true;
- const wanted=new URL(src,document.baseURI).href,probe=new Image();
+ const probe=new Image();
  probe.onload=async()=>{
   try{await probe.decode();}catch(_){}
   if(token!==request||select.value!==id)return;
