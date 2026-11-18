@@ -10,9 +10,9 @@ const root=get('tierRows30');if(!root)return;root.replaceChildren();if(!data){ro
 const rows=new Map(data.heroes.map(r=>[r.hero_id,r]));
 const items=config.heroes.map(hero=>{const r=rows.get(hero.id)||{},n=Math.max(0,Number(r.appearances)||0),wins=Math.max(0,Math.min(n,Number(r.wins)||0));return {hero,n,wins,rate:n?100*wins/n:0,score:wilson(wins,n)};});
 const cmp=(a,b)=>b.score-a.score||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en');
-const best=items.filter(x=>x.n>=30&&x.rate>=60).sort(cmp).slice(0,8);
+const best=items.filter(x=>x.n>=30&&x.rate>=60).sort(cmp).slice(0,10);
 const grades=new Map(best.map((x,i)=>[x.hero.id,i<2?'SSS':i<4?'SS':i<6?'S+':'S']));
-const extra=items.filter(x=>!grades.has(x.hero.id)&&x.n>=20&&x.rate>=50&&x.rate<60).sort(cmp).slice(0,8-best.length);extra.forEach(x=>grades.set(x.hero.id,'A+'));
+const extra=items.filter(x=>!grades.has(x.hero.id)&&x.n>=20&&x.rate>=50&&x.rate<60).sort(cmp).slice(0,10-best.length);extra.forEach(x=>grades.set(x.hero.id,'A+'));
 const buckets={S:[...best,...extra],A:[],B:[],C:[],N:[]};
 for(const x of items){if(grades.has(x.hero.id))continue;const k=x.n<10?'N':x.rate>60?'A':x.rate>=50?'B':'C';grades.set(x.hero.id,k==='A'&&x.n<20?'A?':k);buckets[k].push(x);}
 const confirmedA=buckets.A.filter(x=>x.n>=20).sort(cmp);confirmedA.slice(0,3).forEach(x=>grades.set(x.hero.id,'A+'));
@@ -21,7 +21,7 @@ for(const key of ['S','A','B','C']){const row=document.createElement('section');
 const more=document.createElement('details'),summary=document.createElement('summary'),content=document.createElement('div');more.className='tier-no-data';summary.textContent='Below ranking threshold · '+buckets.N.length+' heroes · fewer than 10 appearances';content.className='tier-content';more.append(summary,content);let populated=false;more.addEventListener('toggle',()=>{if(more.open&&!populated){fill(content,'N');populated=true;}});root.append(more);
 }
 const tab=document.querySelector('.tab[data-page="tiers30"]'),page=get('page-tiers30');
-const caption=page?.querySelector('.tier-header .caption');if(caption)caption.textContent='S: top 8 by Wilson, 30+ appearances and 60%+ wins. Grades: #1-2 SSS, #3-4 SS, #5-6 S+, #7-8 S. Empty S places: A+ with 20+ appearances and 50% to below 60% wins. A row: over 60% wins; 20+ appearances required for confirmed A, first 3 by Wilson A+, others A. 10-19 appearances: A? (potential). B/C/N unchanged.';
+const caption=page?.querySelector('.tier-header .caption');if(caption)caption.textContent='S: top 10 by Wilson, 30+ appearances and 60%+ wins. Grades: #1-2 SSS, #3-4 SS, #5-6 S+, #7-10 S. Empty S places: A+ with 20+ appearances and 50% to below 60% wins. A row: over 60% wins; 20+ appearances required for confirmed A, first 3 by Wilson A+, others A. 10-19 appearances: A? (potential). B/C/N unchanged.';
 function activate(){if(!tab||!page)return;for(const node of document.querySelectorAll('[id^="page-"]'))node.classList.toggle('hidden',node!==page);document.querySelectorAll('.tabs .tab').forEach(b=>b.classList.toggle('active',b===tab));if(!data)load();}
 if(tab&&page)tab.addEventListener('click',activate);
 get('refreshTiers30')?.addEventListener('click',load);
