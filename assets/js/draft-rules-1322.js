@@ -56,7 +56,7 @@ function paint(){
  for(const b of buttons){const h=b.dataset.heroId?heroById(b.dataset.heroId):config.heroes.find(h=>b.querySelector('img')?.alt===h.name||b.title===h.name||b.title.startsWith(h.name+' —')||b.title.startsWith(h.name+' |'));if(!h)continue;
  const mobile=b.classList.contains('md130hero'),topBadge=badge(b,mobile?'.md-fast-top':'.catalog-top',mobile?'md-fast-top':'catalog-top'),tierBadge=badge(b,mobile?'.md-fast-tier':'.catalog-tier',mobile?'md-fast-tier':'catalog-tier');
  const isTop=topSet.has(h.id),tier=tiers.get(h.id)||'-';
- text(topBadge,'TOP');topBadge.hidden=!(isTop&&!used.has(h.id));text(tierBadge,tier);attr(tierBadge,'data-tier',tier);
+ text(topBadge,'TOP');topBadge.hidden=!(isTop&&!used.has(h.id));if(mobile){topBadge.style.background='#efd078';topBadge.style.color='#302308';}text(tierBadge,tier);attr(tierBadge,'data-tier',tier);
  b.dataset.heroId=h.id;const description=h.name+' | Overall tier: '+(tier==='N'?'preliminary':tier)+(isTop?' | TOP':'')+(used.has(h.id)?' | Already drafted':'');attr(b,'aria-label',description);attr(b,'title',description);
  }
  const legend=document.querySelector('#mobileDraft130 .md-fast-legend');text(legend,'Tier: Overall · TOP: top 6 available'+(loadState==='ready'?'':' · TOP '+loadState));
@@ -73,5 +73,5 @@ for(const detail of document.querySelectorAll('#helpDialog details'))if(detail.q
 window.addEventListener('tracker:draft-changed',schedule);window.addEventListener('tracker:catalog-changed',schedule);window.addEventListener('tracker:draft-reset',schedule);
 for(const node of [get('heroes'),get('mobileDraft130')])if(node)new MutationObserver(schedule).observe(node,{childList:true,subtree:true,characterData:true});
 async function load(){try{const data=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:true});if(!Array.isArray(data?.heroes)||!Array.isArray(data?.duos))throw Error();statsTop=data;loadState='ready';}catch(_){statsTop=null;loadState='unavailable';}schedule();try{const data=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:false});if(!Array.isArray(data?.heroes))throw Error();statsTier=data;}catch(_){statsTier=null;}schedule();}
-window.TrackerDraftRules1322=Object.freeze({version:'2.0.2',next});schedule();load();
+window.TrackerDraftRules1322=Object.freeze({version:'2.0.3',next});schedule();load();
 })();
