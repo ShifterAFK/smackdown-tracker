@@ -2,10 +2,6 @@
 (function(){
 'use strict';
 if(typeof renderTiers!=='function')return;
-function gradeFor(key,count){
- if(key==='S')return count<1?'S':count<2?'SSS':count<3?'SS':count<4?'S+':count===4?'S':'S-';
- return count<2?key+'+':count<4?key+'+':key+'-';
-}
 renderTiers=function(){
  const root=$('tierRows');root.replaceChildren();if(!tierData)return;
  const byId=new Map(tierData.heroes.map(row=>[row.hero_id,row]));
@@ -17,26 +13,21 @@ renderTiers=function(){
  });
  const eligible=items.filter(item=>item.n>=10&&item.rate>=70)
   .sort((a,b)=>b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en'));
- const sSet=new Set(eligible.map(item=>item.hero.id));
+ const sSet=new Set(eligible.slice(0,5).map(item=>item.hero.id));
  const buckets={S:[],A:[],B:[],C:[],N:[]};
  for(const item of items){
-  const key=item.n<10?'N':sSet.has(item.hero.id)?'S':item.rate>=60?(item.n>=20?'A':'A?'):item.rate>=50?(item.n>=20?'B':'B?'):(item.n>=20?'C':'C?');
+  const key=item.n<10?'N':sSet.has(item.hero.id)?'S':item.rate>=60?'A':item.rate>=50?'B':'C';
   buckets[key].push(item);
  }
  const ranked=['S','A','B','C'].reduce((sum,k)=>sum+buckets[k].length,0);
  if(!ranked){const p=document.createElement('p');p.className='tier-wait';p.textContent='No ranked heroes yet — more match results are needed.';root.append(p);}
  function fill(content,key){
-  buckets[key].sort((a,b)=>key==='N'?b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en'):b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en'));
-  let confirmed=0;
+  buckets[key].sort((a,b)=>key==='N'?b.n-a.n||a.hero.name.localeCompare(b.hero.name):b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name));
   for(const item of buckets[key]){
-   const {hero,n,rate}=item;
-   const isConfirmed=key==='S'||n>=20;
-   const grade=isConfirmed?gradeFor(key,confirmed++):key+'?';
-   const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
-   const description=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+' — '+grade+(!hero.is_allowed?' · Currently banned':'');
+   const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
+   const description=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(!hero.is_allowed?' · Currently banned':'');
    card.title=description;card.setAttribute('aria-label',description);card.append(portrait(hero));
    const value=document.createElement('span');value.className='tier-rate';value.textContent=key==='N'?n+'/10':rate.toFixed(1)+'%';card.append(value);
-   const label=document.createElement('span');label.className='tier-grade';label.textContent=grade;card.append(label);
    card.onclick=()=>showTierHero(item);content.append(card);
   }
  }
