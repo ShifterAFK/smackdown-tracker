@@ -42,7 +42,6 @@ renderTiers=function(){
  }
  const more=document.createElement('details');more.className='tier-no-data';
  const summary=document.createElement('summary');summary.textContent='Below ranking threshold · '+buckets.N.length+' heroes · fewer than 10 appearances';
- const content=document.createElement('div');content.className='tier-content';more.append(summary,content);
- let populated=false;more.addEventListener('toggle',()=>{if(more.open&&!populated){fill(content,'N');populated=true;}});root.append(more);
+ const content=document.createElement('div');content.className='tier-content';fill(content,'N');more.append(summary,content);root.append(more);
 };
 })();

@@ -55,10 +55,16 @@ function sourceRoot(key){
  if(key==='overall'){
   return (async()=>{
    if(typeof loadTiers!=='function')throw Error('Tier List loader is unavailable.');
+   if(window.trackerConfigReady)await window.trackerConfigReady;
    await loadTiers(true);
+   if(typeof renderTiers==='function')renderTiers();
    const root=get('tierRows');
-   if(!root||(!root.childElementCount&&get('tierStatus')?.classList.contains('error')))
-    throw Error(get('tierStatus')?.textContent||'Tier List data is unavailable.');
+   const cards=root?.querySelectorAll('button.tier-hero').length||0;
+   if(!root||!cards){
+    const catalogCount=window.getHeroCatalogForPicker?.().length??'unknown';
+    const statsCount=window.getTierDataForPicker?.()?.heroes?.length??'unknown';
+    throw Error('Tier List rendered no hero cards (catalog: '+catalogCount+', statistics: '+statsCount+').');
+   }
    return root;
   })();
  }

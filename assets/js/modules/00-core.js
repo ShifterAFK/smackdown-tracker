@@ -287,11 +287,13 @@ document.addEventListener('dragend',finishDrag);
 renderThemes();renderFilters();renderSlots();renderHeroes();
 
 
-loadConfig();
+window.trackerConfigReady=loadConfig();
 setInterval(()=>{if(!$('page-statistics').classList.contains('hidden')&&document.visibilityState==='visible')loadStats()},300000);
 
 // Tier list uses the existing read-only statistics RPC.
 let tierRequest=0,tierData=null;
+window.getTierDataForPicker=()=>tierData;
+window.getHeroCatalogForPicker=()=>config.heroes;
 function tierBucket(rate,count){return count<10?'N':rate>85?'S':rate>=70?'A':rate>=50?'B':'C';}
 function renderTierMaps(){const selected=$('tierMap').value;$('tierMap').replaceChildren();$('tierMap').add(new Option('Overall — all maps in this event',''));for(const map of config.themes)$('tierMap').add(new Option(map.name,map.id));$('tierMap').value=config.themes.some(t=>t.id===selected)?selected:'';}
 function renderTierPreview(){const id=$('tierMap').value;$('tierMapPreview').hidden=!id;if(id){$('tierMapImage').src=MAPS[id]||'';$('tierMapImage').alt=themeName(id)+' arena layout';$('tierMapName').textContent=themeName(id);}}
