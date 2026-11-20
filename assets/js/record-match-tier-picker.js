@@ -95,7 +95,6 @@ async function materializePreliminary(root){
  if(details&&!details.open){
   details.open=true;
   await new Promise(resolve=>requestAnimationFrame(resolve));
-  details.open=false;
  }
 }
 async function loadSnapshot(key){
@@ -130,7 +129,20 @@ function wireHeroCard(card,hero){
  card.ondragend=finishDrag;
 }
 function renderSnapshot(snapshot,filters){
- const rows=[...snapshot.children].map(node=>node.cloneNode(true));
+ const rows=[...snapshot.children].map(node=>{
+  const copy=node.cloneNode(true);
+  if(copy.matches('details.tier-no-data')){
+   const section=document.createElement('section');
+   section.className='tier-row tier-N';
+   const heading=document.createElement('div');
+   heading.className='tier-no-data-title';
+   heading.textContent='Preliminary heroes';
+   const content=copy.querySelector('.tier-content');
+   section.append(heading,content||document.createElement('div'));
+   return section;
+  }
+  return copy;
+ });
  let shown=0;
  for(const row of rows){
   const cards=[...row.querySelectorAll('button.tier-hero')];
@@ -142,10 +154,11 @@ function renderSnapshot(snapshot,filters){
     card.remove();
     continue;
    }
-   card.querySelectorAll('.tier-samples,.s30-count').forEach(node=>node.remove());
+   card.querySelectorAll('.tier-samples,.s30-count,.tier-rate,.tier-grade,.s30-grade,.tier-tag').forEach(node=>node.remove());
    wireHeroCard(card,hero);
    shown++;
   }
+  row.querySelector('.tier-label')?.remove();
   const content=row.querySelector('.tier-content');
   if(content&&!content.querySelector('button.tier-hero')){
    content.replaceChildren();
@@ -154,10 +167,9 @@ function renderSnapshot(snapshot,filters){
    empty.textContent='—';
    content.append(empty);
   }
-  if(row.matches('details.tier-no-data')){
-   const count=row.querySelectorAll('button.tier-hero').length;
-   const summary=row.querySelector('summary');
-   if(summary)summary.textContent='N · Preliminary heroes · '+count;
+  if(row.classList.contains('tier-N')){
+   const heading=row.querySelector('.tier-no-data-title');
+   if(heading)heading.textContent='Preliminary heroes · '+row.querySelectorAll('button.tier-hero').length;
   }
  }
  catalog.replaceChildren(...rows);
