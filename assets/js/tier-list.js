@@ -31,7 +31,7 @@ const about=document.querySelector('.tier-about p');if(about)about.textContent=l
 const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (20+ qualify, A+ fill from 15+) | SSS / SS / S+ / S / A+';
 const explanation=document.createElement('p');explanation.className='caption';explanation.textContent=legend;get('tierRows').before(explanation);
 function makeCard(item,label){
- const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
+ const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');card.dataset.heroId=hero.id;
  card.title=hero.name+' — '+label+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(!hero.is_allowed?' · Currently banned':'');card.setAttribute('aria-label',card.title);card.append(portrait(hero));
  const value=document.createElement('span');value.className='tier-rate';value.textContent=n?rate.toFixed(1)+'%':'No data';
  const tag=document.createElement('span');tag.className='tier-tag';tag.textContent=label;
