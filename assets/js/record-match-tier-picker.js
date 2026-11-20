@@ -134,11 +134,11 @@ function renderSnapshot(snapshot,filters){
   if(copy.matches('details.tier-no-data')){
    const section=document.createElement('section');
    section.className='tier-row tier-N';
-   const heading=document.createElement('div');
-   heading.className='tier-no-data-title';
-   heading.textContent='Preliminary heroes';
-   const content=copy.querySelector('.tier-content');
-   section.append(heading,content||document.createElement('div'));
+   const label=document.createElement('div');
+    label.className='tier-label';
+    label.textContent='N';
+    const content=copy.querySelector('.tier-content');
+    section.append(label,content||document.createElement('div'));
    return section;
   }
   return copy;
@@ -158,7 +158,6 @@ function renderSnapshot(snapshot,filters){
    wireHeroCard(card,hero);
    shown++;
   }
-  row.querySelector('.tier-label')?.remove();
   const content=row.querySelector('.tier-content');
   if(content&&!content.querySelector('button.tier-hero')){
    content.replaceChildren();
@@ -168,8 +167,8 @@ function renderSnapshot(snapshot,filters){
    content.append(empty);
   }
   if(row.classList.contains('tier-N')){
-   const heading=row.querySelector('.tier-no-data-title');
-   if(heading)heading.textContent='Preliminary heroes · '+row.querySelectorAll('button.tier-hero').length;
+   const label=row.querySelector('.tier-label');
+   if(label)label.title='Preliminary heroes · '+row.querySelectorAll('button.tier-hero').length;
   }
  }
  catalog.replaceChildren(...rows);
