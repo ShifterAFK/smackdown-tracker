@@ -12,16 +12,26 @@ const sources={
  s30:{label:'Tier S 30+',root:'tierRows30'},
  side:{label:'Tier Side',root:'tierRowsSide'}
 };
+const methods={
+ overall:'S: up to 8 heroes ranked by the Wilson lower confidence bound. First, heroes need at least 20 appearances and a win rate of 60% or more; if fewer than 8 qualify, remaining places are filled by heroes with 15+ appearances and a 50% to below 60% win rate (A+). Positions are labelled SSS, SS, S+, then S. Remaining tiers: A above 60%, B from 50% to 60%, C below 50%. A/B/C require at least 10 appearances; below that, heroes are preliminary.',
+ s30:'S: up to 10 heroes with at least 30 appearances and a win rate of 60% or more, ranked by the Wilson lower confidence bound. Positions are labelled SSS (1–2), SS (3–4), S+ (5–6), then S (7–10); there is no backfill. A: 60%+ among the remaining heroes; the top 3 with 20+ appearances are A+, while heroes with 10–19 appearances are marked A? (potential). B: 50% to below 60%. C: below 50%. Fewer than 10 appearances: preliminary.',
+ side:'The score is side-adjusted: the average of (the hero’s BLUE win rate minus the overall BLUE win rate) and (the hero’s RED win rate minus the overall RED win rate). S: top 8 by adjusted score, requiring at least 20 appearances overall and at least 5 on each side. A: +3% or higher. B: between −3% and +3%. C: below −3%. Heroes with fewer than 20 appearances overall or fewer than 5 on either side are preliminary.'
+};
 const cache=new Map();
 const pending=new Map();
 let selected='overall';
 let request=0;
 let controls=null;
 let status=null;
+let methodDetails=null;
+let methodText=null;
 
 function desktopEnabled(){
  const mode=document.documentElement.dataset.uiView||'auto';
  return mode==='desktop'||(mode==='auto'&&window.matchMedia('(min-width: 1100px)').matches);
+}
+function updateMethod(){
+ if(methodText)methodText.textContent=methods[selected]||methods.overall;
 }
 function ensureControls(){
  if(controls)return;
@@ -36,12 +46,20 @@ function ensureControls(){
  select.value=selected;
  select.addEventListener('change',()=>{
   selected=select.value in sources?select.value:'overall';
+  updateMethod();
   renderHeroes();
  });
  status=document.createElement('span');
  status.className='record-tier-status';
  status.setAttribute('role','status');
- controls.append(label,select,status);
+ methodDetails=document.createElement('details');
+ methodDetails.className='record-tier-method';
+ const summary=document.createElement('summary');
+ summary.textContent="How it's calculated";
+ methodText=document.createElement('p');
+ methodText.textContent=methods[selected];
+ methodDetails.append(summary,methodText);
+ controls.append(label,select,status,methodDetails);
  const firstRow=panel.querySelector('.row');
  if(firstRow)panel.insertBefore(controls,firstRow);else panel.prepend(controls);
 }
@@ -124,6 +142,7 @@ function renderSnapshot(snapshot,filters){
     card.remove();
     continue;
    }
+   card.querySelectorAll('.tier-samples,.s30-count').forEach(node=>node.remove());
    wireHeroCard(card,hero);
    shown++;
   }
@@ -143,8 +162,7 @@ function renderSnapshot(snapshot,filters){
  }
  catalog.replaceChildren(...rows);
  const source=sources[selected];
- const countLabel=shown+' heroes shown · '+source.label+' · banned heroes hidden';
- get('catalogInfo').textContent=countLabel;
+ get('catalogInfo').textContent=shown+' heroes shown · '+source.label+' · banned heroes hidden';
  if(!shown){
   const empty=document.createElement('p');
   empty.className='hero-search-empty';
@@ -186,6 +204,7 @@ function renderHeroes(){
  }
  ensureControls();
  controls.hidden=false;
+ updateMethod();
  const snapshot=cache.get(selected);
  if(snapshot){
   request++;
