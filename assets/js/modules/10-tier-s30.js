@@ -2,7 +2,7 @@
 'use strict';
 const get=id=>document.getElementById(id);
 let data=null,loading=false,error='';
-const style=document.createElement('style');style.textContent='#tierRows30 .tier-hero{display:flex;flex-direction:column;align-items:center;height:auto;gap:4px}#tierRows30 .s30-grade{font-size:11px;color:#e7c66d}#tierRows30 .s30-count{font-size:10px;white-space:nowrap;color:var(--muted,#c0c2b5)}';document.head.append(style);
+const style=document.createElement('style');style.textContent='#tierRows30 .tier-content{gap:7px;padding:8px;align-content:start}#tierRows30 .tier-hero{width:72px;min-height:92px;height:auto;padding:6px 4px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:3px;background:rgb(23,34,53);border:1px solid rgb(48,65,89);border-radius:9px}#tierRows30 .tier-hero .avatar{width:50px;height:50px}#tierRows30 .tier-hero .tier-rate{font-size:12px;line-height:1.1}#tierRows30 .s30-grade{font-size:10px;color:#e7c66d;line-height:1.1}#tierRows30 .s30-count{font-size:9px;white-space:nowrap;color:var(--muted,#c0c2b5)}';document.head.append(style);
 function wilson(w,n){if(!n)return 0;const z=1.959963984540054,p=w/n,d=1+z*z/n,c=(p+z*z/(2*n))/d,r=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n))/d;return Math.max(0,c-r)}
 async function load(){if(loading)return;loading=true;get('tierStatus30').textContent='Loading statistics…';try{const d=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:false});if(!Array.isArray(d?.heroes))throw Error('Invalid statistics response');data=d;error='';}catch(e){data=null;error=e.message;}finally{loading=false;render();get('tierStatus30').textContent=data?'Last calculated: '+new Date(data.generated_at).toLocaleString():'Statistics unavailable: '+error;}}
 function render(){
