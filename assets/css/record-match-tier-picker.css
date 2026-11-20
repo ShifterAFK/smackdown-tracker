@@ -26,17 +26,15 @@
  height:min(78vh,900px);min-height:520px;max-height:none;
 }
 #page-entry .hero-panel #heroes .tier-row{
- grid-template-columns:minmax(0,1fr);width:100%;flex-shrink:0;
- border:0;border-bottom:1px solid rgba(132,151,132,.22);
- border-radius:0;background:transparent;overflow:visible;
+ grid-template-columns:48px minmax(0,1fr);width:100%;flex-shrink:0;
+ border-radius:9px;overflow:hidden;
 }
-#page-entry .hero-panel #heroes .tier-label{display:none!important}
-#page-entry .hero-panel #heroes .tier-no-data-title{
- padding:4px 6px;color:var(--muted);font-size:11px;font-weight:650;
+#page-entry .hero-panel #heroes .tier-label{
+ display:flex!important;align-items:center;justify-content:center;
+ font-size:21px;padding:5px 3px;font-weight:750;
 }
-#page-entry .hero-panel #heroes .tier-N .tier-content{padding-top:4px}
-
-#page-entry .hero-panel #heroes .tier-label{font-size:21px;padding:5px 3px}
+#page-entry .hero-panel #heroes .tier-N .tier-label{font-size:17px}
+#page-entry .hero-panel #heroes .tier-N .tier-content{padding-top:5px}
 #page-entry .hero-panel #heroes .tier-N .tier-label{font-size:11px}
 #page-entry .hero-panel #heroes .tier-content{
  min-height:0;gap:4px;padding:5px;align-content:start;
