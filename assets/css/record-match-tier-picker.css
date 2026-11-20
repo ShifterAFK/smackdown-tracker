@@ -22,19 +22,30 @@
 }
 #page-entry .hero-panel #heroes{
  display:flex;flex-direction:column;align-items:stretch;
- gap:6px;overflow:auto;max-height:none;min-height:0;
+ gap:5px;overflow-y:auto;overflow-x:hidden;
+ height:min(78vh,900px);min-height:520px;max-height:none;
 }
 #page-entry .hero-panel #heroes .tier-row{
- grid-template-columns:48px minmax(0,1fr);width:100%;flex-shrink:0;
+ grid-template-columns:minmax(0,1fr);width:100%;flex-shrink:0;
+ border:0;border-bottom:1px solid rgba(132,151,132,.22);
+ border-radius:0;background:transparent;overflow:visible;
 }
+#page-entry .hero-panel #heroes .tier-label{display:none!important}
+#page-entry .hero-panel #heroes .tier-no-data-title{
+ padding:4px 6px;color:var(--muted);font-size:11px;font-weight:650;
+}
+#page-entry .hero-panel #heroes .tier-N .tier-content{padding-top:4px}
+
 #page-entry .hero-panel #heroes .tier-label{font-size:21px;padding:5px 3px}
 #page-entry .hero-panel #heroes .tier-N .tier-label{font-size:11px}
 #page-entry .hero-panel #heroes .tier-content{
  min-height:0;gap:4px;padding:5px;align-content:start;
 }
 #page-entry .hero-panel #heroes .tier-hero{
- width:58px;min-height:0;padding:3px 2px;gap:2px;
- cursor:grab;transition:border-color .12s,background .12s;
+ width:54px;height:54px;min-height:54px;padding:3px;
+ gap:0;justify-content:center;cursor:grab;
+ background:rgba(23,34,53,.55);border:1px solid rgba(133,151,132,.35);
+ border-radius:8px;transition:border-color .12s,background .12s;
 }
 #page-entry .hero-panel #heroes .tier-hero:hover{
  border-color:var(--gold);background:rgba(198,167,102,.12);
@@ -42,18 +53,14 @@
 #page-entry .hero-panel #heroes .tier-hero:disabled{
  cursor:not-allowed;opacity:.48;
 }
-#page-entry .hero-panel #heroes .tier-hero .avatar{width:42px;height:42px}
-#page-entry .hero-panel #heroes .tier-hero .tier-rate{font-size:11px;line-height:1.1}
-#page-entry .hero-panel #heroes .tier-hero .tier-grade{font-size:9px}
+#page-entry .hero-panel #heroes .tier-hero .avatar{width:46px;height:46px}
+#page-entry .hero-panel #heroes .tier-hero .tier-rate,
+#page-entry .hero-panel #heroes .tier-hero .tier-grade,
+#page-entry .hero-panel #heroes .tier-hero .s30-grade,
+#page-entry .hero-panel #heroes .tier-hero .tier-tag,
 #page-entry .hero-panel #heroes .tier-hero .tier-samples,
 #page-entry .hero-panel #heroes .tier-hero .s30-count{display:none!important}
-#page-entry .hero-panel #heroes .tier-no-data{
- border:1px solid var(--line);border-radius:9px;padding:7px 9px;
- background:rgba(16,25,39,.75);flex-shrink:0;
-}
-#page-entry .hero-panel #heroes .tier-no-data summary{
- cursor:pointer;color:var(--muted);font-size:11px;
-}
+#page-entry .hero-panel #heroes .tier-no-data{display:none!important}
 #page-entry .hero-panel #heroes .tier-wait,
 #page-entry .hero-panel #heroes .hero-search-empty{
  color:var(--muted);font-size:12px;padding:10px;
@@ -62,11 +69,11 @@
  html:not([data-ui-view="desktop"]) .record-tier-controls{display:none!important}
  html:not([data-ui-view="desktop"]) #page-entry .hero-panel #heroes{
   display:grid;grid-template-columns:repeat(auto-fill,62px);
-  gap:8px;max-height:55dvh;min-height:150px;overflow:auto;
+  gap:8px;height:auto;max-height:55dvh;min-height:150px;overflow:auto;
  }
 }
 html[data-ui-view="mobile"] .record-tier-controls{display:none!important}
 html[data-ui-view="mobile"] #page-entry .hero-panel #heroes{
  display:grid;grid-template-columns:repeat(auto-fill,62px);
- gap:8px;max-height:55dvh;min-height:150px;overflow:auto;
+ gap:8px;height:auto;max-height:55dvh;min-height:150px;overflow:auto;
 }
