@@ -1,27 +1,39 @@
-/* Desktop-only interactive tier catalog for Record match. */
+/* Compact desktop Record match catalog with on-demand ranking methodology. */
 .record-tier-controls{
- display:flex;align-items:center;gap:10px;flex-wrap:wrap;
- margin:10px 0 2px;padding:9px 11px;
+ display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+ margin:7px 0 2px;padding:7px 9px;
  border:1px solid var(--line);border-radius:9px;
  background:rgba(14,23,38,.62);flex-shrink:0;
 }
 .record-tier-controls label{font-size:12px;color:var(--muted);font-weight:650}
-.record-tier-controls select{min-width:170px;min-height:36px;padding:6px 10px}
+.record-tier-controls select{min-width:150px;min-height:34px;padding:5px 9px}
 .record-tier-status{font-size:11px;color:var(--muted);margin-left:auto}
+.record-tier-method{position:relative;margin-left:4px;font-size:12px}
+.record-tier-method summary{cursor:pointer;color:var(--gold);font-weight:650;white-space:nowrap;list-style:none}
+.record-tier-method summary::-webkit-details-marker{display:none}
+.record-tier-method summary::after{content:' ▾'}
+.record-tier-method[open] summary::after{content:' ▴'}
+.record-tier-method p{
+ position:absolute;z-index:20;right:0;top:calc(100% + 8px);
+ width:min(390px,calc(100vw - 48px));margin:0;padding:12px 14px;
+ color:var(--text);background:#151c2a;border:1px solid var(--line);
+ border-radius:9px;box-shadow:0 12px 30px #0008;line-height:1.5;
+ white-space:normal;font-size:12px;
+}
 #page-entry .hero-panel #heroes{
  display:flex;flex-direction:column;align-items:stretch;
- gap:9px;overflow:auto;max-height:none;min-height:0;
+ gap:6px;overflow:auto;max-height:none;min-height:0;
 }
 #page-entry .hero-panel #heroes .tier-row{
- grid-template-columns:64px minmax(0,1fr);width:100%;flex-shrink:0;
+ grid-template-columns:48px minmax(0,1fr);width:100%;flex-shrink:0;
 }
-#page-entry .hero-panel #heroes .tier-label{font-size:23px;padding:8px 4px}
-#page-entry .hero-panel #heroes .tier-N .tier-label{font-size:12px}
+#page-entry .hero-panel #heroes .tier-label{font-size:21px;padding:5px 3px}
+#page-entry .hero-panel #heroes .tier-N .tier-label{font-size:11px}
 #page-entry .hero-panel #heroes .tier-content{
- min-height:0;gap:7px;padding:8px;align-content:start;
+ min-height:0;gap:4px;padding:5px;align-content:start;
 }
 #page-entry .hero-panel #heroes .tier-hero{
- width:78px;min-height:94px;padding:6px 4px;gap:4px;
+ width:58px;min-height:0;padding:3px 2px;gap:2px;
  cursor:grab;transition:border-color .12s,background .12s;
 }
 #page-entry .hero-panel #heroes .tier-hero:hover{
@@ -30,15 +42,17 @@
 #page-entry .hero-panel #heroes .tier-hero:disabled{
  cursor:not-allowed;opacity:.48;
 }
-#page-entry .hero-panel #heroes .tier-hero .avatar{width:48px;height:48px}
-#page-entry .hero-panel #heroes .tier-hero .tier-rate{font-size:12px}
-#page-entry .hero-panel #heroes .tier-hero .tier-grade{font-size:10px}
+#page-entry .hero-panel #heroes .tier-hero .avatar{width:42px;height:42px}
+#page-entry .hero-panel #heroes .tier-hero .tier-rate{font-size:11px;line-height:1.1}
+#page-entry .hero-panel #heroes .tier-hero .tier-grade{font-size:9px}
+#page-entry .hero-panel #heroes .tier-hero .tier-samples,
+#page-entry .hero-panel #heroes .tier-hero .s30-count{display:none!important}
 #page-entry .hero-panel #heroes .tier-no-data{
- border:1px solid var(--line);border-radius:9px;padding:8px 10px;
+ border:1px solid var(--line);border-radius:9px;padding:7px 9px;
  background:rgba(16,25,39,.75);flex-shrink:0;
 }
 #page-entry .hero-panel #heroes .tier-no-data summary{
- cursor:pointer;color:var(--muted);font-size:12px;
+ cursor:pointer;color:var(--muted);font-size:11px;
 }
 #page-entry .hero-panel #heroes .tier-wait,
 #page-entry .hero-panel #heroes .hero-search-empty{
@@ -48,11 +62,11 @@
  html:not([data-ui-view="desktop"]) .record-tier-controls{display:none!important}
  html:not([data-ui-view="desktop"]) #page-entry .hero-panel #heroes{
   display:grid;grid-template-columns:repeat(auto-fill,62px);
-  gap:10px;max-height:55dvh;min-height:150px;overflow:auto;
+  gap:8px;max-height:55dvh;min-height:150px;overflow:auto;
  }
 }
 html[data-ui-view="mobile"] .record-tier-controls{display:none!important}
 html[data-ui-view="mobile"] #page-entry .hero-panel #heroes{
  display:grid;grid-template-columns:repeat(auto-fill,62px);
- gap:10px;max-height:55dvh;min-height:150px;overflow:auto;
+ gap:8px;max-height:55dvh;min-height:150px;overflow:auto;
 }
