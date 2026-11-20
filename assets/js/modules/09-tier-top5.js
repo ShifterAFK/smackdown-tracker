@@ -16,19 +16,20 @@ renderTiers=function(){
  const sSet=new Set(eligible.slice(0,5).map(item=>item.hero.id));
  const buckets={S:[],A:[],B:[],C:[],N:[]};
  for(const item of items){
-  const key=item.n<10?'N':sSet.has(item.hero.id)?'S':item.rate>=60?(item.n>=20?'A':'A?'):item.rate>=50?(item.n>=20?'B':'B?'):(item.n>=20?'C':'C?');
-  buckets[key].push(item);
+  const key=item.n<10?'N':sSet.has(item.hero.id)?'S':item.rate>=60?'A':item.rate>=50?'B':'C';
+  const grade=key!=='N'&&key!=='S'&&item.n<20?key+'?':key;
+  buckets[key].push({...item,grade});
  }
  const ranked=['S','A','B','C'].reduce((sum,k)=>sum+buckets[k].length,0);
  if(!ranked){const p=document.createElement('p');p.className='tier-wait';p.textContent='No ranked heroes yet — more match results are needed.';root.append(p);}
  function fill(content,key){
   buckets[key].sort((a,b)=>key==='N'?b.n-a.n||a.hero.name.localeCompare(b.hero.name):b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name));
   for(const item of buckets[key]){
-   const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
-   const description=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(key.endsWith('?')?' · Potential '+key.slice(0,-1)+': fewer than 20 appearances':'')+(!hero.is_allowed?' · Currently banned':'');
-   card.title=description;card.setAttribute('aria-label',description);card.append(portrait(hero));
+   const {hero,n,rate,grade}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
+   const description=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(grade.endsWith('?')?' · Potential '+grade.slice(0,-1)+': fewer than 20 appearances':'')+(!hero.is_allowed?' · Currently banned':'');
+   card.dataset.heroId=hero.id;card.dataset.tier=grade;card.title=description;card.setAttribute('aria-label',description);card.append(portrait(hero));
    const value=document.createElement('span');value.className='tier-rate';value.textContent=key==='N'?n+'/10':rate.toFixed(1)+'%';card.append(value);
-   const grade=document.createElement('span');grade.className='tier-grade';grade.textContent=key;card.append(grade);
+   const gradeLabel=document.createElement('span');gradeLabel.className='tier-grade';gradeLabel.textContent=grade;card.append(gradeLabel);
    card.onclick=()=>showTierHero(item);content.append(card);
   }
  }
