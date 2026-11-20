@@ -43,7 +43,7 @@ function ensureControls(){
  status.setAttribute('role','status');
  controls.append(label,select,status);
  const firstRow=panel.querySelector('.row');
- if(firstRow)firstRow.after(controls);else panel.prepend(controls);
+ if(firstRow)panel.insertBefore(controls,firstRow);else panel.prepend(controls);
 }
 function currentFilters(){
  return {
@@ -55,7 +55,7 @@ function sourceRoot(key){
  if(key==='overall'){
   return (async()=>{
    if(typeof loadTiers!=='function')throw Error('Tier List loader is unavailable.');
-   await loadTiers();
+   await loadTiers(true);
    const root=get('tierRows');
    if(!root||(!root.childElementCount&&get('tierStatus')?.classList.contains('error')))
     throw Error(get('tierStatus')?.textContent||'Tier List data is unavailable.');

@@ -330,7 +330,7 @@ function renderTiers(){
  const content=document.createElement('div');content.className='tier-content';more.append(summary,content);
  let populated=false;more.addEventListener('toggle',()=>{if(more.open&&!populated){fill(content,'N');populated=true;}});root.append(more);
 }
-async function loadTiers(){if(window.TrackerSnapshot1323?.active)return;
+async function loadTiers(force=false){if(window.TrackerSnapshot1323?.active&&!force)return;
  const request=++tierRequest;renderTierPreview();tierData=null;renderTiers();tell('tierStatus','Loading tier list…');
  try{
   const data=await rpc('ss_get_stats',{p_theme_id:$('tierMap').value||null,p_exclude_mirrors:false});
