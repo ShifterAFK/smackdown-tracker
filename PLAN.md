@@ -74,3 +74,4 @@ Odbudowa frontendu trackera AFK Journey Smackdown od zera, z zachowaniem działa
 - Brakująca zakładka.
 - Portret Solise ucięty.
 - Duplikaty logiki (render() w tracker-app.js i 04-draft-assist-script-v1.js).
+- Compact Record Match desktop refinement (PR #4): moved Hero ranking selector into the top layout bar; moved draft-order follow toggle into the map card; removed the map countdown text from the compact map card; combined Draft order known + Phantimal controls into one compact team metadata row; moved faction filters into the Find a hero panel. The Match Indicator & Result visibility behavior remains pending clarification from the user.
