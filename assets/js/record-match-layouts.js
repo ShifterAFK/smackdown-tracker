@@ -19,6 +19,13 @@ for(const [value,text] of [['new','New Layout'],['legacy','Legacy']]){
 }
 controls.append(label,choices);page.insertBefore(controls,match);
 
+const top=document.createElement('section');top.id='recordTop';top.className='record-top';
+const map=match.querySelector('.map-area');
+const teams=match.querySelector('.teams');
+if(map)top.append(map);
+if(teams)top.append(teams);
+page.insertBefore(top,outcomePlaceholder());
+function outcomePlaceholder(){return catalog;}
 const outcome=document.createElement('section');outcome.id='recordOutcome';outcome.className='record-outcome';
 const toggle=document.createElement('button');toggle.id='recordOutcomeToggle';toggle.type='button';toggle.setAttribute('aria-expanded','false');
 const toggleTitle=document.createElement('span');toggleTitle.textContent='Match Indicator & Result';
