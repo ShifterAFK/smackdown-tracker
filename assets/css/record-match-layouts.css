@@ -32,6 +32,7 @@
   "captcha secondary"
   "status status"
   "search search"
+  "ranking ranking"
   "filters filters"
   "assistant assistant"
   "catalog catalog"
@@ -112,7 +113,7 @@
 @media(max-width:760px){
  #page-entry.record-layout-new{
   grid-template-columns:minmax(0,1fr);
-  grid-template-areas:"layout" "map" "indicator" "teams" "winner" "verify" "captcha" "submit" "secondary" "status" "search" "filters" "assistant" "catalog" "catalog-info";
+  grid-template-areas:"layout" "map" "indicator" "teams" "winner" "verify" "captcha" "submit" "secondary" "status" "search" "ranking" "filters" "assistant" "catalog" "catalog-info";
  }
  #page-entry.record-layout-new .map-area .selected-map{width:min(179px,42vw)}
  #page-entry.record-layout-new .teams{grid-template-columns:repeat(2,minmax(0,1fr))}
