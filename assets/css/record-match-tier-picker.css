@@ -169,34 +169,30 @@ html[data-ui-view="mobile"] #page-entry .hero-panel #heroes{
 #page-entry .hero-panel #heroes .tier-row{
  grid-template-columns:56px minmax(0,1fr);
 }
-#page-entry .teams .team label.check{
- display:flex;align-items:center;flex-wrap:wrap;gap:7px;
- width:fit-content;max-width:100%;
- margin:12px 0 0;padding:7px 9px;
- border:1px solid var(--line);border-radius:8px;
- background:rgba(12,18,27,.55);
- transition:background .15s,border-color .15s;
+
+
+
+/* Draft order mode (the actual pick-sequence toggle), not the per-team
+   "Draft order known" checkboxes. State is reflected by aria-pressed. */
+#page-entry .catalog-order-tools{
+ display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+ margin:8px 0 12px;
 }
-#page-entry .teams .team label.check:has(input:checked){
- border-color:rgba(112,190,145,.8);
- background:rgba(35,91,61,.3);
+#page-entry .catalog-order-tools button{
+ min-height:38px;padding:7px 14px;border-radius:8px;
+ font-size:12px;font-weight:800;letter-spacing:.035em;
+ transition:background .15s,border-color .15s,box-shadow .15s,color .15s;
 }
-#page-entry .teams .team label.check:has(input:not(:checked)){
- border-color:rgba(205,145,112,.85);
- background:rgba(105,55,43,.3);
+#page-entry .catalog-order-tools button[aria-pressed="true"]{
+ color:#b9edca!important;background:rgba(38,112,67,.32)!important;
+ border:1px solid #69bd87!important;
+ box-shadow:0 0 0 2px rgba(85,180,117,.13),inset 0 0 12px rgba(65,155,93,.12);
 }
-#page-entry .teams .team label.check::after{
- content:"ORDER ON";
- display:inline-flex;align-items:center;justify-content:center;
- min-width:76px;padding:4px 8px;border-radius:5px;
- background:rgba(64,145,94,.25);border:1px solid rgba(112,190,145,.75);
- color:#a9e2bd;font-size:10px;font-weight:800;letter-spacing:.07em;
+#page-entry .catalog-order-tools button[aria-pressed="false"]{
+ color:#f0c0ad!important;background:rgba(125,66,48,.28)!important;
+ border:1px solid #c77e67!important;
+ box-shadow:inset 0 0 12px rgba(170,87,63,.1);
 }
-#page-entry .teams .team label.check:has(input:not(:checked))::after{
- content:"ORDER OFF";
- background:rgba(150,79,58,.25);border-color:rgba(205,145,112,.8);
- color:#f0b49f;
-}
-#page-entry .teams .team label.check input{
- accent-color:#8fc9a4;width:15px;height:15px;
+#page-entry .catalog-order-tools .catalog-order-status{
+ font-size:12px;font-weight:600;color:var(--muted);
 }
