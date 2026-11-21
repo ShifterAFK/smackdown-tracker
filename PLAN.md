@@ -1,3 +1,27 @@
+# Aktualny stan projektu — 2026-11-21
+
+Ta sekcja zastępuje nieaktualne statusy faz opisane niżej. Starszy plan MVP pozostaje jako kontekst historyczny.
+
+## Aktywny stan
+- Domyślna gałąź: `main`, obecnie zawiera stan wcześniej rozwijany na `feature/record-match-tier-picker`.
+- Frontend ma Record Match z interaktywnym Tier List pickerem, trzy widoki Tier List oraz regułowy Draft Indicator.
+- Draft Indicator zastąpił predykcyjny model logistyczny. `train-match-model` jest wycofany: harmonogram cron usunięty, publiczny dostęp do `model_snapshots` cofnięty, endpoint zwraca HTTP 410. Historyczne snapshoty pozostają w bazie bez dostępu anon/authenticated.
+- Splittery JS i CSS nie usuwają już plików spoza własnego wygenerowanego zestawu.
+- Baza Supabase i zatwierdzone mecze pozostają bez zmian; nie wykonano migracji danych meczowych.
+
+## Znane ograniczenia automatyzacji
+- Repo nie ma obecnie automatycznych testów aplikacji.
+- Workflow splittera potrafi wygenerować branch, ale tworzenie PR przez GitHub Actions jest blokowane ustawieniami repozytorium.
+- Workflow `mobile-team-tap` jest niezsynchronizowany z aktualnym kodem i kończy się błędem dopasowania starego handlera.
+
+## Następne kroki
+1. Ręcznie sprawdzić w przeglądarce Record Match, Tier List i Draft Indicator po zmianie domyślnej gałęzi.
+2. Uporządkować niesprawne workflowy i ustalić bezpieczny sposób tworzenia PR.
+3. Przeanalizować specyfikację Showdown Smack i wdrażać ją etapami.
+4. Dodać minimalne testy regresji dla kluczowych przepływów.
+
+---
+
 # PLAN.md — Smackdown Tracker (hybrid rebuild)
 
 ## Cel
