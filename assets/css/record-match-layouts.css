@@ -9,7 +9,9 @@
 #page-entry.record-layout-new{display:grid!important;grid-template-columns:minmax(0,1fr);grid-template-areas:"layout" "top" "outcome" "search" "ranking" "filters" "assistant" "catalog" "catalog-info";align-items:start;gap:9px}
 #page-entry.record-layout-new>.record-layout-switch{grid-area:layout}
 #page-entry.record-layout-new>.match-panel,#page-entry.record-layout-new>.hero-panel{display:contents!important}
-#page-entry.record-layout-new .map-area{grid-area:top;display:grid!important;grid-template-columns:minmax(105px,17%) minmax(0,1fr);gap:9px;align-items:stretch;margin:0;padding:8px;min-width:0}
+#page-entry.record-layout-new #recordTop{grid-area:top;display:grid;grid-template-columns:minmax(105px,17%) minmax(0,1fr);gap:9px;align-items:stretch;min-width:0}
+#page-entry.record-layout-new .map-area{grid-column:1;grid-row:1;display:flex!important;flex-direction:column;justify-content:center;gap:5px;margin:0;padding:8px;min-width:0}
+#page-entry.record-layout-new .teams{grid-column:2;grid-row:1;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;min-width:0}
 #page-entry.record-layout-new .map-area>.row,#page-entry.record-layout-new .map-area>#currentTheme{display:none!important}
 #page-entry.record-layout-new .map-area .map-heading{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;margin:0;min-width:0}
 #page-entry.record-layout-new .map-area .map-heading>div{min-width:0}
@@ -19,7 +21,6 @@
 #page-entry.record-layout-new .map-area #mapOpen{grid-column:1;grid-row:2;width:100%;max-width:100%;margin:0;padding:0;min-height:0}
 #page-entry.record-layout-new .map-area #mapPreview{display:block;width:100%;height:74px;max-height:74px;object-fit:contain}
 #page-entry.record-layout-new .map-area #mapOpen>span{font-size:9px;padding:3px}
-#page-entry.record-layout-new .teams{grid-column:2;grid-row:1 / span 2;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;min-width:0}
 #page-entry.record-layout-new .team{min-width:0;padding:9px;border-radius:10px}
 #page-entry.record-layout-new .team.blue{border:1px solid rgba(92,159,220,.6);background:linear-gradient(145deg,rgba(29,69,105,.58),rgba(15,27,42,.94))}
 #page-entry.record-layout-new .team.red{border:1px solid rgba(211,105,105,.58);background:linear-gradient(145deg,rgba(104,39,44,.58),rgba(37,20,26,.94))}
@@ -57,7 +58,7 @@
 #page-entry.record-layout-new .hero-panel .record-tier-controls{margin:0}
 #page-entry.record-layout-new .hero-panel>.row,#page-entry.record-layout-new #factionFilters,#page-entry.record-layout-new #heroes{padding:8px;border:1px solid var(--line);border-radius:10px;background:rgba(14,23,38,.42)}
 @media(max-width:760px){
- #page-entry.record-layout-new .map-area{grid-template-columns:minmax(82px,22%) minmax(0,1fr)}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(82px,22%) minmax(0,1fr)}
  #page-entry.record-layout-new .map-area #mapPreview{height:62px;max-height:62px}
  #page-entry.record-layout-new .team{padding:7px}
  #page-entry.record-layout-new .team .slots{gap:3px}
@@ -65,11 +66,12 @@
  #recordOutcomeBody{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
 }
 @media(max-width:520px){
- #page-entry.record-layout-new .map-area{grid-template-columns:minmax(0,1fr)}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(0,1fr);gap:6px}
+ #page-entry.record-layout-new .map-area{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center}
  #page-entry.record-layout-new .map-area .map-heading{grid-column:1;grid-row:1;flex-direction:row;align-items:center;justify-content:space-between}
- #page-entry.record-layout-new .map-area #mapOpen{grid-column:1;grid-row:2;max-width:120px}
- #page-entry.record-layout-new .map-area #mapPreview{height:54px;max-height:54px}
- #page-entry.record-layout-new .teams{grid-column:1;grid-row:3;grid-template-columns:repeat(2,minmax(0,1fr))}
+ #page-entry.record-layout-new .map-area #mapOpen{grid-column:2;grid-row:1;max-width:90px}
+ #page-entry.record-layout-new .map-area #mapPreview{height:42px;max-height:42px}
+ #page-entry.record-layout-new .teams{grid-column:1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr))}
  #page-entry.record-layout-new .team .check{font-size:9px}
  #recordOutcomeBody{grid-template-columns:minmax(0,1fr)}
  #page-entry.record-layout-new .hero-panel .tier-row{grid-template-columns:34px minmax(0,1fr)}
