@@ -18,14 +18,35 @@ for(const [value,text] of [['new','New Layout'],['legacy','Legacy']]){
  const button=document.createElement('button');button.type='button';button.dataset.layout=value;button.textContent=text;button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>setLayout(value));buttons[value]=button;choices.append(button);
 }
 controls.append(label,choices);page.insertBefore(controls,match);
+// The desktop ranking selector shares the top utility bar instead of taking a full row.
+const ranking=document.querySelector('#page-entry .record-tier-controls');
+if(ranking)controls.append(ranking);
 
 const top=document.createElement('section');top.id='recordTop';top.className='record-top';
 const map=match.querySelector('.map-area');
 const teams=match.querySelector('.teams');
 if(map)top.append(map);
-if(teams)top.append(teams);
+if(teams){
+ for(const side of ['BLUE','RED']){
+  const team=teams.querySelector('.team.'+side.toLowerCase());
+  const check=team?.querySelector('.check');
+  const phantimal=team?.querySelector('.phantimal');
+  if(team&&check&&phantimal){
+   const meta=document.createElement('div');meta.className='team-meta-row';
+   check.before(meta);meta.append(check,phantimal);
+  }
+ }
+ top.append(teams);
+}
+// Move the draft-order follow toggle into the map card, next to map selection.
+const orderTools=match.querySelector('.catalog-order-tools');
+if(orderTools&&map)map.append(orderTools);
 page.insertBefore(top,outcomePlaceholder());
 function outcomePlaceholder(){return catalog;}
+// Keep faction filters beside the search controls rather than in a separate panel.
+const searchRow=catalog.querySelector('.hero-panel>.row');
+const factionFilters=document.getElementById('factionFilters');
+if(searchRow&&factionFilters)searchRow.append(factionFilters);
 const outcome=document.createElement('section');outcome.id='recordOutcome';outcome.className='record-outcome';
 const toggle=document.createElement('button');toggle.id='recordOutcomeToggle';toggle.type='button';toggle.setAttribute('aria-expanded','false');
 const toggleTitle=document.createElement('span');toggleTitle.textContent='Match Indicator & Result';
