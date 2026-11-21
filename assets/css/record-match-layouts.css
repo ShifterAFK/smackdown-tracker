@@ -131,3 +131,5 @@
  #page-entry.record-layout-new .team-meta-row{gap:4px}
  #page-entry.record-layout-new .team-meta-row>.check{white-space:normal}
 }
+
+#page-entry.record-layout-new .hero-panel>.row #factionFilters{grid-area:auto;grid-column:1/-1;grid-row:auto}
