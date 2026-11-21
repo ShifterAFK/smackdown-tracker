@@ -66,7 +66,7 @@ function renderPhantimal(side){
 }
 
 function renderSlots(){for(const side of ['BLUE','RED']){const container=$('slots'+side);container.replaceChildren();lineup[side].forEach((id,index)=>{const b=document.createElement('button');b.className='slot';b.classList.toggle('active',active.side===side&&active.index===index);const label=document.createElement('small');label.textContent=(known[side]?'Pick ':'Slot ')+(index+1);label.title=known[side]?'Draft order — not battlefield position':'Draft order unknown';b.append(label);if(id)b.append(portrait(heroById(id)||{name:id}));const name=document.createElement('span');name.className='name';name.textContent=id?(heroById(id)?.name||id):'+';if(!id){name.classList.add('empty-slot-mark');b.setAttribute('aria-label','Select empty '+side+' slot '+(index+1));}b.append(name);b.draggable=Boolean(id);b.title=id?'Drag to move or swap':'Drop a hero here';b.ondragstart=e=>{if(!id){e.preventDefault();return}startDrag(e,{kind:'slot',side,index},b)};b.ondragend=finishDrag;b.ondragover=e=>{if(!dragData)return;e.preventDefault();e.dataTransfer.dropEffect=dragData.kind==='hero'?'copy':'move';b.classList.add('drop-target')};b.ondragleave=()=>b.classList.remove('drop-target');b.ondrop=e=>{e.preventDefault();applyDrop(side,index);finishDrag()};b.onclick=()=>{if(Date.now()<blockClickUntil)return;active={side,index};renderSlots()};const cell=document.createElement('div');cell.className='slot-cell';cell.append(b);if(id){const remove=document.createElement('button');remove.type='button';remove.className='slot-remove';remove.textContent='×';remove.title='Remove '+(heroById(id)?.name||id);remove.setAttribute('aria-label','Remove hero from '+side+' '+(index+1));remove.draggable=false;remove.onclick=e=>{e.preventDefault();e.stopPropagation();if(onlineBusy)return;lineup[side][index]=null;active={side,index};renderSlots();renderHeroes();tell('entryStatus','Hero removed.');};cell.append(remove)}container.append(cell)});$('known'+side).checked=known[side];renderPhantimal(side);$('win'+side).classList.toggle('chosen',winner===side)}$('activeLabel').value=active.side+' '+(active.index+1);notifyDraftChanged();}
-function choose(id){if(onlineBusy)return;if(['BLUE','RED'].some(side=>lineup[side].some((x,i)=>x===id&&(side!==active.side||i!==active.index)))){tell('entryStatus','That hero is already drafted. Each hero can appear only once across both teams.',true);return}lineup[active.side][active.index]=id;const slots=['BLUE','RED'].flatMap(side=>[0,1,2].map(index=>({side,index})));const pos=slots.findIndex(s=>s.side===active.side&&s.index===active.index);const next=slots.slice(pos+1).concat(slots.slice(0,pos)).find(s=>!lineup[s.side][s.index]);if(next)active=next;tell('entryStatus','');$('search').value='';factionFilter='';renderFilters();renderSlots();window.dispatchEvent(new Event('tracker:draft-changed'));if(typeof window.renderHeroes==='function')window.renderHeroes();const catalog=$('heroes');if(catalog)catalog.scrollTop=0;}
+function choose(id){if(onlineBusy)return;if(['BLUE','RED'].some(side=>lineup[side].some((x,i)=>x===id&&(side!==active.side||i!==active.index)))){tell('entryStatus','That hero is already drafted. Each hero can appear only once across both teams.',true);return}lineup[active.side][active.index]=id;const slots=['BLUE','RED'].flatMap(side=>[0,1,2].map(index=>({side,index})));const pos=slots.findIndex(s=>s.side===active.side&&s.index===active.index);const next=slots.slice(pos+1).concat(slots.slice(0,pos)).find(s=>!lineup[s.side][s.index]);if(next)active=next;tell('entryStatus','');renderSlots()}
 function renderHeroes(){
  const query=$('search').value.trim().toLowerCase();const order=['Lightbearer','Wilder','Mauler','Graveborn','Celestial','Hypogean','Dimensional'];const rank=f=>{const i=order.indexOf(f);return i<0?order.length:i;};
  const heroes=config.heroes.filter(h=>h.is_allowed&&(!factionFilter||h.faction===factionFilter)&&h.name.toLowerCase().includes(query)).sort((a,b)=>rank(a.faction)-rank(b.faction)||a.name.localeCompare(b.name,'en',{sensitivity:'base'}));
@@ -287,13 +287,11 @@ document.addEventListener('dragend',finishDrag);
 renderThemes();renderFilters();renderSlots();renderHeroes();
 
 
-window.trackerConfigReady=loadConfig();
+loadConfig();
 setInterval(()=>{if(!$('page-statistics').classList.contains('hidden')&&document.visibilityState==='visible')loadStats()},300000);
 
 // Tier list uses the existing read-only statistics RPC.
 let tierRequest=0,tierData=null;
-window.getTierDataForPicker=()=>tierData;
-window.getHeroCatalogForPicker=()=>config.heroes;
 function tierBucket(rate,count){return count<10?'N':rate>85?'S':rate>=70?'A':rate>=50?'B':'C';}
 function renderTierMaps(){const selected=$('tierMap').value;$('tierMap').replaceChildren();$('tierMap').add(new Option('Overall — all maps in this event',''));for(const map of config.themes)$('tierMap').add(new Option(map.name,map.id));$('tierMap').value=config.themes.some(t=>t.id===selected)?selected:'';}
 function renderTierPreview(){const id=$('tierMap').value;$('tierMapPreview').hidden=!id;if(id){$('tierMapImage').src=MAPS[id]||'';$('tierMapImage').alt=themeName(id)+' arena layout';$('tierMapName').textContent=themeName(id);}}
@@ -332,7 +330,7 @@ function renderTiers(){
  const content=document.createElement('div');content.className='tier-content';more.append(summary,content);
  let populated=false;more.addEventListener('toggle',()=>{if(more.open&&!populated){fill(content,'N');populated=true;}});root.append(more);
 }
-async function loadTiers(force=false){if(window.TrackerSnapshot1323?.active&&!force)return;
+async function loadTiers(){if(window.TrackerSnapshot1323?.active)return;
  const request=++tierRequest;renderTierPreview();tierData=null;renderTiers();tell('tierStatus','Loading tier list…');
  try{
   const data=await rpc('ss_get_stats',{p_theme_id:$('tierMap').value||null,p_exclude_mirrors:false});

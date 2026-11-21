@@ -7,7 +7,7 @@ const winner=document.getElementById('winnerPicker');if(!winner)return;
 const root=document.createElement('section');root.id='matchEstimate';root.className='me-neutral';root.setAttribute('aria-label','Experimental match indicator');
 root.innerHTML='<div class="me-head"><span class="me-heading">MATCH INDICATOR</span><span class="me-tag">EXPERIMENTAL · not win probability</span></div><div class="me-result" role="status" aria-live="polite">Complete both teams</div><div class="me-track" aria-hidden="true"><div class="me-blue"></div><div class="me-red"></div></div><div class="me-legend"><span>BLUE</span><span>Historical-results comparison</span><span>RED</span></div><details><summary>Data and limitations</summary><div class="me-details"></div><button type="button" class="me-retry">Refresh data</button></details>';
 winner.before(root);
-const state={data:null,key:null,request:0,error:'',cache:new Map(),model:null};
+const state={data:null,key:null,request:0,error:'',cache:new Map()};
 const normalize=value=>['Celestial','Hypogean','Celestial & Hypogean','Wedge of Matter'].includes(value)?'Wedge of Matter':value;
 function smoothed(row){const n=Math.max(0,Number(row?.appearances)||0),w=Math.max(0,Math.min(n,Number(row?.wins)||0));return {n,value:(w+5)/(n+10)};}
 function evaluateSide(ids,phantimal,data){
@@ -25,18 +25,6 @@ function evaluateSide(ids,phantimal,data){
 }
 function currentPh(side){if(typeof selectedPhantimal==='function')return normalize(selectedPhantimal(side));return normalize(derive(lineup[side],known[side]))||'Unknown';}
 function formatCoverage(side,value){return side+': heroes '+value.heroCount+'/3 (n: '+value.heroSamples.join(', ')+'); DUO '+value.duoCount+'/3 (n: '+value.duoSamples.join(', ')+'); Phantimal '+phantimalDisplay(value.phantimal)+' (n: '+value.phCount+').';}
-async function loadModel(){
- try{
-  const response=await fetch(PROJECT_URL+'/rest/v1/model_snapshots?select=id,created_at,match_count,model_version,payload&order=created_at.desc&limit=1',{
-   headers:{apikey:PUBLISHABLE_KEY},
-  });
-  const data=await response.json();
-  state.model=Array.isArray(data)&&data.length?data[0]:null;
- }catch(e){
-  state.model=null;
- }
- paint();
-}
 function paint(){
  const complete=['BLUE','RED'].every(side=>lineup[side].length===3&&lineup[side].every(Boolean));
  const text=root.querySelector('.me-result'),details=root.querySelector('.me-details');let delta=0,neutral=true;
@@ -49,28 +37,15 @@ function paint(){
  else{
   const blue=evaluateSide(lineup.BLUE,currentPh('BLUE'),state.data),red=evaluateSide(lineup.RED,currentPh('RED'),state.data);
   info+=formatCoverage('BLUE',blue)+'\n'+formatCoverage('RED',red)+'\n';
-  if(state.model&&state.model.match_count>=100){
-   const weights=state.model.payload?.hero_weights||{};
-   const intercept=Number(state.model.payload?.intercept)||0;
-   let z=intercept;
-   for(const id of lineup.BLUE){if(id&&weights[id]!=null)z+=weights[id];}
-   for(const id of lineup.RED){if(id&&weights[id]!=null)z-=weights[id];}
-   const pBlue=1/(1+Math.exp(-z));
-   delta=(pBlue-0.5)*2;neutral=false;
-   const favorite=pBlue>0.5?'BLUE':'RED';
-   const confidence=Math.round(Math.max(pBlue,1-pBlue)*100);
-   const low=blue.heroSupported<2||red.heroSupported<2;
-   text.textContent=Math.abs(pBlue-0.5)<.03?'No clear indication':(Math.abs(pBlue-0.5)<.10?'Slight ':'Stronger ')+favorite+' indication · '+confidence+'% · '+(low?'low confidence':'limited data');
-   info+='Model: logistic-v1 snapshot from '+(state.model.payload?.trained_at||state.model.created_at)+'.\n';
-  }
-  else if(blue.heroSupported>=2&&red.heroSupported>=2){
+  const supported=blue.heroSupported>=2&&red.heroSupported>=2;
+  if(!supported){text.textContent='Not enough data for a match indication';}
+  else{
    delta=blue.score-red.score;neutral=false;
    text.textContent=Math.abs(delta)<.03?'No clear indication':(Math.abs(delta)<.10?'Slight ':'Stronger ')+(delta>0?'BLUE':'RED')+' indication · limited data';
   }
-  else{text.textContent='Not enough data for a match indication';}
  }
  const blueWidth=50+Math.max(-30,Math.min(30,delta*100));root.querySelector('.me-blue').style.width=blueWidth+'%';root.querySelector('.me-red').style.width=(100-blueWidth)+'%';root.classList.toggle('me-neutral',neutral);
- info+='Heuristic comparison, not a calibrated probability or a betting recommendation.\nHero, DUO and Phantimal results overlap; their sample counts must not be added together.\nEstimates from small samples are adjusted toward a neutral value. When the logistic model snapshot is available, it can produce a low-confidence indication even when either side has fewer than two heroes with 5+ appearances.\nNo direct counter-pick, battlefield-position or player-strength analysis. The bar is a score comparison, not a percentage chance.\nThis feature does not submit matches or record pre-match forecasts.';
+ info+='Heuristic comparison, not a calibrated probability or a betting recommendation.\nHero, DUO and Phantimal results overlap; their sample counts must not be added together.\nEstimates from small samples are adjusted toward a neutral value. Each side needs at least two heroes with 5+ appearances before an indication is shown.\nNo direct counter-pick, battlefield-position or player-strength analysis. The bar is a score comparison, not a percentage chance.\nThis feature does not submit matches or record pre-match forecasts.';
  details.textContent=info;
 }
 async function load(force=false,sessionStart=false){
@@ -78,7 +53,7 @@ async function load(force=false,sessionStart=false){
   if(force)window.trackerData.invalidate();
  const theme=document.getElementById('theme')?.value||null,key=theme||'__all__',request=++state.request;state.key=key;state.error='';state.data=null;
 
- paint();loadModel();try{const data=await rpc('ss_get_stats',{p_theme_id:theme,p_exclude_mirrors:true});if(request!==state.request)return;if(!Array.isArray(data?.heroes)||!Array.isArray(data?.duos)||!Array.isArray(data?.phantimals))throw Error('Invalid statistics response');state.data=data;state.cache.set(key,{data,at:Date.now()});paint();}catch(error){if(request!==state.request)return;state.error=error.message;state.data=null;paint();}
+ paint();try{const data=await rpc('ss_get_stats',{p_theme_id:theme,p_exclude_mirrors:true});if(request!==state.request)return;if(!Array.isArray(data?.heroes)||!Array.isArray(data?.duos)||!Array.isArray(data?.phantimals))throw Error('Invalid statistics response');state.data=data;state.cache.set(key,{data,at:Date.now()});paint();}catch(error){if(request!==state.request)return;state.error=error.message;state.data=null;paint();}
 }
 root.querySelector('.me-retry').onclick=()=>load(true);
 window.addEventListener('tracker:assistant-session-started',()=>{root.querySelector('.me-retry').hidden=true;load(false,true);});

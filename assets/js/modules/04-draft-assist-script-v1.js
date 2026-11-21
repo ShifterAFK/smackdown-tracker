@@ -1,46 +1,99 @@
+// Module: draft-assist-script-v1
+
 (function(){
 'use strict';
 if(document.getElementById('draftAssist'))return;
 const teams=document.querySelector('#page-entry .teams')||document.querySelector('.teams');if(!teams)return;
-const root=document.createElement('section');root.id='draftAssist';root.className='da-clean';
-root.innerHTML='<label class="da-toggle"><input id="daEnabled" type="checkbox"> Draft Assistant</label><div id="daBody" hidden><div id="daScope" class="da-info"></div><div id="daOverallS"></div><p id="daStatus" class="da-info" role="status"></p><div class="da-columns"></div><div class="da-actions"><button id="daRestore" type="button">Restore hidden heroes</button><button id="daRefresh" type="button" hidden>Refresh</button></div></div>';teams.before(root);
-const css=document.createElement('style');css.textContent=`
-#draftAssist.da-clean .da-side[hidden]{display:none!important}
-#draftAssist.da-clean .da-candidates{display:block!important;max-height:none!important;overflow:visible!important}
-#draftAssist.da-clean .da-section-title{display:block!important;margin:8px 0 6px!important;font-size:12px}
-#draftAssist.da-clean .da-grid{display:flex!important;flex-wrap:wrap!important;gap:8px!important;align-content:flex-start!important;justify-content:flex-start!important;overflow:visible!important;max-height:none!important;padding:3px!important}
-#draftAssist.da-clean .da-card{position:relative!important;display:block!important;flex:0 0 52px!important;width:52px!important;min-width:52px!important;max-width:52px!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;background:none!important;transform:none!important}
-#draftAssist.da-clean .da-candidate{display:flex!important;position:relative!important;flex-direction:column!important;align-items:center!important;width:52px!important;min-width:0!important;max-width:52px!important;height:auto!important;min-height:0!important;margin:0!important;padding:3px!important;gap:3px!important;border:0!important;background:none!important;transform:none!important}
-#draftAssist.da-clean .da-candidate img{display:block!important;width:40px!important;height:40px!important;min-width:40px!important;border:1px solid #b8a16b!important;border-radius:50%!important;object-fit:cover!important;margin:0!important}
-#draftAssist.da-clean .da-s-card{display:flex!important;position:relative!important;flex-direction:column!important;align-items:center!important;width:52px!important;min-width:0!important;max-width:52px!important;height:auto!important;min-height:0!important;margin:0!important;padding:3px!important;gap:3px!important;border:0!important;background:none!important;transform:none!important;cursor:pointer!important}
-#draftAssist.da-clean .da-s-card img{display:block!important;width:40px!important;height:40px!important;min-width:40px!important;border:1px solid #b8a16b!important;border-radius:50%!important;object-fit:cover!important;margin:0!important}
-#draftAssist.da-clean .da-s-card:focus-visible{outline:2px solid #e8cf8b!important}
-#draftAssist.da-clean .da-name,#draftAssist.da-clean .da-rank{display:none!important}
-#draftAssist.da-clean .da-candidate small{display:block!important;font-size:10px!important;line-height:13px!important;margin:0!important;white-space:nowrap!important}
-#draftAssist.da-clean .da-hide{position:absolute!important;display:block!important;top:0!important;right:-3px!important;left:auto!important;bottom:auto!important;width:19px!important;height:19px!important;min-width:0!important;min-height:0!important;line-height:15px!important;padding:0!important;margin:0!important;border-radius:50%!important;z-index:2}
-#draftAssist.da-clean .da-candidate:focus-visible{outline:2px solid #e8cf8b!important}
-#draftAssist.da-clean .da-expand{margin:6px 0 8px!important;font-size:11px!important;line-height:16px!important;padding:3px 9px!important;min-height:0!important}
-`;document.head.append(css);
-const get=id=>document.getElementById(id),parts={},hidden=new Set(),limits={BLUE:12,RED:12};
-let enabled=false,request=0,data=null,matchups=null,loading=false,error='',sHeroes=null;
-function metric(r){const n=Math.max(0,Number(r?.appearances)||0),w=Math.max(0,Math.min(n,Number(r?.wins)||0)),p=n?w/n:0,z=1.959963984540054;return {n,w,p,score:n?(p+z*z/(2*n)-z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n)))/(1+z*z/n):0};}
-function pair(a,b){return [a,b].sort((x,y)=>x.localeCompare(y,'en')).join('||');}
-function label(text){const h=document.createElement('div');h.className='da-section-title';h.textContent=text;return h;}
-function note(text){const p=document.createElement('p');p.className='da-info';p.textContent=text;return p;}
-for(const side of ['BLUE','RED']){const box=document.createElement('div');box.className='da-side'+(side==='RED'?' da-red':'');const title=document.createElement('h3'),list=document.createElement('div');list.className='da-candidates';box.append(title,list);root.querySelector('.da-columns').append(box);parts[side]={title,list};}
-function available(){const used=new Set([...lineup.BLUE,...lineup.RED].filter(Boolean));return config.heroes.filter(h=>h.is_allowed&&!isBannedHero(h)&&!used.has(h.id)&&!hidden.has(h.id));}
-function stripIds(){const ids=new Set();for(const img of get('daOverallS').querySelectorAll('img')){const src=img.getAttribute('src'),h=config.heroes.find(h=>h.portrait_url===src||img.closest('[title]')?.title?.startsWith(h.name+' —'));if(h)ids.add(h.id);}return ids;}
-function top(side){const heroes=new Map((data?.heroes||[]).map(r=>[r.hero_id,metric(r)])),duos=new Map((data?.duos||[]).map(r=>[pair(r.hero_1_id,r.hero_2_id),metric(r)]));return available().map(h=>{const m=heroes.get(h.id)||metric(null),pairs=lineup[side].filter(Boolean).map(id=>duos.get(pair(id,h.id))).filter(x=>x?.n>=3);return {h,m,qualified:m.n>=20&&m.p>=.55,duo:pairs.length?pairs.reduce((s,x)=>s+x.score,0)/pairs.length:m.score};}).sort((a,b)=>Number(b.qualified)-Number(a.qualified)||(a.qualified?(b.m.n-a.m.n||b.duo-a.duo||b.m.score-a.m.score):(b.m.score-a.m.score||b.m.n-a.m.n))||a.h.name.localeCompare(b.h.name));}
-function opponent(side){const ids=lineup[side==='BLUE'?'RED':'BLUE'].filter(Boolean);return ids[ids.length-1];}
-function resetCatalogSearch(){const search=get('search');if(search){search.value='';search.blur();}const all=[...document.querySelectorAll('#factionFilters .filter')].find(b=>b.textContent.trim()==='All');if(all)all.click();}
-function pickHero(h,side){if(onlineBusy||Date.now()<blockClickUntil)return;const index=active.side===side&&!lineup[side][active.index]?active.index:lineup[side].findIndex(x=>!x);if(index<0)return;active={side,index};choose(h.id);resetCatalogSearch();}
-function card(h,side,m,counter,qualified,skipHide){const wrap=document.createElement('div');wrap.className='da-card';const b=document.createElement('button');b.type='button';b.className='da-candidate';b.disabled=onlineBusy||lineup[side].every(Boolean);const img=document.createElement('img');img.src=h.portrait_url||BASE+encodeURIComponent(h.name)+'.png';img.alt='';img.draggable=false;img.loading='lazy';const name=document.createElement('span');name.className='da-name';name.textContent=h.name;b.append(img,name);if(counter){const result=document.createElement('small');result.textContent=m.w+'/'+m.n;b.append(result);}b.title=h.name+' — '+m.w+'/'+m.n+' wins'+(counter?' vs '+(heroById(opponent(side))?.name||opponent(side)):' Overall')+(m.n<3?' · insufficient data':!counter&&!qualified?' · fallback, below priority thresholds':'');b.setAttribute('aria-label','Pick '+h.name+' for '+side+'. '+b.title);b.onclick=()=>{pickHero(h,side);render();};b.draggable=!b.disabled;b.ondragstart=e=>{if(b.disabled){e.preventDefault();return;}startDrag(e,{kind:'hero',id:h.id},b);};b.ondragend=()=>finishDrag();if(!skipHide){const hide=document.createElement('button');hide.type='button';hide.className='da-hide';hide.textContent='×';hide.title='Not in my draft: '+h.name;hide.setAttribute('aria-label',hide.title);hide.onclick=()=>{hidden.add(h.id);render();};wrap.append(b,hide);}else{wrap.append(b);}return wrap;}
-function sCard(h,m,qualified){const wrap=document.createElement('div');wrap.className='da-card';const b=document.createElement('button');b.type='button';b.className='da-s-card';b.disabled=onlineBusy;const img=document.createElement('img');img.src=h.portrait_url||BASE+encodeURIComponent(h.name)+'.png';img.alt='';img.draggable=false;img.loading='lazy';const name=document.createElement('span');name.className='da-name';name.textContent=h.name;b.append(img,name);b.title=h.name+' — '+m.w+'/'+m.n+' wins Overall'+(m.n<3?' · insufficient data':!qualified?' · fallback, below priority thresholds':'');b.setAttribute('aria-label','Pick '+h.name+'. '+b.title);b.onclick=()=>{if(onlineBusy||Date.now()<blockClickUntil)return;const before=[...lineup.BLUE,...lineup.RED].filter(Boolean).length;choose(h.id);if([...lineup.BLUE,...lineup.RED].filter(Boolean).length>before)resetCatalogSearch();render();};b.draggable=!b.disabled;b.ondragstart=e=>{if(b.disabled){e.preventDefault();return;}startDrag(e,{kind:'hero',id:h.id},b);};b.ondragend=()=>finishDrag();wrap.append(b);return wrap;}
-function renderS(){const wrap=get('daOverallS');if(!wrap||!sHeroes)return;wrap.replaceChildren(label('S Overall'));const row=document.createElement('div');row.className='da-s-row';wrap.append(row);for(const item of sHeroes)row.append(sCard(item.h,item.m,item.qualified));}
-function render(){if(!enabled)return;for(const side of ['BLUE','RED']){const p=parts[side];p.title.textContent=side+' — next picks';p.list.replaceChildren();const items=top(side),grid=document.createElement('div');grid.className='da-grid';p.list.append(label('TOP PICKS'),grid);for(const x of items.slice(0,limits[side]))grid.append(card(x.h,side,x.m,false,x.qualified));if(items.length>limits[side]){const more=document.createElement('button');more.type='button';more.className='da-expand';more.textContent='Show more (+'+Math.min(12,items.length-limits[side])+')';more.onclick=()=>{limits[side]+=12;render();};p.list.append(more);}if(!items.length)p.list.append(note(loading?'Loading…':'No additional heroes available.'));const id=opponent(side);p.list.append(label('COUNTERS'+(id?': '+(heroById(id)?.name||id):'')));if(!id){p.list.append(note('Waiting for an opponent pick.'));continue;}if(!matchups){p.list.append(note(loading?'Loading opponent matchups…':'Opponent matchups unavailable. '+error));continue;}const rows=matchups.get(id),counters=available().map(h=>({h,m:metric(rows?.get(h.id))})).filter(x=>x.m.n>=3&&x.m.p>.5).sort((a,b)=>b.m.score-a.m.score||b.m.n-a.m.n||a.h.name.localeCompare(b.h.name)).slice(0,3),row=document.createElement('div');row.className='da-grid';p.list.append(row);for(const x of counters)row.append(card(x.h,side,x.m,true,true));if(!counters.length)p.list.append(note('No available counter meets the criteria: 3+ matches and over 50% wins.'));}renderS();}
-async function loadS(token){const wrap=get('daOverallS');wrap.textContent='S Overall — loading…';try{const stats=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:false});if(token!==request||!enabled)return;const results=new Map((stats.heroes||[]).map(r=>[r.hero_id,metric(r)]));sHeroes=config.heroes.filter(h=>h.is_allowed&&!isBannedHero(h)).filter(h=>{const m=results.get(h.id)||metric(null);return tierBucket(100*m.p,m.n)==='S';}).sort((a,b)=>(results.get(b.id)?.p||0)-(results.get(a.id)?.p||0)).map(h=>({h,m:results.get(h.id)||metric(null),qualified:(results.get(h.id)?.n||0)>=20&&(results.get(h.id)?.p||0)>=.55}));renderS();}catch(e){if(token===request&&enabled)wrap.textContent='S Overall unavailable: '+e.message;}}
-async function load(){const token=++request;data=null;matchups=null;error='';loading=true;get('daScope').textContent='Suggestions: Overall — all maps in this event';get('daStatus').textContent='Loading…';render();loadS(token);try{const stats=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:true});if(token!==request||!enabled)return;if(!Array.isArray(stats.heroes)||!Array.isArray(stats.duos))throw Error('Invalid statistics');data=stats;render();try{const rows=await rpc('ss_get_matchups',{p_theme_id:null,p_exclude_mirrors:false});if(token!==request||!enabled)return;if(!Array.isArray(rows))throw Error('Invalid matchup response');matchups=new Map();for(const r of rows){if(!matchups.has(r.opponent_id))matchups.set(r.opponent_id,new Map());matchups.get(r.opponent_id).set(r.candidate_id,r);}}catch(e){if(token!==request||!enabled)return;error=e.message;}if(token!==request||!enabled)return;loading=false;get('daStatus').textContent='Top picks: Overall priority, then fallback heroes. Names and sample sizes are in tooltips. Counters: 3+ matches, over 50% wins, Wilson ranking. Small samples are not proof of a counter.';render();}catch(e){if(token!==request||!enabled)return;loading=false;get('daStatus').textContent='Statistics unavailable: '+e.message;render();}}
-get('daEnabled').onchange=()=>{enabled=get('daEnabled').checked;get('daBody').hidden=!enabled;document.body.classList.toggle('da-expanded',enabled);if(enabled){window.TrackerSnapshot1323?.begin();load();window.dispatchEvent(new Event('tracker:assistant-session-started'));}else{request++;window.TrackerSnapshot1323?.end();}};get('daRestore').onclick=()=>{hidden.clear();render();};
-get('heroes')?.addEventListener('click',e=>{const b=e.target.closest('button.hero');if(!b||b.disabled)return;const before=[...lineup.BLUE,...lineup.RED].filter(Boolean).length;setTimeout(()=>{if([...lineup.BLUE,...lineup.RED].filter(Boolean).length>before)resetCatalogSearch();},0);},true);
-window.addEventListener('tracker:draft-changed',render);window.addEventListener('tracker:catalog-changed',render);window.addEventListener('tracker:draft-reset',()=>{hidden.clear();limits.BLUE=limits.RED=12;render();});
+const root=document.createElement('section');root.id='draftAssist';root.setAttribute('aria-label','Draft Assistant');
+root.innerHTML='<label class="da-toggle"><input type="checkbox" id="daEnabled"> Draft Assistant</label><div id="daBody" hidden><div id="daScope" class="da-info"></div><label id="daMapLabel"><input type="checkbox" id="daMapOnly"> Only selected map (off = Overall)</label><div id="daOverallS"></div><p class="da-info">Suggestions use team results for heroes and pairs. Check your draft pool; counter-picks are not evaluated.</p><p class="da-info" id="daStatus" role="status" aria-live="polite"></p><div class="da-columns"></div><div class="da-actions"><button type="button" id="daRestore">Restore hidden heroes</button><button type="button" id="daRefresh">Refresh suggestions</button></div></div>';
+teams.before(root);
+const get=id=>document.getElementById(id);
+const state={data:null,key:null,request:0,enabled:false,hidden:new Set(),limits:{BLUE:8,RED:8},cache:new Map()};
+const parts={};
+for(const side of ['BLUE','RED']){const box=document.createElement('div');box.className='da-side'+(side==='RED'?' da-red':'');const title=document.createElement('h3');title.textContent=side+' — next picks';const list=document.createElement('div');list.className='da-candidates';const note=document.createElement('p');note.className='da-info';const actions=document.createElement('div');actions.className='da-actions';const more=document.createElement('button');more.type='button';more.textContent='More';more.onclick=()=>{state.limits[side]+=8;render()};actions.append(more);box.append(title,note,list,actions);root.querySelector('.da-columns').append(box);parts[side]={title,list,note,more};}
+
+let overallSData=null;let overallStarted=false;const snapshotScopes=new Set();
+async function loadOverallS(force=false){
+ if(!state.enabled||overallStarted)return;overallStarted=true;const epoch=window.TrackerSnapshot1323.epoch;
+ const wrap=get('daOverallS');if(!wrap)return;
+ {wrap.textContent='S Overall — loading…';try{const data=await rpc('ss_get_stats',{p_theme_id:null,p_exclude_mirrors:false});if(!state.enabled||epoch!==window.TrackerSnapshot1323.epoch)return;if(!Array.isArray(data?.heroes))throw Error('Invalid tier data');overallSData=data;}catch(error){if(!state.enabled||epoch!==window.TrackerSnapshot1323.epoch)return;wrap.textContent='S Overall unavailable: '+error.message+' · reopen Assistant to retry';return;}}
+ wrap.replaceChildren();const heading=document.createElement('div');heading.className='da-s-title';heading.textContent='S-tier eligible heroes · Overall';wrap.append(heading);
+ const row=document.createElement('div');row.className='da-s-row';wrap.append(row);
+ const results=new Map(overallSData.heroes.map(x=>[x.hero_id,x]));
+ const items=config.heroes.filter(h=>h.is_allowed).map(h=>({h,r:results.get(h.id)})).filter(x=>{const n=Number(x.r?.appearances)||0;const w=Number(x.r?.wins)||0;return tierBucket(n?100*w/n:0,n)==='S';}).sort((a,b)=>Number(b.r.wins)/Number(b.r.appearances)-Number(a.r.wins)/Number(a.r.appearances)||Number(b.r.appearances)-Number(a.r.appearances));
+ for(const {h,r} of items){const card=document.createElement('span');card.className='da-s-hero';card.title=h.name+' — '+(100*Number(r.wins)/Number(r.appearances)).toFixed(1)+'% · '+r.appearances+' appearances';const img=document.createElement('img');img.src=h.portrait_url||BASE+encodeURIComponent(h.name)+'.png';img.alt='';img.loading='lazy';const label=document.createElement('span');label.textContent=h.name;card.append(img,label);row.append(card);}
+ if(!items.length){row.textContent='No eligible heroes meet the S-tier criteria (>85% team win rate, at least 10 appearances).';}
+}
+
+function mean(row){const n=Math.max(0,Number(row?.appearances)||0),w=Math.max(0,Math.min(n,Number(row?.wins)||0));return (w+5)/(n+10);}
+function rank(side){
+ const used=new Set([...lineup.BLUE,...lineup.RED].filter(Boolean));
+ const friends=lineup[side].filter(Boolean);
+ const heroStats=new Map((state.data?.heroes||[]).map(x=>[x.hero_id,x]));
+ const duoStats=new Map((state.data?.duos||[]).map(x=>[[x.hero_1_id,x.hero_2_id].sort().join('|'),x]));
+ return config.heroes.filter(h=>h.is_allowed&&!used.has(h.id)&&!state.hidden.has(h.id)).map(h=>{
+  const base=heroStats.get(h.id);const n=Number(base?.appearances)||0;const pairs=friends.map(id=>({id,row:duoStats.get([id,h.id].sort().join('|'))})).filter(x=>Number(x.row?.appearances)>0);
+  const pairScore=pairs.length?pairs.reduce((sum,x)=>sum+mean(x.row),0)/pairs.length:.5;
+  const baseScore=mean(base);let score=friends.length?.4*baseScore+.6*pairScore:baseScore;
+  return {hero:h,score,n,pairs,hasData:n>0||pairs.length>0};
+ }).sort((a,b)=>Number(b.hasData)-Number(a.hasData)||b.score-a.score||b.n-a.n||a.hero.name.localeCompare(b.hero.name));
+}
+function render(){
+ if(!state.enabled)return;
+ for(const side of ['BLUE','RED']){
+  const p=parts[side];p.list.replaceChildren();const full=lineup[side].every(Boolean);
+  const candidates=rank(side);const count=Math.min(state.limits[side],candidates.length);
+  p.title.textContent=side+' — '+(full?'team complete':'next picks');p.note.textContent=full?'Remove a hero to select a replacement.':(state.data?'Suggested heroes — check your draft pool.':'Statistics unavailable. Unranked alternatives only.');
+  for(let i=0;i<count;i++){
+   const item=candidates[i],h=item.hero,card=document.createElement('div');
+   if(!item.hasData&&(i===0||candidates[i-1].hasData)){const group=document.createElement('div');group.className='da-nodata-heading';group.textContent='No data — unranked alternatives';p.list.append(group);}card.className='da-card';
+   const button=document.createElement('button');button.type='button';button.className='da-candidate'+(!item.hasData?' da-no-data':'');button.disabled=full||onlineBusy;
+   if(item.hasData){const strength=Math.max(.15,Math.min(.9,(item.score-.25)*1.6));button.style.background=side==='BLUE'?`rgba(28,104,172,${strength})`:`rgba(159,45,63,${strength})`;}
+   const rankLabel=document.createElement('span');rankLabel.className='da-rank';rankLabel.textContent=item.hasData?'#'+(i+1):'No data';button.append(rankLabel);
+   const image=document.createElement('img');image.src=h.portrait_url||BASE+encodeURIComponent(h.name)+'.png';image.alt='';image.loading='lazy';image.onerror=()=>{image.hidden=true};button.append(image);
+   const name=document.createElement('span');name.className='da-name';name.textContent=h.name;button.append(name);
+   const samples=document.createElement('small');const ns=item.pairs.map(x=>Number(x.row.appearances));
+   samples.textContent=!item.hasData?'No data':((item.pairs.length?Math.min(...ns):item.n)<10?'Small sample':'');
+   button.append(samples);
+   const details=['Hero appearances: '+item.n,...item.pairs.map(x=>(heroById(x.id)?.name||x.id)+' + '+h.name+': '+x.row.wins+'/'+x.row.appearances+' wins'), 'Heuristic fit ranking, not a predicted win rate.','Opponent picks are excluded from candidates, not analyzed as counters.'];
+   button.title=details.join('\n');button.setAttribute('aria-label','Pick '+h.name+' for '+side);
+   const assistDragEnabled=true;button.draggable=!full&&!onlineBusy;image.draggable=false;button.ondragstart=event=>{if(onlineBusy||full){event.preventDefault();return;}startDrag(event,{kind:'hero',id:h.id},button);};button.ondragend=()=>finishDrag();
+
+   button.onclick=()=>{if(Date.now()<blockClickUntil||onlineBusy||lineup[side].every(Boolean))return;const index=active.side===side&&!lineup[side][active.index]?active.index:lineup[side].findIndex(x=>!x);if(index<0)return;active={side,index};choose(h.id);renderHeroes();render();};
+   const hide=document.createElement('button');hide.type='button';hide.className='da-hide';hide.textContent='×';hide.title='Hide '+h.name+' for this draft (both lists)';hide.setAttribute('aria-label',hide.title);hide.onclick=()=>{state.hidden.add(h.id);render()};
+   card.append(button,hide);p.list.append(card);
+  }
+  p.more.hidden=count>=candidates.length;p.more.disabled=onlineBusy;
+  if(!candidates.length){p.note.textContent='No candidates. Restore hidden heroes or check the catalog.';}
+ }
+}
+async function load(force=false){
+ if(!state.enabled)return;const theme=get('daMapOnly')?.checked?(get('theme')?.value||null):null;const key=theme||'__all__';
+ if(snapshotScopes.has(key)){render();return;}snapshotScopes.add(key);
+ const request=++state.request;state.key=key;
+ const title=theme?(config.themes.find(t=>t.id===theme)?.name||theme):'Overall — all maps in this event';
+ get('daScope').textContent='Suggestions: '+title+' · loading…';
+
+ state.data=null;get('daStatus').textContent='Loading suggestions for '+title+'…';render();
+ try{
+  const data=await rpc('ss_get_stats',{p_theme_id:theme,p_exclude_mirrors:true});
+  if(request!==state.request||!state.enabled)return;
+  if(!Array.isArray(data?.heroes)||!Array.isArray(data?.duos))throw Error('Invalid statistics response');
+  state.data=data;
+  get('daScope').textContent='Suggestions: '+title+' · calculated '+(data.generated_at?new Date(data.generated_at).toLocaleTimeString():'time unavailable');
+  get('daStatus').textContent=title+' · '+(Number(data.summary?.approved_matches)||0)+' approved matches · mirrors excluded by category · server cache up to 5 minutes. No counter analysis.';
+  render();
+ }catch(error){if(request!==state.request||!state.enabled)return;state.data=null;get('daScope').textContent='Suggestions: '+title+' · data unavailable';get('daStatus').textContent='Suggestions unavailable: '+error.message+'. Unranked alternatives shown; normal drafting still works.';render();}
+}
+get('daEnabled').onchange=()=>{state.enabled=get('daEnabled').checked;get('daBody').hidden=!state.enabled;document.body.classList.toggle('da-expanded',state.enabled);if(state.enabled){snapshotScopes.clear();overallStarted=false;window.TrackerSnapshot1323.begin();load();loadOverallS();window.dispatchEvent(new Event('tracker:assistant-session-started'));}else{state.request++;window.TrackerSnapshot1323.end();}};
+get('daRestore').onclick=()=>{state.hidden.clear();state.limits={BLUE:8,RED:8};render()};get('daRefresh').hidden=true;get('daRefresh').onclick=()=>{};get('daMapOnly').onchange=()=>{state.limits={BLUE:8,RED:8};load();};
+get('theme')?.addEventListener('change',()=>{state.limits={BLUE:8,RED:8};load()});
+
+window.addEventListener('tracker:submission-finished',event=>{if(event.detail?.saved){state.cache.clear();}else render();});
+// Session snapshot: no periodic Assistant data reload.
+// Returning to the tab preserves the current draft snapshot.
+
+let lastDraft='';window.addEventListener('tracker:draft-changed',()=>{const draft=JSON.stringify(lineup);if(draft===lastDraft)return;lastDraft=draft;render();});
+window.addEventListener('tracker:draft-reset',()=>{state.hidden.clear();state.limits={BLUE:8,RED:8};});
+window.addEventListener('tracker:catalog-changed',()=>{if(state.enabled)render();});
 })();
