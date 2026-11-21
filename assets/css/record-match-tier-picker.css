@@ -75,3 +75,78 @@ html[data-ui-view="mobile"] #page-entry .hero-panel #heroes{
  display:grid;grid-template-columns:repeat(auto-fill,62px);
  gap:8px;height:auto;max-height:55dvh;min-height:150px;overflow:auto;
 }
+
+/* Final desktop polish: circular portraits without button tiles, clearer draft-order state,
+   and a taller catalog that uses almost the full viewport. */
+#page-entry .hero-panel #heroes .tier-hero{
+ width:48px;height:48px;min-height:48px;flex:0 0 48px;
+ padding:0;margin:0;gap:0;
+ display:flex;align-items:center;justify-content:center;
+ background:transparent!important;border:0!important;
+ border-radius:50%;box-shadow:none!important;outline:0;
+}
+#page-entry .hero-panel #heroes .tier-hero:hover{
+ background:transparent!important;border:0!important;
+ transform:scale(1.08);
+}
+#page-entry .hero-panel #heroes .tier-hero:focus-visible{
+ outline:2px solid var(--gold)!important;outline-offset:2px;
+}
+#page-entry .hero-panel #heroes .tier-hero:disabled{
+ opacity:.38;filter:grayscale(.45);
+}
+#page-entry .hero-panel #heroes .tier-hero .avatar{
+ width:46px;height:46px;border:2px solid rgba(190,205,194,.65);
+ box-shadow:0 1px 4px #0008;
+}
+#page-entry .hero-panel #heroes .tier-content{
+ gap:3px;padding:4px;min-height:0;
+}
+#page-entry .hero-panel #heroes .tier-row{flex-shrink:0}
+#page-entry .hero-panel .team .check{
+ display:flex;align-items:center;flex-wrap:wrap;gap:7px;
+ width:fit-content;max-width:100%;
+ margin-top:12px;padding:7px 9px;
+ border:1px solid var(--line);border-radius:8px;
+ background:rgba(12,18,27,.55);
+ transition:background .15s,border-color .15s;
+}
+#page-entry .hero-panel .team .check:has(input:checked){
+ border-color:rgba(112,190,145,.75);
+ background:rgba(35,91,61,.28);
+}
+#page-entry .hero-panel .team .check:has(input:not(:checked)){
+ border-color:rgba(205,145,112,.8);
+ background:rgba(105,55,43,.25);
+}
+#page-entry .hero-panel .team .check::after{
+ content:"ORDER ON";
+ display:inline-flex;align-items:center;justify-content:center;
+ min-width:72px;padding:3px 7px;border-radius:5px;
+ background:rgba(64,145,94,.25);border:1px solid rgba(112,190,145,.7);
+ color:#a9e2bd;font-size:10px;font-weight:800;letter-spacing:.07em;
+}
+#page-entry .hero-panel .team .check:has(input:not(:checked))::after{
+ content:"ORDER OFF";
+ background:rgba(150,79,58,.25);border-color:rgba(205,145,112,.75);
+ color:#f0b49f;
+}
+@media (min-width:1100px){
+ #page-entry .hero-panel{
+  top:8px!important;height:calc(100dvh - 92px)!important;
+  min-height:560px!important;
+ }
+ #page-entry .hero-panel #heroes{
+  height:auto!important;min-height:0!important;max-height:none!important;
+  flex:1 1 0%!important;overflow-y:auto!important;
+ }
+}
+@media (min-width:0px){
+ html[data-ui-view="desktop"] #page-entry .hero-panel{
+  top:8px!important;height:calc(100dvh - 92px)!important;min-height:560px!important;
+ }
+ html[data-ui-view="desktop"] #page-entry .hero-panel #heroes{
+  height:auto!important;min-height:0!important;max-height:none!important;
+  flex:1 1 0%!important;overflow-y:auto!important;
+ }
+}
