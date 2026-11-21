@@ -1,0 +1,229 @@
+#helpDialog{width: min(620px, 94vw); max-height: 88vh; overflow: auto; padding: 22px;}
+
+dialog::backdrop{background: rgba(3, 9, 17, 0.85); backdrop-filter: blur(3px);}
+
+.dialog-heading{display: flex; align-items: start; justify-content: space-between; gap: 14px;}
+
+.dialog-heading h2{margin-bottom: 4px;}
+
+.dialog-heading p{margin: 5px 0px;}
+
+.help-steps{padding-left: 24px;}
+
+.help-steps li{padding-left: 5px; margin: 16px 0px;}
+
+.help-steps strong{font-size: 15px;}
+
+.help-steps p{margin: 5px 0px; color: var(--muted); font-size: 13px;}
+
+#startUsing{width: 100%; margin-top: 8px;}
+
+#mapPicker{width: min(850px, 94vw); max-height: 88vh; overflow: auto;}
+
+#mapChoices{display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px;}
+
+.map-choice{display: grid; gap: 8px; padding: 9px; text-align: left;}
+
+.map-choice img{width: 100%; height: 145px; object-fit: contain; background: rgb(16, 23, 34); border-radius: 6px;}
+
+.map-choice[aria-pressed="true"]{border: 2px solid rgb(154, 201, 237); background: rgb(32, 51, 76);}
+
+.map-choice small{color: var(--green);}
+
+@media (min-width: 1100px){html[data-ui-view="auto"] #page-entry{grid-template-columns: minmax(350px, 400px) minmax(0px, 1fr); align-items: start;}
+html[data-ui-view="auto"] .teams{grid-template-columns: 1fr;}
+html[data-ui-view="auto"] .hero-panel{position: sticky; top: 12px; display: flex; flex-direction: column; height: calc(100dvh - 135px); min-height: 420px;}
+html[data-ui-view="auto"] #heroes{flex: 1 1 0%; min-height: 0px; max-height: none;}
+html[data-ui-view="auto"] .hero-panel .row,html[data-ui-view="auto"] .hero-panel .filters,html[data-ui-view="auto"] #catalogInfo{flex-shrink: 0;}
+html[data-ui-view="auto"] .selected-map img{height: 135px;}
+}
+
+@media (max-width:0px){html[data-ui-view="mobile"] #page-entry{grid-template-columns: minmax(350px, 400px) minmax(0px, 1fr); align-items: start;}
+html[data-ui-view="mobile"] .teams{grid-template-columns: 1fr;}
+html[data-ui-view="mobile"] .hero-panel{position: sticky; top: 12px; display: flex; flex-direction: column; height: calc(100dvh - 135px); min-height: 420px;}
+html[data-ui-view="mobile"] #heroes{flex: 1 1 0%; min-height: 0px; max-height: none;}
+html[data-ui-view="mobile"] .hero-panel .row,html[data-ui-view="mobile"] .hero-panel .filters,html[data-ui-view="mobile"] #catalogInfo{flex-shrink: 0;}
+html[data-ui-view="mobile"] .selected-map img{height: 135px;}
+}
+
+@media (min-width:0px){html[data-ui-view="desktop"] #page-entry{grid-template-columns: minmax(350px, 400px) minmax(0px, 1fr); align-items: start;}
+html[data-ui-view="desktop"] .teams{grid-template-columns: 1fr;}
+html[data-ui-view="desktop"] .hero-panel{position: sticky; top: 12px; display: flex; flex-direction: column; height: calc(100dvh - 135px); min-height: 420px;}
+html[data-ui-view="desktop"] #heroes{flex: 1 1 0%; min-height: 0px; max-height: none;}
+html[data-ui-view="desktop"] .hero-panel .row,html[data-ui-view="desktop"] .hero-panel .filters,html[data-ui-view="desktop"] #catalogInfo{flex-shrink: 0;}
+html[data-ui-view="desktop"] .selected-map img{height: 135px;}
+}
+
+@media (min-width: 1600px){html[data-ui-view="auto"] #page-entry{grid-template-columns: 410px minmax(0px, 1fr);}
+html[data-ui-view="auto"] #heroes{gap: 12px;}
+}
+
+@media (max-width:0px){html[data-ui-view="mobile"] #page-entry{grid-template-columns: 410px minmax(0px, 1fr);}
+html[data-ui-view="mobile"] #heroes{gap: 12px;}
+}
+
+@media (max-width:0px){html[data-ui-view="desktop"] #page-entry{grid-template-columns: 410px minmax(0px, 1fr);}
+html[data-ui-view="desktop"] #heroes{gap: 12px;}
+}
+
+@media (max-width: 720px){html[data-ui-view="auto"] main{padding: 10px;}
+html[data-ui-view="auto"] h1{font-size: 20px;}
+html[data-ui-view="auto"] .header .badge{display: none;}
+html[data-ui-view="auto"] .card{padding: 10px;}
+html[data-ui-view="auto"] .teams{grid-template-columns: 1fr 1fr; gap: 8px;}
+html[data-ui-view="auto"] .team{padding: 8px;}
+html[data-ui-view="auto"] .slot .avatar{width: 40px; height: 40px;}
+html[data-ui-view="auto"] .slot{min-height: 90px;}
+html[data-ui-view="auto"] .slot small{font-size: 9px;}
+html[data-ui-view="auto"] .slot .name{font-size: 10px;}
+html[data-ui-view="auto"] .hero,html[data-ui-view="auto"] .hero > .avatar{width: 48px; height: 48px;}
+html[data-ui-view="auto"] #heroes{grid-template-columns: repeat(auto-fill, 48px); gap: 8px;}
+html[data-ui-view="auto"] .active-slot-label{max-width: 110px;}
+html[data-ui-view="auto"] .row{gap: 8px;}
+html[data-ui-view="auto"] .team-title small{display: none;}
+html[data-ui-view="auto"] .selected-map img{height: 125px;}
+}
+
+@media (min-width:0px){html[data-ui-view="mobile"] main{padding: 10px;}
+html[data-ui-view="mobile"] h1{font-size: 20px;}
+html[data-ui-view="mobile"] .header .badge{display: none;}
+html[data-ui-view="mobile"] .card{padding: 10px;}
+html[data-ui-view="mobile"] .teams{grid-template-columns: 1fr 1fr; gap: 8px;}
+html[data-ui-view="mobile"] .team{padding: 8px;}
+html[data-ui-view="mobile"] .slot .avatar{width: 40px; height: 40px;}
+html[data-ui-view="mobile"] .slot{min-height: 90px;}
+html[data-ui-view="mobile"] .slot small{font-size: 9px;}
+html[data-ui-view="mobile"] .slot .name{font-size: 10px;}
+html[data-ui-view="mobile"] .hero,html[data-ui-view="mobile"] .hero > .avatar{width: 48px; height: 48px;}
+html[data-ui-view="mobile"] #heroes{grid-template-columns: repeat(auto-fill, 48px); gap: 8px;}
+html[data-ui-view="mobile"] .active-slot-label{max-width: 110px;}
+html[data-ui-view="mobile"] .row{gap: 8px;}
+html[data-ui-view="mobile"] .team-title small{display: none;}
+html[data-ui-view="mobile"] .selected-map img{height: 125px;}
+}
+
+@media (max-width:0px){html[data-ui-view="desktop"] main{padding: 10px;}
+html[data-ui-view="desktop"] h1{font-size: 20px;}
+html[data-ui-view="desktop"] .header .badge{display: none;}
+html[data-ui-view="desktop"] .card{padding: 10px;}
+html[data-ui-view="desktop"] .teams{grid-template-columns: 1fr 1fr; gap: 8px;}
+html[data-ui-view="desktop"] .team{padding: 8px;}
+html[data-ui-view="desktop"] .slot .avatar{width: 40px; height: 40px;}
+html[data-ui-view="desktop"] .slot{min-height: 90px;}
+html[data-ui-view="desktop"] .slot small{font-size: 9px;}
+html[data-ui-view="desktop"] .slot .name{font-size: 10px;}
+html[data-ui-view="desktop"] .hero,html[data-ui-view="desktop"] .hero > .avatar{width: 48px; height: 48px;}
+html[data-ui-view="desktop"] #heroes{grid-template-columns: repeat(auto-fill, 48px); gap: 8px;}
+html[data-ui-view="desktop"] .active-slot-label{max-width: 110px;}
+html[data-ui-view="desktop"] .row{gap: 8px;}
+html[data-ui-view="desktop"] .team-title small{display: none;}
+html[data-ui-view="desktop"] .selected-map img{height: 125px;}
+}
+
+@media (max-width: 460px){html[data-ui-view="auto"] .teams{grid-template-columns: 1fr;}
+html[data-ui-view="auto"] .slot{min-height: 86px;}
+html[data-ui-view="auto"] .slot .avatar{width: 44px; height: 44px;}
+html[data-ui-view="auto"] .header .connection{font-size: 11px;}
+html[data-ui-view="auto"] .active-slot-label{max-width: 95px; min-width: 80px !important;}
+html[data-ui-view="auto"] .hero-panel .row label:first-child{min-width: 120px;}
+html[data-ui-view="auto"] .map-heading{gap: 6px;}
+html[data-ui-view="auto"] #chooseMap{font-size: 12px; padding: 9px;}
+html[data-ui-view="auto"] .tabs #openHelp{margin-left: 0px;}
+html[data-ui-view="auto"] #mapChoices{grid-template-columns: 1fr 1fr; gap: 8px;}
+html[data-ui-view="auto"] .map-choice img{height: 105px;}
+html[data-ui-view="auto"] .map-choice{font-size: 12px;}
+}
+
+@media (max-width:0px){html[data-ui-view="mobile"] .teams{grid-template-columns: 1fr;}
+html[data-ui-view="mobile"] .slot{min-height: 86px;}
+html[data-ui-view="mobile"] .slot .avatar{width: 44px; height: 44px;}
+html[data-ui-view="mobile"] .header .connection{font-size: 11px;}
+html[data-ui-view="mobile"] .active-slot-label{max-width: 95px; min-width: 80px !important;}
+html[data-ui-view="mobile"] .hero-panel .row label:first-child{min-width: 120px;}
+html[data-ui-view="mobile"] .map-heading{gap: 6px;}
+html[data-ui-view="mobile"] #chooseMap{font-size: 12px; padding: 9px;}
+html[data-ui-view="mobile"] .tabs #openHelp{margin-left: 0px;}
+html[data-ui-view="mobile"] #mapChoices{grid-template-columns: 1fr 1fr; gap: 8px;}
+html[data-ui-view="mobile"] .map-choice img{height: 105px;}
+html[data-ui-view="mobile"] .map-choice{font-size: 12px;}
+}
+
+@media (max-width:0px){html[data-ui-view="desktop"] .teams{grid-template-columns: 1fr;}
+html[data-ui-view="desktop"] .slot{min-height: 86px;}
+html[data-ui-view="desktop"] .slot .avatar{width: 44px; height: 44px;}
+html[data-ui-view="desktop"] .header .connection{font-size: 11px;}
+html[data-ui-view="desktop"] .active-slot-label{max-width: 95px; min-width: 80px !important;}
+html[data-ui-view="desktop"] .hero-panel .row label:first-child{min-width: 120px;}
+html[data-ui-view="desktop"] .map-heading{gap: 6px;}
+html[data-ui-view="desktop"] #chooseMap{font-size: 12px; padding: 9px;}
+html[data-ui-view="desktop"] .tabs #openHelp{margin-left: 0px;}
+html[data-ui-view="desktop"] #mapChoices{grid-template-columns: 1fr 1fr; gap: 8px;}
+html[data-ui-view="desktop"] .map-choice img{height: 105px;}
+html[data-ui-view="desktop"] .map-choice{font-size: 12px;}
+}
+
+.team-title{display: block; margin-bottom: 8px;}
+
+.team-title h2{font-size: 18px; margin: 0px;}
+
+.slot-cell{position: relative; min-width: 0px;}
+
+.slot-cell > .slot{width: 100%; height: 100%; padding-top: 16px;}
+
+.slot-remove{position: absolute; top: 4px; right: 4px; z-index: 2; width: 24px; height: 24px; padding: 0px; border: 1px solid rgb(142, 100, 113); border-radius: 6px; background: rgb(48, 35, 50); color: rgb(255, 228, 233); font-size: 19px; line-height: 20px;}
+
+.slot-remove:hover{background: rgb(104, 49, 72);}
+
+.winner-picker{padding: 10px; border: 1px solid rgb(82, 96, 120); border-radius: 9px; margin-top: 12px;}
+
+.winner-picker > span{font-size: 15px; font-weight: 800; color: rgb(240, 245, 255);}
+
+.winner-picker.missing-winner{border: 2px solid rgb(255, 210, 139); background: rgb(73, 53, 30);}
+
+#winnerWarning{font-size: 12px; color: rgb(255, 223, 170); margin: 0px; width: 100%;}
+
+#winnerWarning[hidden]{display: none;}
+
+.verification{margin-top: 10px; max-width: 100%; overflow: visible; min-height: 65px;}
+
+.submit-match.ready-to-submit{background: rgb(34, 78, 70); border-color: rgb(115, 181, 162);}
+
+#page-tiers{margin-top: 12px;}
+
+.tier-header, .tier-controls{display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap;}
+
+.tier-header h2{font-size: 24px; margin-bottom: 4px;}
+
+.tier-header .caption{margin: 0px;}
+
+.tier-controls label{min-width: 210px;}
+
+#tierMapPreview{display: flex; align-items: center; gap: 12px; margin-top: 12px; color: var(--muted);}
+
+#tierMapPreview[hidden]{display: none;}
+
+#tierMapImage{width: 180px; height: 105px; object-fit: contain; background: rgb(16, 23, 34); border-radius: 8px;}
+
+#tierRows{display: grid; gap: 9px; margin-top: 14px;}
+
+.tier-row{display: grid; grid-template-columns: 100px minmax(0px, 1fr); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: rgb(16, 25, 39);}
+
+.tier-label{display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 6px; text-align: center; padding: 12px 6px; color: rgb(19, 26, 39); font-size: 30px; font-weight: 800;}
+
+.tier-label small{font-size: 10px; font-weight: 500; color: rgb(38, 50, 68);}
+
+.tier-S .tier-label{background: rgb(245, 154, 156);}
+
+.tier-A .tier-label{background: rgb(238, 183, 129);}
+
+.tier-B .tier-label{background: rgb(228, 211, 133);}
+
+.tier-C .tier-label{background: rgb(148, 201, 168);}
+
+.tier-N .tier-label{background: rgb(137, 150, 169); font-size: 14px;}
+
+.tier-content{display: flex; flex-wrap: wrap; gap: 10px; padding: 12px; align-content: start; min-height: 110px;}
+
+.tier-hero{width: 106px; display: flex; align-items: center; flex-direction: column; gap: 4px; background: rgb(23, 34, 53); border: 1px solid rgb(48, 65, 89); border-radius: 9px; padding: 9px 5px; text-align: center;}
+
+.tier-hero .avatar{width: 54px; height: 54px;}

@@ -1,0 +1,13 @@
+{
+  "source": "assets/css/tracker-styles.css",
+  "order": [
+    "00-part.css",
+    "01-part.css",
+    "02-part.css",
+    "03-part.css",
+    "04-part.css",
+    "05-part.css",
+    "06-part.css",
+    "07-part.css"
+  ]
+}
