@@ -3,6 +3,7 @@
 Ta sekcja zastępuje nieaktualne statusy faz opisane niżej. Starszy plan MVP pozostaje jako kontekst historyczny.
 
 ## Aktywny stan
+- Rozpoczęto osobną gałąź `feature/record-match-layouts` dla przełączalnych układów Record Match. `Legacy` pozostaje domyślny; nowy układ jest opcjonalny i nie zmienia logiki draftu ani zapisu.
 - Domyślna gałąź: `main`, obecnie zawiera stan wcześniej rozwijany na `feature/record-match-tier-picker`.
 - Frontend ma Record Match z interaktywnym Tier List pickerem, trzy widoki Tier List oraz regułowy Draft Indicator.
 - Nawigacja widoków jest scentralizowana: Record Match, Tier List, Tier S 30+, Tier Side i Statistics wzajemnie się ukrywają przy każdej zmianie zakładki.
