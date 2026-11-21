@@ -50,11 +50,9 @@ def main() -> None:
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
 
-    # Remove files from a previous run that are no longer generated.
-    expected = {f"{index:02d}-{name}.js" for index, (name, _) in enumerate(chunks)}
-    for path in OUTPUT.glob("*.js"):
-        if path.name not in expected:
-            path.unlink()
+    # Do not delete files that are not part of this splitter's generated output.
+    # The modules directory also contains hand-maintained modules loaded by index.html.
+    # Old generated files may remain on disk, but only entries in order.json are consumed.
 
     order: list[str] = []
     for index, (name, body) in enumerate(chunks):
