@@ -121,6 +121,16 @@ function wireHeroCard(card,hero){
  card.onclick=()=>{
   if(Date.now()<blockClickUntil||used)return;
   choose(hero.id);
+  // Reset directly from the picker click path, after the core draft action.
+  const search=get('search');
+  if(search)search.value='';
+  factionFilter='';
+  renderFilters();
+  renderHeroes();
+  requestAnimationFrame(()=>{
+   catalog.scrollTop=0;
+   panel.scrollTop=0;
+  });
  };
  card.ondragstart=e=>{
   if(used){e.preventDefault();return;}
