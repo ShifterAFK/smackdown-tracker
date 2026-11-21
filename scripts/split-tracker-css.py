@@ -116,10 +116,8 @@ def main() -> None:
 
     OUTPUT.mkdir(parents=True, exist_ok=True)
 
-    expected = {f"{index:02d}-part.css" for index in range(len(chunks))}
-    for path in OUTPUT.glob("*.css"):
-        if path.name not in expected:
-            path.unlink()
+    # Do not delete files that are not part of this splitter's generated output.
+    # Keep hand-maintained CSS modules safe; order.json defines the generated sequence.
 
     order: list[str] = []
     for index, body in enumerate(chunks):
