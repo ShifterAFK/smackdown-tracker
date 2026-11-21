@@ -133,3 +133,23 @@
 }
 
 #page-entry.record-layout-new .hero-panel>.row #factionFilters{grid-area:auto;grid-column:1/-1;grid-row:auto}
+
+
+/* Keep the active draft (map + BLUE/RED slots) visible while browsing the hero catalog. */
+#page-entry.record-layout-new #recordTop{position:sticky;top:4px;z-index:40;background:var(--bg,#111713);padding-bottom:4px;isolation:isolate}
+#page-entry.record-layout-new .team-meta-row{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0;margin-top:5px}
+#page-entry.record-layout-new .team-meta-row>.check{flex:0 0 auto;white-space:nowrap;font-size:9px;gap:3px}
+#page-entry.record-layout-new .team-meta-row>.phantimal{display:flex;align-items:center;gap:3px;min-width:0;flex:1 1 auto;margin:0;flex-wrap:nowrap}
+#page-entry.record-layout-new .team-meta-row .ph-label{font-size:9px;white-space:nowrap}
+#page-entry.record-layout-new .team-meta-row .ph-icons{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;max-width:24px!important;max-height:24px!important;flex:0 0 24px!important;padding:0!important}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:20px!important;height:20px!important;min-width:20px!important;max-width:20px!important;max-height:20px!important}
+#page-entry.record-layout-new .team-meta-row .ph-status{display:none!important}
+#page-entry.record-layout-new .catalog-top-legend{display:none!important}
+#page-entry.record-layout-new #heroes{margin-top:0!important}
+@media(max-width:760px){
+ #page-entry.record-layout-new #recordTop{top:0}
+ #page-entry.record-layout-new .team-meta-row{gap:3px}
+ #page-entry.record-layout-new .team-meta-row>.check{white-space:normal}
+ #page-entry.record-layout-new .team-meta-row .ph-label{display:none}
+}
