@@ -98,3 +98,36 @@
   max-width:none;
  }
 }
+
+
+/* Compact desktop utility bar: layout and ranking controls share one row. */
+#page-entry.record-layout-new>#recordLayoutSwitch{display:flex;justify-content:flex-end;gap:12px;min-height:40px;padding:5px 9px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{display:flex;align-items:center;gap:7px;min-width:0;margin:0;padding:0;border:0;background:transparent;flex:1}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>label{font-size:11px;font-weight:700;white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>select{min-height:30px;padding:4px 26px 4px 8px;font-size:11px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-status{font-size:10px;margin-left:auto;white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-method{font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-method>summary{cursor:pointer;color:var(--gold,#d7b66d)}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-method>p{position:absolute;z-index:30;right:8px;top:48px;width:min(440px,90vw);padding:10px;background:#18231d;border:1px solid var(--line);border-radius:8px;white-space:normal;box-shadow:0 8px 24px #0008}
+#page-entry.record-layout-new .map-area #currentTheme{display:none!important}
+#page-entry.record-layout-new .map-area .catalog-order-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0;padding-top:4px;border-top:1px solid rgba(190,170,120,.2)}
+#page-entry.record-layout-new .map-area .catalog-order-tools button{min-height:28px;padding:4px 7px;font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new .map-area .catalog-order-status{font-size:10px;line-height:1.3;margin:0}
+#page-entry.record-layout-new .team-meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0;margin-top:5px}
+#page-entry.record-layout-new .team-meta-row>.check{margin:0;flex:0 0 auto;white-space:nowrap;font-size:10px}
+#page-entry.record-layout-new .team-meta-row>.phantimal{display:flex;align-items:center;gap:5px;min-width:0;margin:0}
+#page-entry.record-layout-new .team-meta-row .ph-label{font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new .team-meta-row .ph-icons{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip{width:30px;height:30px;min-width:30px;min-height:30px;padding:1px}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:25px;height:25px}
+#page-entry.record-layout-new .hero-panel>.row{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:8px;align-items:end}
+#page-entry.record-layout-new .hero-panel>.row>label:first-child{min-width:0}
+#page-entry.record-layout-new .hero-panel #factionFilters{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new .hero-panel #factionFilters .filter{min-height:28px;padding:4px 8px;font-size:10px}
+#page-entry.record-layout-new .hero-panel #factionFilters[hidden]{display:none!important}
+@media(max-width:760px){
+ #page-entry.record-layout-new>#recordLayoutSwitch{flex-wrap:wrap;justify-content:space-between}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{order:3;flex:1 0 100%;flex-wrap:wrap}
+ #page-entry.record-layout-new .team-meta-row{gap:4px}
+ #page-entry.record-layout-new .team-meta-row>.check{white-space:normal}
+}
