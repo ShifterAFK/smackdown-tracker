@@ -29,8 +29,8 @@ if(map)top.append(map);
 if(teams){
  for(const side of ['BLUE','RED']){
   const team=teams.querySelector('.team.'+side.toLowerCase());
-  const check=team?.querySelector('.check');
-  const phantimal=team?.querySelector('.phantimal');
+  const check=team?.querySelector('label.check');
+  const phantimal=document.getElementById('phantimal'+side);
   if(team&&check&&phantimal){
    const meta=document.createElement('div');meta.className='team-meta-row';
    check.before(meta);meta.append(check,phantimal);
@@ -47,6 +47,8 @@ function outcomePlaceholder(){return catalog;}
 const searchRow=catalog.querySelector('.hero-panel>.row');
 const factionFilters=document.getElementById('factionFilters');
 if(searchRow&&factionFilters)searchRow.append(factionFilters);
+// The old TOP-6 legend is obsolete; ranking is now shown in the top utility bar.
+document.querySelectorAll('.catalog-top-legend').forEach(node=>node.remove());
 const outcome=document.createElement('section');outcome.id='recordOutcome';outcome.className='record-outcome';
 const toggle=document.createElement('button');toggle.id='recordOutcomeToggle';toggle.type='button';toggle.setAttribute('aria-expanded','false');
 const toggleTitle=document.createElement('span');toggleTitle.textContent='Match Indicator & Result';
