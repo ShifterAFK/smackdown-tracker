@@ -81,3 +81,6 @@
  #page-entry.record-layout-new .hero-panel .tier-hero .avatar{width:38px;height:38px}
  #recordLayoutSwitch{justify-content:space-between}
 }
+
+/* Keep the ranking toolbar in its reserved grid row; otherwise CSS Grid creates an implicit column and squeezes the whole layout. */
+#page-entry.record-layout-new .record-tier-controls{grid-area:ranking;width:100%;min-width:0;box-sizing:border-box}
