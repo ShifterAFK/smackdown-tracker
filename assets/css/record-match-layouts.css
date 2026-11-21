@@ -153,3 +153,8 @@
  #page-entry.record-layout-new .team-meta-row>.check{white-space:normal}
  #page-entry.record-layout-new .team-meta-row .ph-label{display:none}
 }
+
+
+/* Navigation hides the whole Record Match page with .hidden.
+   The layout's ID/class grid selector otherwise outranks the generic .hidden rule. */
+#page-entry.record-layout-new.hidden{display:none!important}
