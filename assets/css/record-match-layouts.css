@@ -84,3 +84,17 @@
 
 /* Keep the ranking toolbar in its reserved grid row; otherwise CSS Grid creates an implicit column and squeezes the whole layout. */
 #page-entry.record-layout-new .record-tier-controls{grid-area:ranking;width:100%;min-width:0;box-sizing:border-box}
+
+
+/* The legacy desktop layout reserves a 410px picker column. In New Layout,
+   the named grid areas form one full-width column, so explicitly override
+   the more-specific legacy desktop rules. */
+@media (min-width:1100px){
+ html[data-ui-view="auto"] #page-entry.record-layout-new,
+ html[data-ui-view="desktop"] #page-entry.record-layout-new{
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-areas:"layout" "top" "outcome" "search" "ranking" "filters" "assistant" "catalog" "catalog-info"!important;
+  width:100%;
+  max-width:none;
+ }
+}
