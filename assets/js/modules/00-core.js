@@ -268,7 +268,7 @@ $('search').addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation
 $('search').addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();if(dragData)finishDrag();});
 
 // START_UI
-for(const tab of document.querySelectorAll('[data-page]'))tab.onclick=()=>{for(const b of document.querySelectorAll('[data-page]'))b.classList.toggle('active',b===tab);for(const page of ['entry','tiers','statistics']){const panel=$('page-'+page);if(panel)panel.classList.toggle('hidden',page!==tab.dataset.page);}if(tab.dataset.page==='statistics')loadStats();if(tab.dataset.page==='tiers')loadTiers()};
+for(const tab of document.querySelectorAll('[data-page]'))tab.onclick=()=>{for(const b of document.querySelectorAll('[data-page]'))b.classList.toggle('active',b===tab);for(const page of ['entry','tiers','tiers30','tiers-side','statistics']){const panel=$('page-'+page);if(panel)panel.classList.toggle('hidden',page!==tab.dataset.page);}if(tab.dataset.page==='statistics')loadStats();if(tab.dataset.page==='tiers')loadTiers()};
 for(const side of ['BLUE','RED']){$('win'+side).onclick=()=>{winner=side;renderSlots()};$('known'+side).onchange=e=>{known[side]=e.target.checked;renderSlots()}}
 $('theme').onchange=renderMap;
 $('search').oninput=renderHeroes;

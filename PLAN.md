@@ -5,6 +5,7 @@ Ta sekcja zastępuje nieaktualne statusy faz opisane niżej. Starszy plan MVP po
 ## Aktywny stan
 - Domyślna gałąź: `main`, obecnie zawiera stan wcześniej rozwijany na `feature/record-match-tier-picker`.
 - Frontend ma Record Match z interaktywnym Tier List pickerem, trzy widoki Tier List oraz regułowy Draft Indicator.
+- Nawigacja widoków jest scentralizowana: Record Match, Tier List, Tier S 30+, Tier Side i Statistics wzajemnie się ukrywają przy każdej zmianie zakładki.
 - Draft Indicator zastąpił predykcyjny model logistyczny. `train-match-model` jest wycofany: harmonogram cron usunięty, publiczny dostęp do `model_snapshots` cofnięty, endpoint zwraca HTTP 410. Historyczne snapshoty pozostają w bazie bez dostępu anon/authenticated.
 - Splittery JS i CSS nie usuwają już plików spoza własnego wygenerowanego zestawu.
 - Baza Supabase i zatwierdzone mecze pozostają bez zmian; nie wykonano migracji danych meczowych.
