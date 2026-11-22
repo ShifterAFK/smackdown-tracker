@@ -89,3 +89,5 @@ Odbudowa frontendu trackera AFK Journey Smackdown od zera, z zachowaniem działa
 - PR #4 follow-up: ranking controls and draft-order toggle are now both relocated via a page-level observer, so late initialization of either module cannot leave them outside the top toolbar. Match submissions are locked to `config.event.current_theme_id`; the current map thumbnail remains beside the SHOWDOWN SMACKDOWN title and is not clickable/changeable from Record Match.
 
 - Preserved the hidden map-state DOM controls required by the existing core initializer while removing all visible map selection/rotation UI. Only the current event map thumbnail/name is exposed in the brand header.
+
+- PR #4 visual refinement: move current-map badge closer to SHOWDOWN SMACKDOWN title; keep Hero ranking and Set draft order centered on one desktop toolbar row; remove inherited vertical spacing/height from the hero catalog so portraits sit directly beneath Find a hero and faction filters.
