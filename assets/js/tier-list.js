@@ -6,10 +6,22 @@ function values(row){const n=Math.max(0,Number(row?.appearances)||0),wins=Math.m
 function entries(data){const byId=new Map((data?.heroes||[]).map(r=>[r.hero_id,r]));return config.heroes.map(hero=>({hero,...values(byId.get(hero.id))}));}
 function wilson(n,wins){if(!n)return 0;const p=wins/n,z=1.96;const denom=1+z*z/n;const center=p+z*z/(2*n);const margin=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n));return (center-margin)/denom;}
 function compare(a,b){return b.wilson-a.wilson||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en')||a.hero.id.localeCompare(b.hero.id);}
+function decorateTier(items,key){
+ const ranked=items.slice().sort((a,b)=>(Number(b.n>=30)-Number(a.n>=30))||compare(a,b));
+ const established=ranked.filter(x=>x.n>=30);
+ return ranked.map((item,index)=>{
+  let label=key+'?';
+  if(item.n>=30){
+   const position=established.findIndex(x=>x.hero.id===item.hero.id);
+   label=position===0?key+'+':position===established.length-1&&established.length>1?key+'-':key;
+  }
+  return {item,label};
+ });
+}
 function buildTiers(data){
  const items=entries(data).map(x=>({...x,wilson:wilson(x.n,x.wins)}));
- const sPool=items.filter(x=>x.n>=10&&x.rate>=70).sort(compare);
- const sList=sPool.slice(0,8).map((item,i)=>({item,label:i===0?'SSS':i===1?'SS':i===2?'S+':'S'}));
+ const sPool=items.filter(x=>x.n>=10&&x.rate>=70);
+ const sList=decorateTier(sPool.slice().sort(compare).slice(0,8),'S');
  const sIds=new Set(sList.map(x=>x.item.hero.id));
  const buckets={A:[],B:[],C:[],N:[]};
  for(const item of items){
@@ -20,10 +32,10 @@ function buildTiers(data){
  return {sList,buckets};
 }
 function topIds(data){return new Set(buildTiers(data).sList.map(x=>x.item.hero.id));}
-const legend='S row: up to 8 heroes with 70%+ raw win rate and at least 10 appearances, ranked by Wilson conservative score. #1 SSS, #2 SS, #3 S+, #4-8 S. Remaining heroes: A 60%+ | B 50-<60% | C <50%. Minimum 10 appearances for A/B/C; otherwise preliminary. Wilson ranks heroes within each tier; it does not set tier eligibility.';
+const legend='S: up to 8 heroes with 70%+ raw win rate and at least 10 appearances. A: 60%+ | B: 50-<60% | C: <50%. Wilson ranks heroes within each tier. In every tier, the first hero with 30+ appearances gets +, the last established hero gets -, and heroes with 10-29 appearances get ? and are placed at the end. Heroes with fewer than 10 appearances are preliminary.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-tag{font-size:11px;font-weight:700;color:var(--accent,#c9a227)}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
-const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (20+ qualify, A+ fill from 15+) | SSS / SS / S+ / S / A+';
+const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (70%+ win rate) | + / ? / - indicate tier position and sample size';
 const explanation=document.createElement('p');explanation.className='caption';explanation.textContent=legend;get('tierRows').before(explanation);
 function makeCard(item,label){
  const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');card.dataset.heroId=hero.id;
@@ -46,8 +58,8 @@ renderTiers=function(){
   const row=document.createElement('section');row.className='tier-row tier-'+key+(!buckets[key].length?' is-empty':'');
   const label=document.createElement('div');label.className='tier-label';label.textContent=key;
   const content=document.createElement('div');content.className='tier-content';
-  buckets[key].sort(compare);
-  for(const item of buckets[key])content.append(makeCard(item,key));
+  const ranked=decorateTier(buckets[key],key);
+  for(const entry of ranked)content.append(makeCard(entry.item,entry.label));
   if(!buckets[key].length){const empty=document.createElement('span');empty.className='tier-empty';empty.textContent='—';content.append(empty);}
   row.append(label,content);root.append(row);
  }
@@ -63,7 +75,10 @@ function tierLabel(data,heroId){
  const {sList,buckets}=buildTiers(data);
  const inS=sList.find(x=>x.item.hero.id===heroId);
  if(inS)return inS.label;
- for(const key of ['A','B','C'])if(buckets[key].some(x=>x.hero.id===heroId))return key;
+ for(const key of ['A','B','C']){
+  const entry=decorateTier(buckets[key],key).find(x=>x.item.hero.id===heroId);
+  if(entry)return entry.label;
+ }
  return 'N';
 }
 showTierHero=async function(item){
@@ -96,9 +111,9 @@ function paintS(){
  const items=sList.map(x=>x.item).filter(x=>x.hero.is_allowed);
  const signature=JSON.stringify([overallData.generated_at,items.map(x=>[x.hero.id,x.wins,x.n,x.hero.portrait_url])]);if(row.dataset.topFive===signature)return;
  row.dataset.topFive=signature;row.replaceChildren();
- const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — top 8 (SSS / SS / S+ / S / A+)';
+ const title=wrap.querySelector('.da-s-title');if(title)title.textContent='S Overall — top 8 (S+ / S? / S-)';
  for(const {hero,n,rate} of items){const card=document.createElement('span');card.className='da-s-hero';card.title=hero.name+' — '+rate.toFixed(1)+'% · '+n+' appearances';const img=document.createElement('img');img.src=hero.portrait_url||'';img.alt='';img.loading='lazy';const label=document.createElement('span');label.textContent=hero.name;card.append(img,label);row.append(card);}
- if(!items.length)row.textContent='No allowed heroes in the Overall S top eight (20+ appearances with 60%+ win rate, A+ fill from 15+).';
+ if(!items.length)row.textContent='No allowed heroes in the Overall S top eight (70%+ win rate, at least 10 appearances).';
 }
 const sbox=get('daOverallS');if(sbox)new MutationObserver(paintS).observe(sbox,{childList:true,subtree:true});window.addEventListener('tracker:catalog-changed',()=>{paintS();});
 renderTiers();window.TrackerTransparentTiers={version:'1.3.37'};
