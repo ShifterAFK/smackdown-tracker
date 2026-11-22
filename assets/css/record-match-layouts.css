@@ -158,3 +158,7 @@
 /* Navigation hides the whole Record Match page with .hidden.
    The layout's ID/class grid selector otherwise outranks the generic .hidden rule. */
 #page-entry.record-layout-new.hidden{display:none!important}
+
+
+/* Legacy layout switch removed: the compact Record Match layout is now the only layout. */
+#page-entry.record-layout-new>#recordLayoutSwitch{min-height:36px;padding:4px 8px}
