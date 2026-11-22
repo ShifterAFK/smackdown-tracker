@@ -12,7 +12,7 @@ if(!window.TrackerSnapshotUI1323){
 if(window.TrackerTierListLoading||window.TrackerTransparentTiers)return;
 window.TrackerTierListLoading=true;
 const script=document.createElement('script');
-script.src=new URL('tier-list.js?v=1.3.34-refactor',document.currentScript.src).href;
+script.src=new URL('tier-list.js?v=20261122-wilson8',document.currentScript.src).href;
 script.async=false;
 script.onerror=()=>{
  window.TrackerTierListLoading=false;
