@@ -162,3 +162,30 @@
 
 /* Legacy layout switch removed: the compact Record Match layout is now the only layout. */
 #page-entry.record-layout-new>#recordLayoutSwitch{min-height:36px;padding:4px 8px}
+
+
+/* The live Draft Edge replaces the map in the sticky draft header. */
+#page-entry.record-layout-new #recordTop{grid-template-columns:minmax(205px,22%) minmax(0,1fr)!important}
+#page-entry.record-layout-new #recordTop>.map-area{display:none!important}
+#page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1;min-width:0;margin:0!important;padding:9px 10px;align-self:stretch}
+#page-entry.record-layout-new #recordTop>.teams{grid-column:2;grid-row:1}
+#page-entry.record-layout-new #draftIndicator .me-head{display:flex;align-items:center;justify-content:space-between;gap:5px;flex-wrap:wrap}
+#page-entry.record-layout-new #draftIndicator .me-heading{font-size:11px;letter-spacing:.05em}
+#page-entry.record-layout-new #draftIndicator .me-tag{font-size:9px}
+#page-entry.record-layout-new #draftIndicator .me-result{font-size:12px;line-height:1.35;font-weight:750;min-height:32px}
+#page-entry.record-layout-new #draftIndicator .me-track{height:12px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.1)}
+#page-entry.record-layout-new #draftIndicator .me-blue,#page-entry.record-layout-new #draftIndicator .me-red{height:100%;transition:width .2s ease}
+#page-entry.record-layout-new #draftIndicator .me-legend{font-size:9px;display:flex;justify-content:space-between;gap:4px}
+#page-entry.record-layout-new #draftIndicator details{font-size:10px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{min-height:28px;padding:4px 8px;font-size:10px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-status{font-size:10px;white-space:nowrap}
+@media(max-width:760px){
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(150px,25%) minmax(0,1fr)!important}
+ #page-entry.record-layout-new #draftIndicator{padding:7px!important}
+}
+@media(max-width:520px){
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(0,1fr)!important}
+ #page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1}
+ #page-entry.record-layout-new #recordTop>.teams{grid-column:1;grid-row:2}
+}
