@@ -189,3 +189,41 @@
  #page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1}
  #page-entry.record-layout-new #recordTop>.teams{grid-column:1;grid-row:2}
 }
+
+
+/* Current event map is a small, non-interactive brand-header thumbnail. */
+.brand-header .brand-current-map{display:flex;align-items:center;gap:10px;margin-left:auto;min-width:0;max-width:280px;padding:5px 8px;border-left:1px solid rgba(214,190,130,.25)}
+.brand-header .brand-current-map-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand-header .brand-current-map-copy>span{font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--gold,#d7b66d)}
+.brand-header .brand-current-map-copy>#mapSelectedName{font-size:11px;font-weight:650;color:var(--text);white-space:nowrap}
+.brand-header #mapPreview{display:block;width:76px;height:52px;object-fit:contain;border-radius:5px;border:1px solid rgba(214,190,130,.25);background:#101713;pointer-events:none}
+#page-entry.record-layout-new #recordTop{grid-template-columns:minmax(205px,22%) minmax(0,1fr)!important}
+#page-entry.record-layout-new #recordTop>.teams{grid-column:2;grid-row:1}
+#page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center;gap:12px;min-height:0;padding:12px!important}
+#page-entry.record-layout-new #draftIndicator .me-head,
+#page-entry.record-layout-new #draftIndicator .me-result,
+#page-entry.record-layout-new #draftIndicator .me-track,
+#page-entry.record-layout-new #draftIndicator .me-legend,
+#page-entry.record-layout-new #draftIndicator details{width:100%;max-width:100%}
+#page-entry.record-layout-new #draftIndicator .me-result{text-align:center;min-height:0;margin:4px 0}
+#page-entry.record-layout-new #recordLayoutSwitch{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:12px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{flex:0 1 auto;order:0}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{display:flex;align-items:center;gap:7px;flex:0 1 auto;order:1;margin:0;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{min-height:30px;padding:5px 9px;font-size:11px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-status{font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new .map-area{display:none!important}
+@media(max-width:760px){
+ .brand-header .brand-current-map{max-width:190px;gap:6px;padding:4px;margin-left:auto}
+ .brand-header #mapPreview{width:58px;height:42px}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(155px,25%) minmax(0,1fr)!important}
+ #page-entry.record-layout-new #recordTop>#draftIndicator{padding:8px!important;gap:7px}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{flex:1 1 auto}
+}
+@media(max-width:520px){
+ .brand-header .brand-current-map{max-width:120px}
+ .brand-header .brand-current-map-copy>#mapSelectedName{font-size:9px;white-space:normal}
+ .brand-header #mapPreview{width:42px;height:34px}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(0,1fr)!important}
+ #page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1}
+ #page-entry.record-layout-new #recordTop>.teams{grid-column:1;grid-row:2}
+}
