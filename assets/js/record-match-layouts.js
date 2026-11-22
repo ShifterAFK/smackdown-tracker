@@ -28,9 +28,15 @@ if(brand&&mapImage){
  const brandStatus=brand.querySelector('.brand-status');
  brand.insertBefore(brandMap,brandStatus||null);
 }
+// Core match code still expects these map nodes to exist, so retain them hidden
+// while exposing only the current map name and thumbnail in the brand header.
+const mapState=document.createElement('div');mapState.id='recordMapState';mapState.hidden=true;
+for(const id of ['theme','currentTheme','chooseMap','mapOpen']){
+ const node=document.getElementById(id);
+ if(node)mapState.append(node);
+}
+page.append(mapState);
 mapArea?.remove();
-document.getElementById('chooseMap')?.remove();
-document.getElementById('mapOpen')?.remove();
 
 const teams=match.querySelector('.teams');
 const indicator=document.getElementById('draftIndicator');
