@@ -3,6 +3,7 @@
 Ta sekcja zastępuje nieaktualne statusy faz opisane niżej. Starszy plan MVP pozostaje jako kontekst historyczny.
 
 ## Aktywny stan
+- Przygotowano osobny mobilny układ Record Match na branchu `feature/record-match-mobile-layout`: BLUE i RED pozostają obok siebie, Live Draft Edge jest nad nimi w kompaktowym sticky panelu, katalog ma poziome filtry frakcji i ciaśniejsze rzędy portretów. To jest wersja do testów w Live Preview; nie jest jeszcze scalona.
 - Record Match używa jednego kompaktowego układu; Legacy zostało usunięte. Górny pasek zawiera wybór Hero ranking/Tier List i przełącznik kolejności draftu. Live Draft Edge zajmuje miejsce mapy obok drużyn BLUE/RED i aktualizuje się po każdym dodaniu, usunięciu lub przeniesieniu bohatera. Wskaźnik jest eksperymentalnym wynikiem punktowym z danych historycznych, a nie skalibrowanym prawdopodobieństwem zwycięstwa. Formularz zgłoszenia wyniku pozostaje w osobnym, zwijanym panelu. Katalog jest pełnej szerokości, a nagłówek draftu pozostaje sticky podczas przewijania. Poprawiono konflikt ze starszą desktopową siatką 410px + katalog: w New Layout wymuszono jedną kolumnę pełnej szerokości i zachowano nazwane obszary siatki. Wcześniejsza korekta paska Hero ranking pozostaje.
 - Domyślna gałąź: `main`, obecnie zawiera stan wcześniej rozwijany na `feature/record-match-tier-picker`.
 - Frontend ma Record Match z interaktywnym Tier List pickerem, trzy widoki Tier List oraz regułowy Draft Indicator.
