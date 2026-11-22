@@ -16,6 +16,25 @@ const ranking=document.querySelector('#page-entry .record-tier-controls');
 if(ranking)controls.append(ranking);
 
 const top=document.createElement('section');top.id='recordTop';top.className='record-top';
+// Put the current event map thumbnail beside the product title. No map picker or map rotation panel in Record Match.
+const mapArea=match.querySelector('.map-area');
+const mapImage=document.getElementById('mapPreview');
+const mapName=document.getElementById('mapSelectedName');
+const brand=document.querySelector('.brand-header');
+if(brand&&mapImage){
+ const brandMap=document.createElement('div');brandMap.className='brand-current-map';
+ const brandMapCopy=document.createElement('div');brandMapCopy.className='brand-current-map-copy';
+ const caption=document.createElement('span');caption.textContent='CURRENT MAP';
+ brandMapCopy.append(caption);
+ if(mapName)brandMapCopy.append(mapName);
+ brandMap.append(brandMapCopy,mapImage);
+ const brandStatus=brand.querySelector('.brand-status');
+ brand.insertBefore(brandMap,brandStatus||null);
+}
+mapArea?.remove();
+document.getElementById('chooseMap')?.remove();
+document.getElementById('mapOpen')?.remove();
+
 const teams=match.querySelector('.teams');
 const indicator=document.getElementById('draftIndicator');
 if(indicator)top.append(indicator);
@@ -31,9 +50,14 @@ if(teams){
  }
  top.append(teams);
 }
-// Move the draft-order follow toggle into the top utility bar.
-const orderTools=match.querySelector('.catalog-order-tools');
-if(orderTools)controls.append(orderTools);
+// Draft-order toolbar may be created before or after this module; move it whenever it appears.
+function moveDraftOrderToolbar(){
+ const orderTools=match.querySelector('.catalog-order-tools')||top.querySelector('.catalog-order-tools');
+ if(orderTools&&orderTools.parentElement!==controls)controls.append(orderTools);
+}
+moveDraftOrderToolbar();
+const orderObserver=new MutationObserver(moveDraftOrderToolbar);
+orderObserver.observe(match,{childList:true,subtree:true});
 page.insertBefore(top,outcomePlaceholder());
 function outcomePlaceholder(){return catalog;}
 // Keep faction filters beside the search controls rather than in a separate panel.
