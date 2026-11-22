@@ -293,3 +293,97 @@
  #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{flex:0 0 auto!important}
  .brand-header .brand-current-map{margin-left:8px!important;margin-right:0!important}
 }
+
+
+/* Submission panel: the live edge now lives in the sticky draft header, so the
+   submission body has one full-width child, not an empty 35/65 split column. */
+#recordOutcomeBody{grid-template-columns:minmax(0,1fr)!important}
+#recordOutcomeSubmission{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ grid-template-rows:auto auto auto;
+ align-items:stretch;
+ gap:8px 12px!important;
+ width:100%;
+ box-sizing:border-box;
+}
+#recordOutcomeSubmission #winnerPicker{
+ grid-column:1;
+ grid-row:1 / span 2;
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ align-content:center;
+ gap:8px!important;
+ min-width:0;
+ padding:10px!important;
+}
+#recordOutcomeSubmission #winnerPicker>span,
+#recordOutcomeSubmission #winnerPicker>#winnerWarning{grid-column:1/-1}
+#recordOutcomeSubmission #winnerPicker>#winBLUE,
+#recordOutcomeSubmission #winnerPicker>#winRED{min-height:48px!important}
+#recordOutcomeSubmission .verification{
+ grid-column:2;
+ grid-row:1;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ min-height:64px;
+ margin:0!important;
+ padding:4px 8px;
+ border:1px solid var(--line);
+ border-radius:8px;
+ background:rgba(10,17,14,.28);
+}
+#recordOutcomeSubmission #captchaStatus{
+ grid-column:2;
+ grid-row:2;
+ align-self:center;
+ margin:0!important;
+ font-size:11px;
+}
+#recordOutcomeSubmission .actions{
+ grid-column:1/-1;
+ grid-row:3;
+ margin:0!important;
+}
+#recordOutcomeSubmission .actions .submit-match{width:100%;min-height:42px}
+#recordOutcomeSubmission .secondary-actions{
+ grid-column:1/-1;
+ display:flex;
+ justify-content:flex-end;
+ align-items:center;
+ gap:8px;
+ margin:0!important;
+ padding-top:2px;
+ border-top:1px solid rgba(190,190,170,.12);
+}
+#recordOutcomeSubmission #entryStatus{grid-column:1/-1;margin:0!important}
+.brand-header #mapPreview{
+ width:104px!important;
+ height:70px!important;
+ max-width:104px;
+ border-radius:7px;
+}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip{
+ width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;
+ max-width:32px!important;max-height:32px!important;flex:0 0 32px!important;
+}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip img{
+ width:27px!important;height:27px!important;min-width:27px!important;max-width:27px!important;
+ max-height:27px!important;
+}
+#page-entry.record-layout-new .team-meta-row .ph-icons{gap:4px!important}
+#page-entry.record-layout-new .team-meta-row>.phantimal{gap:4px!important}
+@media(max-width:760px){
+ #recordOutcomeSubmission{grid-template-columns:minmax(0,1fr)!important}
+ #recordOutcomeSubmission #winnerPicker,
+ #recordOutcomeSubmission .verification,
+ #recordOutcomeSubmission #captchaStatus,
+ #recordOutcomeSubmission .actions,
+ #recordOutcomeSubmission .secondary-actions,
+ #recordOutcomeSubmission #entryStatus{grid-column:1;grid-row:auto}
+ #recordOutcomeSubmission #winnerPicker{grid-row:auto}
+ .brand-header #mapPreview{width:76px!important;height:54px!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip{width:28px!important;height:28px!important;min-width:28px!important;min-height:28px!important;flex-basis:28px!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important}
+}
