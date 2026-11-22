@@ -11,14 +11,7 @@ window.dispatchEvent(new CustomEvent('tracker:record-layout-changed',{detail:{la
 const controls=document.createElement('div');
 controls.id='recordLayoutSwitch';controls.className='record-layout-switch';
 page.insertBefore(controls,match);
-// Ranking controls may be created asynchronously by the tier picker module.
-function moveTopControls(){
- const ranking=page.querySelector('.record-tier-controls');
- if(ranking&&ranking.parentElement!==controls)controls.append(ranking);
- const orderTools=page.querySelector('.catalog-order-tools');
- if(orderTools&&orderTools.parentElement!==controls)controls.append(orderTools);
-}
-
+// Ranking and draft-order controls are moved after both modules initialize.
 const top=document.createElement('section');top.id='recordTop';top.className='record-top';
 // Put the current event map thumbnail beside the product title. No map picker or map rotation panel in Record Match.
 const mapArea=match.querySelector('.map-area');
