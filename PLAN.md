@@ -3,7 +3,7 @@
 Ta sekcja zastępuje nieaktualne statusy faz opisane niżej. Starszy plan MVP pozostaje jako kontekst historyczny.
 
 ## Aktywny stan
-- Record Match ma przełączalne układy `New Layout` i `Legacy`. `Legacy` pozostaje domyślny; nowy układ ustawia BLUE/RED obok siebie, pokazuje mapę i Draft Indicator nad drużynami, a katalog bohaterów w poziomych rzędach. Wybór jest zapamiętywany lokalnie; oba układy korzystają z tej samej logiki draftu i zapisu.
+- Record Match używa jednego kompaktowego układu; Legacy zostało usunięte. Górny pasek zawiera wybór Hero ranking/Tier List i przełącznik kolejności draftu. Live Draft Edge zajmuje miejsce mapy obok drużyn BLUE/RED i aktualizuje się po każdym dodaniu, usunięciu lub przeniesieniu bohatera. Wskaźnik jest eksperymentalnym wynikiem punktowym z danych historycznych, a nie skalibrowanym prawdopodobieństwem zwycięstwa. Formularz zgłoszenia wyniku pozostaje w osobnym, zwijanym panelu. Katalog jest pełnej szerokości, a nagłówek draftu pozostaje sticky podczas przewijania. Poprawiono konflikt ze starszą desktopową siatką 410px + katalog: w New Layout wymuszono jedną kolumnę pełnej szerokości i zachowano nazwane obszary siatki. Wcześniejsza korekta paska Hero ranking pozostaje.
 - Domyślna gałąź: `main`, obecnie zawiera stan wcześniej rozwijany na `feature/record-match-tier-picker`.
 - Frontend ma Record Match z interaktywnym Tier List pickerem, trzy widoki Tier List oraz regułowy Draft Indicator.
 - Nawigacja widoków jest scentralizowana: Record Match, Tier List, Tier S 30+, Tier Side i Statistics wzajemnie się ukrywają przy każdej zmianie zakładki.
@@ -74,3 +74,22 @@ Odbudowa frontendu trackera AFK Journey Smackdown od zera, z zachowaniem działa
 - Brakująca zakładka.
 - Portret Solise ucięty.
 - Duplikaty logiki (render() w tracker-app.js i 04-draft-assist-script-v1.js).
+- Compact Record Match desktop refinement (PR #4): moved Hero ranking selector into the top layout bar; moved draft-order follow toggle into the map card; removed the map countdown text from the compact map card; combined Draft order known + Phantimal controls into one compact team metadata row; moved faction filters into the Find a hero panel. The Match Indicator & Result visibility behavior remains pending clarification from the user.
+
+- Compact Record Match follow-up (PR #4): fixed team metadata relocation using the actual `label.check` and `#phantimalBLUE/#phantimalRED` elements; compressed Phantimal chips to keep them beside the draft-known checkbox; made the map + BLUE/RED draft row sticky while scrolling the catalog; removed the obsolete TOP-6 legend above the hero catalog and tightened the gap. No change to draft-order or statistics logic.
+
+- Fixed compact layout navigation regression (PR #4): `#page-entry.record-layout-new.hidden` now explicitly uses `display:none!important`, so the sticky draft header is hidden with the Record Match page when switching to Tier List, Statistics, or other tabs. Root cause was the higher specificity of the new layout grid selector overriding the generic `.hidden` rule.
+
+- PR #4: usunięto przełącznik `New Layout / Legacy`; kompaktowy układ jest teraz jedynym układem Record Match. Stary wybór zapisywany w localStorage jest ignorowany. Nie usuwano ani nie zmieniano logiki draftu, katalogu, submission ani danych Supabase.
+
+- PR #4 latest: the map panel is hidden from the visible compact layout; draft-order toggle moved into the top utility bar beside Hero ranking; the live Draft Indicator now occupies the former map column beside BLUE/RED. The indicator recalculates on each draft change, including partial drafts, but is explicitly an experimental rule-based edge score, not a calibrated win probability. Historical data comes from `ss_get_stats`; no model training, Supabase schema, RPC, or stored match data changes.
+
+- PR #4 latest layout correction: removed the map/rotation panel from Record Match and moved the current event map thumbnail + name into the brand header as non-interactive context; map changing controls are removed from this view. Draft-order toggle is relocated robustly to the top utility bar even if its module initializes later. Live Draft Edge is vertically centered in its column. Existing event map selection remains sourced from the configured current event theme; no Supabase changes.
+
+- PR #4 follow-up: ranking controls and draft-order toggle are now both relocated via a page-level observer, so late initialization of either module cannot leave them outside the top toolbar. Match submissions are locked to `config.event.current_theme_id`; the current map thumbnail remains beside the SHOWDOWN SMACKDOWN title and is not clickable/changeable from Record Match.
+
+- Preserved the hidden map-state DOM controls required by the existing core initializer while removing all visible map selection/rotation UI. Only the current event map thumbnail/name is exposed in the brand header.
+
+- PR #4 visual refinement: move current-map badge closer to SHOWDOWN SMACKDOWN title; keep Hero ranking and Set draft order centered on one desktop toolbar row; remove inherited vertical spacing/height from the hero catalog so portraits sit directly beneath Find a hero and faction filters.
+
+- PR #4 UI refinement: enlarged the current-map header thumbnail; increased Phantimal icons while keeping the compact single-row team metadata; rebuilt the expanded result-submission panel as a horizontal desktop layout. Fixed the empty 35/65 grid column left behind after Live Draft Edge moved into the sticky header. Mobile submission layout remains stacked for readability.

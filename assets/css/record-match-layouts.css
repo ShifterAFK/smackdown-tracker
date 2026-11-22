@@ -1,129 +1,389 @@
-/* Optional horizontal Record Match layout. Legacy remains the default. */
-#recordLayoutSwitch{
- display:flex;align-items:center;justify-content:flex-end;gap:10px;
- padding:7px 10px;border:1px solid var(--line);border-radius:10px;
- background:rgba(14,23,38,.62);min-width:0;
-}
-#recordLayoutSwitch .record-layout-label{
- color:var(--muted);font-size:11px;font-weight:750;
- text-transform:uppercase;letter-spacing:.08em;
-}
+/* Compact Record Match layout. Legacy remains available and unchanged. */
+#recordLayoutSwitch{display:flex;align-items:center;justify-content:flex-end;gap:10px;padding:7px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(14,23,38,.62);min-width:0}
+#recordLayoutSwitch .record-layout-label{color:var(--muted);font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.08em}
 #recordLayoutSwitch .record-layout-choices{display:flex;gap:5px}
-#recordLayoutSwitch button{
- min-height:32px;padding:6px 12px;border:1px solid var(--line);
- border-radius:7px;background:rgba(255,255,255,.05);color:var(--text);
- font-size:12px;font-weight:750;cursor:pointer;
-}
-#recordLayoutSwitch button.active{
- color:#211a0c;background:linear-gradient(180deg,#e0c27c,#bf9a4f);
- border-color:#f0d9a0;
-}
-#recordLayoutSwitch button:focus-visible{outline:2px solid #f0d9a0;outline-offset:2px}
+#recordLayoutSwitch button{min-height:32px;padding:6px 12px;border:1px solid var(--line);border-radius:7px;background:rgba(255,255,255,.05);color:var(--text);font-size:12px;font-weight:750;cursor:pointer}
+#recordLayoutSwitch button.active{color:#211a0c;background:linear-gradient(180deg,#e0c27c,#bf9a4f);border-color:#f0d9a0}
+#recordLayoutSwitch button:focus-visible,#recordOutcomeToggle:focus-visible{outline:2px solid #f0d9a0;outline-offset:2px}
 
-#page-entry.record-layout-new{
- display:grid!important;
- grid-template-columns:minmax(0,1fr) minmax(0,1fr);
- grid-template-areas:
-  "layout layout"
-  "map indicator"
-  "teams teams"
-  "winner winner"
-  "verify submit"
-  "captcha secondary"
-  "status status"
-  "search search"
-  "ranking ranking"
-  "filters filters"
-  "assistant assistant"
-  "catalog catalog"
-  "catalog-info catalog-info";
- align-items:start;gap:10px;
-}
+#page-entry.record-layout-new{display:grid!important;grid-template-columns:minmax(0,1fr);grid-template-areas:"layout" "top" "outcome" "search" "ranking" "filters" "assistant" "catalog" "catalog-info";align-items:start;gap:9px}
 #page-entry.record-layout-new>.record-layout-switch{grid-area:layout}
-#page-entry.record-layout-new>.match-panel,
-#page-entry.record-layout-new>.hero-panel{display:contents!important}
-#page-entry.record-layout-new .map-area{grid-area:map;min-width:0;margin:0}
-#page-entry.record-layout-new .map-area .selected-map{width:132px;max-width:100%}
-#page-entry.record-layout-new .map-area .map-heading{gap:7px}
-#page-entry.record-layout-new .map-area #mapSelectedName{font-size:15px}
-#page-entry.record-layout-new #draftIndicator{grid-area:indicator;min-width:0;margin:0;align-self:stretch}
-#page-entry.record-layout-new .teams{
- grid-area:teams;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
- gap:10px;margin:0;
-}
-#page-entry.record-layout-new .team{
- min-width:0;padding:12px;border-radius:12px;
-}
-#page-entry.record-layout-new .team.blue{
- border:1px solid rgba(92,159,220,.6);
- background:linear-gradient(145deg,rgba(29,69,105,.58),rgba(15,27,42,.94));
-}
-#page-entry.record-layout-new .team.red{
- border:1px solid rgba(211,105,105,.58);
- background:linear-gradient(145deg,rgba(104,39,44,.58),rgba(37,20,26,.94));
-}
-#page-entry.record-layout-new #winnerPicker{grid-area:winner;margin:0}
-#page-entry.record-layout-new .verification{grid-area:verify;min-width:0;margin:0!important}
-#page-entry.record-layout-new #captchaStatus{grid-area:captcha;margin:0;align-self:center}
-#page-entry.record-layout-new .actions{grid-area:submit;align-self:center;margin:0}
-#page-entry.record-layout-new .actions .submit-match{width:100%;min-height:44px}
-#page-entry.record-layout-new .secondary-actions{grid-area:secondary;align-self:center;margin:0}
-#page-entry.record-layout-new #entryStatus{grid-area:status;margin:0}
+#page-entry.record-layout-new>.match-panel,#page-entry.record-layout-new>.hero-panel{display:contents!important}
+#page-entry.record-layout-new #recordTop{grid-area:top;display:grid;grid-template-columns:minmax(105px,17%) minmax(0,1fr);gap:9px;align-items:stretch;min-width:0}
+#page-entry.record-layout-new .map-area{grid-column:1;grid-row:1;display:flex!important;flex-direction:column;justify-content:center;gap:5px;margin:0;padding:8px;min-width:0}
+#page-entry.record-layout-new .teams{grid-column:2;grid-row:1;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0;min-width:0}
+#page-entry.record-layout-new .map-area>.row,#page-entry.record-layout-new .map-area>#currentTheme{display:none!important}
+#page-entry.record-layout-new .map-area .map-heading{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;margin:0;min-width:0}
+#page-entry.record-layout-new .map-area .map-heading>div{min-width:0}
+#page-entry.record-layout-new .map-area .map-eyebrow{font-size:10px}
+#page-entry.record-layout-new .map-area #mapSelectedName{font-size:12px;overflow-wrap:anywhere}
+#page-entry.record-layout-new .map-area #chooseMap{font-size:10px;padding:5px 7px;min-height:28px}
+#page-entry.record-layout-new .map-area #mapOpen{grid-column:1;grid-row:2;width:100%;max-width:100%;margin:0;padding:0;min-height:0}
+#page-entry.record-layout-new .map-area #mapPreview{display:block;width:100%;height:74px;max-height:74px;object-fit:contain}
+#page-entry.record-layout-new .map-area #mapOpen>span{font-size:9px;padding:3px}
+#page-entry.record-layout-new .team{min-width:0;padding:9px;border-radius:10px}
+#page-entry.record-layout-new .team.blue{border:1px solid rgba(92,159,220,.6);background:linear-gradient(145deg,rgba(29,69,105,.58),rgba(15,27,42,.94))}
+#page-entry.record-layout-new .team.red{border:1px solid rgba(211,105,105,.58);background:linear-gradient(145deg,rgba(104,39,44,.58),rgba(37,20,26,.94))}
+#page-entry.record-layout-new .team .slots{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+#page-entry.record-layout-new .team .slot-cell{min-width:0}
+#page-entry.record-layout-new .team .slot{width:100%;min-width:0}
+#page-entry.record-layout-new .team .check{font-size:10px}
+#page-entry.record-layout-new .team .phantimal{min-width:0}
+#page-entry.record-layout-new #recordOutcome{grid-area:outcome;min-width:0}
+#recordOutcomeToggle{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:36px;padding:7px 11px;border:1px solid var(--line);border-radius:9px;background:rgba(14,23,38,.72);color:var(--text);font-weight:750;cursor:pointer}
+#recordOutcomeToggle .outcome-hint{font-size:11px;color:var(--muted);font-weight:500}
+#recordOutcomeBody{display:grid;grid-template-columns:minmax(0,35fr) minmax(0,65fr);gap:9px;margin-top:8px;align-items:stretch}
+#recordOutcomeBody[hidden]{display:none!important}
+#recordOutcomeBody #draftIndicator{min-width:0;margin:0!important;align-self:stretch}
+#recordOutcomeSubmission{display:grid;grid-template-columns:minmax(0,1fr);gap:7px;min-width:0;padding:9px;border:1px solid var(--line);border-radius:10px;background:rgba(14,23,38,.42)}
+#recordOutcomeSubmission #winnerPicker{margin:0!important;min-width:0}
+#recordOutcomeSubmission .verification{min-width:0;margin:0!important;overflow-x:auto}
+#recordOutcomeSubmission #captchaStatus{margin:0}
+#recordOutcomeSubmission .actions{margin:0}
+#recordOutcomeSubmission .actions .submit-match{width:100%;min-height:40px}
+#recordOutcomeSubmission .secondary-actions{margin:0}
+#recordOutcomeSubmission #entryStatus{margin:0}
 #page-entry.record-layout-new .hero-panel>.row{grid-area:search;min-width:0;margin:0}
 #page-entry.record-layout-new #factionFilters{grid-area:filters;margin:0}
 #page-entry.record-layout-new #draftAssist{grid-area:assistant;min-width:0}
-#page-entry.record-layout-new #heroes{
- grid-area:catalog;display:flex!important;flex-direction:column!important;
- align-items:stretch;gap:6px;width:100%;height:auto!important;
- min-height:0!important;max-height:none!important;overflow:visible!important;
-}
+#page-entry.record-layout-new #heroes{grid-area:catalog;display:flex!important;flex-direction:column!important;align-items:stretch;gap:6px;width:100%;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important}
 #page-entry.record-layout-new #catalogInfo{grid-area:catalog-info;margin:0}
-#page-entry.record-layout-new .hero-panel .tier-row{
- width:100%;display:grid;grid-template-columns:48px minmax(0,1fr);
- flex-shrink:0;border-radius:9px;overflow:hidden;
-}
-#page-entry.record-layout-new .hero-panel .tier-label{
- display:flex!important;align-items:center;justify-content:center;
- font-size:19px;padding:5px 2px;
-}
-#page-entry.record-layout-new .hero-panel .tier-content{
- display:flex;flex-wrap:wrap;align-content:flex-start;align-items:flex-start;
- gap:5px;padding:6px;min-width:0;
-}
-#page-entry.record-layout-new .hero-panel .tier-hero{
- width:52px;height:52px;min-height:52px;flex:0 0 52px;
- padding:0;margin:0;border:0!important;background:transparent!important;
- box-shadow:none!important;border-radius:50%;
-}
-#page-entry.record-layout-new .hero-panel .tier-hero .avatar{
- width:48px;height:48px;border:2px solid rgba(190,205,194,.68);
-}
-#page-entry.record-layout-new .hero-panel .tier-hero .tier-rate,
-#page-entry.record-layout-new .hero-panel .tier-hero .tier-grade,
-#page-entry.record-layout-new .hero-panel .tier-hero .tier-tag,
-#page-entry.record-layout-new .hero-panel .tier-hero .tier-samples{display:none!important}
+#page-entry.record-layout-new .hero-panel .tier-row{width:100%;display:grid;grid-template-columns:42px minmax(0,1fr);flex-shrink:0;border-radius:9px;overflow:hidden}
+#page-entry.record-layout-new .hero-panel .tier-label{display:flex!important;align-items:center;justify-content:center;font-size:18px;padding:4px 2px}
+#page-entry.record-layout-new .hero-panel .tier-content{display:flex;flex-wrap:wrap;align-content:flex-start;align-items:flex-start;gap:5px;padding:6px;min-width:0}
+#page-entry.record-layout-new .hero-panel .tier-hero{width:48px;height:48px;min-height:48px;flex:0 0 48px;padding:0;margin:0;border:0!important;background:transparent!important;box-shadow:none!important;border-radius:50%}
+#page-entry.record-layout-new .hero-panel .tier-hero .avatar{width:44px;height:44px;border:2px solid rgba(190,205,194,.68)}
+#page-entry.record-layout-new .hero-panel .tier-hero .tier-rate,#page-entry.record-layout-new .hero-panel .tier-hero .tier-grade,#page-entry.record-layout-new .hero-panel .tier-hero .tier-tag,#page-entry.record-layout-new .hero-panel .tier-hero .tier-samples{display:none!important}
 #page-entry.record-layout-new .hero-panel .tier-no-data{margin:0}
 #page-entry.record-layout-new .hero-panel .record-tier-controls{margin:0}
-#page-entry.record-layout-new .hero-panel>.row,
-#page-entry.record-layout-new #factionFilters,
-#page-entry.record-layout-new #heroes{
- padding:9px;border:1px solid var(--line);border-radius:10px;
- background:rgba(14,23,38,.42);
-}
+#page-entry.record-layout-new .hero-panel>.row,#page-entry.record-layout-new #factionFilters,#page-entry.record-layout-new #heroes{padding:8px;border:1px solid var(--line);border-radius:10px;background:rgba(14,23,38,.42)}
 @media(max-width:760px){
- #page-entry.record-layout-new{
-  grid-template-columns:minmax(0,1fr);
-  grid-template-areas:"layout" "map" "indicator" "teams" "winner" "verify" "captcha" "submit" "secondary" "status" "search" "ranking" "filters" "assistant" "catalog" "catalog-info";
- }
- #page-entry.record-layout-new .map-area .selected-map{width:min(179px,42vw)}
- #page-entry.record-layout-new .teams{grid-template-columns:repeat(2,minmax(0,1fr))}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(82px,22%) minmax(0,1fr)}
+ #page-entry.record-layout-new .map-area #mapPreview{height:62px;max-height:62px}
+ #page-entry.record-layout-new .team{padding:7px}
+ #page-entry.record-layout-new .team .slots{gap:3px}
+ #page-entry.record-layout-new .team .slot{padding:4px 2px}
+ #recordOutcomeBody{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
 }
 @media(max-width:520px){
- #page-entry.record-layout-new .teams{grid-template-columns:minmax(0,1fr)}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(0,1fr);gap:6px}
+ #page-entry.record-layout-new .map-area{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center}
+ #page-entry.record-layout-new .map-area .map-heading{grid-column:1;grid-row:1;flex-direction:row;align-items:center;justify-content:space-between}
+ #page-entry.record-layout-new .map-area #mapOpen{grid-column:2;grid-row:1;max-width:90px}
+ #page-entry.record-layout-new .map-area #mapPreview{height:42px;max-height:42px}
+ #page-entry.record-layout-new .teams{grid-column:1;grid-row:2;grid-template-columns:repeat(2,minmax(0,1fr))}
+ #page-entry.record-layout-new .team .check{font-size:9px}
+ #recordOutcomeBody{grid-template-columns:minmax(0,1fr)}
+ #page-entry.record-layout-new .hero-panel .tier-row{grid-template-columns:34px minmax(0,1fr)}
+ #page-entry.record-layout-new .hero-panel .tier-label{font-size:15px}
+ #page-entry.record-layout-new .hero-panel .tier-content{gap:3px;padding:4px}
+ #page-entry.record-layout-new .hero-panel .tier-hero{width:42px;height:42px;min-height:42px;flex-basis:42px}
+ #page-entry.record-layout-new .hero-panel .tier-hero .avatar{width:38px;height:38px}
  #recordLayoutSwitch{justify-content:space-between}
- #page-entry.record-layout-new .hero-panel .tier-row{grid-template-columns:36px minmax(0,1fr)}
- #page-entry.record-layout-new .hero-panel .tier-label{font-size:16px}
- #page-entry.record-layout-new .hero-panel .tier-content{gap:3px;padding:5px}
- #page-entry.record-layout-new .hero-panel .tier-hero{width:44px;height:44px;min-height:44px;flex-basis:44px}
- #page-entry.record-layout-new .hero-panel .tier-hero .avatar{width:40px;height:40px}
+}
+
+/* Keep the ranking toolbar in its reserved grid row; otherwise CSS Grid creates an implicit column and squeezes the whole layout. */
+#page-entry.record-layout-new .record-tier-controls{grid-area:ranking;width:100%;min-width:0;box-sizing:border-box}
+
+
+/* The legacy desktop layout reserves a 410px picker column. In New Layout,
+   the named grid areas form one full-width column, so explicitly override
+   the more-specific legacy desktop rules. */
+@media (min-width:1100px){
+ html[data-ui-view="auto"] #page-entry.record-layout-new,
+ html[data-ui-view="desktop"] #page-entry.record-layout-new{
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-areas:"layout" "top" "outcome" "search" "ranking" "filters" "assistant" "catalog" "catalog-info"!important;
+  width:100%;
+  max-width:none;
+ }
+}
+
+
+/* Compact desktop utility bar: layout and ranking controls share one row. */
+#page-entry.record-layout-new>#recordLayoutSwitch{display:flex;justify-content:flex-end;gap:12px;min-height:40px;padding:5px 9px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{display:flex;align-items:center;gap:7px;min-width:0;margin:0;padding:0;border:0;background:transparent;flex:1}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>label{font-size:11px;font-weight:700;white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>select{min-height:30px;padding:4px 26px 4px 8px;font-size:11px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-status{font-size:10px;margin-left:auto;white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-method{font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-method>summary{cursor:pointer;color:var(--gold,#d7b66d)}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-method>p{position:absolute;z-index:30;right:8px;top:48px;width:min(440px,90vw);padding:10px;background:#18231d;border:1px solid var(--line);border-radius:8px;white-space:normal;box-shadow:0 8px 24px #0008}
+#page-entry.record-layout-new .map-area #currentTheme{display:none!important}
+#page-entry.record-layout-new .map-area .catalog-order-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0;padding-top:4px;border-top:1px solid rgba(190,170,120,.2)}
+#page-entry.record-layout-new .map-area .catalog-order-tools button{min-height:28px;padding:4px 7px;font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new .map-area .catalog-order-status{font-size:10px;line-height:1.3;margin:0}
+#page-entry.record-layout-new .team-meta-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0;margin-top:5px}
+#page-entry.record-layout-new .team-meta-row>.check{margin:0;flex:0 0 auto;white-space:nowrap;font-size:10px}
+#page-entry.record-layout-new .team-meta-row>.phantimal{display:flex;align-items:center;gap:5px;min-width:0;margin:0}
+#page-entry.record-layout-new .team-meta-row .ph-label{font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new .team-meta-row .ph-icons{display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip{width:30px;height:30px;min-width:30px;min-height:30px;padding:1px}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:25px;height:25px}
+#page-entry.record-layout-new .hero-panel>.row{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:8px;align-items:end}
+#page-entry.record-layout-new .hero-panel>.row>label:first-child{min-width:0}
+#page-entry.record-layout-new .hero-panel #factionFilters{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new .hero-panel #factionFilters .filter{min-height:28px;padding:4px 8px;font-size:10px}
+#page-entry.record-layout-new .hero-panel #factionFilters[hidden]{display:none!important}
+@media(max-width:760px){
+ #page-entry.record-layout-new>#recordLayoutSwitch{flex-wrap:wrap;justify-content:space-between}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{order:3;flex:1 0 100%;flex-wrap:wrap}
+ #page-entry.record-layout-new .team-meta-row{gap:4px}
+ #page-entry.record-layout-new .team-meta-row>.check{white-space:normal}
+}
+
+#page-entry.record-layout-new .hero-panel>.row #factionFilters{grid-area:auto;grid-column:1/-1;grid-row:auto}
+
+
+/* Keep the active draft (map + BLUE/RED slots) visible while browsing the hero catalog. */
+#page-entry.record-layout-new #recordTop{position:sticky;top:4px;z-index:40;background:var(--bg,#111713);padding-bottom:4px;isolation:isolate}
+#page-entry.record-layout-new .team-meta-row{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;min-width:0;margin-top:5px}
+#page-entry.record-layout-new .team-meta-row>.check{flex:0 0 auto;white-space:nowrap;font-size:9px;gap:3px}
+#page-entry.record-layout-new .team-meta-row>.phantimal{display:flex;align-items:center;gap:3px;min-width:0;flex:1 1 auto;margin:0;flex-wrap:nowrap}
+#page-entry.record-layout-new .team-meta-row .ph-label{font-size:9px;white-space:nowrap}
+#page-entry.record-layout-new .team-meta-row .ph-icons{display:flex;align-items:center;gap:2px;flex-wrap:nowrap}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip{width:24px!important;height:24px!important;min-width:24px!important;min-height:24px!important;max-width:24px!important;max-height:24px!important;flex:0 0 24px!important;padding:0!important}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:20px!important;height:20px!important;min-width:20px!important;max-width:20px!important;max-height:20px!important}
+#page-entry.record-layout-new .team-meta-row .ph-status{display:none!important}
+#page-entry.record-layout-new .catalog-top-legend{display:none!important}
+#page-entry.record-layout-new #heroes{margin-top:0!important}
+@media(max-width:760px){
+ #page-entry.record-layout-new #recordTop{top:0}
+ #page-entry.record-layout-new .team-meta-row{gap:3px}
+ #page-entry.record-layout-new .team-meta-row>.check{white-space:normal}
+ #page-entry.record-layout-new .team-meta-row .ph-label{display:none}
+}
+
+
+/* Navigation hides the whole Record Match page with .hidden.
+   The layout's ID/class grid selector otherwise outranks the generic .hidden rule. */
+#page-entry.record-layout-new.hidden{display:none!important}
+
+
+/* Legacy layout switch removed: the compact Record Match layout is now the only layout. */
+#page-entry.record-layout-new>#recordLayoutSwitch{min-height:36px;padding:4px 8px}
+
+
+/* The live Draft Edge replaces the map in the sticky draft header. */
+#page-entry.record-layout-new #recordTop{grid-template-columns:minmax(205px,22%) minmax(0,1fr)!important}
+#page-entry.record-layout-new #recordTop>.map-area{display:none!important}
+#page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1;min-width:0;margin:0!important;padding:9px 10px;align-self:stretch}
+#page-entry.record-layout-new #recordTop>.teams{grid-column:2;grid-row:1}
+#page-entry.record-layout-new #draftIndicator .me-head{display:flex;align-items:center;justify-content:space-between;gap:5px;flex-wrap:wrap}
+#page-entry.record-layout-new #draftIndicator .me-heading{font-size:11px;letter-spacing:.05em}
+#page-entry.record-layout-new #draftIndicator .me-tag{font-size:9px}
+#page-entry.record-layout-new #draftIndicator .me-result{font-size:12px;line-height:1.35;font-weight:750;min-height:32px}
+#page-entry.record-layout-new #draftIndicator .me-track{height:12px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.1)}
+#page-entry.record-layout-new #draftIndicator .me-blue,#page-entry.record-layout-new #draftIndicator .me-red{height:100%;transition:width .2s ease}
+#page-entry.record-layout-new #draftIndicator .me-legend{font-size:9px;display:flex;justify-content:space-between;gap:4px}
+#page-entry.record-layout-new #draftIndicator details{font-size:10px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:0;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{min-height:28px;padding:4px 8px;font-size:10px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-status{font-size:10px;white-space:nowrap}
+@media(max-width:760px){
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(150px,25%) minmax(0,1fr)!important}
+ #page-entry.record-layout-new #draftIndicator{padding:7px!important}
+}
+@media(max-width:520px){
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(0,1fr)!important}
+ #page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1}
+ #page-entry.record-layout-new #recordTop>.teams{grid-column:1;grid-row:2}
+}
+
+
+/* Current event map is a small, non-interactive brand-header thumbnail. */
+.brand-header .brand-current-map{display:flex;align-items:center;gap:10px;margin-left:auto;min-width:0;max-width:280px;padding:5px 8px;border-left:1px solid rgba(214,190,130,.25)}
+.brand-header .brand-current-map-copy{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand-header .brand-current-map-copy>span{font-size:8px;font-weight:800;letter-spacing:.12em;color:var(--gold,#d7b66d)}
+.brand-header .brand-current-map-copy>#mapSelectedName{font-size:11px;font-weight:650;color:var(--text);white-space:nowrap}
+.brand-header #mapPreview{display:block;width:76px;height:52px;object-fit:contain;border-radius:5px;border:1px solid rgba(214,190,130,.25);background:#101713;pointer-events:none}
+#page-entry.record-layout-new #recordTop{grid-template-columns:minmax(205px,22%) minmax(0,1fr)!important}
+#page-entry.record-layout-new #recordTop>.teams{grid-column:2;grid-row:1}
+#page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center;gap:12px;min-height:0;padding:12px!important}
+#page-entry.record-layout-new #draftIndicator .me-head,
+#page-entry.record-layout-new #draftIndicator .me-result,
+#page-entry.record-layout-new #draftIndicator .me-track,
+#page-entry.record-layout-new #draftIndicator .me-legend,
+#page-entry.record-layout-new #draftIndicator details{width:100%;max-width:100%}
+#page-entry.record-layout-new #draftIndicator .me-result{text-align:center;min-height:0;margin:4px 0}
+#page-entry.record-layout-new #recordLayoutSwitch{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:12px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{flex:0 1 auto;order:0}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{display:flex;align-items:center;gap:7px;flex:0 1 auto;order:1;margin:0;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{min-height:30px;padding:5px 9px;font-size:11px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-status{font-size:10px;white-space:nowrap}
+#page-entry.record-layout-new .map-area{display:none!important}
+@media(max-width:760px){
+ .brand-header .brand-current-map{max-width:190px;gap:6px;padding:4px;margin-left:auto}
+ .brand-header #mapPreview{width:58px;height:42px}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(155px,25%) minmax(0,1fr)!important}
+ #page-entry.record-layout-new #recordTop>#draftIndicator{padding:8px!important;gap:7px}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{flex:1 1 auto}
+}
+@media(max-width:520px){
+ .brand-header .brand-current-map{max-width:120px}
+ .brand-header .brand-current-map-copy>#mapSelectedName{font-size:9px;white-space:normal}
+ .brand-header #mapPreview{width:42px;height:34px}
+ #page-entry.record-layout-new #recordTop{grid-template-columns:minmax(0,1fr)!important}
+ #page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1}
+ #page-entry.record-layout-new #recordTop>.teams{grid-column:1;grid-row:2}
+}
+
+
+/* Header thumbnail reflects the configured event rotation map, not a user-selectable match map. */
+.brand-header .brand-current-map{flex-shrink:0}
+.brand-header .brand-current-map #mapSelectedName{display:block}
+#page-entry.record-layout-new #recordLayoutSwitch{grid-area:layout;display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:10px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls,
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{display:flex!important;align-items:center;flex:0 1 auto;gap:7px;min-width:0;margin:0;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>label{white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>select{max-width:180px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{white-space:nowrap}
+#page-entry.record-layout-new #recordTop>#draftIndicator{align-items:stretch;justify-content:center}
+#page-entry.record-layout-new #draftIndicator .me-head{align-items:center}
+#page-entry.record-layout-new #draftIndicator .me-result{display:flex;align-items:center;justify-content:center;flex:1;text-align:center;padding:8px 0}
+@media(max-width:760px){
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls,
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{flex-wrap:wrap}
+}
+
+
+/* Final toolbar alignment: keep ranking, draft-order toggle and status on one centered line. */
+@media(min-width:761px){
+ #page-entry.record-layout-new>#recordLayoutSwitch{
+  flex-wrap:nowrap!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:14px!important;
+ }
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{
+  flex:0 1 auto!important;
+  width:auto!important;
+  margin:0!important;
+  gap:8px!important;
+ }
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-status{margin-left:8px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{
+  flex:0 0 auto!important;
+  width:auto!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin:0!important;
+ }
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{min-height:32px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-status{white-space:nowrap!important}
+}
+/* Bring the current-map badge closer to the product title, leaving the community status at the far edge. */
+.brand-header .brand-current-map{margin-left:18px!important;margin-right:auto!important}
+.brand-header .brand-status{margin-left:auto!important}
+/* Remove the leftover catalog spacer inherited from the old tall picker panel. */
+#page-entry.record-layout-new .hero-panel #heroes{
+ margin-top:0!important;
+ min-height:0!important;
+ height:auto!important;
+ max-height:none!important;
+ gap:4px!important;
+}
+#page-entry.record-layout-new .hero-panel>.row{margin-bottom:0!important}
+#page-entry.record-layout-new #factionFilters{margin-bottom:0!important}
+#page-entry.record-layout-new{row-gap:6px!important}
+@media(max-width:760px){
+ #page-entry.record-layout-new>#recordLayoutSwitch{flex-wrap:wrap!important;justify-content:flex-start!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{flex:0 1 auto!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{flex:0 0 auto!important}
+ .brand-header .brand-current-map{margin-left:8px!important;margin-right:0!important}
+}
+
+
+/* Submission panel: the live edge now lives in the sticky draft header, so the
+   submission body has one full-width child, not an empty 35/65 split column. */
+#recordOutcomeBody{grid-template-columns:minmax(0,1fr)!important}
+#recordOutcomeSubmission{
+ display:grid!important;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ grid-template-rows:auto auto auto;
+ align-items:stretch;
+ gap:8px 12px!important;
+ width:100%;
+ box-sizing:border-box;
+}
+#recordOutcomeSubmission #winnerPicker{
+ grid-column:1;
+ grid-row:1 / span 2;
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ align-content:center;
+ gap:8px!important;
+ min-width:0;
+ padding:10px!important;
+}
+#recordOutcomeSubmission #winnerPicker>span,
+#recordOutcomeSubmission #winnerPicker>#winnerWarning{grid-column:1/-1}
+#recordOutcomeSubmission #winnerPicker>#winBLUE,
+#recordOutcomeSubmission #winnerPicker>#winRED{min-height:48px!important}
+#recordOutcomeSubmission .verification{
+ grid-column:2;
+ grid-row:1;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start;
+ min-height:64px;
+ margin:0!important;
+ padding:4px 8px;
+ border:1px solid var(--line);
+ border-radius:8px;
+ background:rgba(10,17,14,.28);
+}
+#recordOutcomeSubmission #captchaStatus{
+ grid-column:2;
+ grid-row:2;
+ align-self:center;
+ margin:0!important;
+ font-size:11px;
+}
+#recordOutcomeSubmission .actions{
+ grid-column:1/-1;
+ grid-row:3;
+ margin:0!important;
+}
+#recordOutcomeSubmission .actions .submit-match{width:100%;min-height:42px}
+#recordOutcomeSubmission .secondary-actions{
+ grid-column:1/-1;
+ display:flex;
+ justify-content:flex-end;
+ align-items:center;
+ gap:8px;
+ margin:0!important;
+ padding-top:2px;
+ border-top:1px solid rgba(190,190,170,.12);
+}
+#recordOutcomeSubmission #entryStatus{grid-column:1/-1;margin:0!important}
+.brand-header #mapPreview{
+ width:104px!important;
+ height:70px!important;
+ max-width:104px;
+ border-radius:7px;
+}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip{
+ width:32px!important;height:32px!important;min-width:32px!important;min-height:32px!important;
+ max-width:32px!important;max-height:32px!important;flex:0 0 32px!important;
+}
+#page-entry.record-layout-new .team-meta-row .phantimal-chip img{
+ width:27px!important;height:27px!important;min-width:27px!important;max-width:27px!important;
+ max-height:27px!important;
+}
+#page-entry.record-layout-new .team-meta-row .ph-icons{gap:4px!important}
+#page-entry.record-layout-new .team-meta-row>.phantimal{gap:4px!important}
+@media(max-width:760px){
+ #recordOutcomeSubmission{grid-template-columns:minmax(0,1fr)!important}
+ #recordOutcomeSubmission #winnerPicker,
+ #recordOutcomeSubmission .verification,
+ #recordOutcomeSubmission #captchaStatus,
+ #recordOutcomeSubmission .actions,
+ #recordOutcomeSubmission .secondary-actions,
+ #recordOutcomeSubmission #entryStatus{grid-column:1;grid-row:auto}
+ #recordOutcomeSubmission #winnerPicker{grid-row:auto}
+ .brand-header #mapPreview{width:76px!important;height:54px!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip{width:28px!important;height:28px!important;min-width:28px!important;min-height:28px!important;flex-basis:28px!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important}
 }
