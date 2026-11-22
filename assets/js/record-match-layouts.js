@@ -16,7 +16,6 @@ const ranking=document.querySelector('#page-entry .record-tier-controls');
 if(ranking)controls.append(ranking);
 
 const top=document.createElement('section');top.id='recordTop';top.className='record-top';
-const map=match.querySelector('.map-area');
 const teams=match.querySelector('.teams');
 const indicator=document.getElementById('draftIndicator');
 if(indicator)top.append(indicator);
@@ -32,7 +31,7 @@ if(teams){
  }
  top.append(teams);
 }
-// Move the draft-order follow toggle into the map card, next to map selection.
+// Move the draft-order follow toggle into the top utility bar.
 const orderTools=match.querySelector('.catalog-order-tools');
 if(orderTools)controls.append(orderTools);
 page.insertBefore(top,outcomePlaceholder());
