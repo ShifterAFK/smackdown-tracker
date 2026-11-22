@@ -1,23 +1,16 @@
-// Optional Record Match layouts. The draft and submission business logic stay in the core module.
+// Compact Record Match layout. The draft and submission business logic stay in the core module.
 (function(){
 'use strict';
 const page=document.getElementById('page-entry');
 const match=page?.querySelector('.match-panel');
 const catalog=page?.querySelector('.hero-panel');
 if(!page||!match||!catalog||document.getElementById('recordLayoutSwitch'))return;
-const KEY='smackdown-record-match-layout';
-let selected='legacy';
-try{selected=localStorage.getItem(KEY)==='new'?'new':'legacy';}catch{}
+page.classList.add('record-layout-new');
+page.dataset.recordLayout='new';
+window.dispatchEvent(new CustomEvent('tracker:record-layout-changed',{detail:{layout:'new'}}));
 const controls=document.createElement('div');
 controls.id='recordLayoutSwitch';controls.className='record-layout-switch';
-controls.setAttribute('role','group');controls.setAttribute('aria-label','Record Match layout');
-const label=document.createElement('span');label.className='record-layout-label';label.textContent='Layout';
-const choices=document.createElement('div');choices.className='record-layout-choices';
-const buttons={};
-for(const [value,text] of [['new','New Layout'],['legacy','Legacy']]){
- const button=document.createElement('button');button.type='button';button.dataset.layout=value;button.textContent=text;button.setAttribute('aria-pressed','false');button.addEventListener('click',()=>setLayout(value));buttons[value]=button;choices.append(button);
-}
-controls.append(label,choices);page.insertBefore(controls,match);
+page.insertBefore(controls,match);
 // The desktop ranking selector shares the top utility bar instead of taking a full row.
 const ranking=document.querySelector('#page-entry .record-tier-controls');
 if(ranking)controls.append(ranking);
@@ -87,13 +80,5 @@ window.addEventListener('tracker:draft-reset',()=>{wasFull=false;setExpanded(fal
 window.addEventListener('tracker:submission-finished',event=>{
  if(event.detail?.saved){wasFull=false;setExpanded(false);}
 });
-function setLayout(value){
- selected=value==='new'?'new':'legacy';
- page.classList.toggle('record-layout-new',selected==='new');
- page.dataset.recordLayout=selected;
- for(const [key,button] of Object.entries(buttons)){const active=key===selected;button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));}
- try{localStorage.setItem(KEY,selected);}catch{}
- window.dispatchEvent(new CustomEvent('tracker:record-layout-changed',{detail:{layout:selected}}));
-}
-setLayout(selected);
+
 })();
