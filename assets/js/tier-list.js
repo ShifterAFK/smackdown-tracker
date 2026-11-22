@@ -5,27 +5,22 @@ const get=id=>document.getElementById(id);
 function values(row){const n=Math.max(0,Number(row?.appearances)||0),wins=Math.max(0,Math.min(n,Number(row?.wins)||0));return {n,wins,rate:n?100*wins/n:0};}
 function entries(data){const byId=new Map((data?.heroes||[]).map(r=>[r.hero_id,r]));return config.heroes.map(hero=>({hero,...values(byId.get(hero.id))}));}
 function wilson(n,wins){if(!n)return 0;const p=wins/n,z=1.96;const denom=1+z*z/n;const center=p+z*z/(2*n);const margin=z*Math.sqrt(p*(1-p)/n+z*z/(4*n*n));return (center-margin)/denom;}
-function compare(a,b){return b.wilson-a.wilson||b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en')||a.hero.id.localeCompare(b.hero.id);}
+function compare(a,b){return b.wilson-a.wilson||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en')||a.hero.id.localeCompare(b.hero.id);}
 function buildTiers(data){
  const items=entries(data).map(x=>({...x,wilson:wilson(x.n,x.wins)}));
- const sPool=items.filter(x=>x.n>=20&&x.rate>=60).sort(compare);
+ const sPool=items.filter(x=>x.n>=10&&x.rate>=70).sort(compare);
  const sList=sPool.slice(0,8).map((item,i)=>({item,label:i===0?'SSS':i===1?'SS':i===2?'S+':'S'}));
- if(sList.length<8){
-  const used=new Set(sList.map(x=>x.item.hero.id));
-  const fill=items.filter(x=>x.n>=15&&x.rate>=50&&x.rate<60&&!used.has(x.hero.id)).sort(compare).slice(0,8-sList.length);
-  fill.forEach(x=>sList.push({item:x,label:'A+'}));
- }
  const sIds=new Set(sList.map(x=>x.item.hero.id));
  const buckets={A:[],B:[],C:[],N:[]};
  for(const item of items){
   if(sIds.has(item.hero.id))continue;
-  const key=item.n<10?'N':item.rate>60?'A':item.rate>=50?'B':'C';
+  const key=item.n<10?'N':item.rate>=60?'A':item.rate>=50?'B':'C';
   buckets[key].push(item);
  }
  return {sList,buckets};
 }
 function topIds(data){return new Set(buildTiers(data).sList.map(x=>x.item.hero.id));}
-const legend='S row: top 8 by Wilson conservative score. #1 SSS, #2 SS, #3 S+, #4-8 S (20+ appearances with 60%+ win rate). If fewer than eight qualify, remaining slots are filled with heroes having 15+ appearances and 50% to below 60% win rate, ranked by Wilson and labeled A+. Remaining heroes: A >60% | B 50-60% inclusive | C <50%. Minimum 10 appearances for A/B/C; otherwise preliminary.';
+const legend='S row: up to 8 heroes with 70%+ raw win rate and at least 10 appearances, ranked by Wilson conservative score. #1 SSS, #2 SS, #3 S+, #4-8 S. Remaining heroes: A 60%+ | B 50-<60% | C <50%. Minimum 10 appearances for A/B/C; otherwise preliminary. Wilson ranks heroes within each tier; it does not set tier eligibility.';
 const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-tag{font-size:11px;font-weight:700;color:var(--accent,#c9a227)}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
 const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (20+ qualify, A+ fill from 15+) | SSS / SS / S+ / S / A+';
