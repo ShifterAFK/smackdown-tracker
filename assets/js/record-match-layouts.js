@@ -11,9 +11,13 @@ window.dispatchEvent(new CustomEvent('tracker:record-layout-changed',{detail:{la
 const controls=document.createElement('div');
 controls.id='recordLayoutSwitch';controls.className='record-layout-switch';
 page.insertBefore(controls,match);
-// The desktop ranking selector shares the top utility bar instead of taking a full row.
-const ranking=document.querySelector('#page-entry .record-tier-controls');
-if(ranking)controls.append(ranking);
+// Ranking controls may be created asynchronously by the tier picker module.
+function moveTopControls(){
+ const ranking=page.querySelector('.record-tier-controls');
+ if(ranking&&ranking.parentElement!==controls)controls.append(ranking);
+ const orderTools=page.querySelector('.catalog-order-tools');
+ if(orderTools&&orderTools.parentElement!==controls)controls.append(orderTools);
+}
 
 const top=document.createElement('section');top.id='recordTop';top.className='record-top';
 // Put the current event map thumbnail beside the product title. No map picker or map rotation panel in Record Match.
@@ -51,13 +55,15 @@ if(teams){
  top.append(teams);
 }
 // Draft-order toolbar may be created before or after this module; move it whenever it appears.
-function moveDraftOrderToolbar(){
- const orderTools=match.querySelector('.catalog-order-tools')||top.querySelector('.catalog-order-tools');
+function moveTopControls(){
+ const ranking=page.querySelector('.record-tier-controls');
+ if(ranking&&ranking.parentElement!==controls)controls.append(ranking);
+ const orderTools=page.querySelector('.catalog-order-tools');
  if(orderTools&&orderTools.parentElement!==controls)controls.append(orderTools);
 }
-moveDraftOrderToolbar();
-const orderObserver=new MutationObserver(moveDraftOrderToolbar);
-orderObserver.observe(match,{childList:true,subtree:true});
+moveTopControls();
+const orderObserver=new MutationObserver(moveTopControls);
+orderObserver.observe(page,{childList:true,subtree:true});
 page.insertBefore(top,outcomePlaceholder());
 function outcomePlaceholder(){return catalog;}
 // Keep faction filters beside the search controls rather than in a separate panel.
