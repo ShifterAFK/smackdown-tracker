@@ -227,3 +227,21 @@
  #page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1;grid-row:1}
  #page-entry.record-layout-new #recordTop>.teams{grid-column:1;grid-row:2}
 }
+
+
+/* Header thumbnail reflects the configured event rotation map, not a user-selectable match map. */
+.brand-header .brand-current-map{flex-shrink:0}
+.brand-header .brand-current-map #mapSelectedName{display:block}
+#page-entry.record-layout-new #recordLayoutSwitch{grid-area:layout;display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:10px}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls,
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{display:flex!important;align-items:center;flex:0 1 auto;gap:7px;min-width:0;margin:0;padding:0;border:0;background:transparent}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>label{white-space:nowrap}
+#page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>select{max-width:180px}
+#page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{white-space:nowrap}
+#page-entry.record-layout-new #recordTop>#draftIndicator{align-items:stretch;justify-content:center}
+#page-entry.record-layout-new #draftIndicator .me-head{align-items:center}
+#page-entry.record-layout-new #draftIndicator .me-result{display:flex;align-items:center;justify-content:center;flex:1;text-align:center;padding:8px 0}
+@media(max-width:760px){
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls,
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{flex-wrap:wrap}
+}
