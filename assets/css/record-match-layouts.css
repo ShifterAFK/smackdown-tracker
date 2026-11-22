@@ -245,3 +245,51 @@
  #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls,
  #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{flex-wrap:wrap}
 }
+
+
+/* Final toolbar alignment: keep ranking, draft-order toggle and status on one centered line. */
+@media(min-width:761px){
+ #page-entry.record-layout-new>#recordLayoutSwitch{
+  flex-wrap:nowrap!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:14px!important;
+ }
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{
+  flex:0 1 auto!important;
+  width:auto!important;
+  margin:0!important;
+  gap:8px!important;
+ }
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-status{margin-left:8px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{
+  flex:0 0 auto!important;
+  width:auto!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin:0!important;
+ }
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{min-height:32px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-status{white-space:nowrap!important}
+}
+/* Bring the current-map badge closer to the product title, leaving the community status at the far edge. */
+.brand-header .brand-current-map{margin-left:18px!important;margin-right:auto!important}
+.brand-header .brand-status{margin-left:auto!important}
+/* Remove the leftover catalog spacer inherited from the old tall picker panel. */
+#page-entry.record-layout-new .hero-panel #heroes{
+ margin-top:0!important;
+ min-height:0!important;
+ height:auto!important;
+ max-height:none!important;
+ gap:4px!important;
+}
+#page-entry.record-layout-new .hero-panel>.row{margin-bottom:0!important}
+#page-entry.record-layout-new #factionFilters{margin-bottom:0!important}
+#page-entry.record-layout-new{row-gap:6px!important}
+@media(max-width:760px){
+ #page-entry.record-layout-new>#recordLayoutSwitch{flex-wrap:wrap!important;justify-content:flex-start!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{flex:0 1 auto!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{flex:0 0 auto!important}
+ .brand-header .brand-current-map{margin-left:8px!important;margin-right:0!important}
+}
