@@ -91,3 +91,5 @@ Odbudowa frontendu trackera AFK Journey Smackdown od zera, z zachowaniem działa
 - Preserved the hidden map-state DOM controls required by the existing core initializer while removing all visible map selection/rotation UI. Only the current event map thumbnail/name is exposed in the brand header.
 
 - PR #4 visual refinement: move current-map badge closer to SHOWDOWN SMACKDOWN title; keep Hero ranking and Set draft order centered on one desktop toolbar row; remove inherited vertical spacing/height from the hero catalog so portraits sit directly beneath Find a hero and faction filters.
+
+- PR #4 UI refinement: enlarged the current-map header thumbnail; increased Phantimal icons while keeping the compact single-row team metadata; rebuilt the expanded result-submission panel as a horizontal desktop layout. Fixed the empty 35/65 grid column left behind after Live Draft Edge moved into the sticky header. Mobile submission layout remains stacked for readability.
