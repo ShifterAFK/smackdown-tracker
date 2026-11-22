@@ -3,7 +3,7 @@
 Ta sekcja zastępuje nieaktualne statusy faz opisane niżej. Starszy plan MVP pozostaje jako kontekst historyczny.
 
 ## Aktywny stan
-- Record Match ma przełączalne układy `New Layout` i `Legacy`. `Legacy` pozostaje domyślny. Nowy układ kompaktowy pokazuje małą mapę obok BLUE/RED (sloty poziomo), katalog na pełną szerokość, a Match Indicator i formularz wyniku w zwijanym drugim rzędzie (35/65). Rząd rozwija się automatycznie po szóstym picku, można go też rozwinąć ręcznie; po udanym wysłaniu ponownie się zwija. Wybór układu jest zapamiętywany lokalnie; logika draftu i zapisu pozostaje wspólna. Poprawiono konflikt ze starszą desktopową siatką 410px + katalog: w New Layout wymuszono jedną kolumnę pełnej szerokości i zachowano nazwane obszary siatki. Wcześniejsza korekta paska Hero ranking pozostaje.
+- Record Match używa jednego kompaktowego układu (dawny `New Layout`); przełącznik i widok `Legacy` zostały usunięte. Układ pokazuje mapę obok BLUE/RED (sloty poziomo), katalog na pełną szerokość, a Match Indicator i formularz wyniku w zwijanym drugim rzędzie (35/65). Rząd rozwija się automatycznie po szóstym picku, można go też rozwinąć ręcznie; po udanym wysłaniu ponownie się zwija. Logika draftu i zapisu pozostaje wspólna. Poprawiono konflikt ze starszą desktopową siatką 410px + katalog: w New Layout wymuszono jedną kolumnę pełnej szerokości i zachowano nazwane obszary siatki. Wcześniejsza korekta paska Hero ranking pozostaje.
 - Domyślna gałąź: `main`, obecnie zawiera stan wcześniej rozwijany na `feature/record-match-tier-picker`.
 - Frontend ma Record Match z interaktywnym Tier List pickerem, trzy widoki Tier List oraz regułowy Draft Indicator.
 - Nawigacja widoków jest scentralizowana: Record Match, Tier List, Tier S 30+, Tier Side i Statistics wzajemnie się ukrywają przy każdej zmianie zakładki.
@@ -79,3 +79,5 @@ Odbudowa frontendu trackera AFK Journey Smackdown od zera, z zachowaniem działa
 - Compact Record Match follow-up (PR #4): fixed team metadata relocation using the actual `label.check` and `#phantimalBLUE/#phantimalRED` elements; compressed Phantimal chips to keep them beside the draft-known checkbox; made the map + BLUE/RED draft row sticky while scrolling the catalog; removed the obsolete TOP-6 legend above the hero catalog and tightened the gap. No change to draft-order or statistics logic.
 
 - Fixed compact layout navigation regression (PR #4): `#page-entry.record-layout-new.hidden` now explicitly uses `display:none!important`, so the sticky draft header is hidden with the Record Match page when switching to Tier List, Statistics, or other tabs. Root cause was the higher specificity of the new layout grid selector overriding the generic `.hidden` rule.
+
+- PR #4: usunięto przełącznik `New Layout / Legacy`; kompaktowy układ jest teraz jedynym układem Record Match. Stary wybór zapisywany w localStorage jest ignorowany. Nie usuwano ani nie zmieniano logiki draftu, katalogu, submission ani danych Supabase.
