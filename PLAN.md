@@ -87,3 +87,5 @@ Odbudowa frontendu trackera AFK Journey Smackdown od zera, z zachowaniem działa
 - PR #4 latest layout correction: removed the map/rotation panel from Record Match and moved the current event map thumbnail + name into the brand header as non-interactive context; map changing controls are removed from this view. Draft-order toggle is relocated robustly to the top utility bar even if its module initializes later. Live Draft Edge is vertically centered in its column. Existing event map selection remains sourced from the configured current event theme; no Supabase changes.
 
 - PR #4 follow-up: ranking controls and draft-order toggle are now both relocated via a page-level observer, so late initialization of either module cannot leave them outside the top toolbar. Match submissions are locked to `config.event.current_theme_id`; the current map thumbnail remains beside the SHOWDOWN SMACKDOWN title and is not clickable/changeable from Record Match.
+
+- Preserved the hidden map-state DOM controls required by the existing core initializer while removing all visible map selection/rotation UI. Only the current event map thumbnail/name is exposed in the brand header.
