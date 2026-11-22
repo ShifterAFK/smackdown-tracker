@@ -18,7 +18,8 @@ if(ranking)controls.append(ranking);
 const top=document.createElement('section');top.id='recordTop';top.className='record-top';
 const map=match.querySelector('.map-area');
 const teams=match.querySelector('.teams');
-if(map)top.append(map);
+const indicator=document.getElementById('draftIndicator');
+if(indicator)top.append(indicator);
 if(teams){
  for(const side of ['BLUE','RED']){
   const team=teams.querySelector('.team.'+side.toLowerCase());
@@ -33,7 +34,7 @@ if(teams){
 }
 // Move the draft-order follow toggle into the map card, next to map selection.
 const orderTools=match.querySelector('.catalog-order-tools');
-if(orderTools&&map)map.append(orderTools);
+if(orderTools)controls.append(orderTools);
 page.insertBefore(top,outcomePlaceholder());
 function outcomePlaceholder(){return catalog;}
 // Keep faction filters beside the search controls rather than in a separate panel.
@@ -44,16 +45,14 @@ if(searchRow&&factionFilters)searchRow.append(factionFilters);
 document.querySelectorAll('.catalog-top-legend').forEach(node=>node.remove());
 const outcome=document.createElement('section');outcome.id='recordOutcome';outcome.className='record-outcome';
 const toggle=document.createElement('button');toggle.id='recordOutcomeToggle';toggle.type='button';toggle.setAttribute('aria-expanded','false');
-const toggleTitle=document.createElement('span');toggleTitle.textContent='Match Indicator & Result';
+const toggleTitle=document.createElement('span');toggleTitle.textContent='Submit match result';
 const hint=document.createElement('span');hint.className='outcome-hint';hint.textContent='Expand when ready';
 const chevron=document.createElement('span');chevron.textContent='＋';
 toggle.append(toggleTitle,hint,chevron);
 const body=document.createElement('div');body.id='recordOutcomeBody';body.hidden=true;
-const indicator=document.getElementById('draftIndicator');
 const winner=document.getElementById('winnerPicker');
 const submission=document.createElement('div');submission.id='recordOutcomeSubmission';
 const moveIds=['verification','captchaStatus','submitOnline','secondary-actions','entryStatus'];
-if(indicator)body.append(indicator);
 if(winner)submission.append(winner);
 for(const id of moveIds){
  const node=id==='verification'?match.querySelector('.verification'):id==='submitOnline'?match.querySelector('.actions'):id==='secondary-actions'?match.querySelector('.secondary-actions'):document.getElementById(id);
