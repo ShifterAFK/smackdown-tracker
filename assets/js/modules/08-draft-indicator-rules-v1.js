@@ -43,7 +43,8 @@ const rating=ratings();
 const pool=poolIds();
 const available=new Set(pool);
 const values={BLUE:0,RED:0};
-const notes=['BLUE first-pick initiative bonus is a fixed rule assumption'];
+const initiativeBonus=lineup.BLUE[0]?0.03:0;
+const notes=initiativeBonus?['BLUE first-pick initiative bonus is a fixed rule assumption']:[ ];
 const nextSlot={BLUE:0,RED:0};
 for(const side of ORDER){
  const index=nextSlot[side]++;
@@ -57,7 +58,7 @@ for(const side of ORDER){
 const blueDuo=duoScore(lineup.BLUE);
 const redDuo=duoScore(lineup.RED);
 const h2h=h2hScore(lineup.BLUE,lineup.RED);
-const delta=0.03+values.BLUE-values.RED+blueDuo.score-redDuo.score+h2h.score;
+const delta=initiativeBonus+values.BLUE-values.RED+blueDuo.score-redDuo.score+h2h.score;
 notes.push(...blueDuo.notes,...redDuo.notes,...h2h.notes);
 const blueWidth=50+clamp(delta*100,-30,30);
 root.querySelector('.me-blue').style.width=blueWidth+'%';
@@ -80,7 +81,7 @@ const breakdown=[
  'Hero picks BLUE: '+fmt(values.BLUE),
  'Hero picks RED: '+fmt(values.RED),
  'Hero difference: '+fmt(values.BLUE-values.RED),
- 'BLUE first-pick bonus: +0.0300',
+ 'BLUE first-pick bonus: '+fmt(initiativeBonus),
  'DUO BLUE: '+fmt(blueDuo.score)+'; RED: '+fmt(redDuo.score),
  'H2H: '+fmt(h2h.score)+(Array.isArray(state.data.matchups)?'':' (not supplied)'),
  'Total score: '+fmt(delta)
