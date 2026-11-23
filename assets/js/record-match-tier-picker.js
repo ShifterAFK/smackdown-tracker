@@ -162,7 +162,7 @@ function renderSnapshot(snapshot,filters){
     card.remove();
     continue;
    }
-   card.querySelectorAll('.tier-samples,.s30-count,.tier-rate,.tier-grade,.s30-grade,.tier-tag').forEach(node=>node.remove());
+   card.querySelectorAll('.tier-samples,.tier-rate,.tier-grade,.tier-tag').forEach(node=>node.remove());
    wireHeroCard(card,hero);
    shown++;
   }
