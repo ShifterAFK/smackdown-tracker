@@ -314,13 +314,13 @@ This lets the model distinguish, for example, whether a particular Support has b
 
 ### Walk-forward evaluation
 
-Current snapshot: 1,114 approved matches, all with six recorded picks and class assignments. Matches were ordered by creation time; the first 60 were warm-up only, and the remaining 1,054 were evaluated using prior matches only.
+Current snapshot: 1,115 approved matches, all with six recorded picks and class assignments. Matches were ordered by creation time; the first 60 were warm-up only, and the remaining 1,055 were evaluated using prior matches only.
 
 | Variant | Correct | Accuracy |
 |---|---:|---:|
-| Previous production formula (hero + side + old DUO residual) | 613 / 1,054 | 58.16% |
-| Hero + side, without DUO correction | 619 / 1,054 | 58.73% |
-| Hero + side + hero × partner-class correction | 620 / 1,054 | 58.82% |
+| Previous production formula (hero + side + old DUO residual) | 613 / 1,055 | 58.10% |
+| Hero + side, without DUO correction | 619 / 1,055 | 58.67% |
+| Hero + side + hero × partner-class correction | 620 / 1,055 | 58.77% |
 
 A separate chronological 70/30 split of the 1,054 test matches gave:
 - Validation segment (738 matches): partner-class model 428/738 (57.99%), same as hero + side without interaction.
