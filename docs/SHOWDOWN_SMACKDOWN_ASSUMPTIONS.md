@@ -293,3 +293,44 @@ To wstępna walidacja historyczna, nie gwarancja przyszłej skuteczności ani ka
 - RED: 494 zwycięstwa (44,71%).
 
 Liczby są snapshotem, nie stałymi progami. Kolejne mecze zmienią bazę i historyczną przewagę stron.
+
+
+---
+
+## 11. Match Indicator — class-partner synergy v1 (2026-11-23)
+
+### What the model learns
+
+The Match Indicator now tests **hero × partner-class** interactions rather than assigning generic value to a class composition.
+
+For every historical duo:
+1. Estimate the pair's expected result from both heroes' individual overall win rates (each rate shrunk with 5 pseudo-wins / 10 pseudo-appearances, as in the previous DUO residual).
+2. Measure the duo's residual against that expectation.
+3. Add the residual to two directional groups: hero A with partner class B, and hero B with partner class A.
+4. When scoring a current team, remove the current exact duo from its own group estimate, shrink each directional group toward zero with 30 pseudo-pair appearances, and average the two directions.
+5. Sum the three pair effects, multiply by 0.2 and cap the team correction at ±0.03.
+
+This lets the model distinguish, for example, whether a particular Support has better historical results beside Tanks, Marksmen, Mages, Rogues or Warriors. It does **not** assume all Supports or all Tanks behave alike, and it does not grant a universal Tank/Support bonus.
+
+### Walk-forward evaluation
+
+Current snapshot: 1,114 approved matches, all with six recorded picks and class assignments. Matches were ordered by creation time; the first 60 were warm-up only, and the remaining 1,054 were evaluated using prior matches only.
+
+| Variant | Correct | Accuracy |
+|---|---:|---:|
+| Previous production formula (hero + side + old DUO residual) | 613 / 1,054 | 58.16% |
+| Hero + side, without DUO correction | 619 / 1,054 | 58.73% |
+| Hero + side + hero × partner-class correction | 620 / 1,054 | 58.82% |
+
+A separate chronological 70/30 split of the 1,054 test matches gave:
+- Validation segment (738 matches): partner-class model 428/738 (57.99%), same as hero + side without interaction.
+- Final holdout (317 matches): partner-class model 192/317 (60.57%) versus hero + side 191/317 (60.25%); previous production formula was 186/317 (58.68%).
+
+**Interpretation:** the class-partner feature produced a very small overall gain over hero + side alone (one additional correct prediction in 1,054 matches). The stronger difference from the previous production formula is mainly because the old DUO residual reduced walk-forward accuracy. The holdout improvement is also only one match, so this is an experimental signal, not proof of a robust accuracy increase.
+
+### Implementation notes and limits
+
+- Uses the existing ss_get_stats DUO and hero aggregates plus official classes supplied by ss_get_config; no database schema or RPC change is required.
+- All approved matches and all maps are included, including mirrors, matching the existing indicator data request.
+- The class-partner correction replaces the previous DUO residual; it is not stacked on top of it.
+- The feature remains capped and shrunk heavily. Re-evaluate after more matches accumulate; do not describe the score as a win probability.
