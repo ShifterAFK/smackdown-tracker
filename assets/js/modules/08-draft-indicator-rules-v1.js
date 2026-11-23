@@ -8,7 +8,7 @@ root.innerHTML='<div class="me-head"><span class="me-heading">LIVE DRAFT EDGE</s
 const style=document.createElement('style');
 style.textContent='#draftIndicator{padding:9px 12px;margin:12px 0}#draftIndicator .me-head{margin-bottom:3px}#draftIndicator .me-result{margin:2px 0}#draftIndicator .me-track{position:relative;margin:4px 0}#draftIndicator .me-track::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:#e7c66d;box-shadow:0 0 2px #211a0c;pointer-events:none}#draftIndicator.me-neutral .me-blue,#draftIndicator.me-neutral .me-red{opacity:.48}#draftIndicator details{margin-top:5px}#draftIndicator .me-explanation{white-space:pre-line;line-height:1.5;margin-top:7px;color:var(--muted,#c0c2b5)}';
 root.append(style);
-root.querySelector('.me-explanation').textContent='This is a historical, rule-based score difference, not a validated prediction or a win probability. It updates when picks change.\n\nHero results are separated into first picks (BLUE 1 / RED 1) and later picks (2 / 3) for each side. Each hero rate is shrunk toward that side’s overall win rate using 10 prior appearances. First picks receive a modest 1.5× weight; later picks use 1×. RED 1 is evaluated as RED’s first pick, but no direct counter bonus is inferred because the random pool of 20 and bans are not recorded.\n\nDUO is a small residual correction: it compares the pair’s historical result with the result expected from the two heroes’ individual overall records. The residual is shrunk toward zero and the total correction is capped at ±0.03 per team. It cannot replace the individual hero signal.\n\nAll maps are combined. No map, Phantimal, battlefield-position, player-skill, formation or H2H adjustment is applied. The tracker does not know the random 20-hero pool or bans. The score is not calibrated for betting decisions.';
+root.querySelector('.me-explanation').textContent='This is a historical, rule-based score difference, not a validated prediction or a win probability. It updates when picks change.\n\nHero results are separated into first picks (BLUE 1 / RED 1) and later picks (2 / 3) for each side. Each hero rate is shrunk toward that side’s overall win rate using 10 prior appearances. First picks receive a modest 1.5× weight; later picks use 1×. RED 1 is evaluated as RED’s first pick, but no direct counter bonus is inferred because the random pool of 20 and bans are not recorded.\n\nClass synergy is learned from hero × partner-class history. For example, a Support is not assumed to work equally well with every Tank or damage dealer: the model checks how each specific hero performs alongside partners of each official class. Each interaction is measured beyond the individual records of both heroes, shrunk toward zero with 30 prior pair appearances, averaged across both directions and capped at ±0.03 per team. It is a cautious experimental correction, not a fixed class bonus.\n\nAll maps are combined. No map, Phantimal, battlefield-position, player-skill, formation or H2H adjustment is applied. The tracker does not know the random 20-hero pool or bans. The score is not calibrated for betting decisions.';
 winner.before(root);
 const state={data:null,sides:null,firstPicks:null,blueBase:0.5,redBase:0.5,error:'',loading:false,request:0};
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
@@ -20,7 +20,26 @@ function maps(){
  const sides=new Map((state.sides||[]).map(r=>[r.hero_id,r]));
  const first=new Map((state.firstPicks||[]).map(r=>[r.hero_id,r]));
  const duos=new Map((state.data?.duos||[]).map(r=>[pairKey(r.hero_1_id,r.hero_2_id),r]));
- return{heroes,sides,first,duos};
+ const classes=new Map((config.heroes||[]).filter(h=>h.class).map(h=>[h.id,h.class]));
+ const partnerGroups=new Map();
+ for(const row of duos.values()){
+  const a=row.hero_1_id,b=row.hero_2_id,ca=classes.get(a),cb=classes.get(b);
+  if(!ca||!cb)continue;
+  const n=Math.max(0,Number(row.appearances)||0),wins=Math.max(0,Number(row.wins)||0);
+  const ar=heroes.get(a)||{},br=heroes.get(b)||{};
+  const an=Math.max(0,Number(ar.appearances)||0),aw=Math.max(0,Number(ar.wins)||0);
+  const bn=Math.max(0,Number(br.appearances)||0),bw=Math.max(0,Number(br.wins)||0);
+  const aLift=(aw+5)/(an+10)-0.5,bLift=(bw+5)/(bn+10)-0.5;
+  const expected=clamp(0.5+aLift+bLift,0.05,0.95);
+  const residual=wins-n*expected;
+  for(const [hero,partnerClass] of [[a,cb],[b,ca]]){
+   const key=hero+'|'+partnerClass;
+   let group=partnerGroups.get(key);
+   if(!group){group={appearances:0,residual:0};partnerGroups.set(key,group);}
+   group.appearances+=n;group.residual+=residual;
+  }
+ }
+ return{heroes,sides,first,duos,classes,partnerGroups};
 }
 function heroPick(id,side,index,lookup){
  const first=lookup.first.get(id)||{},sideRow=lookup.sides.get(id)||{};
@@ -36,21 +55,29 @@ function heroPick(id,side,index,lookup){
  const smoothed=(w+base*10)/(n+10);
  return{id,side,index,n,w,base,lift:smoothed-base,weight:index===0?1.5:1};
 }
-function duoScore(ids,lookup){
+function classSynergyScore(ids,lookup){
  let residual=0;const notes=[];
  for(let i=0;i<ids.length;i++)for(let j=i+1;j<ids.length;j++){
-  const a=ids[i],b=ids[j];if(!a||!b)continue;
-  const row=lookup.duos.get(pairKey(a,b));if(!row)continue;
-  const n=Math.max(0,Number(row.appearances)||0),wins=Math.max(0,Number(row.wins)||0);if(!n)continue;
+  const a=ids[i],b=ids[j],classA=lookup.classes.get(a),classB=lookup.classes.get(b);
+  if(!classA||!classB)continue;
+  const row=lookup.duos.get(pairKey(a,b))||{};
+  const n=Math.max(0,Number(row.appearances)||0),wins=Math.max(0,Number(row.wins)||0);
   const ar=lookup.heroes.get(a)||{},br=lookup.heroes.get(b)||{};
   const an=Math.max(0,Number(ar.appearances)||0),aw=Math.max(0,Number(ar.wins)||0);
   const bn=Math.max(0,Number(br.appearances)||0),bw=Math.max(0,Number(br.wins)||0);
   const aLift=(aw+5)/(an+10)-0.5,bLift=(bw+5)/(bn+10)-0.5;
   const expected=clamp(0.5+aLift+bLift,0.05,0.95);
-  const observed=(wins+expected*10)/(n+10);
-  const pairResidual=observed-expected;
-  residual+=pairResidual;
-  if(n>=5&&Math.abs(pairResidual)>=0.01)notes.push(a+' + '+b+': residual '+fmt(pairResidual)+' ('+n+' games)');
+  const pairResidual=wins-n*expected;
+  const groupA=lookup.partnerGroups.get(a+'|'+classB)||{appearances:0,residual:0};
+  const groupB=lookup.partnerGroups.get(b+'|'+classA)||{appearances:0,residual:0};
+  const otherNA=Math.max(0,groupA.appearances-n),otherNB=Math.max(0,groupB.appearances-n);
+  const effectA=(groupA.residual-pairResidual)/(otherNA+30);
+  const effectB=(groupB.residual-pairResidual)/(otherNB+30);
+  const effect=(effectA+effectB)/2;
+  residual+=effect;
+  if((otherNA>=10||otherNB>=10)&&Math.abs(effect)>=0.01){
+   notes.push(a+' ('+classA+') + '+b+' ('+classB+'): partner-class residual '+fmt(effect));
+  }
  }
  return{score:clamp(residual*0.2,-0.03,0.03),notes};
 }
@@ -60,8 +87,8 @@ function teamScore(side,lookup){
   const id=lineup[side][index];if(!id)continue;
   const pick=heroPick(id,side,index,lookup);score+=pick.lift*pick.weight;picks.push(pick);ids.push(id);
  }
- const duo=duoScore(ids,lookup);
- return{score,duo:duo.score,picks,duoNotes:duo.notes};
+ const synergy=classSynergyScore(ids,lookup);
+ return{score,classSynergy:synergy.score,picks,synergyNotes:synergy.notes};
 }
 function paint(){
  const text=root.querySelector('.me-result'),details=root.querySelector('.me-details');
@@ -72,7 +99,7 @@ function paint(){
  }
  const lookup=maps(),blue=teamScore('BLUE',lookup),red=teamScore('RED',lookup);
  const sidePrior=state.blueBase-0.5;
- const delta=blue.score-red.score+sidePrior+blue.duo-red.duo;
+ const delta=blue.score-red.score+sidePrior+blue.classSynergy-red.classSynergy;
  const width=50+clamp(delta*100,-30,30);
  root.querySelector('.me-blue').style.width=width+'%';root.querySelector('.me-red').style.width=(100-width)+'%';
  if(Math.abs(delta)<0.005){text.textContent='Current draft: scores nearly even · '+count+'/6 picks';root.classList.add('me-neutral');}
@@ -84,7 +111,7 @@ function paint(){
   'Historical side baseline: BLUE '+pct(state.blueBase)+' ('+blueWins+'/'+matches+') · RED '+pct(state.redBase)+' ('+redWins+'/'+matches+')',
   'BLUE hero contribution: '+fmt(blue.score)+' · RED hero contribution: '+fmt(red.score),
   'First pick weight: 1.5× · later picks: 1× · prior shrinkage: 10 appearances',
-  'BLUE DUO residual: '+fmt(blue.duo)+' · RED DUO residual: '+fmt(red.duo)+' · team cap ±0.030',
+  'BLUE class-partner correction: '+fmt(blue.classSynergy)+' · RED class-partner correction: '+fmt(red.classSynergy)+' · team cap ±0.030',
   'Historical BLUE side adjustment: '+fmt(sidePrior),
   'Total score difference (positive = BLUE): '+fmt(delta),
   'This score is not a win probability.'
@@ -96,8 +123,8 @@ function paint(){
    lines.push(side+' '+(p.index+1)+' '+(hero?.name||p.id)+': '+p.w+'/'+p.n+' wins · lift '+fmt(p.lift)+' · weight '+p.weight+'×');
   }
  }
- const duoNotes=[...blue.duoNotes.map(x=>'BLUE '+x),...red.duoNotes.map(x=>'RED '+x)];
- if(duoNotes.length)lines.push('Notable DUO residuals: '+duoNotes.join('; '));
+ const synergyNotes=[...blue.synergyNotes.map(x=>'BLUE '+x),...red.synergyNotes.map(x=>'RED '+x)];
+ if(synergyNotes.length)lines.push('Notable hero × partner-class effects: '+synergyNotes.join('; '));
  details.textContent=lines.join('\n');
 }
 async function load(){
