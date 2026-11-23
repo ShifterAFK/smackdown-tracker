@@ -251,3 +251,45 @@ Nie zostały zatwierdzone konkretne:
 ## Źródło ustaleń
 
 Dokument opracowano na podstawie historii rozmowy o Match Indicator i zasadach Showdown Smackdown przekazanych przez użytkownika. Kolejność fragmentów historii nie była chronologiczna; treść została uporządkowana tematycznie, a propozycje bez jednoznacznej akceptacji oznaczono jako otwarte, nie jako wymagania.
+
+
+---
+
+## 14. Wersja testowa Match Indicator wdrożona na development
+
+**Stan: wdrożenie testowe na gałęzi `development` z 2026-11-23. Nie jest to jeszcze wersja na `main`.**
+
+### Formuła v1
+
+- Dane bohaterów i DUO: `ss_get_stats(p_theme_id = null, p_exclude_mirrors = false)`.
+- Wyniki bohaterów osobno dla BLUE / RED: `ss_get_side_stats(p_theme_id = null, p_exclude_mirrors = false)`.
+- First picki BLUE 1 / RED 1: istniejąca funkcja `ss_get_first_pick_stats()`.
+- Wyniki picków 2/3 dla danej strony są wyliczane jako statystyki wszystkich występów tej strony minus first picki.
+- Wynik bohatera jest wygładzany w kierunku historycznego win rate danej strony z użyciem 10 pseudo-występów.
+- First pick ma wagę 1,5×, picki 2/3 wagę 1×.
+- Historyczna przewaga BLUE jest osobnym składnikiem opartym na bieżącym udziale wygranych BLUE. Nie jest automatycznie przypisywana first pickowi.
+- DUO jest liczone jako reszta ponad oczekiwany wynik wynikający z indywidualnych wyników obu bohaterów. Jest wygładzane 10 pseudo-występami, mnożone przez 0,2 i ograniczone do ±0,03 na drużynę.
+- Wszystkie mapy są łączone. Nie ma jeszcze korekty mapy, Phantimala, ustawienia, siły gracza ani bezpośredniego H2H.
+- Nie dodano migracji ani nowych funkcji SQL; wykorzystane są istniejące RPC.
+
+Dane z różnych źródeł są pobierane bez wykluczania mirrorów, ponieważ `ss_get_first_pick_stats()` nie udostępnia filtra mirrorów. Dzięki temu liczniki first picków, późniejszych picków i DUO używają spójnego zakresu zatwierdzonych meczów.
+
+### Walidacja walk-forward
+
+Test chronologiczny: dla każdego meczu wykorzystywane były wyłącznie wcześniejsze mecze; pierwsze 60 meczów stanowiło rozgrzewkę, a następne 1044 mecze zbiór testowy.
+
+| Wariant | Trafne wskazania | Accuracy |
+|---|---:|---:|
+| Zawsze BLUE | 574 / 1044 | 54,98% |
+| Bohaterowie + przewaga strony + waga first picka | 605 / 1044 | 57,95% |
+| Powyższe + mała korekta DUO residual | 607 / 1044 | 58,14% |
+
+To wstępna walidacja historyczna, nie gwarancja przyszłej skuteczności ani kalibracja prawdopodobieństwa. Wynik należy obserwować w kolejnych meczach; nie należy przedstawiać go jako „58,14% szans na wygraną”.
+
+### Snapshot bazy przy aktualizacji dokumentu
+
+- 1105 zatwierdzonych meczów;
+- BLUE: 611 zwycięstw (55,29%);
+- RED: 494 zwycięstwa (44,71%).
+
+Liczby są snapshotem, nie stałymi progami. Kolejne mecze zmienią bazę i historyczną przewagę stron.
