@@ -310,7 +310,7 @@ For every historical duo:
 4. When scoring a current team, remove the current exact duo from its own group estimate, shrink each directional group toward zero with 30 pseudo-pair appearances, and average the two directions.
 5. Sum the three pair effects, multiply by 0.2 and cap the team correction at ±0.03.
 
-This lets the model distinguish, for example, whether a particular Support has better historical results beside Tanks, Marksmen, Mages, Rogues or Warriors. It does **not** assume all Supports or all Tanks behave alike, and it does not grant a universal Tank/Support bonus.
+This lets the model distinguish, for example, whether a particular Support has better historical results beside Tanks, Marksmen, Mages, Rogues or Warriors. It does **not** assume all Supports or all Tanks behave alike, and it does not grant a universal Tank/Support bonus. A Support-only interaction filter was also tested, but it did not outperform the broader hero × partner-class model in the tested windows, so the model retains interactions for all class combinations.
 
 ### Walk-forward evaluation
 
