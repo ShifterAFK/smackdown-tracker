@@ -202,22 +202,9 @@ jobs:
 
           echo "Downloaded $downloaded matching portrait assets."
 
-          removed=0
-          shopt -s nullglob
-          for file in portraits/*.webp; do
-            name="$(basename "$file" .webp)"
-            base="$name"
-            if [[ "$name" =~ -skin[0-9]+$ ]]; then
-              base="${name%-*}"
-            fi
-
-            if ! grep -Fxq "$base" hero_ids.txt; then
-              rm -f "$file"
-              removed=$((removed + 1))
-            fi
-          done
-
-          echo "Removed $removed non-hero assets."
+          # Never delete existing portraits automatically.
+          # The upstream catalog can lag behind heroes used by this tracker.
+          # Sync only adds/updates known portraits; removals require a reviewed manual change.
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
