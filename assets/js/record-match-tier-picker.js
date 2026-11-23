@@ -1,4 +1,4 @@
-// Desktop Record match catalog backed by the three existing Tier List renderers.
+// Desktop Record match catalog backed by the two active Tier List renderers.
 (function(){
 'use strict';
 const get=id=>document.getElementById(id);
@@ -9,12 +9,10 @@ if(!catalog||!panel||typeof renderHeroes!=='function')return;
 const originalRenderHeroes=renderHeroes;
 const sources={
  overall:{label:'Tier List',root:'tierRows'},
- s30:{label:'Tier S 30+',root:'tierRows30'},
  side:{label:'Tier Side',root:'tierRowsSide'}
 };
 const methods={
  overall:'S: up to 8 heroes ranked by the Wilson lower confidence bound. First, heroes need at least 20 appearances and a win rate of 60% or more; if fewer than 8 qualify, remaining places are filled by heroes with 15+ appearances and a 50% to below 60% win rate (A+). Positions are labelled SSS, SS, S+, then S. Remaining tiers: A above 60%, B from 50% to 60%, C below 50%. A/B/C require at least 10 appearances; below that, heroes are preliminary.',
- s30:'S: up to 10 heroes with at least 30 appearances and a win rate of 60% or more, ranked by the Wilson lower confidence bound. Positions are labelled SSS (1–2), SS (3–4), S+ (5–6), then S (7–10); there is no backfill. A: 60%+ among the remaining heroes; the top 3 with 20+ appearances are A+, while heroes with 10–19 appearances are marked A? (potential). B: 50% to below 60%. C: below 50%. Fewer than 10 appearances: preliminary.',
  side:'The score is side-adjusted: the average of (the hero’s BLUE win rate minus the overall BLUE win rate) and (the hero’s RED win rate minus the overall RED win rate). S: top 8 by adjusted score, requiring at least 20 appearances overall and at least 5 on each side. A: +3% or higher. B: between −3% and +3%. C: below −3%. Heroes with fewer than 20 appearances overall or fewer than 5 on either side are preliminary.'
 };
 const cache=new Map();
