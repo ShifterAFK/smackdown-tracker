@@ -1,0 +1,82 @@
+/* Mobile-first Record Match layout: BLUE and RED remain side by side. */
+@media(max-width:760px){
+ main{padding:8px!important}
+ .brand-header{gap:7px!important;padding:9px!important;min-height:0!important}
+ .brand-header .brand-mark{flex:0 0 30px!important;width:30px!important;height:34px!important;font-size:17px!important}
+ .brand-header .brand-copy{min-width:0!important}
+ .brand-header .brand-copy h1{font-size:clamp(14px,4vw,19px)!important;line-height:1.1!important;white-space:nowrap}
+ .brand-header .brand-copy .connection{font-size:8px!important;line-height:1.2}
+ .brand-header .brand-current-map{gap:5px!important;margin:0 0 0 auto!important;padding:3px 0 3px 6px!important;border-left:1px solid rgba(214,190,130,.25)!important;max-width:112px!important}
+ .brand-header .brand-current-map-copy>span{font-size:7px!important}
+ .brand-header .brand-current-map-copy>#mapSelectedName{font-size:9px!important;white-space:normal!important;line-height:1.1}
+ .brand-header #mapPreview{width:48px!important;height:38px!important;max-width:48px!important}
+ .brand-header .brand-status{display:none!important}
+ .tabs{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;gap:4px!important;margin:7px 0!important;padding-bottom:3px!important;scrollbar-width:thin}
+ .tabs .tab,.tabs #openHelp{flex:0 0 auto!important;padding:9px 10px!important;font-size:10px!important}
+ #page-entry.record-layout-new{gap:7px!important}
+ #page-entry.record-layout-new>#recordLayoutSwitch{display:flex!important;flex-wrap:wrap!important;justify-content:flex-start!important;align-items:center!important;gap:6px 9px!important;padding:7px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls{order:0!important;display:flex!important;flex:1 1 100%!important;flex-wrap:nowrap!important;align-items:center!important;gap:6px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>label{font-size:10px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-controls>select{min-height:30px!important;max-width:none!important;flex:1 1 auto!important;font-size:11px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-status{font-size:9px!important;margin-left:auto!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .record-tier-method{display:none!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools{order:1!important;display:flex!important;flex:1 1 100%!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:7px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-tools button{min-height:32px!important;flex:0 0 auto!important;font-size:10px!important}
+ #page-entry.record-layout-new #recordLayoutSwitch .catalog-order-status{font-size:9px!important;white-space:nowrap!important}
+ /* Draft Edge takes a compact full-width row; both teams sit directly beneath it. */
+ #page-entry.record-layout-new #recordTop{position:sticky!important;top:0!important;z-index:40!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto auto!important;gap:6px!important;padding:5px!important;background:var(--bg,#111713)!important;border:1px solid var(--line)!important;border-radius:10px!important;box-shadow:0 5px 16px #0007!important}
+ #page-entry.record-layout-new #recordTop>#draftIndicator{grid-column:1!important;grid-row:1!important;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto auto!important;align-items:center!important;gap:4px 8px!important;padding:5px 7px!important;min-height:0!important}
+ #page-entry.record-layout-new #draftIndicator .me-head{grid-column:1/-1!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:5px!important}
+ #page-entry.record-layout-new #draftIndicator .me-heading{font-size:10px!important}
+ #page-entry.record-layout-new #draftIndicator .me-tag{font-size:8px!important}
+ #page-entry.record-layout-new #draftIndicator .me-result{grid-column:1/-1!important;grid-row:2!important;min-height:0!important;padding:2px 0!important;margin:0!important;font-size:10px!important;line-height:1.2!important;text-align:left!important}
+ #page-entry.record-layout-new #draftIndicator .me-track{grid-column:1!important;grid-row:3!important;height:8px!important}
+ #page-entry.record-layout-new #draftIndicator .me-legend{grid-column:2!important;grid-row:3!important;display:flex!important;gap:8px!important;font-size:8px!important;white-space:nowrap}
+ #page-entry.record-layout-new #draftIndicator details{grid-column:1/-1!important;font-size:9px!important}
+ #page-entry.record-layout-new #recordTop>.teams{grid-column:1!important;grid-row:2!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;margin:0!important}
+ #page-entry.record-layout-new .team{min-width:0!important;padding:6px 5px!important;border-radius:8px!important}
+ #page-entry.record-layout-new .team-title{min-height:20px!important;margin:0 0 4px!important}
+ #page-entry.record-layout-new .team h2{font-size:15px!important;margin:0!important}
+ #page-entry.record-layout-new .team-title small{display:none!important}
+ #page-entry.record-layout-new .team .slots{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:3px!important}
+ #page-entry.record-layout-new .team .slot-cell{min-width:0!important}
+ #page-entry.record-layout-new .team .slot{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;min-width:0!important;min-height:65px!important;padding:4px 1px!important;border-radius:6px!important}
+ #page-entry.record-layout-new .team .slot>span:first-child{font-size:8px!important;line-height:1!important;white-space:nowrap!important}
+ #page-entry.record-layout-new .team .slot .avatar{width:30px!important;height:30px!important;border-width:2px!important}
+ #page-entry.record-layout-new .team .slot .name{display:none!important}
+ #page-entry.record-layout-new .team .slot small{font-size:8px!important}
+ #page-entry.record-layout-new .team-meta-row{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:3px!important;margin-top:5px!important}
+ #page-entry.record-layout-new .team-meta-row>.check{flex:1 0 100%!important;white-space:nowrap!important;font-size:8px!important;gap:3px!important}
+ #page-entry.record-layout-new .team-meta-row>.check input{width:12px!important;height:12px!important}
+ #page-entry.record-layout-new .team-meta-row>.phantimal{flex:1 1 100%!important;min-width:0!important;gap:2px!important}
+ #page-entry.record-layout-new .team-meta-row .ph-label{display:none!important}
+ #page-entry.record-layout-new .team-meta-row .ph-icons{gap:2px!important;flex-wrap:nowrap!important;max-width:100%!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip{width:21px!important;height:21px!important;min-width:21px!important;max-width:21px!important;min-height:21px!important;max-height:21px!important;flex:0 0 21px!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:17px!important;height:17px!important;max-width:17px!important;max-height:17px!important}
+ #page-entry.record-layout-new #recordOutcome{margin:0!important}
+ #recordOutcomeToggle{min-height:36px!important}
+ #recordOutcomeBody{grid-template-columns:minmax(0,1fr)!important}
+ #recordOutcomeSubmission{grid-template-columns:minmax(0,1fr)!important;padding:8px!important}
+ #recordOutcomeSubmission #winnerPicker,#recordOutcomeSubmission .verification,#recordOutcomeSubmission #captchaStatus,#recordOutcomeSubmission .actions,#recordOutcomeSubmission .secondary-actions,#recordOutcomeSubmission #entryStatus{grid-column:1!important;grid-row:auto!important}
+ #page-entry.record-layout-new .hero-panel>.row{display:grid!important;grid-template-columns:minmax(0,1fr) 92px!important;gap:7px!important;align-items:end!important}
+ #page-entry.record-layout-new .hero-panel>.row label{font-size:11px!important;min-width:0!important}
+ #page-entry.record-layout-new .hero-panel>.row input{min-height:38px!important;padding:8px!important;font-size:12px!important}
+ #page-entry.record-layout-new .hero-panel #factionFilters{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;grid-column:1/-1!important;gap:4px!important;padding:3px 0 2px!important;scrollbar-width:thin}
+ #page-entry.record-layout-new .hero-panel #factionFilters .filter{flex:0 0 auto!important;min-height:30px!important;padding:5px 8px!important;font-size:9px!important}
+ #page-entry.record-layout-new .hero-panel #heroes{display:flex!important;flex-direction:column!important;gap:5px!important;margin:0!important;padding:5px!important}
+ #page-entry.record-layout-new .hero-panel .tier-row{grid-template-columns:30px minmax(0,1fr)!important}
+ #page-entry.record-layout-new .hero-panel .tier-label{font-size:14px!important}
+ #page-entry.record-layout-new .hero-panel .tier-content{gap:3px!important;padding:4px!important}
+ #page-entry.record-layout-new .hero-panel .tier-hero{width:42px!important;height:42px!important;min-height:42px!important;flex:0 0 42px!important}
+ #page-entry.record-layout-new .hero-panel .tier-hero .avatar{width:38px!important;height:38px!important}
+ #page-entry.record-layout-new #draftAssist{margin:0!important;padding:8px!important}
+}
+@media(max-width:380px){
+ #page-entry.record-layout-new .team{padding:5px 3px!important}
+ #page-entry.record-layout-new .team .slot{min-height:59px!important}
+ #page-entry.record-layout-new .team .slot .avatar{width:26px!important;height:26px!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip{width:19px!important;height:19px!important;min-width:19px!important;max-width:19px!important;min-height:19px!important;max-height:19px!important;flex-basis:19px!important}
+ #page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:15px!important;height:15px!important;max-width:15px!important;max-height:15px!important}
+ .brand-header .brand-current-map{max-width:90px!important}
+ .brand-header #mapPreview{width:38px!important;height:34px!important;max-width:38px!important}
+}
