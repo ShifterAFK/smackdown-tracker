@@ -307,12 +307,13 @@ function showTierHero(item){
 function renderTiers(){
  const root=$('tierRows');root.replaceChildren();if(!tierData)return;
  const byId=new Map(tierData.heroes.map(row=>[row.hero_id,row]));
+ const wilsonLower=(n,wins)=>{if(!n)return 0;const z=1.959963984540054,p=wins/n,z2=z*z,den=1+z2/n,center=(p+z2/(2*n))/den,margin=z*Math.sqrt(p*(1-p)/n+z2/(4*n*n))/den;return Math.max(0,center-margin)*100;};
  const buckets={S:[],A:[],B:[],C:[],Doom:[],N:[]};
  for(const hero of config.heroes){
   const row=byId.get(hero.id);
   const n=Math.max(0,Number(row?.appearances)||0),wins=Math.max(0,Math.min(n,Number(row?.wins)||0));
   const rate=n?100*wins/n:0;
-  const wilson=wilsonLowerBound(wins,n);
+  const wilson=wilsonLower(n,wins);
   const key=n<10?'N':n>=20&&rate<40?'Doom':rate>85?'S':rate>=70?'A':rate>=50?'B':'C';
   buckets[key].push({hero,n,wins,rate,wilson});
  }
