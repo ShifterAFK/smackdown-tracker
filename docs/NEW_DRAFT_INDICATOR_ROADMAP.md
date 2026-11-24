@@ -1070,6 +1070,72 @@ Exit gate:
 - Verify add/remove/swap/reset, all six slots, unknown-order guard, refresh, and RPC failure behavior.
 - Perform real browser/manual layout QA before marking Phase 5 DONE.
 
+
+### Phase 5 results — independent UI and RPC integration
+
+#### Existing implementation discovered
+
+During the Phase 5 source audit, `main` already contained:
+- `assets/js/modules/09-showdown-draft-indicator-v1.js`;
+- a script reference to that module in `index.html`;
+- a Supabase function named `ss_get_showdown_draft_indicator_stats()`.
+
+The existing module already implemented the intended independent panel and Candidate A formula. Its original RPC contract used `hero_slot_stats` / `red12_class_stats` and calculated the side baseline from verified-order matches only. The Phase 4 benchmark uses the baseline from all approved matches, while hero-slot history uses only verified-order matches. To keep implementation aligned with the frozen benchmark, the RPC contract was corrected and the existing module was adapted. No second indicator was retained.
+
+#### Final RPC contract and data
+
+Applied corrective migration:
+- `supabase/migrations/20261124190531_correct_showdown_draft_indicator_stats_rpc.sql`
+- Supabase migration version: `20261124190531`
+- Migration name: `correct_showdown_draft_indicator_stats_rpc`
+
+Function:
+- `public.ss_get_showdown_draft_indicator_stats()`
+- `SECURITY DEFINER`, `search_path = ''`
+- Execute granted to `anon` and `authenticated`.
+- Returns aggregate-only data: model version, event ID, approved/verified match counts and side baselines, exact side/slot hero stats, and pooled ordered RED1+RED2 class residual groups.
+- No individual player data is returned.
+
+Live RPC check at integration time:
+- 1,317 approved matches;
+- 1,313 matches with verified draft order;
+- 618 hero-slot groups;
+- 7,878 total hero-slot appearances (6 × 1,313);
+- 36 ordered RED1+RED2 class-pair groups;
+- 1,313 total class-pair residual observations;
+- execution time approximately **81 ms**.
+
+#### UI files and changes
+
+- Updated `assets/js/modules/09-showdown-draft-indicator-v1.js` to consume `hero_slots`, `red_class_pairs`, and the explicit `blue_baseline` field.
+- Updated the history explanation to distinguish all approved matches from verified-order matches.
+- Kept the existing single script reference in `index.html`.
+- Removed the temporary duplicate `10-showdown-draft-indicator-v1.js` module and its script reference.
+- Did not modify `assets/js/modules/08-draft-indicator-rules-v1.js`, Tier List, or TOP Picks.
+
+#### Tests performed
+
+- RPC returned the expected version, summary, arrays, and aggregate invariants.
+- Verified function security configuration and execute grants for anon/authenticated.
+- RPC execution plan completed in approximately 81 ms.
+- JavaScript syntax compilation passed.
+- Simulated-DOM smoke test passed:
+  - panel insertion;
+  - full 6/6 draft score;
+  - partial 5/6 draft recalculation;
+  - draft reset;
+  - unknown-order warning;
+  - catalog-change refresh and second RPC call.
+- Confirmed `index.html` contains exactly one Showdown Draft Indicator script reference.
+
+**Not independently verified:** the deployed GitHub Pages page could not be loaded from this environment, so final visual rendering on the live site still needs a manual refresh/check. The code-level and simulated interaction checks passed.
+
+#### Migration-history note
+
+Supabase migration history contains two earlier entries with the same name, `add_showdown_draft_indicator_stats_rpc`, versions `20261124190324` and `20261124190418`. Matching SQL files were not found in the repository. Their history was not rewritten. The new corrective migration `20261124190531` is committed and contains the final self-contained function definition. This repository/database history mismatch is recorded for future cleanup, but does not block the current RPC.
+
+**Phase 5 exit gate:** code/data integration and simulated interaction checks passed; current Match Indicator code path was not modified. Manual deployed-page visual confirmation remains outstanding.
+
 ### Phase 6 — Observe and decide
 **Status: NOT STARTED**
 
@@ -1146,7 +1212,7 @@ Decisions:
 - Complete and document each phase before starting the next.
 
 Next step:
-- **Phase 5 — Separate UI integration.** Add `showdown-draft-indicator-v1` as a standalone module/section with its own data RPC if needed. Preserve the existing Match Indicator unchanged. Display historical support counts and the experimental/non-probability warning.
+- **Phase 6 — Observe and decide.** First manually refresh the deployed tracker and confirm the separate panel is visible. Then use the experimental indicator on new drafts and record genuinely pre-battle predictions only if the workflow allows it without adding burdensome manual entry. Do not replace the current Match Indicator.
 
 ---
 
@@ -1416,3 +1482,21 @@ Both blockers have since been resolved:
 - SQL output, runtime, JS syntax, and mocked-DOM behavior were verified; details and commits are recorded in the latest Phase 5 implementation log above.
 
 **Current status:** Phase 5 implementation is committed. Real browser/manual QA remains pending. Do not start Phase 6 until Phase 5's browser QA exit gate passes.
+
+### 2026-11-24 — Phase 5 completed
+
+Completed:
+- Reused the already-existing independent Showdown Draft Indicator panel instead of retaining a duplicate.
+- Corrected the aggregate RPC to match the frozen Candidate A model and its all-approved side baseline.
+- Updated the existing module to the RPC response contract.
+- Removed the temporary duplicate module and script reference.
+- Verified the function output, permissions, aggregate counts, runtime, JS syntax, and simulated UI event behavior.
+
+Not done:
+- No change to Match Indicator v1 or Tier List.
+- No browser visual confirmation on the deployed GitHub Pages site.
+- No prospective prediction snapshot table or automatic pre-battle capture.
+
+Decision:
+- Phase 5 is complete for code and data integration. Phase 6 remains not started until the deployed panel is visually confirmed and the prospective observation workflow is chosen.
+
