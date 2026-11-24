@@ -142,7 +142,7 @@ red_residuals AS (
     f.event_id,
     f.red1_class,
     f.red2_class,
-    (f.winner = 'RED')::numeric
+    CASE WHEN f.winner = 'RED' THEN 1::numeric ELSE 0::numeric END
       - greatest(
           0.05::numeric,
           least(
