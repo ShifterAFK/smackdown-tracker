@@ -4,15 +4,15 @@
 (function(){
 'use strict';
 if(document.getElementById('showdownDraftIndicator'))return;
-const winner=document.getElementById('winnerPicker');
-if(!winner)return;
+const draft=document.querySelector('.teams');
+if(!draft)return;
 
 const root=document.createElement('section');
 root.id='showdownDraftIndicator';
 root.className='sdi-panel sdi-neutral';
 root.setAttribute('aria-label','Experimental Showdown Draft Indicator');
 root.innerHTML='<details class="sdi-collapse"><summary class="sdi-summary"><span class="sdi-heading">SHOWDOWN DRAFT INDICATOR</span><span class="sdi-compact-result" role="status" aria-live="polite">Add heroes to compare</span><span class="sdi-chevron" aria-hidden="true">▾</span></summary><div class="sdi-content"><div class="sdi-head"><span class="sdi-tag">EXPERIMENTAL · Full-draft model</span></div><div class="sdi-result">Add heroes to compare</div><div class="sdi-track" aria-hidden="true"><div class="sdi-blue"></div><div class="sdi-red"></div></div><div class="sdi-legend"><span>BLUE</span><span>Historical score difference · not win probability</span><span>RED</span></div><details><summary>Why this indication?</summary><div class="sdi-details"></div><button type="button" class="sdi-retry">Refresh model data</button></details></div></details>';
-winner.before(root);
+draft.before(root);
 
 const style=document.createElement('style');
 style.textContent=`
