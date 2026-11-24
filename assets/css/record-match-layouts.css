@@ -389,10 +389,7 @@
 }
 
 
-/* Showdown Draft Indicator belongs in the sticky draft header, above BLUE/RED. */
-#page-entry.record-layout-new #recordTop{
- grid-template-columns:minmax(0,1fr)!important;
-}
+/* Showdown Draft Indicator gets its own row above the existing Match Indicator and BLUE/RED draft. */
 #page-entry.record-layout-new #recordTop>#showdownDraftIndicator{
  grid-column:1/-1!important;
  grid-row:1!important;
@@ -401,8 +398,12 @@
  box-sizing:border-box;
  margin:0!important;
 }
-#page-entry.record-layout-new #recordTop>.teams{
+#page-entry.record-layout-new #recordTop>#draftIndicator{
  grid-column:1!important;
+ grid-row:2!important;
+}
+#page-entry.record-layout-new #recordTop>.teams{
+ grid-column:2!important;
  grid-row:2!important;
 }
 @media(max-width:520px){
@@ -410,8 +411,12 @@
   grid-column:1!important;
   grid-row:1!important;
  }
- #page-entry.record-layout-new #recordTop>.teams{
+ #page-entry.record-layout-new #recordTop>#draftIndicator{
   grid-column:1!important;
   grid-row:2!important;
+ }
+ #page-entry.record-layout-new #recordTop>.teams{
+  grid-column:1!important;
+  grid-row:3!important;
  }
 }
