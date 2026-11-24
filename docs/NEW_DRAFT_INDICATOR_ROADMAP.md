@@ -191,7 +191,7 @@ Overall BLUE win rate is **54.73%** (706/1,290); RED is **45.27%**. This is desc
 - Read-only SQL checks against `ss_matches`, `ss_match_heroes`, `ss_themes`, `ss_heroes`, `ss_match_predictions`, and `model_snapshots`.
 
 ### Phase 1 — First-pick signal study (core of the new model)
-**Status: NOT STARTED**
+**Status: IN PROGRESS — 2026-11-24**
 
 Tasks:
 - Calculate separate BLUE 1 and RED 1 results for every hero: appearances, wins, losses, win rate, and uncertainty.
@@ -357,3 +357,9 @@ Decisions:
 
 Next step:
 - **Phase 1 — First-pick signal study.** Calculate BLUE 1 and RED 1 hero-level results, RED 1 response matchups, side-adjusted signal, and chronological walk-forward baselines. Update this roadmap with results and decisions before Phase 2.
+
+
+### 2026-11-24 — Phase 1 started
+- Phase 0 was completed and committed first (`49a0b58b1d074789f4158dd7dcc78aa0d375bd1d`).
+- Beginning the first-pick evidence study using the Phase 0 dataset definition (1,286 matches with both draft-order flags known).
+- No formula or weights are being changed; this phase is analytical only.
