@@ -191,7 +191,7 @@ Overall BLUE win rate is **54.73%** (706/1,290); RED is **45.27%**. This is desc
 - Read-only SQL checks against `ss_matches`, `ss_match_heroes`, `ss_themes`, `ss_heroes`, `ss_match_predictions`, and `model_snapshots`.
 
 ### Phase 1 — First-pick signal study (core of the new model)
-**Status: IN PROGRESS — 2026-11-24**
+**Status: DONE — 2026-11-24**
 
 Tasks:
 - Calculate separate BLUE 1 and RED 1 results for every hero: appearances, wins, losses, win rate, and uncertainty.
@@ -208,8 +208,94 @@ Deliverable:
 Exit gate:
 - Agree on what information is genuinely predictive and what is merely descriptive before implementing the formula.
 
+
+#### Phase 1 results — first-pick evidence (snapshot 2026-11-24)
+
+**Dataset and method**
+- Snapshot used for this phase: **1,294 approved matches**, of which **1,290** had both draft-order flags known and **4** had unknown order. The 1,290 known-order matches were used.
+- Latest `played_at` in the extracted dataset: `2026-11-24 18:05:46.479996+00`.
+- Chronological order: `played_at`, `created_at`, match ID.
+- First 60 matches were warm-up history; next **1,230 matches** were the test window.
+- Each test match was scored before its result was added to history. The model used no target-match result or future match data.
+- Side baseline and hero first-pick history were updated only after each evaluated match.
+- Candidate lift: smoothed first-pick hero win rate minus the relevant side's prior win rate. Smoothing used 5, 10, or 20 pseudo-appearances in the sensitivity check.
+- Candidate score:
+  `delta = (prior BLUE win rate - 0.5) + BLUE1_lift - RED1_lift`.
+  Positive points to BLUE; negative points to RED. This is a score-direction experiment, not probability.
+- BLUE1-only and RED1-only variants remove the opposite hero-lift term. Side-only stayed on BLUE throughout the test window, so it was identical to always-BLUE.
+
+**Chronological walk-forward results**
+| Candidate | Correct / test | Accuracy over all test matches | Coverage |
+|---|---:|---:|---:|
+| Always BLUE / side-only | 668 / 1,230 | 54.31% | 100% |
+| BLUE 1 only, k=10 | 666 / 1,230 | 54.15% | 98.13% |
+| RED 1 only, k=10 | 638 / 1,230 | 51.87% | 96.59% |
+| BLUE 1 + RED 1, k=10 | **679 / 1,230** | **55.20%** | 97.89% |
+
+For the combined k=10 model, accuracy among its 1,204 non-neutral predictions was **56.40%**. It predicted RED 316 times and was correct on 170 of those (53.80%); it predicted BLUE 888 times and was correct on 509 (57.32%). The 26 neutral cases are abstentions, not correct predictions.
+
+**Smoothing sensitivity**
+| Combined first-pick model | Correct / test | Accuracy over all test matches | Coverage |
+|---|---:|---:|---:|
+| k=5 | 681 / 1,230 | 55.37% | 97.56% |
+| k=10 | 679 / 1,230 | 55.20% | 97.89% |
+| k=20 | 666 / 1,230 | 54.15% | 97.24% |
+
+The small differences are sensitive to the smoothing choice. Do not select k=5 merely because it scored highest on this same test window.
+
+**Paired comparison with always-BLUE**
+- For k=10, among matches where the combined model made a directional prediction, it corrected 170 outcomes that always-BLUE missed, but got 146 wrong where always-BLUE was right.
+- Exact two-sided McNemar/binomial p-value: **0.1956**. This is not statistically persuasive evidence that the candidate is better than always-BLUE.
+- The net gain over always-BLUE is only **11 correct outcomes in 1,230 matches** when neutral outputs are counted as no correct call. Do not claim a proven improvement.
+
+**Stability across time and maps (k=10 combined model; descriptive only)**
+| Test segment / map | Matches | Always BLUE | First-pick model |
+|---|---:|---:|---:|
+| Early chronological third | 410 | 56.10% | 53.66% |
+| Middle chronological third | 410 | 57.56% | 56.34% |
+| Late chronological third | 410 | 49.27% | 55.61% |
+| Tranquil Grounds | 55 | 58.18% | 54.55% |
+| Top Defender | 206 | 52.91% | 54.85% |
+| Siegebreaker | 190 | 60.53% | 54.74% |
+| Fierce Duel | 414 | 55.80% | 56.04% |
+| Tactical Grounds | 365 | 49.59% | 54.79% |
+
+The combined first-pick signal did not beat always-BLUE in the early or middle chronological thirds, but did in the late third. By map, it helped on some maps and hurt on others. This is not a stable, map-independent improvement; map and time/meta shifts may explain part of the apparent gain. No map adjustment was fitted in Phase 1.
+
+**Hero-level first-pick observations**
+- BLUE1 used **87 distinct heroes**; RED1 used **100**.
+- BLUE1 examples (full-event descriptive records; 95% Wilson intervals):
+  - Karma: 39/52, **75.0%** (61.8–84.8%)
+  - Lamentis: 28/38, **73.7%** (58.0–85.0%)
+  - Aurora: 34/51, **66.7%** (53.0–78.0%)
+  - Berial: 33/53, **62.3%** (48.8–74.1%)
+  - Baelran: 27/67, **40.3%** (29.4–52.3%)
+  - Athalia: 24/56, **42.9%** (30.8–55.9%)
+- RED1 examples (full-event descriptive records; 95% Wilson intervals):
+  - Dionel: 20/30, **66.7%** (48.8–80.8%)
+  - Aliceth: 24/39, **61.5%** (45.9–75.1%)
+  - Karma: 14/18, **77.8%** (54.8–91.0%)
+  - Yamato: 15/24, **62.5%** (42.7–78.8%)
+  - Peggy: 6/30, **20.0%** (9.5–37.3%)
+  - Hodgkin: 5/21, **23.8%** (10.6–45.1%)
+- These are team-result associations, not causal hero values or guaranteed counter strengths. Intervals are broad, especially for RED1 picks with smaller samples.
+
+**RED1 as a response to BLUE1**
+- The known-order dataset contains **913 distinct BLUE1→RED1 hero pairings**.
+- Only 254 pairings occurred at least twice, 80 at least three times, 23 at least four times, and 12 at least five times.
+- The most repeated pairing occurred only eight times. This is too sparse to infer reliable specific counter-pick effects or add a BLUE1×RED1 interaction term.
+- RED1 by itself underperformed the side-only baseline in walk-forward testing. Adding RED1's side-specific first-pick lift to BLUE1's lift produced a small gain, but the paired comparison was not significant.
+- Therefore, do **not** add a fixed RED response bonus. If a first-pick layer is retained for further testing, use the two side-specific hero lifts symmetrically around the side prior; do not claim that RED has a general counter advantage.
+
+**Phase 1 decision**
+- Carry the candidate first-pick layer into Phase 2 as a baseline feature: `side_prior + BLUE1_lift - RED1_lift`.
+- Keep k=10 as the provisional comparison setting (not a final tuned parameter); retain k=5 and k=20 as sensitivity checks.
+- Do not implement this formula in production yet. Its observed improvement is small, not statistically persuasive, and varies by map/time.
+- Do not add direct BLUE1-versus-RED1 counter bonuses: pair evidence is too sparse.
+- Phase 2 must test whether picks 2/3 and sequence/composition information add incremental predictive value beyond this first-pick baseline.
+
 ### Phase 2 — Later-pick / composition contribution
-**Status: NOT STARTED**
+**Status: IN PROGRESS — 2026-11-24**
 
 Tasks:
 - Measure pick 2 and pick 3 separately by side and slot.
@@ -363,3 +449,19 @@ Next step:
 - Phase 0 was completed and committed first (`49a0b58b1d074789f4158dd7dcc78aa0d375bd1d`).
 - Beginning the first-pick evidence study using the Phase 0 dataset definition (1,286 matches with both draft-order flags known).
 - No formula or weights are being changed; this phase is analytical only.
+
+
+### 2026-11-24 — Phase 1 completed; Phase 2 started
+Completed:
+- Extracted the known-order match history from Supabase and ran leakage-safe chronological walk-forward tests for side-only, BLUE1-only, RED1-only, and combined BLUE1+RED1 candidates.
+- Compared smoothing strengths k=5/10/20, inspected confidence intervals for first-pick hero records, and measured BLUE1→RED1 pairing sparsity.
+- Checked performance across chronological thirds and map strata.
+- Recorded all methods, counts, results, caveats, and decisions in the Phase 1 section above.
+
+Decisions:
+- No arbitrary RED bonus and no specific counter-pick interaction.
+- Carry the symmetric side-adjusted first-pick lift as a baseline candidate into Phase 2, but do not ship it yet.
+- The evidence is preliminary: only +11 correct outcomes vs always-BLUE at k=10 and McNemar p=0.1956; no proven improvement.
+
+Next:
+- **Phase 2 — Later-pick / composition contribution.** Test per-slot hero lifts and whether later picks add out-of-sample value beyond BLUE1+RED1.
