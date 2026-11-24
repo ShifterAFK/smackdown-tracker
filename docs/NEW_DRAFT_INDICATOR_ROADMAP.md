@@ -756,6 +756,93 @@ The map-aware variants were inconsistent by map. The pooled no-map model and map
 - Revisit map effects only when the same maps recur in another event/rotation or enough new data breaks the current map/time confounding.
 - No formation or Battle Fervor tile bonus: the tracker still does not record occupancy/position.
 
+
+### Phase 3 results — map context and partial pooling
+
+**Frozen snapshot:** same Phase 1/2 cutoff: 1,305 approved matches, 1,301 with verified draft order, 4 excluded from slot analyses.  
+**Walk-forward test:** 60 verified-order warm-up matches + 1,241 test matches.
+
+#### 1. Map distribution and side balance
+
+| Map | All approved matches | BLUE wins | BLUE win rate |
+|---|---:|---:|---:|
+| Fierce Duel | 414 | 231 | 55.8% |
+| Siegebreaker | 191 | 116 | 60.7% |
+| Tactical Grounds | 376 | 188 | 50.0% |
+| Top Defender | 209 | 110 | 52.6% |
+| Tranquil Grounds | 115 | 70 | 60.9% |
+
+These differences are descriptive, not causal. The tracker has no player IDs/rank to control for which participants played on each map. The map schedule is also strongly entangled with chronological test thirds.
+
+#### 2. Do first-pick and later-pick signals vary by map?
+
+Using pooled global hero/slot statistics, k=10:
+
+| Map | First picks only | All later slots added |
+|---|---:|---:|
+| Fierce Duel (414) | 56.04% | 55.56% |
+| Siegebreaker (190) | 54.74% | 56.32% |
+| Tactical Grounds (376) | 55.32% | 59.04% |
+| Top Defender (206) | 54.85% | 57.77% |
+| Tranquil Grounds (55) | 54.55% | 47.27% |
+
+Later-slot contributions are not uniform across maps. They improve the pooled result on Siegebreaker, Tactical Grounds, and Top Defender, but not Fierce Duel or the small Tranquil Grounds test subset. This is why the aggregate lift must not be treated as a universal map-independent effect.
+
+The global RED 1 + RED 2 class-pair residual (k=30) compared with slot-specific heroes:
+- Fierce Duel: 58.70% vs 55.56%.
+- Siegebreaker: 59.47% vs 56.32%.
+- Tactical Grounds: 59.04% vs 59.04%.
+- Top Defender: 55.83% vs 57.77%.
+- Tranquil Grounds: 54.55% vs 47.27% (only 55 tests).
+
+The class residual is not uniformly beneficial on every map; Top Defender is the clear regression. Do not create map-specific class residuals from these samples.
+
+#### 3. Tested conservative map adjustments
+
+All variants use the same chronological test set and slot-specific global hero baseline.
+
+| Variant | Correct / 1,241 | Total accuracy |
+|---|---:|---:|
+| Global side prior + global hero/slot lifts | 704 | 56.73% |
+| Map-specific side prior + global hero/slot lifts | 694 | 55.92% |
+| Map-specific side prior + map hero deviations (tau 20) | 700 | 56.41% |
+| Global side prior + map hero deviations (tau 5) | 696 | 56.08% |
+| Global side prior + map hero deviations (tau 10) | 701 | 56.49% |
+| Global side prior + map hero deviations (tau 20) | 706 | 56.89% |
+| Global side prior + map hero deviations (tau 40) | 707 | 56.97% |
+| Global side prior + map hero deviations (tau 80) | 705 | 56.81% |
+
+Here, `tau` controls how strongly the map-specific hero lift is shrunk toward the global lift. The best result adds only **3 correct matches** over the global model (+0.24 percentage points), and the gain is not consistent by map:
+- tau 40 improved Fierce Duel by 4 correct and Top Defender by 1;
+- it reduced Siegebreaker by 1 and Tactical Grounds by 1;
+- it did not change Tranquil Grounds.
+
+First-pick-only map deviation (tau 40) changed 687 to 689 correct (+2); all-slot map deviation changed 704 to 707 (+3). These are small gains and do not justify the additional model complexity.
+
+A map-side baseline alone also underperformed the global baseline (51.65% total accuracy in the exploratory side-only test). Replacing the global side prior with a map-specific side prior therefore is not supported.
+
+#### 4. Can class-pair residuals be map-specific?
+
+The 36 ordered class combinations for RED 1 + RED 2 and BLUE 2 + BLUE 3 become sparse when split by map:
+- Tranquil Grounds: no class-pair group reaches 10 matches for either sequence.
+- Siegebreaker: only 2 BLUE 2 + BLUE 3 groups and 3 RED 1 + RED 2 groups reach 10.
+- Top Defender: only 4 BLUE 2 + BLUE 3 and 3 RED 1 + RED 2 groups reach 10.
+- Fierce Duel and Tactical Grounds have more useful groups, but this does not solve the sparse maps.
+
+Do not build map-specific class-pair residuals. Keep any class-pair estimate pooled across maps and shrunk toward zero, subject to final Phase 4 validation.
+
+#### Phase 3 decisions
+
+1. **No map-specific side prior** in the new indicator: it reduces walk-forward accuracy in this test.
+2. **No map-specific hero correction** in the initial model: best tau result adds only 3 correct matches and is inconsistent by map.
+3. **No separate model per map.**
+4. **No map-specific class-pair residuals**; most map/class groups are too small.
+5. Retain global pooled hero/slot estimates as the default. Map can remain visible as context, but it does not receive a numeric bonus in v1.
+6. Carry the pooled RED 1 + RED 2 class residual forward as a candidate only; disclose its Top Defender regression and do not add map-specific overrides.
+7. No Battle Fervor tile adjustment: the tracker does not know which hero occupies the tile. No separate Phantimal effect is added because its assignment is largely deterministic from the first eligible faction pick.
+
+**Phase 3 exit gate: passed.** Map effects were tested. Current data does not justify numeric map adjustments or independent map models. Proceed to Phase 4 with a global model and explicit map limitations.
+
 ### Phase 4 — Assemble and validate the independent model
 **Status: DONE — 2026-11-24 (first-pick diagnostic selected)**
 
@@ -931,7 +1018,7 @@ Decisions:
 - Complete and document each phase before starting the next.
 
 Next step:
-- **Phase 3 — Map context.** Re-test the first-pick, later-slot, and RED 1 + RED 2 class-residual candidates with conservative map-aware baselines/adjustments. Use the same frozen snapshot and walk-forward history; avoid five unrelated map-specific models.
+- **Phase 4 — Assemble and validate the independent model.** Compare the shortlisted global variants on the same frozen, leakage-safe test set, choose only the simplest supported feature set, document uncertainty/neutral handling, and produce a go/no-go recommendation before UI work.
 
 ---
 
@@ -1129,4 +1216,24 @@ Not done:
 
 Decision:
 - Later slots and RED 1 + RED 2 class residual remain candidates, but map context must be tested before any formula is frozen.
+
+
+### 2026-11-24 — Phase 3 completed
+
+Completed:
+- Measured sample size and BLUE/RED balance on all five maps.
+- Compared first-pick and all-later-slot candidates by map.
+- Tested map-specific side priors.
+- Tested globally pooled hero-slot strengths with map deviations shrunk at tau 5, 10, 20, 40 and 80.
+- Tested first-pick-only and all-slot map deviations.
+- Measured map-specific sample sizes for ordered class-pair groups.
+- Confirmed that map-specific hero deviations add at most 3 correct matches and map-specific class groups are too sparse for separate corrections.
+
+Not done:
+- No map feature or per-map model implemented.
+- No code or database changes.
+- No final formula approved.
+
+Decision:
+- Keep a global model; map is context only in v1. Phase 4 will compare global candidate variants and decide whether the pooled RED 1 + RED 2 class residual is worth retaining.
 
