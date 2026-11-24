@@ -24,6 +24,8 @@ Moduł pobiera równolegle:
 - `ss_get_side_stats(p_theme_id: null, p_exclude_mirrors: false)` — występy i zwycięstwa bohaterów osobno po stronie BLUE i RED;
 - `ss_get_first_pick_stats()` — wyniki BLUE 1 i RED 1.
 
+**Uwaga techniczna:** aktualna definicja `ss_get_first_pick_stats()` ogranicza status `approved` w warunku JOIN do `ss_matches`, ale nie odrzuca wierszy picków, dla których mecz nie jest approved. Przy obecnym stanie bazy nie zmienia to wyniku, ponieważ sprawdzono **0 niezatwierdzonych meczów i 0 picków z takich meczów**. Jeśli w przyszłości pojawią się mecze pending/rejected z wpisami w `ss_match_heroes`, ta funkcja może je błędnie doliczyć — należy wtedy poprawić filtr. Nie zmieniano teraz funkcji ani bazy.
+
 Wszystkie mapy są łączone. Mirrory są uwzględnione. Klasy bohaterów pochodzą z `config.heroes[].class`, czyli oficjalnych klas zwracanych przez `ss_get_config()`.
 
 Wskaźnik odświeża się po zmianie draftu, zmianie katalogu/sesji asystenta i po zapisaniu meczu.
