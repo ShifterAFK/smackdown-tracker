@@ -668,6 +668,28 @@ Deliverable:
 
 ---
 
+#### Phase 5 implementation log — 2026-11-24
+
+**Implemented in `main`**
+- Added `assets/js/modules/09-first-pick-indicator-v1.js` — commit `92544d5844f02d25253f3c6a832bd8db7afeced2`.
+- Added a direct script tag in `index.html` immediately after the active `08-draft-indicator-rules-v1.js?v=5` — commit `1b731d9812940b00b3cd07a3170bcd8f6332e6e0`.
+- Polished the new module's data timestamp and bar layout — commit `a8a212de8cc625e6b0fcb25ab4f4e07565c393e8`.
+- The new panel is inserted after the existing Match Indicator and before the winner picker. It reads only BLUE1/RED1, and can show as soon as both are selected.
+- It checks `known.BLUE` and `known.RED`; if either draft order is unknown, it refuses to guess.
+- It uses existing `ss_get_stats(null, false)` and `ss_get_first_pick_stats()`; no Supabase migration, RPC, table, or schema change.
+- It listens for draft change/reset, known-order changes, catalog/session refresh, and successful submission; it also refreshes every 60 seconds when the page is visible and not busy.
+- The active Match Indicator source `08-draft-indicator-rules-v1.js` was not edited. `order.json` and the unreferenced `tracker-app.js` bundle were not edited.
+
+**Code checks**
+- Retrieved the committed module from GitHub and parsed it with the JavaScript runtime: syntax OK.
+- Ran a mocked-DOM smoke test with BLUE1/RED1 sample records: panel inserted, both hero names rendered, score rendered as `BLUE first-pick edge +0.100`, and the blue bar rendered at 60%.
+- Inspected `00-core.js`: `lineup`, `known`, and `rpc` are defined before this module; checkbox IDs are `knownBLUE` and `knownRED`.
+- Confirmed `index.html` has exactly one script tag for the new module, directly after the active Match Indicator script.
+
+**Still pending before Phase 5 is DONE**
+- Real browser/manual verification of layout and interaction in the live tracker: add/remove BLUE1 and RED1, toggle either draft-order-known checkbox, reset draft, and refresh after a successful submission.
+- A browser-based live page check was not available in this tool session; the code-level smoke test is not a substitute for visual/manual QA.
+
 ## 5. Work log and decision record
 
 ### 2026-11-24 — Roadmap created
@@ -847,3 +869,10 @@ Not done:
 - No formula or weights chosen.
 
 Commit with this audit: pending.
+
+
+### 2026-11-24 — Phase 5 implementation committed; manual QA pending
+- The separate First Pick Indicator module and direct `index.html` script tag are committed on `main`.
+- JavaScript syntax and mocked-DOM rendering smoke test passed.
+- Existing active Match Indicator source and Supabase schema were not modified.
+- Phase 5 remains IN PROGRESS until real browser/manual QA confirms layout and interactions.
