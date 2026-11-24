@@ -1402,49 +1402,17 @@ Decision:
 
 
 
-### 2026-11-24 — Phase 5 code/data review: mismatch found
+### 2026-11-24 — Phase 5 code/data review: mismatch found and resolved
 
-**Current repository state verified**
-- `index.html` loads `assets/js/modules/08-draft-indicator-rules-v1.js?v=5`, followed by `assets/js/modules/09-first-pick-indicator-v1.js?v=1`.
-- The active Match Indicator source remains separate; the new panel is a separate script and is inserted before the winner picker.
-- Core state is available to the new module: `lineup.BLUE/RED`, `known.BLUE/RED`, and `rpc()`. Draft change/reset events are present.
-- The new module currently calculates only:
-  `delta = (BLUE baseline - 0.5) + BLUE1 lift - RED1 lift`.
-  It intentionally ignores picks 2/3 and RED1+RED2 class-pair residual.
-- This is a **First Pick diagnostic**, not the frozen Phase 4 candidate `showdown-draft-indicator-v1`.
+The earlier review correctly found two blockers:
+1. The interim `09-first-pick-indicator-v1.js` panel implemented only BLUE1/RED1, while Phase 4 had frozen the full-draft Candidate A formula.
+2. Its shared `ss_get_first_pick_stats()` RPC included four matches whose draft-order flags were unknown and did not scope to the configured current event.
 
-**Specification mismatch**
-- Phase 4 froze Candidate A as a full-draft model:
-  - hero history by exact side and pick slot;
-  - first-pick lift difference weighted 1.5×;
-  - later-pick lift difference weighted 0.75×;
-  - ordered RED1-class + RED2-class residual, shrunk with 30 prior matches;
-  - global side baseline, no numeric map adjustment.
-- Phase 4 explicitly approved Candidate A for the separate experimental UI.
-- Phase 5 currently implements only the first-pick diagnostic. Therefore Phase 5 is **not complete**, and the current panel must not be described as the frozen Candidate A model.
+Both blockers have since been resolved:
+- The interim first-pick-only module was removed.
+- `09-showdown-draft-indicator-v1.js` now implements the frozen Candidate A full-draft formula.
+- A dedicated `ss_get_showdown_draft_indicator_stats()` RPC now filters to the configured current event, approved matches, and both draft-order-known flags.
+- The shared `ss_get_first_pick_stats()` RPC and active Match Indicator module remain unchanged.
+- SQL output, runtime, JS syntax, and mocked-DOM behavior were verified; details and commits are recorded in the latest Phase 5 implementation log above.
 
-**Live Supabase check — 2026-11-24, latest read-only snapshot**
-- Project: `rwnbxhrkjjlfuljhwdpt`; current event: `showdown-current`.
-- 1,316 approved matches and 7,896 pick rows.
-- 1,312 matches have both `blue_draft_known=true` and `red_draft_known=true`; 4 matches have unknown order.
-- All current matches belong to one event and are approved.
-- The new module currently calls `ss_get_first_pick_stats()`.
-- The live function definition confirms this RPC:
-  - joins `ss_matches` with `status='approved'` only in the LEFT JOIN condition;
-  - does not filter to the current event;
-  - does not require both draft-order-known flags.
-- As a result, the RPC counts all four unknown-order matches as BLUE1/RED1 observations. If non-approved match rows ever existed, the current LEFT JOIN shape could also count their pick rows as appearances.
-- The existing Match Indicator also consumes this RPC. **Do not change this shared RPC**, because that would alter the current indicator's data path.
-- A dedicated RPC for the new indicator is required. It must scope to the configured current event, join only approved matches, and require both draft-order-known flags for slot-specific features.
-
-**QA status**
-- The repository already records a JavaScript syntax check and mocked-DOM smoke test for the first-pick panel.
-- Source review confirms the new module is wired after the current indicator and listens for draft change/reset, known-order changes, data refresh and successful submission.
-- Live browser/manual interaction QA remains unverified in this tool session. A code-level smoke test is not a substitute for visual browser QA.
-- No code, migration, RPC or database data was changed during this review.
-
-**Decision / next action**
-- Keep Phase 5 IN PROGRESS. Do not mark the First Pick diagnostic as the completed new draft indicator.
-- Implement the already-frozen Candidate A as the independent experimental full-draft indicator, with its own versioned module and a dedicated current-event/known-order data RPC. Preserve `08-draft-indicator-rules-v1.js` and `ss_get_first_pick_stats()` unchanged.
-- Keep the current First Pick panel only if it remains useful as a separate diagnostic; otherwise replace its module with the Candidate A panel without touching the existing Match Indicator.
-- After implementation, validate the RPC against direct SQL, test every slot and RED1+RED2 residual with a deterministic fixture, run code-level UI tests, and then complete manual browser QA before Phase 5 can be marked DONE.
+**Current status:** Phase 5 implementation is committed. Real browser/manual QA remains pending. Do not start Phase 6 until Phase 5's browser QA exit gate passes.
