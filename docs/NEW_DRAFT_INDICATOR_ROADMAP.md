@@ -375,6 +375,106 @@ The combined first-pick signal did not beat always-BLUE in the early or middle c
 - Do not add direct BLUE1-versus-RED1 counter bonuses: pair evidence is too sparse.
 - Phase 2 must test whether picks 2/3 and sequence/composition information add incremental predictive value beyond this first-pick baseline.
 
+
+### Phase 1 results — First Pick and RED response study
+
+**Frozen analysis cutoff:** `2026-11-24 18:33:53.533213+00`  
+**Dataset at cutoff:** 1,305 approved matches; 1,301 have both draft-order-known flags true.  
+**Walk-forward test:** first 60 verified-order matches used as warm-up; next **1,241 matches** evaluated. No target match was included in its own historical hero or side statistics.
+
+#### Method
+
+- Canonical source: `ss_matches` joined to `ss_match_heroes`; only `status='approved'`.
+- Slot analysis requires both `blue_draft_known=true` and `red_draft_known=true`.
+- BLUE and RED first-pick hero history was calculated only from earlier verified-order matches.
+- Side baseline used all earlier approved match outcomes.
+- Tested candidate shrinkage values (k=5,10,20):
+  `smoothed_WR = (hero_first_pick_wins + side_baseline * k) / (hero_first_pick_appearances + k)`.
+- Candidate score:
+  `BLUE side prior + BLUE 1 lift - RED 1 lift`.
+- Neutral threshold: absolute score below 0.005. Directional accuracy excludes neutral predictions; total accuracy counts neutral as misses.
+- This is a simple candidate model, not a final approved formula.
+
+#### Walk-forward results
+
+| Candidate | k | Coverage | Correct | Directional accuracy | Total accuracy |
+|---|---:|---:|---:|---:|---:|
+| Always BLUE | — | 1,241 | 675 | 54.39% | 54.39% |
+| Side baseline | — | 1,241 | 675 | 54.39% | 54.39% |
+| BLUE 1 only | 5 | 1,223 | 686 | 56.09% | 55.28% |
+| RED 1 only | 5 | 1,222 | 665 | 54.42% | 53.59% |
+| BLUE 1 + RED 1 | 5 | 1,211 | 689 | 56.90% | 55.52% |
+| BLUE 1 + RED 1 | 10 | 1,215 | 687 | 56.54% | 55.36% |
+| BLUE 1 + RED 1 | 20 | 1,209 | 674 | 55.75% | 54.31% |
+
+The combined first-pick candidate beats the side baseline by 1.13 percentage points in total accuracy at k=5 and by 0.97 points at k=10. At k=20 it does not beat the baseline. RED 1 alone is weaker than the side baseline. BLUE 1 alone adds some signal, but the incremental value of RED 1 depends on shrinkage.
+
+#### Stability and map confounding
+
+At k=10, the combined first-pick candidate's total accuracy by chronological test third:
+- Early: 53.75% vs side baseline 56.17%.
+- Middle: 56.76% vs side baseline 57.25%.
+- Late: 55.56% vs side baseline 49.76%.
+
+These are not clean independent time regimes: the test thirds align strongly with map rotation:
+- Warm-up: 60 Tranquil Grounds matches.
+- Early: 152 Siegebreaker, 206 Top Defender, 55 Tranquil Grounds.
+- Middle: 376 Fierce Duel, 38 Siegebreaker.
+- Late: 38 Fierce Duel, 376 Tactical Grounds.
+
+Per-map comparison of the pooled first-pick candidate (k=10) against the global side baseline showed:
+- Fierce Duel: 56.04% vs 55.80% (414 tests).
+- Siegebreaker: 54.74% vs 60.53% (190 tests).
+- Tactical Grounds: 55.20% vs 50.00% (376 tests).
+- Top Defender: 54.85% vs 52.91% (206 tests).
+- Tranquil Grounds: 54.55% vs 58.18% (55 tests).
+
+The effect is not uniform across maps. The apparent late-period gain is strongly entangled with the map mix; it must not be interpreted as a stable time trend or a universal first-pick advantage. Map-specific hero adjustments remain Phase 3 work.
+
+A preliminary map-side baseline experiment combined with pooled first-pick lifts did not establish a robust advantage over the global baseline. Do not add a map-side prior to the new indicator based on this experiment alone.
+
+#### Raw first-pick examples (descriptive only; minimum 20 appearances)
+
+BLUE 1:
+- Karma: 39/52 (75.0%).
+- Lamentis: 29/39 (74.4%).
+- Baelran: 27/67 (40.3%).
+- Athalia: 24/56 (42.9%).
+- Hepler: 7/20 (35.0%).
+
+RED 1:
+- Dionel: 20/30 (66.7%).
+- Natsu: 15/24 (62.5%).
+- Aliceth: 24/39 (61.5%).
+- Peggy: 6/30 (20.0%).
+- Hodgkin: 5/21 (23.8%).
+- Cryonaia: 6/20 (30.0%).
+
+These raw rates are side- and map-mix dependent and are not causal hero ratings. Some same-hero side differences are large (e.g. Dunlingr 61.3% BLUE 1 vs 38.9% RED 1; Aurora 66.7% vs 45.8%), which supports keeping side/slot context separate rather than using one global first-pick win rate.
+
+#### Can we learn direct RED 1 counters to BLUE 1?
+
+At the frozen cutoff:
+- 1,301 verified-order matches.
+- 87 distinct BLUE 1 heroes and 101 distinct RED 1 heroes.
+- 918 distinct BLUE 1 × RED 1 hero pairs.
+- 660 pairs appear once; 177 appear twice; 69 appear 3–4 times.
+- Only 12 pairs have 5+ appearances; no pair reaches 10; maximum is 8.
+
+This is far too sparse to estimate reliable exact-hero counter bonuses. The combined first-pick model's RED 1 contribution is the RED hero's side-specific historical first-pick lift, not a proven counter interaction against the specific BLUE 1 hero. The random pool and bans are unknown, so we cannot establish which alternative RED responses were available.
+
+#### Phase 1 decisions
+
+1. **Keep BLUE 1 and RED 1 as separate candidate features** for further testing; do not collapse them into one generic first-pick stat.
+2. BLUE 1 contains useful historical signal in pooled walk-forward tests, but the gain is modest and varies by map.
+3. RED 1 alone is not a strong direction predictor. It may add a small amount of information when combined with BLUE 1, but this is not yet stable enough to approve a production weight.
+4. **No direct BLUE 1 → RED 1 hero-counter bonus**: pair samples are too sparse.
+5. No fixed RED multiplier, no fixed first-pick weight, and no production formula selected yet.
+6. Map composition materially affects observed results. Phase 3 must account for this before the final formula is approved.
+7. Player/rank confounding cannot be measured with the current schema; no player skill adjustment.
+
+**Phase 1 exit gate: passed with a constrained conclusion.** We identified first-pick signals worth retaining as candidate inputs, rejected unsupported exact counter bonuses, and documented map confounding. This is enough to move to Phase 2; it is not enough to implement the final indicator formula.
+
 ### Phase 2 — Later-pick / composition contribution
 **Status: DONE — 2026-11-24**
 
@@ -717,7 +817,7 @@ Decisions:
 - Complete and document each phase before starting the next.
 
 Next step:
-- **Phase 1 — First-pick signal study.** Use only the 1,299 approved matches with both draft-order-known flags true. Build BLUE 1 / RED 1 hero records and RED 1 response analysis from source tables; do not use the unfiltered first-pick RPC as authoritative.
+- **Phase 2 — Later-pick / composition contribution.** Test whether RED 2 and BLUE 2/3 add predictive information after BLUE 1 and RED 1 are known, using the same frozen chronological methodology and only verified-order matches.
 
 ---
 
@@ -876,3 +976,23 @@ Commit with this audit: pending.
 - JavaScript syntax and mocked-DOM rendering smoke test passed.
 - Existing active Match Indicator source and Supabase schema were not modified.
 - Phase 5 remains IN PROGRESS until real browser/manual QA confirms layout and interactions.
+
+### 2026-11-24 — Phase 1 completed
+
+Completed:
+- Built side-specific BLUE 1 and RED 1 hero records from verified-order matches.
+- Tested chronological baselines and first-pick candidates with k=5, 10, 20 shrinkage.
+- Evaluated 1,241 post-warm-up matches at the frozen cutoff.
+- Analysed chronological thirds, map mix, and per-map model performance.
+- Measured BLUE 1 × RED 1 pair sparsity and rejected exact-hero counter bonuses.
+- Recorded the model's modest pooled lift and its map-dependent instability.
+
+Not done:
+- No new model formula or weights approved.
+- No code or database changes.
+- No player/rank adjustment possible.
+- No direct hero-counter model.
+
+Decision:
+- Carry separate BLUE 1 and RED 1 features forward as candidates only. Phase 2 will test whether later picks add value after both first picks are known.
+
