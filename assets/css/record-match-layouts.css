@@ -387,3 +387,31 @@
  #page-entry.record-layout-new .team-meta-row .phantimal-chip{width:28px!important;height:28px!important;min-width:28px!important;min-height:28px!important;flex-basis:28px!important}
  #page-entry.record-layout-new .team-meta-row .phantimal-chip img{width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important}
 }
+
+
+/* Showdown Draft Indicator belongs in the sticky draft header, above BLUE/RED. */
+#page-entry.record-layout-new #recordTop{
+ grid-template-columns:minmax(0,1fr)!important;
+}
+#page-entry.record-layout-new #recordTop>#showdownDraftIndicator{
+ grid-column:1/-1!important;
+ grid-row:1!important;
+ width:100%;
+ min-width:0;
+ box-sizing:border-box;
+ margin:0!important;
+}
+#page-entry.record-layout-new #recordTop>.teams{
+ grid-column:1!important;
+ grid-row:2!important;
+}
+@media(max-width:520px){
+ #page-entry.record-layout-new #recordTop>#showdownDraftIndicator{
+  grid-column:1!important;
+  grid-row:1!important;
+ }
+ #page-entry.record-layout-new #recordTop>.teams{
+  grid-column:1!important;
+  grid-row:2!important;
+ }
+}
