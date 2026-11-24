@@ -190,6 +190,87 @@ Overall BLUE win rate is **54.73%** (706/1,290); RED is **45.27%**. This is desc
 - Supabase migrations through `20261123190906_capture_chronological_draft_predictions`
 - Read-only SQL checks against `ss_matches`, `ss_match_heroes`, `ss_themes`, `ss_heroes`, `ss_match_predictions`, and `model_snapshots`.
 
+
+### Phase 0 audit results — 2026-11-24
+
+#### Live Supabase snapshot
+
+Project: `rwnbxhrkjjlfuljhwdpt`. Inspected public tables, migration history, column metadata, and live function definitions.
+
+- `ss_matches`: 1,303 rows; all 1,303 are `approved`.
+- `ss_match_heroes`: 7,818 rows.
+- Every approved match has exactly 6 pick rows, exactly 3 BLUE and 3 RED, exactly 6 distinct heroes, and exactly one recorded pick_order=1 per side.
+- 131/131 heroes have an official class.
+- No mirrored matches found (same hero on both sides).
+- One event is configured: `showdown-current`.
+- Map distribution:
+  - Fierce Duel: 414
+  - Tactical Grounds: 374
+  - Top Defender: 209
+  - Siegebreaker: 191
+  - Tranquil Grounds: 115
+- Outcomes: BLUE 713 (54.72%), RED 590 (45.28%). This is descriptive baseline only, not proof of a first-pick effect.
+- All approved matches are covered by `ss_match_predictions`: 1,303/1,303. All rows have `outcome_known_at_calculation=true`; 1,120 are `historical_replay`, 183 are `automatic_ingest`. History used ranges from 0 to 1,302 matches (median 651). These are not prospective predictions.
+
+#### Draft-order reliability caveat
+
+- 1,299 matches have both `blue_draft_known=true` and `red_draft_known=true`.
+- 4 matches have both flags false.
+- Those four still contain six heroes with slot values 1–3, but the flags explicitly say the draft order was not known. Do not use their slot 1 rows as verified First Picks in Phase 1. Exclude them from slot/order analyses unless another source independently confirms the order.
+- The existing `ss_get_first_pick_stats()` function does not filter on `blue_draft_known` / `red_draft_known`; its first-pick aggregates therefore include these four uncertain records. New analysis must query the source tables with the known-order flags, not blindly reuse this RPC output.
+- The four exceptions are:
+  - 2026-11-14, Top Defender, Berial / Himmel / Daimon vs Athalia / Ludovic / Peggy (RED won)
+  - 2026-11-16, Top Defender, Hodgkin / Salazer / Peggy vs Natsu / Daimon / Rhys (RED won)
+  - 2026-11-16, Top Defender, Eironn / Gwyneth / Dunlingr vs Kazim / Brutus / Solise (BLUE won)
+  - 2026-11-17, Siegebreaker, Dunlingr / Shemira / Ravion vs Natsu / Aurora / Yamato (BLUE won)
+  These are listed in stored slot order, not asserted to be actual pick order.
+
+#### Time ordering and source provenance
+
+- `played_at` is populated for all approved matches.
+- 1,046 imported matches have `played_at < created_at`; their notes use the importer format `AFK local import: YYYYMMDD_HHMMSS_blue|red`, and the migration converts that Europe/Warsaw timestamp into `played_at`.
+- 257 website submissions have `played_at = created_at`.
+- No timestamp collisions were found among the 1,303 approved matches.
+- Chronological walk-forward can therefore use `played_at`, with `created_at` and ID as deterministic tie-breakers (although no collisions currently exist).
+
+#### Available and unavailable features
+
+Available and verified:
+- outcome, event, map/theme, played_at, created_at, approval status;
+- team side and per-side pick_order;
+- selected hero IDs, hero names, faction and official class;
+- Phantimal values (none of the current approved records have Unknown/None values);
+- draft-order-known flags.
+
+Not available as reliable model inputs:
+- player IDs, opponent IDs, player rank/MMR or individual skill;
+- random 20-hero pool and bans;
+- formation, battlefield placement and Battle Fervor tile occupancy.
+
+`submitter_name` is populated in only 14/1,303 records and identifies the submitter field, not a verified player identity. It must not be treated as player-skill data. No separate player/rank columns exist in `ss_matches`.
+
+#### Existing RPCs and implementation points inspected
+
+- `ss_get_stats(p_theme_id, p_exclude_mirrors)`: current-event aggregate hero/duo/Phantimal stats; caches payload for five minutes.
+- `ss_get_side_stats(p_theme_id, p_exclude_mirrors)`: side-specific hero stats; filters approved matches.
+- `ss_get_first_pick_stats()`: first-pick and later-pick aggregates, but does not filter unknown draft-order flags and does not explicitly scope to current event. Do not use it as the authoritative Phase 1 source.
+- `ss_calculate_draft_indicator(uuid)`: chronological replay for the existing v1 indicator, excludes target match and uses earlier approved matches; not a live pre-result capture.
+- Current frontend: `index.html` loads `00-core.js`, then `08-draft-indicator-rules-v1.js` as a classic script. The current indicator injects a section next to `#winnerPicker` and listens to `tracker:draft-changed`, `tracker:draft-reset`, catalog/session and submission events. A separate module can be added without changing the current formula or Tier List, using the same draft state/events.
+- The draft UI/help documents the sequence BLUE 1 → RED 1 → RED 2 → BLUE 2 → BLUE 3 → RED 3.
+
+#### Phase 0 decisions
+
+- Use direct SQL over `ss_matches` + `ss_match_heroes` as the canonical source for new model analysis; always filter `status='approved'`.
+- For any analysis of pick slots, require both side-specific draft-known flags to be true; at minimum exclude all 4 uncertain-order matches from Phase 1.
+- Use `played_at` chronology with deterministic tie-breakers.
+- Do not attempt player/rank adjustments; the data does not support them.
+- Existing prediction rows are useful only as a comparator and must remain labelled outcome-known.
+- No code, database schema, RPC, or live data was modified during Phase 0.
+
+#### Phase 0 exit gate
+
+**Passed.** Dataset, fields, quality caveats, chronology, current UI integration point, and exclusions are documented. Phase 1 can now begin using the verified-order subset (1,299 matches).
+
 ### Phase 1 — First-pick signal study (core of the new model)
 **Status: DONE — 2026-11-24**
 
@@ -614,7 +695,7 @@ Decisions:
 - Complete and document each phase before starting the next.
 
 Next step:
-- **Phase 0 — Baseline and data audit.** Start by inspecting the live Supabase schema/data and active branch integration points. After the audit, update this file before Phase 1.
+- **Phase 1 — First-pick signal study.** Use only the 1,299 approved matches with both draft-order-known flags true. Build BLUE 1 / RED 1 hero records and RED 1 response analysis from source tables; do not use the unfiltered first-pick RPC as authoritative.
 
 ---
 
@@ -747,3 +828,22 @@ Decisions:
 
 Next:
 - Implement the standalone module and direct `index.html` script tag, then verify both panels independently.
+
+### 2026-11-24 — Phase 0 completed
+
+Completed:
+- Read the current implementation and assumptions documents again.
+- Inspected live Supabase tables, columns, constraints, migration history, and definitions of the existing statistics/prediction RPCs.
+- Audited all 1,303 approved matches and 7,818 pick rows.
+- Verified six unique picks per match and found no mirror matches.
+- Verified five-map distribution, outcome baseline, timestamp provenance, and complete existing prediction-row coverage.
+- Inspected `index.html`, `00-core.js`, `08-draft-indicator-rules-v1.js`, and `tracker137-manager.js` for the independent UI integration point.
+- Identified four matches whose draft order is explicitly marked unknown, despite containing slot values. Recorded them for exclusion from slot-specific analysis.
+- Confirmed no reliable player ID/rank/skill feature is present.
+
+Not done:
+- No code or database changes.
+- No Phase 1 hero first-pick/response analysis yet.
+- No formula or weights chosen.
+
+Commit with this audit: pending.
