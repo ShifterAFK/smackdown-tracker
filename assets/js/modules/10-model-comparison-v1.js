@@ -1,6 +1,7 @@
 (function(){
 'use strict';
-if(document.getElementById('page-model-comparison'))return;
+// The page markup is defined in index.html; only skip initialization if it is absent.
+
 const page=document.getElementById('page-model-comparison');
 const tab=document.querySelector('[data-page="model-comparison"]');
 if(!page||!tab)return;
