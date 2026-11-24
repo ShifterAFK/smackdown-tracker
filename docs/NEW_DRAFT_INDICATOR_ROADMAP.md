@@ -937,6 +937,106 @@ delta =
 - Walk-forward replay excludes the target match from its own historical stats, but is not a prospectively saved pre-battle prediction log.
 - No probability calibration was performed.
 
+
+### Phase 4 results — candidate model specification and go/no-go
+
+**Frozen snapshot:** 1,305 approved matches, 1,301 verified-order matches, same cutoff as Phases 1–3.  
+**Walk-forward test:** 60 verified-order warm-up matches + 1,241 test matches.  
+**Important limitation:** all candidate exploration used this same historical test set. It is not an untouched holdout and not prospective live validation. The result is a development benchmark only.
+
+#### 1. Current Match Indicator comparison
+
+On the exact same 1,241 test matches, the existing `draft-indicator-rules-v1` produced:
+- 1,224 directional predictions;
+- 709 correct;
+- 57.92% directional accuracy;
+- 57.13% total accuracy (neutral predictions counted as misses);
+- all 1,241 stored rows have `outcome_known_at_calculation=true`.
+
+The existing predictions are a chronological replay / automatic ingest after the outcome is known, not genuine pre-battle snapshots. The comparison is leakage-safe in its historical feature ordering but must not be described as live prospective accuracy.
+
+#### 2. Candidate weight comparison
+
+All variants include:
+- global historical side baseline;
+- separate hero lift for each side and exact pick slot;
+- ordered RED 1 class + RED 2 class residual, calculated beyond individual hero-slot lifts and shrunk with 30 prior matches;
+- no numeric map modifier.
+
+| Candidate | Hero shrinkage | First-pick weight | Later-pick weight | RED 1+2 class residual weight | Correct / 1,241 | Total accuracy |
+|---|---:|---:|---:|---:|---:|---:|
+| A — First Pick priority | 10 | 1.5× | 0.75× | 1.0× | 722 | 58.18% |
+| B — maximum pooled accuracy | 20 | 1.0× | 1.0× | 1.0× | 729 | 58.74% |
+| C — lower first-pick weight | 10 | 1.0× | 0.75× | 1.0× | 725 | 58.42% |
+| D — stronger first-pick priority | 10 | 2.0× | 0.75× | 1.0× | 717 | 57.78% |
+| E — reduced later-pick weight | 10 | 1.5× | 0.50× | 1.0× | 708 | 57.05% |
+
+Candidate B has the highest historical test accuracy, but gives all six hero slots equal weight and conflicts with the agreed design priority that First Pick should be the primary signal. Candidate A is therefore selected for the first experimental UI version: it gives each first pick twice the per-slot weight of a later pick, while retaining the useful later-pick context. It scores 13 more correct matches than the current Match Indicator on this development test (+1.05 percentage points total accuracy).
+
+This is a product-design trade-off, not proof that Candidate A is statistically superior to Candidate B. The 7-match gap between A and B is not independently validated.
+
+#### 3. Candidate A — frozen experimental formula
+
+Version name: **`showdown-draft-indicator-v1`**
+
+For each hero in its exact side and slot:
+`hero_lift = (wins + side_baseline * 10) / (appearances + 10) - side_baseline`
+
+RED side baseline is `1 - BLUE baseline`.
+
+Score:
+`delta = (BLUE baseline - 0.5)`
+`      + 1.5 * (BLUE1 lift - RED1 lift)`
+`      + 0.75 * (BLUE2 lift + BLUE3 lift - RED2 lift - RED3 lift)`
+`      - RED12 class-pair residual`
+
+RED12 class-pair residual:
+- For every historical match, estimate RED's expected result from RED side baseline plus the three individual RED hero-slot lifts, clamped to 5–95%.
+- Residual = actual RED win (1/0) minus expected RED result.
+- Group prior residuals by the ordered official class pair `(RED1 class, RED2 class)`.
+- `red12_residual = sum(prior residuals) / (prior pair matches + 30)`.
+- Subtract this residual from the BLUE score. A positive residual means RED has historically exceeded the expectation for that class sequence.
+- This is not an exact hero counter and does not use raw duo win rate.
+
+Interpretation:
+- positive delta = BLUE edge;
+- negative delta = RED edge;
+- `abs(delta) < 0.005` = neutral.
+- The score is an experimental historical score difference, **not a win probability**.
+
+#### 4. Candidate A comparison by map and chronology
+
+Against the current Match Indicator, Candidate A's total accuracy by map:
+- Fierce Duel: 58.94% vs 56.28%.
+- Siegebreaker: 57.89% vs 56.32%.
+- Tactical Grounds: 60.37% vs 59.57%.
+- Top Defender: 55.34% vs 55.83%.
+- Tranquil Grounds: 49.09% vs 54.55% (55-match test subset).
+
+By chronological test third:
+- Early: 54.72% vs 55.93%.
+- Middle: 59.18% vs 56.28%.
+- Late: 60.63% vs 59.18%.
+
+Candidate A does not improve every map or time slice. Its pooled gain is encouraging but not universal. Keep it experimental and do not add map-specific overrides based on the small subsets.
+
+#### 5. Uncertainty and UI reporting rules
+
+- Never show a percentage chance to win or a confidence percentage; the score is not calibrated.
+- Show the score direction and neutral state only.
+- In the explanation/details, show the historical appearance count for each hero in its exact side/slot and the prior RED1+RED2 class-pair sample count. This is evidence support, not a probability.
+- Keep shrinkage (10 hero appearances, 30 class-pair residual appearances) in the formula.
+- Keep the experimental/version label visible.
+- Explain that map, Phantimal, exact opponent hero counters, player skill, random pool/bans, and formation are not numerically modelled.
+
+#### Phase 4 go/no-go
+
+**GO:** build Candidate A as a separately viewable experimental indicator alongside the current Match Indicator.
+
+**NO-GO:** do not replace or modify the current Match Indicator; do not present Candidate A as proven superior or as a live-validated prediction. Phase 6 must observe genuinely pre-battle predictions before any promotion decision.
+
+Phase 4 exit gate: passed. The candidate formula, version, neutral handling, limitations, and test benchmark are frozen for the first UI implementation. Any formula change after this point requires a new model version and a roadmap update.
+
 ### Phase 5 — Separate UI integration (read-only alongside current indicator)
 **Status: IN PROGRESS — 2026-11-24**
 
@@ -1018,7 +1118,7 @@ Decisions:
 - Complete and document each phase before starting the next.
 
 Next step:
-- **Phase 4 — Assemble and validate the independent model.** Compare the shortlisted global variants on the same frozen, leakage-safe test set, choose only the simplest supported feature set, document uncertainty/neutral handling, and produce a go/no-go recommendation before UI work.
+- **Phase 5 — Separate UI integration.** Add `showdown-draft-indicator-v1` as a standalone module/section with its own data RPC if needed. Preserve the existing Match Indicator unchanged. Display historical support counts and the experimental/non-probability warning.
 
 ---
 
@@ -1236,4 +1336,23 @@ Not done:
 
 Decision:
 - Keep a global model; map is context only in v1. Phase 4 will compare global candidate variants and decide whether the pooled RED 1 + RED 2 class residual is worth retaining.
+
+
+### 2026-11-24 — Phase 4 completed
+
+Completed:
+- Compared Candidate A/B/C/D/E weight variants on the same 1,241-match walk-forward test set.
+- Compared Candidate A with the existing Match Indicator on the exact same matches.
+- Compared Candidate A by map and chronological third.
+- Froze the experimental formula, version name, shrinkage values, RED1+RED2 class residual definition, neutral threshold, and UI uncertainty rules.
+- Made an explicit GO for a separate experimental UI and NO-GO for replacing the existing indicator.
+
+Not done:
+- No code, RPC, migration, or database changes.
+- No prospective live prediction capture.
+- No independent untouched holdout.
+- No calibration as win probability.
+
+Decision:
+- Phase 5 implements Candidate A only as a separate, read-only experimental indicator. Existing Match Indicator and Tier List remain unchanged.
 
