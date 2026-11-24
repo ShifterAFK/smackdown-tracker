@@ -462,7 +462,7 @@ The map-aware variants were inconsistent by map. The pooled no-map model and map
 - No formation or Battle Fervor tile bonus: the tracker still does not record occupancy/position.
 
 ### Phase 4 — Assemble and validate the independent model
-**Status: IN PROGRESS — 2026-11-24 (reopened after runtime audit correction)**
+**Status: DONE — 2026-11-24 (first-pick diagnostic selected)**
 
 Tasks:
 - Combine only signals that passed earlier phase gates.
@@ -480,45 +480,37 @@ Exit gate:
 - No claim of improvement unless it beats the current indicator on a comparable, leakage-safe test set with a meaningful and reasonably stable margin.
 
 
-#### Phase 4 results — provisional model and comparison (snapshot 2026-11-24)
+#### Phase 4 results — active v1 comparison and separate diagnostic decision (snapshot 2026-11-24)
 
-**Actual current Match Indicator baseline — corrected runtime**
+**Actual current Match Indicator baseline**
 - Runtime code: `assets/js/modules/08-draft-indicator-rules-v1.js?v=5`, loaded directly by `index.html`.
-- The current v1 indicator calls:
-  - `ss_get_stats(p_theme_id = null, p_exclude_mirrors = false)`;
-  - `ss_get_side_stats(p_theme_id = null, p_exclude_mirrors = false)`;
-  - `ss_get_first_pick_stats()`.
-- It uses all maps and includes mirrors.
-- Hero score:
-  - BLUE1/RED1 use side-specific first-pick records;
-  - pick 2 and 3 use side-specific total records minus first-pick records (pooled later-pick history);
-  - each hero rate is smoothed toward its side baseline with 10 pseudo-appearances;
-  - first pick weight is 1.5×; later picks are 1×.
+- It uses `ss_get_stats(null, false)`, `ss_get_side_stats(null, false)`, and `ss_get_first_pick_stats()`, across all maps with mirrors included.
+- Current hero scoring: first pick uses side-specific first-pick history; picks 2/3 use side totals minus first-pick history; smoothing is 10 pseudo-appearances; first pick weight 1.5× and later picks 1×.
 - Side prior is `blueBase - 0.5`.
-- Current class synergy is specific hero × partner class, derived from DUO residuals beyond global individual hero lifts; the team correction is multiplied by 0.2 and capped at ±0.030. The residual history is smoothed with 30 pseudo-appearances after excluding the exact pair.
-- Final current score is hero BLUE minus hero RED + side prior + BLUE class synergy minus RED class synergy. `abs(delta) < 0.005` is neutral.
-- It is a historical score difference, not win probability.
-- `08-match-estimate-script-v1.js`, `model_snapshots`, and the 40/45/15 hero/DUO/Phantimal fallback belong to a dormant path and are **not** the current Match Indicator. Any Phase 4 comparison using that dormant fallback is invalid and must not be cited as a current-model comparison.
-- The current active module does not include map modifiers, Phantimal, H2H, player skill, random pool/bans, or formation data.
+- Current v1 adds hero × partner-class synergy from DUO residuals, with 30 pseudo-appearances and a team cap of ±0.030.
+- Neutral threshold is `abs(delta) < 0.005`. It is a historical score difference, not win probability.
+- The dormant `08-match-estimate-script-v1.js` / `model_snapshots` path is not the current UI and is excluded from this comparison.
 
-**Simplification for the new model**
-- Tested a slot-specific later-pick model against a pooled later-pick model.
-- Pooled later-pick history (pick 2 + pick 3 combined per hero and side) produced **702/1,235 (56.84%)**, compared with **703/1,234 (56.97%)** for the separate-slot model in the immediately preceding snapshot.
-- The difference is negligible for this exploratory dataset. Pooling later picks lets the new indicator reuse existing RPCs and avoids adding a database function/migration:
-  - `ss_get_stats(null, false)` for approved-match side baseline;
-  - `ss_get_side_stats(null, false)` for total hero appearances/wins by side;
-  - `ss_get_first_pick_stats()` for BLUE1/RED1 appearances and wins;
-  - later-pick records are derived as side totals minus first-pick records.
-- Existing `ss_get_first_pick_stats()` has the previously documented status-filter weakness; there are currently no nonapproved matches or picks. No RPC was changed.
+**Chronological comparison against the real active v1**
+- Snapshot: **1,302 approved matches**, first 60 warm-up, **1,238 known-order test targets**. All approved matches (including the four with unknown order) were used for the active v1 historical aggregates, matching its current RPC behaviour; only known-order matches were scored as targets.
+- Every prediction was calculated before adding its target match to history.
+- Results:
+| Model | Correct / 1,238 | Accuracy over all targets | Directional coverage | Accuracy among directional calls |
+|---|---:|---:|---:|---:|
+| Always BLUE | 673 | 54.36% | 100% | 54.36% |
+| Active Match Indicator v1 (exact formula) | **709** | **57.27%** | 98.63% | 58.07% |
+| Same base model, class synergy removed | 703 | 56.79% | 98.38% | 57.72% |
+| Slot-specific pick 1/2/3, no synergy; unknown-order rows excluded from slot stats | 707 | 57.11% | 98.06% | 58.24% |
 
-**Frozen provisional specification**
-Version: **`new-draft-indicator-v0.1`**
+- Removing current synergy changed only a few directional calls: paired comparison of active v1 vs no-synergy had 5 wins vs 3 losses for v1 (exact p=0.7266). This is not evidence that synergy is a reliable improvement.
+- The slot-specific model was not meaningfully different from active v1: 79 discordant calls favoured slot-specific and 80 favoured active v1 (exact p=1.0000).
+- A slot-specific model with the current synergy formula reached 718/1,238 (58.00%), but the paired comparison against active v1 was also inconclusive (88 vs 78 discordant calls, p=0.4850). It was an exploratory variant, not a validated improvement.
+- Therefore a second full-draft score using the same six heroes would mostly duplicate the existing Match Indicator. The pooled-later v0.1 candidate is effectively the current v1 base without its small synergy correction; it is not a sufficiently distinct new model.
 
-For each hero and side:
-- First-pick stats are only BLUE1 or RED1.
-- Later-pick stats pool that hero's appearances in pick 2 and pick 3 on the same side.
-- Both are smoothed with 10 pseudo-appearances toward the relevant historical side baseline.
+**Separate First Pick Indicator — chosen scope**
+The useful distinct view is an intentionally narrower **FIRST PICK INDICATOR**: it isolates the opening BLUE1 vs RED1 signal rather than presenting another near-identical full-draft score.
 
+Formula:
 ```
 blueBase = prior BLUE wins / prior approved matches
 redBase  = 1 - blueBase
@@ -526,72 +518,60 @@ redBase  = 1 - blueBase
 firstLift(hero, side) =
   (firstWins + sideBase * 10) / (firstAppearances + 10) - sideBase
 
-laterLift(hero, side) =
-  (laterWins + sideBase * 10) / (laterAppearances + 10) - sideBase
-
 delta =
   (blueBase - 0.5)
-  + 1.5 * (BLUE1_lift - RED1_lift)
-  + (BLUE2_laterLift + BLUE3_laterLift
-     - RED2_laterLift - RED3_laterLift)
+  + BLUE1_lift
+  - RED1_lift
 ```
 
 - Positive delta points to BLUE; negative points to RED.
-- Neutral threshold for the initial UI candidate: `abs(delta) < 0.005`.
-- This is a historical score difference, **not** a win probability.
-- No map modifier, exact-pair/hero×class synergy, Phantimal bonus, H2H, player/rank, formation, or hidden-pool/ban simulation.
-- No prediction is saved to the database; it recalculates from the current draft and historical RPC data.
+- Neutral threshold: `abs(delta) < 0.005`.
+- First-pick smoothing: 10 pseudo-appearances toward the side baseline.
+- It deliberately ignores picks 2/3, class synergy, exact DUO, map, Phantimal, H2H, player skill, random pool/bans, and formation.
+- It must display the BLUE1 and RED1 hero records, sample counts, side baseline, and score contribution so the user can see why the opening-pick signal points one way.
+- It must state clearly: **first-pick-only diagnostic; not a full-draft prediction and not a win probability**.
 
-**Leakage-safe comparison against the actual loaded current UI**
-- Dataset: **1,295 matches with both draft-order flags known**; first 60 warm-up; **1,235 test matches**. Both models were evaluated in chronological order with the target match excluded from their own history.
-- To keep the comparison fair, both models used the same known-order match population. The old fallback could theoretically use the four unknown-order matches too, but they were excluded from both histories.
-- New pooled v0.1 candidate:
-  - **702/1,235 = 56.84%** correct over all test matches;
-  - 1,218/1,235 = **98.62%** directional coverage;
-  - **57.64%** accuracy among directional calls (702/1,218).
-- Always-BLUE baseline:
-  - **671/1,235 = 54.33%**.
-  - Paired comparison of new vs always-BLUE: 264 cases where the new RED call was correct vs 226 where it was wrong; exact two-sided p=0.0945. This is not strong evidence of improvement.
-- Current Match Indicator fallback:
-  - 514/1,235 = **41.62%** directional coverage;
-  - **332/514 = 64.59%** accuracy among its directional calls;
-  - 393 matches had insufficient hero support and 328 were neutral under its 0.03 threshold.
-- On the 514 matches where the old fallback made a directional call, the new model made a directional call in 504. Among those 504 common directional cases:
-  - new model correct: 290;
-  - old fallback correct: 325;
-  - 71 cases favoured the new model while 106 favoured the old fallback; exact paired p=0.0104.
-- The new candidate is therefore a **higher-coverage, lower-selective-accuracy alternative**, not a demonstrated replacement or improvement over the current indicator.
-- New candidate score thresholds were also inspected: at 0.03, coverage was 89.55% and covered accuracy 59.10%; at 0.05, coverage was 83.55% and covered accuracy 59.94%. These are descriptive threshold trade-offs, not tuned production settings.
+**First-pick-only walk-forward result**
+- Snapshot: 1,303 approved matches; first 60 warm-up; 1,239 known-order test targets.
+- First-pick-only: **686/1,239 = 55.37%** over all targets; 97.74% directional coverage; 56.65% accuracy among directional calls.
+- Active v1 on the same targets: **709/1,239 = 57.22%**; 98.63% coverage; 58.02% accuracy among directional calls.
+- Paired comparison: 141 discordant cases favoured first-pick-only and 159 favoured active v1 (exact p=0.3264).
+- The First Pick Indicator is not expected to beat the full Match Indicator. Its value is diagnostic: it reveals whether the opening pair alone agrees with or contradicts the full-draft score.
+
+**Implementation feasibility**
+- Existing RPCs are sufficient: `ss_get_stats(null, false)` provides the side baseline and `ss_get_first_pick_stats()` provides BLUE1/RED1 hero records.
+- No new Supabase RPC, migration, table, or schema change is required.
+- The new view will be a separate module loaded directly by `index.html` after `08-draft-indicator-rules-v1.js`. Do not edit `order.json` or the dormant `tracker-app.js` bundle.
+- The existing Match Indicator source and formula remain untouched.
+
+**Phase 4 decision**
+- Do not build another full-draft score that duplicates active v1.
+- **GO** for a separate First Pick Indicator as a focused diagnostic view, clearly labelled as first-pick-only and experimental.
+- **NO-GO** for claiming it is more accurate than active v1 or using it to replace the existing Match Indicator.
+- Keep both visible so the user can compare opening-pick signal against full-draft signal.
 
 **Validation limitations**
-- This is one event/one evolving meta, not an untouched external holdout.
-- The model/weight candidates were explored on the same chronological test window; the reported numbers are exploratory and must not be advertised as a guaranteed future accuracy.
-- No genuine prospective forecast log exists yet. The current `ss_match_predictions` records are calculated after the outcome is known.
-- No probability calibration was performed; do not show probability percentages.
-
-**Phase 4 status after runtime correction**
-- The previous comparison against `match-estimate-script-v1` was invalid because that module is not loaded by the app. Its reported 64.59% selective accuracy and 41.62% coverage are not current Match Indicator results and must be ignored.
-- The provisional `new-draft-indicator-v0.1` formula is very close to the active Match Indicator v1: it uses the same side prior, 1.5× first-pick contribution, pooled later-pick contributions, and 10-appearance smoothing; its main difference is omitting the active v1 hero × partner-class synergy.
-- Therefore it is not yet proven to be a meaningfully independent second model. Phase 4 remains open until the exact active v1 formula (including its class-synergy calculation) is replayed chronologically and compared with the no-synergy candidate on the same test matches.
-- Do not begin Phase 5 or modify `index.html` until this corrected comparison is recorded.
-- Existing RPCs appear sufficient; no new Supabase schema, RPC, or migration is planned unless the corrected implementation audit finds a concrete gap.
+- One event and one evolving meta; no untouched external holdout.
+- Walk-forward replay excludes the target match from its own historical stats, but is not a prospectively saved pre-battle prediction log.
+- No probability calibration was performed.
 
 ### Phase 5 — Separate UI integration (read-only alongside current indicator)
-**Status: NOT STARTED**
+**Status: IN PROGRESS — 2026-11-24**
 
 Tasks:
-- Add a separate UI block/tab/section with a clear name such as **NEW DRAFT INDICATOR**.
-- Keep current Match Indicator visible and unchanged.
-- Give the new indicator its own explanation/details and model version.
-- Ensure both indicators update from the same current draft without sharing mutable score state.
-- Make it obvious that the new one is experimental and not a win probability.
-- Keep implementation small and avoid unrelated layout/refactor work.
+- Add `assets/js/modules/09-first-pick-indicator-v1.js` as a standalone module.
+- Add its script tag directly to `index.html` immediately after `08-draft-indicator-rules-v1.js`; do not modify the legacy `order.json` or `tracker-app.js` path.
+- Insert a separate **FIRST PICK INDICATOR** panel below the current Match Indicator.
+- Require both draft-order-known flags and BLUE1/RED1 selections; the panel may show a signal as soon as both first picks are entered, without waiting for picks 2/3.
+- Show BLUE1/RED1 hero names, historical wins/appearances, smoothed lifts, side baseline, total score, and a compact bar.
+- Keep the current Match Indicator source and formula unchanged. Use existing RPCs only; no migration or schema changes.
+- Make the panel explicitly state that it is a first-pick-only diagnostic, not a full-draft prediction or win probability.
 
 Deliverable:
-- A separately viewable indicator in the tracker, plus a short manual test checklist.
+- A separately viewable first-pick panel and a manual test checklist.
 
 Exit gate:
-- Verify the old indicator's output and code path are unchanged; verify both views update correctly on pick add/remove/reset and on data refresh.
+- Verify old indicator code/output is unchanged; verify first-pick panel updates on pick add/remove/reset, respects unknown-order flags, refreshes after new submissions, and reports errors without breaking the record form.
 
 ### Phase 6 — Observe and decide
 **Status: NOT STARTED**
@@ -749,3 +729,21 @@ Next:
 - Verified `index.html` does not load `assets/js/tracker-app.js` or use `assets/js/modules/order.json`; those are a legacy/unreferenced path.
 - Verified `08-match-estimate-script-v1.js` is not loaded by the current page. Its model-snapshot permission issue is not relevant to the current UI.
 - Corrected the Phase 0 runtime findings and reopened Phase 4. No code or database changes were made.
+
+
+### 2026-11-24 — Phase 4 corrected and completed; Phase 5 started
+Completed:
+- Reproduced the actual active `draft-indicator-rules-v1` formula chronologically, including its hero × partner-class synergy.
+- Compared active v1 against no-synergy and slot-specific variants on the same known-order targets.
+- Confirmed the proposed full-draft v0.1 would be too similar to the existing indicator.
+- Tested a genuinely distinct First Pick-only diagnostic against active v1 and simple baselines.
+- Confirmed existing RPCs are sufficient; no database migration is needed.
+
+Decisions:
+- The second visible indicator will be **FIRST PICK INDICATOR**, not a duplicate full-draft score.
+- It is diagnostic and intentionally narrower; active Match Indicator remains the primary full-draft score.
+- First-pick-only is not more accurate than active v1; UI must not imply otherwise.
+- Phase 5 can proceed without Supabase schema changes.
+
+Next:
+- Implement the standalone module and direct `index.html` script tag, then verify both panels independently.
