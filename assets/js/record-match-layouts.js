@@ -40,7 +40,9 @@ mapArea?.remove();
 
 const teams=match.querySelector('.teams');
 const indicator=document.getElementById('draftIndicator');
+const showdownIndicator=document.getElementById('showdownDraftIndicator');
 if(indicator)top.append(indicator);
+if(showdownIndicator)top.append(showdownIndicator);
 if(teams){
  for(const side of ['BLUE','RED']){
   const team=teams.querySelector('.team.'+side.toLowerCase());
