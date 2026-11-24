@@ -100,7 +100,7 @@ function paint(){
   else text.textContent=(delta>0?'BLUE':'RED')+' edge '+fmt(Math.abs(delta))+' · '+(full?'6/6 picks':result.count+'/6 picks');
   const lines=[
    'Model: showdown-draft-indicator-v1 · event '+(state.data.event_id||'unknown'),
-   'History: '+Number(state.data.summary?.approved_matches||0).toLocaleString()+' approved matches with both draft-order flags known · generated '+(state.generatedAt||'time unavailable'),
+   'History: '+Number(state.data.summary?.approved_matches||0).toLocaleString()+' approved matches · '+Number(state.data.summary?.verified_order_matches||0).toLocaleString()+' with verified draft order · generated '+(state.generatedAt||'time unavailable'),
    'Side baseline: BLUE '+(100*state.blueBase).toFixed(2)+'% · RED '+(100*(1-state.blueBase)).toFixed(2)+'%',
    '',
    'Formula: side prior + 1.5×(BLUE 1 lift − RED 1 lift) + 0.75×(BLUE 2 + BLUE 3 lifts − RED 2 − RED 3 lifts) − RED 1+2 class-pair residual.',
@@ -139,13 +139,14 @@ async function load(){
  try{
   const data=await rpc('ss_get_showdown_draft_indicator_stats',{});
   if(request!==state.request)return;
-  if(!data?.summary||!Array.isArray(data.hero_slot_stats)||!Array.isArray(data.red12_class_stats))throw Error('Invalid Showdown Draft Indicator statistics response');
+  if(!data?.summary||!Array.isArray(data.hero_slots)||!Array.isArray(data.red_class_pairs))throw Error('Invalid Showdown Draft Indicator statistics response');
   state.data=data;
   state.generatedAt=data.generated_at||null;
   const matches=Number(data.summary.approved_matches)||0;
-  state.blueBase=matches?clamp((Number(data.summary.blue_wins)||0)/matches,0,1):.5;
-  state.slotMap=new Map(data.hero_slot_stats.map(row=>[row.side+'|'+row.pick_order+'|'+row.hero_id,row]));
-  state.red12Map=new Map(data.red12_class_stats.map(row=>[row.class_1+'|'+row.class_2,row]));
+  const baseline=Number(data.summary.blue_baseline);
+  state.blueBase=matches?clamp(Number.isFinite(baseline)?baseline:(Number(data.summary.blue_wins)||0)/matches,0,1):.5;
+  state.slotMap=new Map(data.hero_slots.map(row=>[row.side+'|'+row.pick_order+'|'+row.hero_id,row]));
+  state.red12Map=new Map(data.red_class_pairs.map(row=>[row.class_1+'|'+row.class_2,row]));
  }catch(error){
   if(request!==state.request)return;
   state.error=error?.message||'Unknown error';
