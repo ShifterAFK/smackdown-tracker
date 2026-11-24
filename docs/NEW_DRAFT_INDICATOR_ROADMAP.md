@@ -295,7 +295,7 @@ The combined first-pick signal did not beat always-BLUE in the early or middle c
 - Phase 2 must test whether picks 2/3 and sequence/composition information add incremental predictive value beyond this first-pick baseline.
 
 ### Phase 2 — Later-pick / composition contribution
-**Status: IN PROGRESS — 2026-11-24**
+**Status: DONE — 2026-11-24**
 
 Tasks:
 - Measure pick 2 and pick 3 separately by side and slot.
@@ -311,8 +311,90 @@ Deliverable:
 Exit gate:
 - No DUO/composition bonus enters the model solely because it sounds strategically plausible.
 
+
+#### Phase 2 results — later picks and composition (snapshot 2026-11-24)
+
+**Dataset and method**
+- Extracted **1,291 matches with both draft-order flags known**; four other approved matches remained excluded because their order flags were unknown.
+- Chronological order; first 60 matches were warm-up. Test set: **1,231 matches**.
+- For every side and exact pick slot, hero lift was calculated from only earlier appearances in that same side+slot, smoothed toward the prior side win rate with k=10.
+- Slot model:
+  `delta = side_prior + Σ weight[slot] × (BLUE_slot_lift - RED_slot_lift)`.
+- This tests the value of hero identity at each pick slot. It does not simulate the unseen 20-hero pool, bans, or which strong heroes remained available.
+- Same target-match exclusion and chronological update rules as Phase 1.
+
+**Walk-forward slot-weight results**
+| Slot weights (BLUE/RED symmetric) | Correct / test | Accuracy over all test matches | Coverage |
+|---|---:|---:|---:|
+| First only [1, 0, 0] | 680 / 1,231 | 55.24% | 97.89% |
+| First 1 + later 0.5 [1, 0.5, 0.5] | 693 / 1,231 | 56.30% | 97.32% |
+| All equal [1, 1, 1] | 699 / 1,231 | 56.78% | 98.21% |
+| Later picks only [0, 0.5, 0.5] | 661 / 1,230 in the immediately preceding 1,290-match snapshot | 53.74% | 96.91% |
+
+The later slots alone are weak. In combination with the first picks, later-slot hero information can add signal. However, paired comparisons on the same 1,231-match test window did **not** show a statistically persuasive improvement over the first-pick model:
+- [1, 0.5, 0.5] vs first-only: 90 discordant cases in its favour vs 77 against; exact p=0.3531.
+- [1, 1, 1] vs first-only: 157 discordant cases in its favour vs 142 against; exact p=0.4182.
+
+Weight sensitivity was substantial. Additional candidates scored:
+- [1.5, 0.5, 0.5]: 697/1,231 (56.62%);
+- [1.5, 1, 1]: 701/1,231 (56.95%);
+- [2, 1, 1]: 704/1,231 (57.19%).
+
+These are exploratory comparisons on the same test set, not an untouched validation. Do not select the highest weight combination from these results; doing so would tune to the test data.
+
+**Temporal and map stability**
+The equal-slot model's apparent gains were concentrated in the late chronological third:
+| Segment | Matches | Always BLUE | First-only | First + later 0.5 | All equal |
+|---|---:|---:|---:|---:|---:|
+| Early | 411 | 56.20% | 53.77% | 54.26% | 55.72% |
+| Middle | 410 | 57.56% | 56.34% | 55.61% | 55.12% |
+| Late | 410 | 49.27% | 55.61% | 59.02% | 59.51% |
+
+By map (same test window):
+| Map | Matches | Always BLUE | First + later 0.5 | All equal |
+|---|---:|---:|---:|---:|
+| Tranquil Grounds | 55 | 58.18% | 50.91% | 47.27% |
+| Top Defender | 206 | 52.91% | 53.40% | 57.77% |
+| Siegebreaker | 190 | 60.53% | 58.42% | 56.32% |
+| Fierce Duel | 414 | 55.80% | 54.59% | 55.56% |
+| Tactical Grounds | 366 | 49.73% | 59.56% | 59.29% |
+
+The signal changes materially by time and map. This supports testing map context in Phase 3; it does not justify a map bonus yet.
+
+**Slot sample breadth**
+Distinct heroes seen in each side+slot in the extracted dataset:
+- BLUE slots 1/2/3: 87 / 106 / 108.
+- RED slots 1/2/3: 100 / 108 / 107.
+
+**Pick-pair / sequence sparsity**
+Exact pair counts in the same dataset:
+| Pair of slots | Distinct hero pairs | Repeated ≥2 | Repeated ≥3 | Repeated ≥5 | Max appearances |
+|---|---:|---:|---:|---:|---:|
+| BLUE 2 + BLUE 3 | 1,064 | 189 | 29 | 2 | 6 |
+| RED 1 + RED 2 | 962 | 238 | 71 | 6 | 7 |
+| BLUE 1 + BLUE 2 | 975 | 225 | 67 | 4 | 5 |
+| RED 2 + RED 3 | 1,063 | 192 | 31 | 1 | 5 |
+
+RED 1+2 pairs repeat more often than BLUE 2+3, but exact pairs remain sparse. Because the random pool and bans are unavailable, we cannot calculate which high-value heroes were still available when RED 1+2 or BLUE 2+3 were selected.
+
+**Pair and class residual experiment**
+- Tested a conservative online residual beyond slot-specific individual hero lifts. Each pair's expected result was based on the side baseline plus the two heroes' slot-specific lifts; only the historical residual was eligible for a later prediction.
+- Compared the all-equal slot model (699/1,231) with:
+  - hero × partner-class residual: **697/1,231**;
+  - exact-pair residual: **703/1,231**.
+- Pairwise comparison of exact-pair residual vs the slot-only model changed only one non-neutral directional call in favour of the pair model and none against; the small apparent gain was mostly coverage/neutral changes. Class residual changed 6 directional calls in its favour and 5 against. Neither demonstrates meaningful incremental pair value.
+- Exact-pair history covered 4,715 distinct side+pair keys; class interaction history covered 1,297 side+hero+partner-class groups. Despite more class aggregation, the class residual did not improve the result.
+- This supports keeping synergy out of the first release. It avoids counting the same hero strength multiple times and avoids an unsupported composition bonus.
+
+**Phase 2 decisions**
+- Later picks contain some additional information when combined with first picks, but later picks alone are not useful enough.
+- Keep BLUE1 and RED1 as the primary layer. Keep slots 2 and 3 as supporting candidates; do not give them equal priority by default.
+- Do not choose final weights from this exploratory test. Retain [1, 0.5, 0.5] and [1.5, 1, 1] as candidate settings for Phase 3/4 comparison, not approved production weights.
+- Do not include exact-pair or hero×partner-class synergy in the initial new model; neither showed convincing incremental value.
+- Do not claim that RED1+RED2 has a proven sequence advantage over BLUE2+BLUE3. The pair counts are too sparse and the unseen pool/bans prevent availability modelling.
+
 ### Phase 3 — Map context
-**Status: NOT STARTED**
+**Status: IN PROGRESS — 2026-11-24**
 
 Tasks:
 - Establish per-map sample sizes and side balance.
@@ -465,3 +547,20 @@ Decisions:
 
 Next:
 - **Phase 2 — Later-pick / composition contribution.** Test per-slot hero lifts and whether later picks add out-of-sample value beyond BLUE1+RED1.
+
+
+### 2026-11-24 — Phase 2 completed; Phase 3 started
+Completed:
+- Ran chronological, target-excluded tests of first-only, later-only, half-weight later, equal-slot, and first-heavy weight variants.
+- Tested per-slot hero main effects, exact duo residuals, and hero × partner-class residuals using only prior-match information.
+- Audited RED1+RED2 and BLUE2+BLUE3 exact pair repetition.
+- Compared results across chronological thirds and map strata.
+
+Decisions:
+- Later picks remain a supporting signal, not equal priority by default.
+- No exact-pair or class-synergy correction in the initial candidate model.
+- Weight choice remains open; no parameter was promoted based on the same exploratory test window.
+- Map/time instability warrants Phase 3.
+
+Next:
+- **Phase 3 — Map context.** Check per-map sample sizes, side balance, and whether map-aware pooled adjustments improve chronological out-of-sample results without overfitting.
