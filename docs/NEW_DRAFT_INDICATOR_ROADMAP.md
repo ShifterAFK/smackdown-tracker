@@ -117,14 +117,14 @@ Exit gate:
 
 #### Phase 0 results — live audit (2026-11-24)
 
-**Repository/runtime audit**
-- Audited `main` and `development`. Both branches have the same `assets/js/modules/order.json` list.
-- `order.json` loads `08-match-estimate-script-v1.js` after the shared assistant modules.
-- The generated `assets/js/tracker-app.js` contains `match-estimate-script-v1` and `matchEstimate`, but does **not** contain `draft-indicator-rules-v1` or `draftIndicator`.
-- `assets/js/modules/08-draft-indicator-rules-v1.js` exists in the repository but is **not loaded by the current app bundle**. Do not mistake this orphaned module for the live indicator.
-- The actual current UI indicator is `08-match-estimate-script-v1.js`. It first tries to read the latest `model_snapshots` row, then falls back to a heuristic when the model cannot be read.
-- Verified with SQL that neither `anon` nor `authenticated` can SELECT `public.model_snapshots`, and there are no table policies. The frontend request uses the publishable key, so the logistic snapshot is not available to the browser under current grants. The live UI therefore follows its fallback path: smoothed hero/DUO/Phantimal comparison (40% / 45% / 15% group weights, normalized over groups with data), with a minimum hero-support check. This is important when comparing the new model against the actual current UI.
-- `docs/MATCH_INDICATOR_CURRENT_IMPLEMENTATION.md` currently describes `08-draft-indicator-rules-v1.js` as the active implementation. That statement conflicts with the current module order and generated bundle. This roadmap records the runtime evidence; the existing indicator code and database were not changed.
+**Repository/runtime audit — corrected 2026-11-24**
+- The authoritative runtime entry point is `index.html`, which loads the JavaScript modules directly with script tags.
+- `index.html` loads `assets/js/modules/08-draft-indicator-rules-v1.js?v=5`. This is the **actual active Match Indicator**.
+- `index.html` does **not** reference `assets/js/tracker-app.js` or `assets/js/modules/order.json`. Those files are a legacy/unreferenced bundle path and must not be used to infer the active runtime.
+- `assets/js/modules/08-match-estimate-script-v1.js` is not loaded by `index.html`. It is dormant and its `model_snapshots` fallback is not the current UI.
+- The earlier conclusion that `08-draft-indicator-rules-v1.js` was orphaned and that the live UI used `08-match-estimate-script-v1.js` was incorrect. It is superseded by this direct inspection of every script tag in `index.html`.
+- `docs/MATCH_INDICATOR_CURRENT_IMPLEMENTATION.md` correctly identifies `08-draft-indicator-rules-v1.js` as the active implementation.
+- No source code or database object was changed during this audit correction.
 
 **Supabase schema and current data**
 - Project: `rwnbxhrkjjlfuljhwdpt`; current event: `showdown-current`.
@@ -462,7 +462,7 @@ The map-aware variants were inconsistent by map. The pooled no-map model and map
 - No formation or Battle Fervor tile bonus: the tracker still does not record occupancy/position.
 
 ### Phase 4 — Assemble and validate the independent model
-**Status: DONE — 2026-11-24**
+**Status: IN PROGRESS — 2026-11-24 (reopened after runtime audit correction)**
 
 Tasks:
 - Combine only signals that passed earlier phase gates.
@@ -482,20 +482,24 @@ Exit gate:
 
 #### Phase 4 results — provisional model and comparison (snapshot 2026-11-24)
 
-**Actual current Match Indicator baseline**
-- Runtime code: `assets/js/modules/08-match-estimate-script-v1.js`, loaded by `order.json` and present in `tracker-app.js`.
-- The module attempts to fetch the latest `model_snapshots` row. The table has no SELECT privilege for `anon` or `authenticated` and no public policies; the frontend uses the publishable key. Therefore the logistic snapshot is not available to the browser and the current UI follows its fallback heuristic.
-- The fallback requests `ss_get_stats(p_theme_id = selected map, p_exclude_mirrors = true)`. The SQL definition was inspected. It returns map-scoped hero, duo, and normalized Phantimal stats from approved matches.
-- Fallback formula:
-  - per-record smoothing: `(wins + 5) / (appearances + 10)`;
-  - average supported heroes (3 heroes), weight 0.40;
-  - average supported duos (3 pairs), weight 0.45;
-  - Phantimal, weight 0.15 when supported;
-  - weights are normalized over the groups that have data;
-  - a side is eligible only when at least 2 of its 3 heroes have 5+ appearances;
-  - the UI says “No clear indication” when absolute score difference is below 0.03.
-- Phantimal normalization maps Celestial/Hypogean to Wedge of Matter. The mirror filter also excludes a Phantimal appearance when both teams have the same normalized Phantimal. This occurred in 425 approved matches in the audited current database.
-- The current frontend does not use the orphaned `08-draft-indicator-rules-v1.js` module.
+**Actual current Match Indicator baseline — corrected runtime**
+- Runtime code: `assets/js/modules/08-draft-indicator-rules-v1.js?v=5`, loaded directly by `index.html`.
+- The current v1 indicator calls:
+  - `ss_get_stats(p_theme_id = null, p_exclude_mirrors = false)`;
+  - `ss_get_side_stats(p_theme_id = null, p_exclude_mirrors = false)`;
+  - `ss_get_first_pick_stats()`.
+- It uses all maps and includes mirrors.
+- Hero score:
+  - BLUE1/RED1 use side-specific first-pick records;
+  - pick 2 and 3 use side-specific total records minus first-pick records (pooled later-pick history);
+  - each hero rate is smoothed toward its side baseline with 10 pseudo-appearances;
+  - first pick weight is 1.5×; later picks are 1×.
+- Side prior is `blueBase - 0.5`.
+- Current class synergy is specific hero × partner class, derived from DUO residuals beyond global individual hero lifts; the team correction is multiplied by 0.2 and capped at ±0.030. The residual history is smoothed with 30 pseudo-appearances after excluding the exact pair.
+- Final current score is hero BLUE minus hero RED + side prior + BLUE class synergy minus RED class synergy. `abs(delta) < 0.005` is neutral.
+- It is a historical score difference, not win probability.
+- `08-match-estimate-script-v1.js`, `model_snapshots`, and the 40/45/15 hero/DUO/Phantimal fallback belong to a dormant path and are **not** the current Match Indicator. Any Phase 4 comparison using that dormant fallback is invalid and must not be cited as a current-model comparison.
+- The current active module does not include map modifiers, Phantimal, H2H, player skill, random pool/bans, or formation data.
 
 **Simplification for the new model**
 - Tested a slot-specific later-pick model against a pooled later-pick model.
@@ -565,14 +569,15 @@ delta =
 - No genuine prospective forecast log exists yet. The current `ss_match_predictions` records are calculated after the outcome is known.
 - No probability calibration was performed; do not show probability percentages.
 
-**Phase 4 go/no-go**
-- **GO** for a separate experimental UI view because the user explicitly wants a second indicator and the candidate gives a direction on many more drafts.
-- **NO-GO** for replacing the current Match Indicator or claiming superior prediction quality. The current fallback is more accurate when it elects to make a directional call.
-- Keep both indicators visible and clearly label the new one as experimental, historical score difference, not probability.
-- Use existing RPCs; no new Supabase schema, RPC, or migration is required for v0.1.
+**Phase 4 status after runtime correction**
+- The previous comparison against `match-estimate-script-v1` was invalid because that module is not loaded by the app. Its reported 64.59% selective accuracy and 41.62% coverage are not current Match Indicator results and must be ignored.
+- The provisional `new-draft-indicator-v0.1` formula is very close to the active Match Indicator v1: it uses the same side prior, 1.5× first-pick contribution, pooled later-pick contributions, and 10-appearance smoothing; its main difference is omitting the active v1 hero × partner-class synergy.
+- Therefore it is not yet proven to be a meaningfully independent second model. Phase 4 remains open until the exact active v1 formula (including its class-synergy calculation) is replayed chronologically and compared with the no-synergy candidate on the same test matches.
+- Do not begin Phase 5 or modify `index.html` until this corrected comparison is recorded.
+- Existing RPCs appear sufficient; no new Supabase schema, RPC, or migration is planned unless the corrected implementation audit finds a concrete gap.
 
 ### Phase 5 — Separate UI integration (read-only alongside current indicator)
-**Status: IN PROGRESS — 2026-11-24**
+**Status: NOT STARTED**
 
 Tasks:
 - Add a separate UI block/tab/section with a clear name such as **NEW DRAFT INDICATOR**.
@@ -726,19 +731,21 @@ Next:
 - **Phase 4 — Assemble and validate the independent model.** Freeze a provisional model spec consistent with the design intent, then compare it against the actual currently loaded Match Indicator fallback and simple baselines on the same leakage-safe chronological test set. Do not implement UI yet.
 
 
-### 2026-11-24 — Phase 4 completed; Phase 5 started
-Completed:
-- Inspected the actual current Match Indicator fallback and its SQL data source, smoothing, group weights, support gate, Phantimal normalization, and neutral threshold.
-- Confirmed the frontend cannot read `model_snapshots`; the live current UI uses the fallback heuristic.
-- Compared the provisional new model with the actual fallback and always-BLUE on the same leakage-safe chronological test matches.
-- Tested pooling pick 2+3 history. It performs nearly identically to slot-specific history and allows reuse of existing RPCs.
-- Frozen provisional version `new-draft-indicator-v0.1` and its score formula.
-
-Decisions:
-- Build a separate experimental view, not a replacement.
-- New model is higher coverage but has lower accuracy among directional predictions than the current selective fallback.
-- No new Supabase migration/RPC is needed for v0.1.
-- Do not present score as probability or claim proven improvement.
+### 2026-11-24 — Phase 4 provisional comparison invalidated; Phase 5 not started
+- A second inspection of `index.html` showed that the actual page loads `08-draft-indicator-rules-v1.js?v=5` directly.
+- The previous Phase 4 comparison used the dormant `08-match-estimate-script-v1.js` fallback and is invalid as a comparison to the current UI.
+- The old fallback statistics and the earlier Phase 4 GO decision are superseded. Do not use them in project decisions.
+- The pooled-later-pick simplification remains a valid analytical result, but `new-draft-indicator-v0.1` is currently too close to the active v1 formula to call it an independent improvement.
+- Phase 4 has been reopened; Phase 5 has been reset to NOT STARTED.
+- No code, SQL, migration, or UI changes were made.
 
 Next:
-- **Phase 5 — Separate UI integration.** Add a standalone module/view and bundle entry while leaving `08-match-estimate-script-v1.js`, Tier List, Tier Side, TOP Picks, and existing database objects unchanged. Verify both indicators update independently with draft edits/reset/data refresh.
+- Reproduce the active `draft-indicator-rules-v1` formula exactly in a leakage-safe chronological replay, including its hero × partner-class synergy, then compare it with the no-synergy candidate.
+- Decide whether the difference is useful enough to justify a second visible indicator.
+
+
+### 2026-11-24 — Runtime audit correction
+- Verified all script tags in `index.html`; the active Match Indicator is `assets/js/modules/08-draft-indicator-rules-v1.js?v=5`.
+- Verified `index.html` does not load `assets/js/tracker-app.js` or use `assets/js/modules/order.json`; those are a legacy/unreferenced path.
+- Verified `08-match-estimate-script-v1.js` is not loaded by the current page. Its model-snapshot permission issue is not relevant to the current UI.
+- Corrected the Phase 0 runtime findings and reopened Phase 4. No code or database changes were made.
