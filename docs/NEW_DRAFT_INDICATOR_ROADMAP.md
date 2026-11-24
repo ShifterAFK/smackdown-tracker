@@ -1,6 +1,6 @@
 # New Draft Indicator — roadmap and work log
 
-**Status:** plan established; implementation not started  
+**Status:** Phase 0 audit completed; model study not started  
 **Last updated:** 2026-11-24  
 **Repository:** `ShifterAFK/smackdown-tracker`  
 **Purpose:** build a second, independent draft indicator that can be viewed beside the existing Match Indicator without changing the current indicator, Tier List, or TOP Picks.
@@ -97,7 +97,7 @@ Always inspect the live schema, RPC definitions, migrations, current counts, nul
 ## 4. Phased implementation plan
 
 ### Phase 0 — Baseline and data audit
-**Status: NOT STARTED**
+**Status: DONE — 2026-11-24**
 
 Tasks:
 - Re-read the current indicator implementation and assumptions documents.
@@ -113,6 +113,82 @@ Deliverable:
 
 Exit gate:
 - No formula design based on stale counts or unverified assumptions. Phase 1 starts only after the dataset and limitations are documented.
+
+
+#### Phase 0 results — live audit (2026-11-24)
+
+**Repository/runtime audit**
+- Audited `main` and `development`. Both branches have the same `assets/js/modules/order.json` list.
+- `order.json` loads `08-match-estimate-script-v1.js` after the shared assistant modules.
+- The generated `assets/js/tracker-app.js` contains `match-estimate-script-v1` and `matchEstimate`, but does **not** contain `draft-indicator-rules-v1` or `draftIndicator`.
+- `assets/js/modules/08-draft-indicator-rules-v1.js` exists in the repository but is **not loaded by the current app bundle**. Do not mistake this orphaned module for the live indicator.
+- The actual current UI indicator is `08-match-estimate-script-v1.js`. It first tries to read the latest `model_snapshots` row, then falls back to a heuristic when the model cannot be read.
+- Verified with SQL that neither `anon` nor `authenticated` can SELECT `public.model_snapshots`, and there are no table policies. The frontend request uses the publishable key, so the logistic snapshot is not available to the browser under current grants. The live UI therefore follows its fallback path: smoothed hero/DUO/Phantimal comparison (40% / 45% / 15% group weights, normalized over groups with data), with a minimum hero-support check. This is important when comparing the new model against the actual current UI.
+- `docs/MATCH_INDICATOR_CURRENT_IMPLEMENTATION.md` currently describes `08-draft-indicator-rules-v1.js` as the active implementation. That statement conflicts with the current module order and generated bundle. This roadmap records the runtime evidence; the existing indicator code and database were not changed.
+
+**Supabase schema and current data**
+- Project: `rwnbxhrkjjlfuljhwdpt`; current event: `showdown-current`.
+- `ss_matches` contains: `id`, `submission_id`, `created_at`, `event_id`, `theme_id`, `winner`, `blue_draft_known`, `red_draft_known`, `blue_phantimal`, `red_phantimal`, `notes`, `status`, `submitter_name`, `played_at`.
+- `ss_match_heroes` contains `match_id`, `side`, `pick_order`, `hero_id`; primary key is (`match_id`, `side`, `pick_order`). It stores three slots per side.
+- `ss_themes` maps event/theme IDs to map names and image URLs. `ss_heroes` contains 131 heroes and all 131 have an official class.
+- Current counts: **1,290 approved matches; 7,740 pick rows**.
+- Data quality: 0 approved matches missing winner, event/theme, or `played_at`; 0 malformed drafts; every approved match has exactly six picks, three per side, and six unique heroes; 0 hero IDs mirrored across opposing sides; 0 exact same-three-hero rosters on both sides.
+- There is one repeated exact BLUE-vs-RED roster matchup across multiple matches; do not treat those repeated games as independent player-level evidence without accounting for repetition.
+- Four approved matches have both `blue_draft_known=false` and `red_draft_known=false`. They still have six stored pick rows, but their slot order is explicitly unknown. Exclude these four from all slot-/sequence-specific training and evaluation. They may remain usable for side-level roster/hero analyses where slot order is not required.
+- `submitter_name` is populated in only **14/1,290** matches (1,276 missing). There is no player ID, rank, MMR, or reliable player-skill field in `ss_matches`. Do not segment or weight by player rank/skill.
+- No random 20-hero pool, bans, formation, battlefield position, or Battle Fervor occupancy columns exist in the audited match/pick tables.
+- Phantimal values are recorded for all approved matches and none are `Unknown`/`None`; however, Phantimal is derived from the opening eligible faction pick and is not an independent random treatment. Keep it out of the core first-pick model unless a later phase proves incremental value.
+
+**Map coverage and side baseline**
+| Map | Matches | BLUE wins | RED wins |
+|---|---:|---:|---:|
+| Tranquil Grounds | 115 | 70 | 45 |
+| Top Defender | 209 | 110 | 99 |
+| Siegebreaker | 191 | 116 | 75 |
+| Fierce Duel | 414 | 231 | 183 |
+| Tactical Grounds | 361 | 179 | 182 |
+| **Total** | **1,290** | **706** | **584** |
+
+Overall BLUE win rate is **54.73%** (706/1,290); RED is **45.27%**. This is descriptive side balance, not evidence that the first pick alone causes the difference.
+
+**Important interpretation of slot counts**
+- Each of BLUE 1/2/3 appears in 1,290 matches and has 706 wins; each RED 1/2/3 appears in 1,290 matches and has 584 wins. This is mechanically the same match outcome repeated across all three picks on a side. These aggregate slot win rates do **not** tell us whether pick 1 is more valuable.
+- Phase 1 must compare hero-level performance by slot and use leakage-safe match-level modelling; do not infer slot value from raw aggregate win rates.
+
+**Existing RPCs checked**
+- `ss_get_stats(p_theme_id, p_exclude_mirrors)`
+- `ss_get_side_stats(p_theme_id, p_exclude_mirrors)`
+- `ss_get_first_pick_stats()`
+- `ss_get_config()`
+- `ss_get_first_pick_stats()` has a known status-filter weakness: approved status is in a LEFT JOIN condition rather than a WHERE clause, so picks from a nonapproved match could still be counted if such rows existed. Current database has zero nonapproved matches/picks, so no current impact. For new analysis, use direct approved-match joins or a corrected query rather than relying on this RPC.
+- `ss_get_side_stats` supports theme and mirror filtering. Current approved data has no hero mirrored across sides, so mirror exclusion currently removes no rows.
+
+**Analytical dataset definition for Phase 1**
+- Base population: `ss_matches.status='approved'` joined to `ss_match_heroes` on `match_id`, scoped to event `showdown-current`.
+- Outcome: `winner` (BLUE/RED).
+- Features: hero IDs, side, pick order, theme/map, `played_at`, draft-known flags, and recorded Phantimal (the latter only as an audited candidate, not assumed independent).
+- For slot-/sequence-specific analyses, require both draft-known flags true; this leaves **1,286 matches**.
+- Chronological ordering: `played_at`, with `created_at` and match ID as deterministic tie-breakers.
+- Exclude no matches for mirror status at present (none are mirrored). Do not use `submitter_name` as player identity.
+- The historical `ss_match_predictions` rows are calculated after outcome is known (`outcome_known_at_calculation=true`); they are not prospective pre-battle forecasts. Use chronological replay with target-match exclusion for offline evaluation, and keep it labelled as replay.
+
+**Phase 0 decisions**
+- Phase 1 will use the 1,286 draft-known matches for slot-/sequence-aware work.
+- The four unknown-order matches are excluded only where pick-slot truth is required; do not discard them from every possible analysis by default.
+- Player rank/skill segmentation is unavailable and out of scope.
+- No schema or RPC changes are needed for the initial analytical study; the existing tables contain the fields needed for first-pick and map analysis.
+- The actual current UI baseline is the loaded `match-estimate-script-v1` fallback, not the unbundled `draft-indicator-rules-v1` file. Preserve both existing code paths untouched during the new indicator work.
+
+**Files and branches inspected**
+- `assets/js/modules/order.json` on `main` and `development`
+- `assets/js/tracker-app.js` on `main`
+- `assets/js/modules/08-match-estimate-script-v1.js`
+- `assets/js/modules/08-draft-indicator-rules-v1.js` (exists, not bundled)
+- `assets/js/modules/00-core.js`
+- `assets/js/modules/02-tracker-shared-data-v1.js`
+- `index.html`
+- Supabase migrations through `20261123190906_capture_chronological_draft_predictions`
+- Read-only SQL checks against `ss_matches`, `ss_match_heroes`, `ss_themes`, `ss_heroes`, `ss_match_predictions`, and `model_snapshots`.
 
 ### Phase 1 — First-pick signal study (core of the new model)
 **Status: NOT STARTED**
@@ -256,3 +332,28 @@ After every completed phase:
 6. Commit this roadmap update before beginning the next phase.
 
 If a phase is incomplete, say so plainly. Never mark a phase done just because a proposal was discussed. If new evidence changes the plan, update the plan and explain why before proceeding.
+
+
+### 2026-11-24 — Phase 0 completed
+Completed:
+- Finished the live Supabase schema, data-quality, map-coverage, mirror, Phantimal, and RPC audit documented in Phase 0 results above.
+- Inspected `main` and `development` module orders and the generated runtime bundle.
+- Identified a significant documentation/runtime mismatch: `08-draft-indicator-rules-v1.js` is not loaded; the actual app loads `08-match-estimate-script-v1.js`.
+- Verified the live UI cannot read `model_snapshots` with current anon/authenticated grants and therefore uses the fallback heuristic.
+- Defined the Phase 1 analytical population and exclusions.
+
+Not done:
+- No source code changed.
+- No Supabase schema, RPC, or data changed.
+- No model formula, feature weight, or prediction was implemented.
+- No historical model performance was calculated in this phase.
+
+Decisions:
+- Use 1,286 draft-known matches for pick-slot and sequence analysis.
+- Exclude the four unknown-order matches from slot-specific analyses.
+- Do not use submitter names as player identity or infer rank/skill.
+- Treat actual loaded Match Indicator fallback as the live baseline; do not use the unbundled draft-rules file as the current UI baseline.
+- Keep the current indicator and database unchanged.
+
+Next step:
+- **Phase 1 — First-pick signal study.** Calculate BLUE 1 and RED 1 hero-level results, RED 1 response matchups, side-adjusted signal, and chronological walk-forward baselines. Update this roadmap with results and decisions before Phase 2.
