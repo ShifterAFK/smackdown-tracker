@@ -1038,22 +1038,37 @@ Candidate A does not improve every map or time slice. Its pooled gain is encoura
 Phase 4 exit gate: passed. The candidate formula, version, neutral handling, limitations, and test benchmark are frozen for the first UI implementation. Any formula change after this point requires a new model version and a roadmap update.
 
 ### Phase 5 — Separate UI integration (read-only alongside current indicator)
-**Status: IN PROGRESS — 2026-11-24**
+**Status: IN PROGRESS — implementation committed; browser QA pending**
 
 Tasks:
-- Add `assets/js/modules/09-first-pick-indicator-v1.js` as a standalone module.
-- Add its script tag directly to `index.html` immediately after `08-draft-indicator-rules-v1.js`; do not modify the legacy `order.json` or `tracker-app.js` path.
-- Insert a separate **FIRST PICK INDICATOR** panel below the current Match Indicator.
-- Require both draft-order-known flags and BLUE1/RED1 selections; the panel may show a signal as soon as both first picks are entered, without waiting for picks 2/3.
-- Show BLUE1/RED1 hero names, historical wins/appearances, smoothed lifts, side baseline, total score, and a compact bar.
-- Keep the current Match Indicator source and formula unchanged. Use existing RPCs only; no migration or schema changes.
-- Make the panel explicitly state that it is a first-pick-only diagnostic, not a full-draft prediction or win probability.
+- Add `assets/js/modules/09-showdown-draft-indicator-v1.js` as an independent full-draft module.
+- Load it directly after `08-draft-indicator-rules-v1.js` in `index.html`.
+- Use the frozen Phase 4 Candidate A formula, not a first-pick-only approximation.
+- Read statistics from the dedicated `ss_get_showdown_draft_indicator_stats()` RPC. Do not change the shared `ss_get_first_pick_stats()` RPC used by the existing Match Indicator.
+- The RPC must scope to the configured current event, approved matches, and both draft-order-known flags.
+- Keep the active Match Indicator, Tier List, and TOP Picks unchanged.
+- Show a partial score while the draft is incomplete; missing slots contribute zero. Require both current draft-order flags to be known.
+- Show per-slot support counts, RED 1+2 class-pair sample count, version, data timestamp, and explicit experimental/non-probability warning.
+
+Frozen Candidate A formula:
+```
+hero_lift = (wins + side_baseline * 10) / (appearances + 10) - side_baseline
+
+delta =
+  (BLUE baseline - 0.5)
+  + 1.5 * (BLUE1 lift - RED1 lift)
+  + 0.75 * (BLUE2 lift + BLUE3 lift - RED2 lift - RED3 lift)
+  - RED12 class-pair residual
+```
+The RED12 residual is grouped by ordered official classes (RED1 class, RED2 class), calculated from prior-only historical RED residuals and shrunk with 30 prior matches. No numeric map adjustment.
 
 Deliverable:
-- A separately viewable first-pick panel and a manual test checklist.
+- A separately viewable full-draft indicator using version `showdown-draft-indicator-v1`, beside the unchanged Match Indicator.
 
 Exit gate:
-- Verify old indicator code/output is unchanged; verify first-pick panel updates on pick add/remove/reset, respects unknown-order flags, refreshes after new submissions, and reports errors without breaking the record form.
+- Verify old indicator code/output is unchanged.
+- Verify add/remove/swap/reset, all six slots, unknown-order guard, refresh, and RPC failure behavior.
+- Perform real browser/manual layout QA before marking Phase 5 DONE.
 
 ### Phase 6 — Observe and decide
 **Status: NOT STARTED**
@@ -1069,27 +1084,40 @@ Deliverable:
 
 ---
 
-#### Phase 5 implementation log — 2026-11-24
+#### Phase 5 implementation log — 2026-11-24 (latest state; supersedes the first-pick-only interim panel)
 
-**Implemented in `main`**
-- Added `assets/js/modules/09-first-pick-indicator-v1.js` — commit `92544d5844f02d25253f3c6a832bd8db7afeced2`.
-- Added a direct script tag in `index.html` immediately after the active `08-draft-indicator-rules-v1.js?v=5` — commit `1b731d9812940b00b3cd07a3170bcd8f6332e6e0`.
-- Polished the new module's data timestamp and bar layout — commit `a8a212de8cc625e6b0fcb25ab4f4e07565c393e8`.
-- The new panel is inserted after the existing Match Indicator and before the winner picker. It reads only BLUE1/RED1, and can show as soon as both are selected.
-- It checks `known.BLUE` and `known.RED`; if either draft order is unknown, it refuses to guess.
-- It uses existing `ss_get_stats(null, false)` and `ss_get_first_pick_stats()`; no Supabase migration, RPC, table, or schema change.
-- It listens for draft change/reset, known-order changes, catalog/session refresh, and successful submission; it also refreshes every 60 seconds when the page is visible and not busy.
-- The active Match Indicator source `08-draft-indicator-rules-v1.js` was not edited. `order.json` and the unreferenced `tracker-app.js` bundle were not edited.
+**Supabase**
+- Added `public.ss_get_showdown_draft_indicator_stats()`.
+- Hosted migration history contains two entries with the same name:
+  - `20261124190324_add_showdown_draft_indicator_stats_rpc`
+  - `20261124190418_add_showdown_draft_indicator_stats_rpc`
+- Repository migration files now mirror both versions. The first contains the canonical function/grants; the second is an intentional no-op to reconcile the duplicate hosted migration-history entry.
+- The function uses `SECURITY DEFINER SET search_path TO ''`, explicitly schema-qualifies tables, and grants execution to `anon` and `authenticated`. It exposes only aggregate current-event hero-slot and class-pair statistics, not player identifiers.
+- It filters `status='approved'`, current configured event, `blue_draft_known=true`, and `red_draft_known=true`.
+- For each historical RED1+RED2 class-pair residual, expected RED result is calculated using only matches earlier than that target match. It uses prior side baseline and prior exact RED slot+hero lifts. This avoids target-result leakage in the residual history.
+- Latest live snapshot at validation: 1,317 approved matches; 1,313 verified-order matches; 4 unknown-order matches.
+- RPC output validation: 1,313 verified matches; 7,878 pick rows represented; 618 hero/side/slot keys; all six side+slot groups contain 1,313 appearances; 36 ordered RED class pairs; 1,313 RED residual records; zero missing hero classes.
+- RPC execution measured at approximately **49.4 ms** on the current database.
+- Function privilege check: `anon` and `authenticated` can execute; `PUBLIC` direct execute is revoked.
+- Security Advisor reports the new function under the same intentional public SECURITY DEFINER RPC warning category as the existing public statistics functions. This is expected for the browser-facing aggregate-statistics endpoint. Performance Advisor showed only the project's existing unindexed-FK notices; no new performance finding was attributed to this RPC.
 
-**Code checks**
-- Retrieved the committed module from GitHub and parsed it with the JavaScript runtime: syntax OK.
-- Ran a mocked-DOM smoke test with BLUE1/RED1 sample records: panel inserted, both hero names rendered, score rendered as `BLUE first-pick edge +0.100`, and the blue bar rendered at 60%.
-- Inspected `00-core.js`: `lineup`, `known`, and `rpc` are defined before this module; checkbox IDs are `knownBLUE` and `knownRED`.
-- Confirmed `index.html` has exactly one script tag for the new module, directly after the active Match Indicator script.
+**Frontend**
+- Added `assets/js/modules/09-showdown-draft-indicator-v1.js` — commit `4e018ebbfcaa16d60d6ecca1f070b3429e6df506`.
+- Updated `index.html` to load it immediately after the active Match Indicator — commit `88b96b6b91f1af82769da34639628b3101814486`.
+- Removed the interim `assets/js/modules/09-first-pick-indicator-v1.js` module — commit `7b4f6dd94ecacf0a0433af0198e71f37a5abbd05`.
+- The new module uses the frozen Candidate A full-draft formula: first-pick lift difference ×1.5; later slot lift differences ×0.75; RED1+RED2 ordered class residual; global side prior.
+- The new module requires both current draft-order flags to be known, displays partial scores as picks are entered, and reports historical appearance counts and RED class-pair sample count.
+- It does not use map, Phantimal, exact hero counter, player skill, random pool, bans, or formation.
+- Active Match Indicator source SHA remains `46110a69bba36209415b2a21ec80741d7a0ae976`; it was not edited.
+- `index.html` has exactly one script tag for the new module, one for the active Match Indicator, and no reference to the deleted first-pick-only module.
 
-**Still pending before Phase 5 is DONE**
-- Real browser/manual verification of layout and interaction in the live tracker: add/remove BLUE1 and RED1, toggle either draft-order-known checkbox, reset draft, and refresh after a successful submission.
-- A browser-based live page check was not available in this tool session; the code-level smoke test is not a substitute for visual/manual QA.
+**Code-level verification**
+- `node --check` passed for the new module.
+- Mocked-DOM smoke tests passed for panel insertion, full-draft score calculation, RED class-pair residual, bar width, unknown-order guard, partial draft state, and RPC error state.
+- SQL aggregate checks and RPC runtime check passed.
+
+**Still pending**
+- Real browser/manual QA for visual layout and live form interactions (add/remove/swap/reset, known-order toggles, successful submission refresh). This session did not have a live browser interaction surface, so Phase 5 remains IN PROGRESS.
 
 ## 5. Work log and decision record
 
