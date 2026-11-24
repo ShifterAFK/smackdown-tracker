@@ -574,6 +574,120 @@ RED 1+2 pairs repeat more often than BLUE 2+3, but exact pairs remain sparse. Be
 - Do not include exact-pair or hero×partner-class synergy in the initial new model; neither showed convincing incremental value.
 - Do not claim that RED1+RED2 has a proven sequence advantage over BLUE2+BLUE3. The pair counts are too sparse and the unseen pool/bans prevent availability modelling.
 
+
+### Phase 2 results — later picks and class-pair residuals
+
+**Frozen snapshot:** same Phase 1 snapshot, with both `played_at` and `created_at` capped at `2026-11-24 18:33:53.533213+00`: 1,305 approved matches, 1,301 verified-order matches, 4 uncertain-order matches.  
+**Walk-forward test:** first 60 verified-order matches as warm-up; 1,241 test matches. All hero-slot history is computed only from earlier verified-order matches. Side baseline uses earlier approved match outcomes.  
+**Metric rule:** a prediction with `abs(score) < 0.005` is neutral and is excluded from the directional-accuracy numerator and denominator; it counts as a miss in total accuracy. An intermediate exploratory aggregation initially failed to exclude neutral scores from its correct count; it was discarded and all results below use the corrected filter.
+
+#### 1. Individual later-pick slot value
+
+Hero lifts are calculated separately for each side and exact pick slot, shrunk toward that side's historical win rate with (k=10) or (k=20). Each candidate adds one later-slot lift to the Phase 1 BLUE 1 + RED 1 score.
+
+| Candidate | k | Coverage | Correct | Directional accuracy | Total accuracy |
+|---|---:|---:|---:|---:|---:|
+| First picks only | 10 | 1,215 | 687 | 56.54% | 55.36% |
+| Add RED 2 | 10 | 1,214 | 700 | 57.66% | 56.41% |
+| Add BLUE 2 | 10 | 1,223 | 674 | 55.11% | 54.31% |
+| Add BLUE 3 | 10 | 1,199 | 689 | 57.46% | 55.52% |
+| Add RED 3 | 10 | 1,216 | 685 | 56.33% | 55.20% |
+| All later slots, slot-specific | 10 | 1,218 | 704 | 57.80% | 56.73% |
+| All later slots, slot-specific | 20 | 1,215 | 703 | 57.86% | 56.65% |
+
+At k=20:
+- Add RED 2: 688/1,241 (55.44% total).
+- Add BLUE 2: 667/1,241 (53.75%).
+- Add BLUE 3: 681/1,241 (54.88%).
+- Add RED 3: 684/1,241 (55.12%).
+
+Interpretation:
+- RED 2 is the strongest individual later-slot addition in this pooled test.
+- BLUE 3 adds a smaller positive signal.
+- RED 3 adds a modest/weak signal.
+- BLUE 2 does not improve this candidate and is negative in this test.
+- All later slots together improve over first picks by 17 correct matches at k=10 (+1.37 percentage points total accuracy). The k=20 result is also positive.
+- This is slot-specific historical association, not proof that a slot itself causes the result. The model does not know the unrecorded available hero pool or which alternatives were left.
+
+#### 2. Pool later slots or keep them separate?
+
+A separate candidate pools each hero's appearances across pick_order 2 and 3 on the same side, while still evaluating the current four later picks individually.
+
+- Pooled later history, k=10: 701/1,241 (56.49% total).
+- Pooled later history, k=20: 706/1,241 (56.89% total).
+- Slot-specific later history, k=10: 704/1,241 (56.73% total).
+- Slot-specific later history, k=20: 703/1,241 (56.65% total).
+
+Neither approach dominates at every shrinkage value. Slot-specific history captures the strong RED 2 / weaker BLUE 2 distinction; pooled history has slightly better total accuracy at k=20. Keep both as candidates for Phase 3 comparison; do not pick a final weight yet.
+
+#### 3. Exact hero-pair interactions are too sparse
+
+At the frozen snapshot:
+- RED 1 + RED 2: 1,071 distinct hero pairs; 897 appear once, 131 twice, 42 appear 3–4 times, only 1 appears at least 5 times, none reaches 10 (maximum 7).
+- BLUE 2 + BLUE 3: 1,171 distinct hero pairs; 1,052 appear once, 110 twice, 9 appear 3–4 times, none reaches 5 (maximum 4).
+
+Do not add exact hero-pair bonuses for these sequences. The sample does not support reliable exact-pair estimates.
+
+#### 4. Test class-pair residual beyond individual hero strength
+
+A pooled class interaction was tested without giving a class pair credit for the heroes' individual records:
+
+1. Calculate all six heroes' side- and slot-specific historical lifts using only prior matches.
+2. Estimate each team's expected result from its side baseline plus all three individual hero lifts, clamped to 5–95%.
+3. Calculate each historical team's residual: actual result minus that expected result.
+4. Aggregate prior residuals for the ordered class pair:
+   - RED 1 class + RED 2 class;
+   - BLUE 2 class + BLUE 3 class.
+5. Shrink the class-pair residual toward zero with 15, 30, or 60 prior appearances.
+6. Add BLUE's class residual and subtract RED's class residual from the slot-specific score.
+
+There are 36 ordered official-class combinations for each sequence:
+- RED 1 + RED 2: group sizes 12–60; all 36 have at least 10 matches, 31 have at least 20.
+- BLUE 2 + BLUE 3: group sizes 16–67; all 36 have at least 10 matches, 35 have at least 20.
+
+Walk-forward results:
+
+| Model | Coverage | Correct | Directional accuracy | Total accuracy |
+|---|---:|---:|---:|---:|
+| Slot-specific heroes only | 1,218 | 704 | 57.80% | 56.73% |
+| + RED 1/RED 2 class residual only (k=30) | 1,225 | 722 | 58.94% | 58.18% |
+| + BLUE 2/BLUE 3 class residual only (k=30) | 1,224 | 705 | 57.60% | 56.81% |
+| + both class residuals (k=15) | 1,219 | 726 | 59.56% | 58.50% |
+| + both class residuals (k=30) | 1,219 | 723 | 59.31% | 58.26% |
+| + both class residuals (k=60) | 1,225 | 723 | 59.02% | 58.26% |
+
+This suggests the RED 1 + RED 2 class combination carries most of the incremental class-residual signal. BLUE 2 + BLUE 3 class residual alone adds almost nothing. This is a promising experimental feature, not a production-approved bonus.
+
+#### 5. Stability of class-pair residual (k=30)
+
+By chronological test third:
+- Early: 57.14% total vs 55.69% slot-specific.
+- Middle: 57.97% vs 55.31%.
+- Late: 59.66% vs 59.18%.
+
+The chronological thirds align with map rotation, so this is not independent evidence of time stability.
+
+By map:
+- Fierce Duel: 58.70% vs 55.56% (414 tests).
+- Siegebreaker: 59.47% vs 56.32% (190).
+- Tactical Grounds: 59.04% vs 59.04% (376).
+- Top Defender: 55.83% vs 57.77% (206).
+- Tranquil Grounds: 54.55% vs 47.27% (55).
+
+It improves on three maps, is unchanged on Tactical Grounds, and is worse on Top Defender. Tranquil Grounds has only 55 post-warm-up test matches. This reinforces the need for Phase 3 map analysis before selecting the final feature or weight.
+
+#### Phase 2 decisions
+
+1. Carry RED 2 and BLUE 3 forward as the strongest later-slot candidates; keep BLUE 2 and RED 3 separate rather than assuming equal value.
+2. Carry both pooled-later and slot-specific-later variants to Phase 3; do not choose a final shrinkage/weight yet.
+3. Carry the RED 1 + RED 2 ordered class-pair residual as a promising candidate for Phase 3.
+4. Do not add exact hero-pair bonuses for RED 1 + RED 2 or BLUE 2 + BLUE 3; repeated hero pairs are too rare.
+5. Do not add a BLUE 2 + BLUE 3 class residual by itself; it showed negligible incremental value.
+6. The class-pair residual is measured beyond all three individual hero lifts, not from raw pair win rate.
+7. No production formula, code, or database change is approved at this stage. Map effects may change these results.
+
+**Phase 2 exit gate: passed.** We identified which later slots add signal, rejected unsupported exact hero-pair interactions, and found a candidate RED 1 + RED 2 class residual that merits map-aware testing. Proceed to Phase 3 before choosing final weights.
+
 ### Phase 3 — Map context
 **Status: DONE — 2026-11-24**
 
@@ -817,7 +931,7 @@ Decisions:
 - Complete and document each phase before starting the next.
 
 Next step:
-- **Phase 2 — Later-pick / composition contribution.** Test whether RED 2 and BLUE 2/3 add predictive information after BLUE 1 and RED 1 are known, using the same frozen chronological methodology and only verified-order matches.
+- **Phase 3 — Map context.** Re-test the first-pick, later-slot, and RED 1 + RED 2 class-residual candidates with conservative map-aware baselines/adjustments. Use the same frozen snapshot and walk-forward history; avoid five unrelated map-specific models.
 
 ---
 
@@ -995,4 +1109,24 @@ Not done:
 
 Decision:
 - Carry separate BLUE 1 and RED 1 features forward as candidates only. Phase 2 will test whether later picks add value after both first picks are known.
+
+
+### 2026-11-24 — Phase 2 completed
+
+Completed:
+- Tested each later slot separately and all later picks together against the first-pick baseline on 1,241 chronological test matches.
+- Compared pooled later-slot hero history with exact slot-specific hero history.
+- Measured repeated exact hero-pair counts for RED 1 + RED 2 and BLUE 2 + BLUE 3.
+- Tested ordered class-pair residuals after subtracting the expected result from all three individual hero-slot lifts.
+- Tested class-residual shrinkage values 15, 30 and 60.
+- Checked the class-residual candidate by map and chronological third.
+- Corrected an intermediate metric aggregation that counted neutral scores in the correct numerator; only corrected metrics are retained above.
+
+Not done:
+- No final weights selected.
+- No code, RPC, migration, or database changes.
+- No production indicator created yet.
+
+Decision:
+- Later slots and RED 1 + RED 2 class residual remain candidates, but map context must be tested before any formula is frozen.
 
