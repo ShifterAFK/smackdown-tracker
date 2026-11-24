@@ -1,6 +1,6 @@
 # New Draft Indicator — roadmap and work log
 
-**Status:** Phases 0–4 completed; Phase 5 IN PROGRESS — implementation does not yet match the frozen Phase 4 model  
+**Status:** Phases 0–4 completed; Phase 5 implementation committed — live browser QA pending  
 **Last updated:** 2026-11-24  
 **Repository:** `ShifterAFK/smackdown-tracker`  
 **Purpose:** build a second, independent draft indicator that can be viewed beside the existing Match Indicator without changing the current indicator, Tier List, or TOP Picks.
@@ -1149,6 +1149,22 @@ Next step:
 - **Phase 5 — Separate UI integration.** Add `showdown-draft-indicator-v1` as a standalone module/section with its own data RPC if needed. Preserve the existing Match Indicator unchanged. Display historical support counts and the experimental/non-probability warning.
 
 ---
+
+### 2026-11-24 — Candidate A full-draft UI and data RPC committed
+
+Completed:
+- Implemented the frozen Candidate A as `showdown-draft-indicator-v1`, replacing the interim first-pick-only diagnostic.
+- Added the dedicated current-event, approved, verified-order RPC and verified its output against direct SQL.
+- Added the new independent module to `index.html`; the active Match Indicator module remains unchanged.
+- Ran JavaScript syntax and mocked-DOM smoke tests; SQL RPC execution and aggregate validations passed.
+- Recorded implementation commits, migration versions, row counts, and advisor results in the Phase 5 implementation log above.
+
+Not done:
+- Real browser/manual QA is still pending.
+- Phase 6 prospective observation has not started.
+
+Next:
+- Perform live browser checks for layout, all six slot updates, add/remove/swap/reset, draft-order-known toggles, data refresh after submission, and error handling. Mark Phase 5 DONE only after these checks.
 
 ## 6. Rules for updating this roadmap
 
