@@ -136,6 +136,7 @@ function paint(){
   lines.push('This is an experimental historical score, not a win probability. No numeric map, Phantimal, exact hero counter, player-skill, random-pool, ban, or formation adjustment is applied.');
   details.textContent=lines.join('\n');
  }
+ root.querySelector('.sdi-compact-result').textContent=text.textContent;
  const width=50+clamp(delta*100,-30,30);
  root.querySelector('.sdi-blue').style.width=width+'%';
  root.querySelector('.sdi-red').style.width=(100-width)+'%';
