@@ -462,7 +462,7 @@ The map-aware variants were inconsistent by map. The pooled no-map model and map
 - No formation or Battle Fervor tile bonus: the tracker still does not record occupancy/position.
 
 ### Phase 4 — Assemble and validate the independent model
-**Status: IN PROGRESS — 2026-11-24**
+**Status: DONE — 2026-11-24**
 
 Tasks:
 - Combine only signals that passed earlier phase gates.
@@ -479,8 +479,100 @@ Deliverable:
 Exit gate:
 - No claim of improvement unless it beats the current indicator on a comparable, leakage-safe test set with a meaningful and reasonably stable margin.
 
+
+#### Phase 4 results — provisional model and comparison (snapshot 2026-11-24)
+
+**Actual current Match Indicator baseline**
+- Runtime code: `assets/js/modules/08-match-estimate-script-v1.js`, loaded by `order.json` and present in `tracker-app.js`.
+- The module attempts to fetch the latest `model_snapshots` row. The table has no SELECT privilege for `anon` or `authenticated` and no public policies; the frontend uses the publishable key. Therefore the logistic snapshot is not available to the browser and the current UI follows its fallback heuristic.
+- The fallback requests `ss_get_stats(p_theme_id = selected map, p_exclude_mirrors = true)`. The SQL definition was inspected. It returns map-scoped hero, duo, and normalized Phantimal stats from approved matches.
+- Fallback formula:
+  - per-record smoothing: `(wins + 5) / (appearances + 10)`;
+  - average supported heroes (3 heroes), weight 0.40;
+  - average supported duos (3 pairs), weight 0.45;
+  - Phantimal, weight 0.15 when supported;
+  - weights are normalized over the groups that have data;
+  - a side is eligible only when at least 2 of its 3 heroes have 5+ appearances;
+  - the UI says “No clear indication” when absolute score difference is below 0.03.
+- Phantimal normalization maps Celestial/Hypogean to Wedge of Matter. The mirror filter also excludes a Phantimal appearance when both teams have the same normalized Phantimal. This occurred in 425 approved matches in the audited current database.
+- The current frontend does not use the orphaned `08-draft-indicator-rules-v1.js` module.
+
+**Simplification for the new model**
+- Tested a slot-specific later-pick model against a pooled later-pick model.
+- Pooled later-pick history (pick 2 + pick 3 combined per hero and side) produced **702/1,235 (56.84%)**, compared with **703/1,234 (56.97%)** for the separate-slot model in the immediately preceding snapshot.
+- The difference is negligible for this exploratory dataset. Pooling later picks lets the new indicator reuse existing RPCs and avoids adding a database function/migration:
+  - `ss_get_stats(null, false)` for approved-match side baseline;
+  - `ss_get_side_stats(null, false)` for total hero appearances/wins by side;
+  - `ss_get_first_pick_stats()` for BLUE1/RED1 appearances and wins;
+  - later-pick records are derived as side totals minus first-pick records.
+- Existing `ss_get_first_pick_stats()` has the previously documented status-filter weakness; there are currently no nonapproved matches or picks. No RPC was changed.
+
+**Frozen provisional specification**
+Version: **`new-draft-indicator-v0.1`**
+
+For each hero and side:
+- First-pick stats are only BLUE1 or RED1.
+- Later-pick stats pool that hero's appearances in pick 2 and pick 3 on the same side.
+- Both are smoothed with 10 pseudo-appearances toward the relevant historical side baseline.
+
+```
+blueBase = prior BLUE wins / prior approved matches
+redBase  = 1 - blueBase
+
+firstLift(hero, side) =
+  (firstWins + sideBase * 10) / (firstAppearances + 10) - sideBase
+
+laterLift(hero, side) =
+  (laterWins + sideBase * 10) / (laterAppearances + 10) - sideBase
+
+delta =
+  (blueBase - 0.5)
+  + 1.5 * (BLUE1_lift - RED1_lift)
+  + (BLUE2_laterLift + BLUE3_laterLift
+     - RED2_laterLift - RED3_laterLift)
+```
+
+- Positive delta points to BLUE; negative points to RED.
+- Neutral threshold for the initial UI candidate: `abs(delta) < 0.005`.
+- This is a historical score difference, **not** a win probability.
+- No map modifier, exact-pair/hero×class synergy, Phantimal bonus, H2H, player/rank, formation, or hidden-pool/ban simulation.
+- No prediction is saved to the database; it recalculates from the current draft and historical RPC data.
+
+**Leakage-safe comparison against the actual loaded current UI**
+- Dataset: **1,295 matches with both draft-order flags known**; first 60 warm-up; **1,235 test matches**. Both models were evaluated in chronological order with the target match excluded from their own history.
+- To keep the comparison fair, both models used the same known-order match population. The old fallback could theoretically use the four unknown-order matches too, but they were excluded from both histories.
+- New pooled v0.1 candidate:
+  - **702/1,235 = 56.84%** correct over all test matches;
+  - 1,218/1,235 = **98.62%** directional coverage;
+  - **57.64%** accuracy among directional calls (702/1,218).
+- Always-BLUE baseline:
+  - **671/1,235 = 54.33%**.
+  - Paired comparison of new vs always-BLUE: 264 cases where the new RED call was correct vs 226 where it was wrong; exact two-sided p=0.0945. This is not strong evidence of improvement.
+- Current Match Indicator fallback:
+  - 514/1,235 = **41.62%** directional coverage;
+  - **332/514 = 64.59%** accuracy among its directional calls;
+  - 393 matches had insufficient hero support and 328 were neutral under its 0.03 threshold.
+- On the 514 matches where the old fallback made a directional call, the new model made a directional call in 504. Among those 504 common directional cases:
+  - new model correct: 290;
+  - old fallback correct: 325;
+  - 71 cases favoured the new model while 106 favoured the old fallback; exact paired p=0.0104.
+- The new candidate is therefore a **higher-coverage, lower-selective-accuracy alternative**, not a demonstrated replacement or improvement over the current indicator.
+- New candidate score thresholds were also inspected: at 0.03, coverage was 89.55% and covered accuracy 59.10%; at 0.05, coverage was 83.55% and covered accuracy 59.94%. These are descriptive threshold trade-offs, not tuned production settings.
+
+**Validation limitations**
+- This is one event/one evolving meta, not an untouched external holdout.
+- The model/weight candidates were explored on the same chronological test window; the reported numbers are exploratory and must not be advertised as a guaranteed future accuracy.
+- No genuine prospective forecast log exists yet. The current `ss_match_predictions` records are calculated after the outcome is known.
+- No probability calibration was performed; do not show probability percentages.
+
+**Phase 4 go/no-go**
+- **GO** for a separate experimental UI view because the user explicitly wants a second indicator and the candidate gives a direction on many more drafts.
+- **NO-GO** for replacing the current Match Indicator or claiming superior prediction quality. The current fallback is more accurate when it elects to make a directional call.
+- Keep both indicators visible and clearly label the new one as experimental, historical score difference, not probability.
+- Use existing RPCs; no new Supabase schema, RPC, or migration is required for v0.1.
+
 ### Phase 5 — Separate UI integration (read-only alongside current indicator)
-**Status: NOT STARTED**
+**Status: IN PROGRESS — 2026-11-24**
 
 Tasks:
 - Add a separate UI block/tab/section with a clear name such as **NEW DRAFT INDICATOR**.
@@ -632,3 +724,21 @@ Decisions:
 
 Next:
 - **Phase 4 — Assemble and validate the independent model.** Freeze a provisional model spec consistent with the design intent, then compare it against the actual currently loaded Match Indicator fallback and simple baselines on the same leakage-safe chronological test set. Do not implement UI yet.
+
+
+### 2026-11-24 — Phase 4 completed; Phase 5 started
+Completed:
+- Inspected the actual current Match Indicator fallback and its SQL data source, smoothing, group weights, support gate, Phantimal normalization, and neutral threshold.
+- Confirmed the frontend cannot read `model_snapshots`; the live current UI uses the fallback heuristic.
+- Compared the provisional new model with the actual fallback and always-BLUE on the same leakage-safe chronological test matches.
+- Tested pooling pick 2+3 history. It performs nearly identically to slot-specific history and allows reuse of existing RPCs.
+- Frozen provisional version `new-draft-indicator-v0.1` and its score formula.
+
+Decisions:
+- Build a separate experimental view, not a replacement.
+- New model is higher coverage but has lower accuracy among directional predictions than the current selective fallback.
+- No new Supabase migration/RPC is needed for v0.1.
+- Do not present score as probability or claim proven improvement.
+
+Next:
+- **Phase 5 — Separate UI integration.** Add a standalone module/view and bundle entry while leaving `08-match-estimate-script-v1.js`, Tier List, Tier Side, TOP Picks, and existing database objects unchanged. Verify both indicators update independently with draft edits/reset/data refresh.
