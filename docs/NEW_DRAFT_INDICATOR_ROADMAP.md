@@ -394,7 +394,7 @@ RED 1+2 pairs repeat more often than BLUE 2+3, but exact pairs remain sparse. Be
 - Do not claim that RED1+RED2 has a proven sequence advantage over BLUE2+BLUE3. The pair counts are too sparse and the unseen pool/bans prevent availability modelling.
 
 ### Phase 3 — Map context
-**Status: IN PROGRESS — 2026-11-24**
+**Status: DONE — 2026-11-24**
 
 Tasks:
 - Establish per-map sample sizes and side balance.
@@ -409,8 +409,60 @@ Deliverable:
 Exit gate:
 - Map adjustment is included only if it improves chronological out-of-sample performance and is stable enough to justify the extra complexity.
 
+
+#### Phase 3 results — map context (snapshot 2026-11-24)
+
+**Map coverage and temporal confounding**
+Latest read-only database snapshot:
+| Map | Approved matches | BLUE wins | RED wins | BLUE WR |
+|---|---:|---:|---:|---:|
+| Tranquil Grounds | 115 | 70 | 45 | 60.87% |
+| Top Defender | 209 | 110 | 99 | 52.63% |
+| Siegebreaker | 191 | 116 | 75 | 60.73% |
+| Fierce Duel | 414 | 231 | 183 | 55.80% |
+| Tactical Grounds | 367 | 182 | 185 | 49.59% |
+| **Total** | **1,296** | **709** | **587** | **54.71%** |
+
+These map samples are not independent map rotations across the event. Each map appears in a single chronological block:
+- Tranquil Grounds: 2026-11-11 to 2026-11-13
+- Top Defender: 2026-11-14 to 2026-11-16
+- Siegebreaker: 2026-11-17 to 2026-11-19
+- Fierce Duel: 2026-11-20 to 2026-11-22
+- Tactical Grounds: 2026-11-22 to 2026-11-24
+
+Therefore, map and time/meta are strongly confounded. Differences in hero availability/selection, player population, or evolving meta may explain part of the side-rate variation. Do not interpret map win rates as causal map effects.
+
+**Chronological map-adjustment test**
+- Dataset: **1,292 matches with both draft-order flags known**; 60 warm-up matches and **1,232 test matches**.
+- Base candidate: slot-specific hero lifts with weights `[1, 0.5, 0.5]` (first pick primary, later picks supporting), k=10.
+- Compared:
+  1. no map adjustment;
+  2. map-specific side prior shrunk toward the global side baseline using 50 pseudo-matches;
+  3. map-specific hero+slot rates shrunk toward each global side+slot+hero rate using 20 pseudo-appearances;
+  4. both map-side and map-hero adjustments.
+- All features were calculated only from matches earlier than the target match.
+
+| Model | Correct / 1,232 | Accuracy |
+|---|---:|---:|
+| No map adjustment | **694** | **56.33%** |
+| Map-specific side prior only | 695 | 56.41% |
+| Map-specific hero/slot adjustment only | 669 | 54.30% |
+| Both map adjustments | 689 | 55.93% |
+
+The side-prior adjustment added only one correct result. Map-specific hero rates reduced accuracy by 25 results; combining both map adjustments was still five results below the no-map model. No map-specific model passed the evidence gate.
+
+**Map-level test results**
+The map-aware variants were inconsistent by map. The pooled no-map model and map-adjusted model produced materially different outcomes across the five map blocks; some maps improved while others worsened. In particular, map-hero adjustment was notably unstable on Siegebreaker and Tactical Grounds. Per-map test counts were 55 Tranquil, 206 Top Defender, 190 Siegebreaker, 414 Fierce Duel, and 367 Tactical Grounds. These strata are descriptive and should not be used to tune separate weights.
+
+**Phase 3 decisions**
+- Do not include a numeric map modifier in the initial new indicator.
+- Do not create separate models for each map.
+- Keep map available as descriptive context and for future evaluation.
+- Revisit map effects only when the same maps recur in another event/rotation or enough new data breaks the current map/time confounding.
+- No formation or Battle Fervor tile bonus: the tracker still does not record occupancy/position.
+
 ### Phase 4 — Assemble and validate the independent model
-**Status: NOT STARTED**
+**Status: IN PROGRESS — 2026-11-24**
 
 Tasks:
 - Combine only signals that passed earlier phase gates.
@@ -564,3 +616,19 @@ Decisions:
 
 Next:
 - **Phase 3 — Map context.** Check per-map sample sizes, side balance, and whether map-aware pooled adjustments improve chronological out-of-sample results without overfitting.
+
+
+### 2026-11-24 — Phase 3 completed; Phase 4 started
+Completed:
+- Audited current per-map sample sizes and side balance.
+- Confirmed the map sequence is chronological and each map occupies one event window, so map effects are confounded with time/meta.
+- Ran leakage-safe walk-forward tests of pooled map-side and map-hero/slot adjustments.
+- Compared map-aware variants against the no-map candidate on the same 1,232-match test window.
+
+Decisions:
+- No numeric map correction in the first release; the map-side prior added only one correct call and hero-map rates reduced accuracy.
+- No separate model per map.
+- Keep map as visible context and a later re-evaluation target.
+
+Next:
+- **Phase 4 — Assemble and validate the independent model.** Freeze a provisional model spec consistent with the design intent, then compare it against the actual currently loaded Match Indicator fallback and simple baselines on the same leakage-safe chronological test set. Do not implement UI yet.
