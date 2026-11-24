@@ -22,7 +22,7 @@ style.textContent=`
 #firstPickIndicator .fpi-tag{font-size:10px;opacity:.72;text-align:right}
 #firstPickIndicator .fpi-result{font-size:14px;font-weight:750;margin:4px 0}
 #firstPickIndicator .fpi-track{display:flex;position:relative;width:100%;height:9px;overflow:hidden;border-radius:6px;background:#a84d4d;margin:6px 0}
-#firstPickIndicator .fpi-blue{height:100%;width:50%;background:#397bc4;transition:width .18s ease}
+#firstPickIndicator .fpi-blue{height:100%;width:50%;background:#397bc4;flex:none;transition:width .18s ease}
 #firstPickIndicator .fpi-red{height:100%;flex:1;background:#b84f4f}
 #firstPickIndicator .fpi-track:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-50%);background:#f0d58b}
 #firstPickIndicator.fpi-neutral .fpi-blue,#firstPickIndicator.fpi-neutral .fpi-red{opacity:.52}
@@ -34,7 +34,7 @@ style.textContent=`
 `;
 root.append(style);
 
-const state={summary:null,firstMap:null,blueBase:.5,redBase:.5,loading:false,error:'',request:0};
+const state={summary:null,firstMap:null,generatedAt:null,blueBase:.5,redBase:.5,loading:false,error:'',request:0};
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const fmt=v=>(v>=0?'+':'')+v.toFixed(3);
 const heroName=id=>(config.heroes||[]).find(h=>h.id===id)?.name||id||'Unknown hero';
@@ -72,7 +72,7 @@ function paint(){
   if(neutral)text.textContent='Opening picks are nearly even · '+fmt(delta);
   else text.textContent=(delta>0?'BLUE':'RED')+' first-pick edge '+fmt(Math.abs(delta));
   details.textContent=[
-   'Data: '+matches.toLocaleString()+' approved matches · all maps combined · generated '+(state.summary.generated_at||'time unavailable'),
+   'Data: '+matches.toLocaleString()+' approved matches · all maps combined · generated '+(state.generatedAt||'time unavailable'),
    '',
    'BLUE 1 — '+heroName(blue.id),
    'Record: '+blue.w+'/'+blue.n+' wins · '+rate(blue),
@@ -106,6 +106,7 @@ async function load(force=false){
   if(request!==state.request)return;
   if(!data?.summary||!Array.isArray(firstPicks))throw Error('Invalid first-pick statistics response');
   state.summary=data.summary;
+  state.generatedAt=data.generated_at||null;
   const matches=Number(data.summary.approved_matches)||0;
   state.blueBase=matches?clamp((Number(data.summary.blue_wins)||0)/matches,0,1):.5;
   state.redBase=matches?clamp((Number(data.summary.red_wins)||0)/matches,0,1):1-state.blueBase;
@@ -113,7 +114,7 @@ async function load(force=false){
  }catch(error){
   if(request!==state.request)return;
   state.error=error?.message||'Unknown error';
-  state.summary=null;state.firstMap=null;
+  state.summary=null;state.firstMap=null;state.generatedAt=null;
  }finally{
   if(request===state.request){state.loading=false;paint();}
  }
