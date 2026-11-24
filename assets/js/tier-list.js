@@ -23,17 +23,17 @@ function buildTiers(data){
  const sPool=items.filter(x=>x.n>=10&&x.rate>=70);
  const sList=decorateTier(sPool.slice().sort(compare).slice(0,8),'S');
  const sIds=new Set(sList.map(x=>x.item.hero.id));
- const buckets={A:[],B:[],C:[],N:[]};
+ const buckets={A:[],B:[],C:[],Doom:[],N:[]};
  for(const item of items){
   if(sIds.has(item.hero.id))continue;
-  const key=item.n<10?'N':item.rate>=60?'A':item.rate>=50?'B':'C';
+  const key=item.n<10?'N':item.n>=20&&item.rate<40?'Doom':item.rate>=60?'A':item.rate>=50?'B':'C';
   buckets[key].push(item);
  }
  return {sList,buckets};
 }
 function topIds(data){return new Set(buildTiers(data).sList.map(x=>x.item.hero.id));}
-const legend='S: up to 8 heroes with 70%+ raw win rate and at least 10 appearances. A: 60%+ | B: 50-<60% | C: <50%. Wilson ranks heroes within each tier. In every tier, the first hero with 30+ appearances gets +, the last established hero gets -, and heroes with 10-29 appearances get ? and are placed at the end. Heroes with fewer than 10 appearances are preliminary.';
-const style=document.createElement('style');style.textContent='#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-tag{font-size:11px;font-weight:700;color:var(--accent,#c9a227)}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
+const legend='S: up to 8 heroes with 70%+ raw win rate and at least 10 appearances. A: 60%+ | B: 50-<60% | Doom: below 40% with at least 20 appearances | C: remaining results below 50%. Wilson ranks heroes within each tier. In every tier, the first hero with 30+ appearances gets +, the last established hero gets -, and heroes with 10-29 appearances get ? and are placed at the end. Heroes with fewer than 10 appearances are preliminary.';
+const style=document.createElement('style');style.textContent='.tier-row.tier-Doom .tier-label{background:#4b1722;color:#ff9aa8}.tier-row.tier-Doom .tier-hero{border-color:#9d4050}.tier-row.tier-Doom .tier-tag{color:#ff7987}'+'#tierRows .tier-hero{height:auto!important;min-height:100px;display:flex;flex-direction:column;align-items:center;gap:3px}#tierRows .tier-rate{position:static!important;display:block}.tier-tag{font-size:11px;font-weight:700;color:var(--accent,#c9a227)}.tier-samples{display:block;font-size:10px;color:var(--muted);white-space:nowrap}.tier-map-table{width:100%;border-collapse:collapse;font-size:12px}.tier-map-table th,.tier-map-table td{padding:8px 5px;text-align:left;border-bottom:1px solid #77887740}.tier-map-scroll{overflow-x:auto}';document.head.append(style);
 const about=document.querySelector('.tier-about p');if(about)about.textContent=legend;
 const caption=document.querySelector('.tier-header .caption');if(caption)caption.textContent='Recorded team results | S: top 8 by Wilson (70%+ win rate) | + / ? / - indicate tier position and sample size';
 const explanation=document.createElement('p');explanation.className='caption';explanation.textContent=legend;get('tierRows').before(explanation);
@@ -54,11 +54,11 @@ renderTiers=function(){
  for(const entry of sList)sContent.append(makeCard(entry.item,entry.label));
  if(!sList.length){const empty=document.createElement('span');empty.className='tier-empty';empty.textContent='—';sContent.append(empty);}
  sRow.append(sLabel,sContent);root.append(sRow);
- for(const key of ['A','B','C']){
+ for(const key of ['A','B','C','Doom']){
   const row=document.createElement('section');row.className='tier-row tier-'+key+(!buckets[key].length?' is-empty':'');
-  const label=document.createElement('div');label.className='tier-label';label.textContent=key;
+  const label=document.createElement('div');label.className='tier-label';label.textContent=key==='Doom'?'DOOM':key;
   const content=document.createElement('div');content.className='tier-content';
-  const ranked=decorateTier(buckets[key],key);
+  const ranked=key==='Doom'?buckets[key].sort((a,b)=>a.rate-b.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name,'en')).map(item=>({item,label:'DOOM'})):decorateTier(buckets[key],key);
   for(const entry of ranked)content.append(makeCard(entry.item,entry.label));
   if(!buckets[key].length){const empty=document.createElement('span');empty.className='tier-empty';empty.textContent='—';content.append(empty);}
   row.append(label,content);root.append(row);
@@ -116,5 +116,5 @@ function paintS(){
  if(!items.length)row.textContent='No allowed heroes in the Overall S top eight (70%+ win rate, at least 10 appearances).';
 }
 const sbox=get('daOverallS');if(sbox)new MutationObserver(paintS).observe(sbox,{childList:true,subtree:true});window.addEventListener('tracker:catalog-changed',()=>{paintS();});
-renderTiers();window.TrackerTransparentTiers={version:'1.3.37'};
+renderTiers();window.TrackerTransparentTiers={version:'1.3.38'};
 })();
