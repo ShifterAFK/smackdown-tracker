@@ -306,33 +306,23 @@ function showTierHero(item){
 }
 function renderTiers(){
  const root=$('tierRows');root.replaceChildren();if(!tierData)return;
- const byId=new Map(tierData.heroes.map(row=>[row.hero_id,row]));
- const wilsonLower=(n,wins)=>{if(!n)return 0;const z=1.959963984540054,p=wins/n,z2=z*z,den=1+z2/n,center=(p+z2/(2*n))/den,margin=z*Math.sqrt(p*(1-p)/n+z2/(4*n*n))/den;return Math.max(0,center-margin)*100;};
- const buckets={S:[],A:[],B:[],C:[],Doom:[],N:[]};
- for(const hero of config.heroes){
-  const row=byId.get(hero.id);
-  const n=Math.max(0,Number(row?.appearances)||0),wins=Math.max(0,Math.min(n,Number(row?.wins)||0));
-  const rate=n?100*wins/n:0;
-  const wilson=wilsonLower(n,wins);
-  const key=n<10?'N':n>=20&&rate<40?'Doom':rate>85?'S':rate>=70?'A':rate>=50?'B':'C';
-  buckets[key].push({hero,n,wins,rate,wilson});
- }
- const ranked=['S','A','B','C','Doom'].reduce((sum,k)=>sum+buckets[k].length,0);
+ const byId=new Map(tierData.heroes.map(row=>[row.hero_id,row]));const buckets={S:[],A:[],B:[],C:[],N:[]};
+ for(const hero of config.heroes){const row=byId.get(hero.id);const n=Math.max(0,Number(row?.appearances)||0),wins=Math.max(0,Number(row?.wins)||0);const rate=n?Math.min(100,100*wins/n):0;buckets[tierBucket(rate,n)].push({hero,n,wins,rate});}
+ const ranked=['S','A','B','C'].reduce((sum,k)=>sum+buckets[k].length,0);
  if(!ranked){const p=document.createElement('p');p.className='tier-wait';p.textContent='No ranked heroes yet — more match results are needed.';root.append(p);}
  function fill(content,key){
-  buckets[key].sort((a,b)=>key==='N'?b.n-a.n||a.hero.name.localeCompare(b.hero.name):key==='Doom'?a.rate-b.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name):b.wilson-a.wilson||b.n-a.n||a.hero.name.localeCompare(b.hero.name));
+  buckets[key].sort((a,b)=>key==='N'?b.n-a.n||a.hero.name.localeCompare(b.hero.name):b.rate-a.rate||b.n-a.n||a.hero.name.localeCompare(b.hero.name));
   for(const item of buckets[key]){
-   const {hero,n,rate,wins,wilson}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
-   const description=hero.name+' — '+(key==='Doom'?'DOOM · below 40% WR · ':'')+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(!hero.is_allowed?' · Currently banned':'');
-   card.dataset.heroId=hero.id;card.dataset.tier=key;card.title=description;card.setAttribute('aria-label',description);card.append(portrait(hero));
+   const {hero,n,rate}=item;const card=document.createElement('button');card.type='button';card.className='tier-hero'+(!hero.is_allowed?' banned':'');
+   const description=hero.name+' — '+(n?rate.toFixed(1)+'% · '+n+' appearances':'No data')+(!hero.is_allowed?' · Currently banned':'');
+   card.title=description;card.setAttribute('aria-label',description);card.append(portrait(hero));
    const value=document.createElement('span');value.className='tier-rate';value.textContent=key==='N'?n+'/10':rate.toFixed(1)+'%';card.append(value);
-   const grade=document.createElement('span');grade.className='tier-grade';grade.textContent=key==='Doom'?'DOOM':key;card.append(grade);
    card.onclick=()=>showTierHero(item);content.append(card);
   }
  }
- for(const key of ['S','A','B','C','Doom']){
+ for(const key of ['S','A','B','C']){
   const row=document.createElement('section');row.className='tier-row tier-'+key+(!buckets[key].length?' is-empty':'');
-  const label=document.createElement('div');label.className='tier-label';label.textContent=key==='Doom'?'DOOM':key;
+  const label=document.createElement('div');label.className='tier-label';label.textContent=key;
   const content=document.createElement('div');content.className='tier-content';fill(content,key);
   if(!buckets[key].length){const empty=document.createElement('span');empty.className='tier-empty';empty.textContent='—';content.append(empty);}
   row.append(label,content);root.append(row);
