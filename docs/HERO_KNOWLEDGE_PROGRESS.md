@@ -415,6 +415,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2Y
+## Stage 2Y — Batch 24 normalization
 
-The first-pass batch sequence is now normalized through Batch 01. Next, audit the normalized batch artifacts for schema consistency, duplicate hero/section keys, tag mapping parity, source URL/locale agreement, and cross-batch completeness. Do not import into Supabase or modify application code until the dry-run audit is explicitly approved.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_24.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_24_NORMALIZATION_AUDIT.md`
+
+- Three final profiles upgraded to complete first-pass captures: Baden, Saida and Perseus.
+- 24 sections, 9 explicitly tagged sections and 15 per-skill tag records.
+- 13 page-level tag records are retained separately.
+- Perseus's temporary-stat-buff rule is preserved as source metadata.
+- All IDs, source URLs, locales, eight-section profile structures and unique ability keys validated.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2Z
+
+Audit all normalized batch artifacts 01–24 for schema consistency, duplicate hero/section keys, tag mapping parity, source URL/locale agreement, provenance, and cross-batch completeness. Resolve discrepancies before proposing a Supabase import. No Supabase writes or application changes.
