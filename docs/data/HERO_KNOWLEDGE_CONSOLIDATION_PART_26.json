@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "part": "26",
+  "generated_at": "2026-11-25",
+  "canonical_envelope": "hero_capture_record_v1",
+  "source_manifest": "docs/data/HERO_KNOWLEDGE_SOURCE_MANIFEST.json",
+  "summary": {
+    "profile_capture_records": 1,
+    "complete_capture_records": 1,
+    "partial_capture_records": 0,
+    "unique_hero_ids": 1,
+    "section_records": 1,
+    "source_manifest_mismatches": 0
+  },
+  "profiles": [
+    {
+      "hero_id": "contess",
+      "tracker_name": "Contess",
+      "source_display_name": "Contess",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/contess",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 9,
+        "recapture_batches": [
+          16,
+          21
+        ],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 26,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_26.json",
+      "profile_record": {
+        "hero_id": "contess",
+        "tracker_name": "Contess",
+        "source_display_name": "Contess",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/contess",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 26,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "current_primary_ultimate_recaptured",
+        "normalization_status": "normalized_from_batch26",
+        "review_status": "pending_direct_page_fetch_and_patch_verification",
+        "sections": [
+          {
+            "ability_key": "ultimate-detention-pass",
+            "name": "Detention Pass",
+            "section_type": "ultimate",
+            "source_label": "Ultimate — Detention Pass",
+            "order_index": 1,
+            "description_raw": null,
+            "description_summary": "At battle start, Contess hides in her rulebook, cannot move or act, cannot be targeted and recovers Energy each second. She enters when her Energy is full, an enemy violates a rule, or all other allies are defeated. The active Ultimate heals a target ally and grants Exemption. While that ally remains above 40% HP, it loses a small amount of max HP each second, converting part of the loss into a capped shield; the shield also increases the ally's ATK.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": "Global",
+            "initial_energy": 300,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/contess",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_26.md",
+              "capture_batch": 26,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "historical_variant_note": "Earlier Batch 16 and Batch 21 paraphrases included an additional effect healing two weakest allies and reducing ATK of two highest-damage enemies. That effect is not present in the current indexed AFK Stargazer page capture. Preserve those summaries as historical variants; do not merge the extra effect into the current primary description without direct/version verification."
+      }
+    }
+  ]
+}
