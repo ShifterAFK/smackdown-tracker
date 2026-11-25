@@ -123,6 +123,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - No duplicate section keys, missing summaries or non-null raw descriptions.
 - Baden and Saida are partial recaptures and are intentionally deferred to later reconciliation.
 
-## Restart point — Stage 2D
+## Stage 2D — Batch 21 normalization
 
-Next, inspect **Batch 21** as the next independent unit. Normalize only profiles marked complete in that batch; keep partial recaptures as supplemental evidence for later reconciliation. Validate section order/names, tag mappings, unique keys and provenance, then commit the batch artifact and update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_21.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_21_NORMALIZATION_AUDIT.md`
+
+- Nine complete profiles normalized: Voracia, Igor, Kruger, Contess, Walker, Gwyneth, Orion, Marilee and Himmel.
+- 71 sections; Contess has 7 captured sections and no missing section was invented.
+- 16 page-level tags recorded separately; 3 profiles have no page-tag list in this batch and retain `page_tags: null`.
+- 15 explicitly tagged sections and 22 per-section tag records; 56 sections retain `tags: null`.
+- Section names/order, explicit per-skill mappings and source URLs match Batch 21.
+- No duplicate section keys, missing summaries or non-null raw descriptions.
+
+## Restart point — Stage 2E
+
+Next, inspect **Batch 20**. Distinguish complete captures from partial recaptures. Normalize only profiles whose full first-pass capture is established by the extraction record; preserve partial recaptures as supplemental evidence for later reconciliation. Validate and commit the batch unit, then update the progress log. No Supabase import.
