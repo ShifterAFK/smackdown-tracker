@@ -234,6 +234,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2L
+## Stage 2L — Batch 13 normalization
 
-Next, inspect **Batch 13**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_13.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_13_NORMALIZATION_AUDIT.md`
+
+- Six complete profiles normalized: Daimon, Gerda, Peggy, Ravion, Shakir and Tasi.
+- 49 sections, including Ravion's separate targeting rule; 14 explicitly tagged sections and 23 raw per-skill tag records.
+- Perseus remains partial: one captured Ultimate section; page-level tag retained separately.
+- 3 page-level tag records are retained separately and are not copied onto abilities.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2M
+
+Next, inspect **Batch 12**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
