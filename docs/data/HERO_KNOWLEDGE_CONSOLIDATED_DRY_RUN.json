@@ -66,6 +66,8 @@
     "Contess's older additional active-effect summary is retained as a historical variant and requires direct/version review.",
     "AFK.global Season Skill observations are kept separate from AFK Stargazer Season Charm records.",
     "Page tags are an observed union with per-capture observations retained.",
-    "This is a dry-run artifact only and must not be imported into Supabase."
-  ]
+    "This is a dry-run artifact only and must not be imported into Supabase.",
+    "Project patch reference is 1.8.2.1 app-store build (Nov 9, 2026); per-hero Stargazer source patch remains unknown. 1.8.3 is preview-only as of this check."
+  ],
+  "patch_baseline": "docs/data/HERO_KNOWLEDGE_PATCH_BASELINE.json"
 }
