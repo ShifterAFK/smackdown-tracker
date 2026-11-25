@@ -1,50 +1,64 @@
 {
   "schema_version": 1,
   "generated_at": "2026-11-25",
-  "status": "open_source_capture_gaps",
+  "status": "closed_at_section_capture_level_pending_patch_verification",
   "scope": "12 profiles that remain partial in normalized data despite a 131/131 page-source coverage statement",
   "interpretation": "These are not missing roster records. They have source URLs and captured evidence, but extraction notes explicitly identify missing, incomplete, or unheaded source sections. Do not promote them to complete normalized profiles until the stated checks are resolved.",
-  "count": 12,
-  "profiles": [
+  "count": 0,
+  "profiles": [],
+  "policy": [
+    "Source URL presence does not prove full ability-kit capture.",
+    "A heading without a PARTIAL suffix does not override explicit capture-gap notes.",
+    "Do not infer that an unseen section is absent.",
+    "Do not assign orphaned details to guessed ability names.",
+    "Keep profile normalization/review status separate from source-page mapping status."
+  ],
+  "resolved_profiles": [
     {
       "hero_id": "talene",
       "name": "Talene",
       "source_batch": 2,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/talene",
-      "issue_type": "section_visibility_ambiguous",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
+        "Pyre of Renewal",
         "Rivalry Mode"
       ],
-      "evidence_note": "No separate Rivalry Mode section was visible in the captured excerpt; verify before recording as absent.",
-      "required_action": "Inspect the full source page and confirm whether Rivalry Mode exists or is genuinely absent."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/talene",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "cecia",
       "name": "Cecia",
       "source_batch": 2,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/cecia",
-      "issue_type": "incomplete_section_description",
-      "affected_sections": [
-        "Earth's Offering"
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
+        "Earth's Offering",
+        "Agonizing Puncture",
+        "Hero Focus"
       ],
-      "evidence_note": "Earth's Offering is only partially described in the returned excerpt; keep this profile partial until the full section is recaptured.",
-      "required_action": "Recapture the full Earth's Offering section and its progression/effect details."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/cecia",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "granny-dahnie",
       "name": "Granny Dahnie",
       "source_batch": 3,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
-      "issue_type": "missing_progression_sections",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
         "Enhance Force",
         "Season Charm"
       ],
-      "evidence_note": "Capture did not expose Enhance Force or Season Charm; verify whether absent or beyond the returned excerpt.",
-      "required_action": "Inspect the full page and record both sections if present; otherwise record verified absence."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "valka",
@@ -53,138 +67,142 @@
       "recapture_batches": [
         18
       ],
-      "captured_source_url": "https://afkstargazer.com/en/skill/valka",
-      "issue_type": "missing_progression_sections",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
         "Enhance Force",
         "Season Charm"
       ],
-      "evidence_note": "Capture excerpt did not include Enhance Force or Season Charm; verify whether absent or beyond the indexed excerpt.",
-      "required_action": "Review the Batch 18 recapture and full page; confirm presence/absence of both progression sections."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/valka",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "indris",
       "name": "Indris",
       "source_batch": 3,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/indris",
-      "issue_type": "missing_kit_and_progression_sections",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
         "Hero Focus",
-        "Exclusive Equipment",
+        "Windpiercer",
         "Rivalry Mode"
       ],
-      "evidence_note": "Capture did not expose Hero Focus, Exclusive Equipment or Rivalry Mode; verify in the full page.",
-      "required_action": "Inspect the full page and capture the three missing sections if present."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/indris",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "reinier",
       "name": "Reinier",
       "source_batch": 5,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/reinier",
-      "issue_type": "missing_progression_sections",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
         "Enhance Force",
         "Season Charm"
       ],
-      "evidence_note": "Capture did not expose Enhance Force or Season Charm; verify whether they are absent or outside the returned excerpt.",
-      "required_action": "Inspect the full page and capture both progression sections if present."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/reinier",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "satrana",
       "name": "Satrana",
       "source_batch": 6,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/satrana",
-      "issue_type": "missing_progression_sections",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
+        "Rivalry Mode",
         "Enhance Force",
-        "Season Charm",
-        "Rivalry Mode"
+        "Season Charm"
       ],
-      "evidence_note": "The capture excerpt does not show Enhance Force, Season Charm or Rivalry Mode; recapture the remainder.",
-      "required_action": "Recapture the remaining page sections and verify exact section order."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/satrana",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "nerion",
       "name": "Nerion",
       "source_batch": 6,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/nerion",
-      "issue_type": "unheaded_ability_evidence",
-      "affected_sections": [
-        "Unidentified base skill between Ultimate and Hero Focus"
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
+        "Tidal Rebuke",
+        "Riptide Wrath"
       ],
-      "evidence_note": "The base-skill excerpt contains a section between Drowning Doom and Hero Focus but its heading is absent. Do not assign the orphaned level-scaling detail to a guessed skill.",
-      "required_action": "Re-open the full page to identify the exact skill heading and recover its complete description; keep the orphaned evidence separate until then."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/nerion",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "mehira",
       "name": "Mehira",
       "source_batch": 6,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/mehira",
-      "issue_type": "missing_progression_section",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
         "Season Charm"
       ],
-      "evidence_note": "The capture excerpt does not show Season Charm; recapture the remaining progression section.",
-      "required_action": "Recapture Season Charm and verify whether any further page content follows."
-    },
-    {
-      "hero_id": "hammie",
-      "name": "Hammie",
-      "source_batch": 8,
-      "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/hammie",
-      "issue_type": "missing_kit_and_progression_sections",
-      "affected_sections": [
-        "Hero Focus",
-        "Exclusive Equipment",
-        "Enhance Force",
-        "Rivalry Mode"
-      ],
-      "evidence_note": "The capture excerpt does not show Hero Focus, Exclusive Equipment, Enhance Force or Rivalry Mode; recapture remainder.",
-      "required_action": "Recapture the missing kit/progression sections and check the page's end."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/mehira",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "bryon",
       "name": "Bryon",
       "source_batch": 11,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/bryon",
-      "issue_type": "missing_progression_sections",
-      "affected_sections": [
+      "resolved_by_batch": 25,
+      "resolution_status": "missing_sections_recaptured",
+      "resolved_sections": [
         "Enhance Force",
         "Season Charm"
       ],
-      "evidence_note": "Capture excerpt ends before Enhance Force and Season Charm; recapture the remainder before treating the profile as complete.",
-      "required_action": "Recapture the remaining progression sections."
+      "verified_absent_sections": [],
+      "source_url": "https://afkstargazer.com/en/skill/bryon",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
+    },
+    {
+      "hero_id": "hammie",
+      "name": "Hammie",
+      "source_batch": 8,
+      "recapture_batches": [],
+      "resolved_by_batch": 25,
+      "resolution_status": "verified_absent_on_current_indexed_page",
+      "resolved_sections": [],
+      "verified_absent_sections": [
+        "Hero Focus",
+        "Exclusive Equipment",
+        "Enhance Force",
+        "Rivalry Mode"
+      ],
+      "source_url": "https://afkstargazer.com/en/skill/hammie",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     },
     {
       "hero_id": "chippy",
       "name": "Chippy",
       "source_batch": 11,
       "recapture_batches": [],
-      "captured_source_url": "https://afkstargazer.com/en/skill/chippy",
-      "issue_type": "missing_tags_kit_and_progression_sections",
-      "affected_sections": [
-        "Page tags",
+      "resolved_by_batch": 25,
+      "resolution_status": "verified_absent_on_current_indexed_page",
+      "resolved_sections": [],
+      "verified_absent_sections": [
         "Hero Focus",
         "Exclusive Equipment",
         "Enhance Force",
         "Rivalry Mode"
       ],
-      "evidence_note": "The excerpt does not show page tags, Hero Focus, Exclusive Equipment, Enhance Force or Rivalry Mode; recapture the remainder.",
-      "required_action": "Recapture the full page from its beginning, including page-level tags and all missing sections."
+      "source_url": "https://afkstargazer.com/en/skill/chippy",
+      "review_status": "indexed_primary_source_capture_pending_patch_verification"
     }
   ],
-  "policy": [
-    "Source URL presence does not prove full ability-kit capture.",
-    "A heading without a PARTIAL suffix does not override explicit capture-gap notes.",
-    "Do not infer that an unseen section is absent.",
-    "Do not assign orphaned details to guessed ability names.",
-    "Keep profile normalization/review status separate from source-page mapping status."
-  ]
+  "closed_by_batch": 25,
+  "closure_note": "All 12 prior gap-register entries were reviewed against current indexed AFK Stargazer page content. Ten missing-section groups were recaptured; Hammie and Chippy were confirmed to have no additional Hero Focus/Exclusive Equipment/Enhance Force/Rivalry Mode sections listed on their current indexed pages. Direct page opens returned cache miss, so patch/direct-fetch verification remains pending."
 }
