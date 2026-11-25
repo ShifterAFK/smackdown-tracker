@@ -634,3 +634,19 @@ Before database import:
 4. Record retrieval timestamp, source URL, language and any patch/version evidence.
 5. Cross-check a prioritized sample against AFK.global and official patch notes; record conflicts instead of silently reconciling them.
 6. Review the schema proposal and coverage report before any Supabase migration or import.
+
+
+## 32. Normalization model proposal (2026-11-25)
+
+Added:
+- `docs/HERO_KNOWLEDGE_NORMALIZATION_SPEC.md`
+
+The proposal defines separate logical entities for hero knowledge versions, source provenance, ability sections, ability-level effect tags and claim-level evidence. It also specifies:
+- exact raw Stargazer tag preservation with qualifiers;
+- separate base abilities and progression sections;
+- explicit unknown/null handling;
+- source/patch/version metadata and review states;
+- a 131-hero roster validation gate;
+- a no-write normalization workflow before any database import.
+
+**This is a proposal only.** No Supabase schema migration, data import or frontend integration has been performed. The next implementation artifact should be a machine-readable source manifest and then a normalized dry-run dataset with structural validation, not a direct production import.
