@@ -150,6 +150,23 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Structural checks passed: manifest IDs/URLs/locales, unique section keys, non-empty summaries, null raw descriptions, and tag mapping consistency.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2F
+
+## Stage 2F — Batch 19 normalization
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_19.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_19_NORMALIZATION_AUDIT.md`
+
+- Nine completed profiles normalized as completion supplements: Evie, Lamentis, Aster, Soren, Florabelle, Zandrok, Brutus, Alna and Lorsan.
+- 49 new sections, 13 explicitly tagged sections and 18 raw tag records.
+- Prior detail batches are recorded per hero; earlier sections are not duplicated.
+- Sylphira remains partial: 4 supplemental sections, no per-section tags, and the partial-status note is retained separately.
+- Page tags were not re-captured in Batch 19 and remain null in this batch supplement.
+- No duplicate section keys, missing summaries or source URL mismatches. No Supabase writes or application code changes.
+
+## Restart point — Stage 2G
+
+Next, inspect **Batch 18**. Separate profiles completed by combining Batch 18 with earlier detail captures from profiles that remain partial. Normalize only the completed profiles as completion supplements; keep partial recaptures separate. Validate source URLs, prior-batch references, section order, tags and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+
 
 Next, inspect **Batch 19**. Separate complete first-pass profiles from partial recaptures, normalize only complete profiles, and preserve partial data as supplements. Validate the result, commit its artifact and audit, then update this log. No Supabase import.
