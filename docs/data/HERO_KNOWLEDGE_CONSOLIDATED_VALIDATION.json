@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-25",
+  "dataset_status": "consolidated_dry_run_not_for_import",
+  "source_manifest": "docs/data/HERO_KNOWLEDGE_SOURCE_MANIFEST.json",
+  "gap_register": "docs/data/HERO_KNOWLEDGE_NORMALIZATION_GAP_REGISTER.json",
+  "source_batches": [
+    "01-08",
+    "09-16",
+    "17-24"
+  ],
+  "counts": {
+    "roster_heroes": 131,
+    "consolidated_heroes": 131,
+    "missing_hero_ids": 0,
+    "unexpected_hero_ids": 0,
+    "capture_records": 223,
+    "complete_capture_records": 119,
+    "partial_capture_records": 104,
+    "normalized_complete_profiles": 119,
+    "profiles_needing_review": 12,
+    "section_evidence_records": 1298,
+    "unique_logical_sections": 1019,
+    "sections_with_consistent_explicit_tags": 300,
+    "sections_with_unknown_tags": 719,
+    "sections_with_tag_conflicts": 0,
+    "sections_with_multiple_paraphrase_variants": 216,
+    "profiles_with_page_tag_set_variance": 0,
+    "source_manifest_mismatches": 0
+  },
+  "validation": {
+    "missing_hero_ids": [],
+    "unexpected_hero_ids": [],
+    "issues": []
+  },
+  "limitations": [
+    "Descriptions are paraphrased summaries, not verbatim source text.",
+    "No source patch/version has been verified.",
+    "No second-source cross-check or in-game verification has been performed.",
+    "The 12 gap-register profiles remain needs_review; unseen sections and tags are not inferred.",
+    "Page tags are an observed union with per-capture observations retained; they are not assumed complete where captures differ.",
+    "This is a dry-run artifact only and must not be imported into Supabase."
+  ]
+}
