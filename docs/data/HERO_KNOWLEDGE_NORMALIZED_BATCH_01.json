@@ -1,0 +1,3146 @@
+{
+  "schema_version": 1,
+  "dataset_status": "batch_normalized_dry_run",
+  "generated_at": "2026-11-25",
+  "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+  "normalization_spec": "docs/HERO_KNOWLEDGE_NORMALIZATION_SPEC.md",
+  "description_policy": "Descriptions are paraphrased capture summaries, not verbatim source text. description_raw is null.",
+  "tag_policy": "Page-level tags remain separate. Only explicit per-skill list entries and inline section tag prefixes are attached. Null tags mean no section-level mapping was recorded in this batch.",
+  "summary": {
+    "complete_profile_count": 9,
+    "complete_section_count": 70,
+    "complete_tagged_section_count": 5,
+    "complete_tag_record_count": 7,
+    "complete_page_tag_record_count": 25,
+    "partial_profile_count": 6,
+    "partial_supplement_section_count": 20,
+    "partial_tagged_section_count": 3,
+    "partial_tag_record_count": 3,
+    "partial_page_tag_record_count": 17
+  },
+  "completed_profiles": [
+    {
+      "hero_id": "gala",
+      "tracker_name": "Gala",
+      "source_display_name": "Galahad",
+      "source_display_names": [
+        "Galahad"
+      ],
+      "source_alias": "Galahad",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/galahad",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/galahad",
+      "page_tags": [
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        },
+        {
+          "raw_tag": "Special Target",
+          "tag_family": "Special Target",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-temporal-field",
+          "name": "Temporal Field",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Temporal Field",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Consumes 400 Energy; deals 340% ATK to all enemies and forms a 2-tile-radius circle centered on Galahad. While forming, consumes 60 Energy/sec for 10% progress/sec. Enemies in the circle lose 10 Haste and 16% movement speed per 10% progress, capped at 50 Haste and 80% movement-speed reduction. At full formation Galahad gains 30 Haste. While she remains at the center, a shadow repeats each skill shortly after her, inheriting 60% of her stats; Stargazer explicitly marks the shadow as a summon.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-binding-loop",
+          "name": "Binding Loop",
+          "section_type": "base_skill",
+          "source_label": "Binding Loop",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Hits the enemy with highest cumulative damage for 210% ATK and immobilizes for 4 s; also converts a portion of non-excess healing received since the previous immobilization into HP loss (capped). Then expands range and repeats area strikes twice.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-chrono-ward",
+          "name": "Chrono Ward",
+          "section_type": "base_skill",
+          "source_label": "Chrono Ward",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Shields the weakest ally for 480% ATK for 8 s; expiration deals 240% ATK to adjacent enemies.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK; adds further ATK when the magic circle is fully formed.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-time-recast",
+          "name": "Time Recast",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Time Recast",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Marks a nearby ally (backline priority); when the circle first completes, summons a non-targetable shadow copy of the marked ally, inheriting basic stats and extra Initial Energy. This ally-shadow is also explicitly considered a summon.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "While affected by Merlin's buffs, Galahad recovers 40 Energy/sec and becomes steadfast, with a total 30 s cap.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Under a stationary-tile condition, after 3 s increases damage and Haste. Higher ranks add a shield/steadfast effect.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Separate rank-2 and refine-4 effects are present on the page; kept separate from the base kit.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/galahad",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "hugin",
+      "tracker_name": "Hugin",
+      "source_display_name": "Hugin",
+      "source_display_names": [
+        "Hugin"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/hugin",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/hugin",
+      "page_tags": [
+        {
+          "raw_tag": "Energy Battery",
+          "tag_family": "Energy Battery",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Haste (Single Target)",
+          "tag_family": "Haste",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Temp Buff (Opening)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening"
+          ]
+        },
+        {
+          "raw_tag": "Tile Effect",
+          "tag_family": "Tile Effect",
+          "qualifier": []
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-unstoppable",
+          "name": "Unstoppable!",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Unstoppable!",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Passive placement rule: Hugin sets an anvil on his preparation tile and remains near it. Active effect forges Gear of Might for the ally with the highest cumulative damage: +6% of Hugin's base ATK and +80 Haste for 10 s. ATK contribution scales to 10% by LV 5.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-titan-s-aegis",
+          "name": "Titan's Aegis",
+          "section_type": "base_skill",
+          "source_label": "Titan's Aegis",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Shields the weakest ally for 600% ATK for 8 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-mechanized-bond",
+          "name": "Mechanized Bond",
+          "section_type": "base_skill",
+          "source_label": "Mechanized Bond",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "At battle start, places a mechanical sigil one tile behind Hugin. Ally on the tile receives ATK equal to 14% of Hugin's base ATK; each Titan's Aegis cast restores an extra 75 Energy to that ally. Buff ends when ally leaves the sigil.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases Haste by 12, scaling to +20.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-steelbound-kinship",
+          "name": "Steelbound Kinship",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Steelbound Kinship",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Unstoppable! also gives enhanced 800% ATK shields to the two weakest allies; LV 3 adds control immunity while shielded.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Protected ally takes 30% less damage while cogshield is active.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Provides an opening ranged-damage bonus for the ally placed one tile behind Hugin; higher ranks add a conditional shield.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Separate healing/shield and refine-4 stats; kept separate from base skill effects.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hugin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "lily-may",
+      "tracker_name": "Lily May",
+      "source_display_name": "Lily May",
+      "source_display_names": [
+        "Lily May"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/lily-may",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/lily-may",
+      "page_tags": [
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Ult Denial",
+          "tag_family": "Ult Denial",
+          "qualifier": []
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-tempest-shot",
+          "name": "Tempest Shot",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Tempest Shot",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Passive defensive state at battle start. When a non-summoned enemy casts an Ultimate, Lily May becomes unaffected, leaps above that enemy, deals 200% ATK and interrupts the Ultimate, while removing 700 Energy. Cannot interrupt Bosses; against Bosses, instead increases damage dealt by 400%. Active mode can defend against all non-summoned enemies or a selected one. Targeting rules differ depending on the selected mode.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-rainstorm-ballet",
+          "name": "Rainstorm Ballet",
+          "section_type": "base_skill",
+          "source_label": "Rainstorm Ballet",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Performs six attacks at 65% ATK each; invincible during the sequence, then returns to the original tile.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-swallow-s-flight",
+          "name": "Swallow's Flight",
+          "section_type": "base_skill",
+          "source_label": "Swallow's Flight",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Normal attacks and skills grant EXP; assists/defeats grant extra. Each completed growth permanently adds 10% ATK and enhances the next four attacks with true damage based on target max HP; stacks up to four times.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases Penetration, with additional Penetration during Rainstorm Ballet.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-rainfall-bliss",
+          "name": "Rainfall Bliss",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Rainfall Bliss",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Grows once when receiving a non-permanent ally stat boost; each ally can trigger once per battle. Further levels increase growth ATK and add Rainstorm Ballet attacks.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "The first Tempest Shot interruption removes 1000 Energy from the enemy.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Adds critical-hit splash damage; higher rank converts some critical damage into a permanent shield.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate Haste/Penetration and refine effects.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lily-may",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "taichi",
+      "tracker_name": "Taichi",
+      "source_display_name": "Taichi & Agumon",
+      "source_display_names": [
+        "Taichi & Agumon"
+      ],
+      "source_alias": "Taichi & Agumon",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/taichi-agumon",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/taichi-agumon",
+      "page_tags": [
+        {
+          "raw_tag": "Energy Battery",
+          "tag_family": "Energy Battery",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Execute",
+          "tag_family": "Execute",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Opening, AOE)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "AOE"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-gaia-force",
+          "name": "Gaia Force",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Gaia Force",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Agumon uses Baby Flame as normal attack. First Ultimate digivolves him into Wargreymon, permanently increasing HP by 100% and ATK by 50%, unlocking skills. Wargreymon's Gaia Force hits enemies in a 3-tile area around target for seven hits; center enemies take increased damage. Taichi remains off-field and restores 150 Energy to Agumon every 3 s (250 extra before digivolution).",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-brave-tornado",
+          "name": "Brave Tornado",
+          "section_type": "base_skill",
+          "source_label": "Brave Tornado",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Wargreymon pierces through enemies, dealing 420% ATK and stunning for 2 s; unaffected while casting.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-recovery-shield",
+          "name": "Recovery Shield",
+          "section_type": "base_skill",
+          "source_label": "Recovery Shield",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Wargreymon gains a 700% ATK shield for 10 s and is unaffected while it lasts; on expiration heals based on remaining shield. Digivolution immediately grants this shield.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK; adds extra ATK after assisting/defeating a non-summoned enemy.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-dramon-killer",
+          "name": "Dramon Killer",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Dramon Killer",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Three slashes cause HP loss; if only one enemy remains and its HP is below the stated threshold, instantly defeats it.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Execute",
+              "tag_family": "Execute",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Exclusive Equipment — Dramon Killer",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "On battle start Wargreymon shares an ATK buff with allies behind him; Gabumon receives 300 extra Energy if affected.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Energy Battery",
+              "tag_family": "Energy Battery",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Temp Buff (Opening, AOE)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "Opening",
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Enhance Force",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Provides Energy recovery over time; after three Ultimates adds ATK, with higher ranks adding true damage to all enemies.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides a separate timed defensive/offensive effect and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "yamato",
+      "tracker_name": "Yamato",
+      "source_display_name": "Yamato & Gabumon",
+      "source_display_names": [
+        "Yamato & Gabumon"
+      ],
+      "source_alias": "Yamato & Gabumon",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/yamato-gabumon",
+      "page_tags": null,
+      "page_tags_status": "not_visible_in_excerpt",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-cocytus-breath",
+          "name": "Cocytus Breath",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Cocytus Breath",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "First Ultimate digivolves Gabumon into Metalgarurumon, permanently increasing ATK and Haste. Cocytus Breath covers a 4-by-3-tile area, repeatedly removes HP and freezes enemies. Yamato remains off-field; at battle start and each Ultimate, he buffs Gabumon's ATK. Before digivolution, the buff also enables extra Energy recovery.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-garuru-tomahawk",
+          "name": "Garuru Tomahawk",
+          "section_type": "base_skill",
+          "source_label": "Garuru Tomahawk",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Hits the main target for 360% ATK and nearby enemies for 180%.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-garuru-howling",
+          "name": "Garuru Howling",
+          "section_type": "base_skill",
+          "source_label": "Garuru Howling",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Increases Metalgarurumon's ATK and Haste for 16 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases Energy recovery from attacks; adds extra recovery after digivolution.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-grace-cross-freezer",
+          "name": "Grace Cross Freezer",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Grace Cross Freezer",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Fires 10 missiles distributed among enemies; ally deployment near Gabumon during preparation adds missiles. Repeated hits on one enemy are subject to a damage-reduction rule; LV 3 adds freeze and extra damage after four hits.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "On digivolution, heals Gabumon and allies initially deployed nearby; each affected ally permanently increases Gabumon's ATK, capped at 15%.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "ATK and defensive stats stack with time alive; higher ranks add damage at max stacks.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate Ultimate-triggered damage and Energy recovery effects.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "hewynn",
+      "tracker_name": "Hewynn",
+      "source_display_name": "Hewynn",
+      "source_display_names": [
+        "Hewynn"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/hewynn",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/hewynn",
+      "page_tags": [
+        {
+          "raw_tag": "Haste (Single Target)",
+          "tag_family": "Haste",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Temp Buff",
+          "tag_family": "Temp Buff",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-rain-prayer",
+          "name": "Rain Prayer",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Rain Prayer",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Provides global healing to all allies for 95% ATK HP/sec over 9 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-healing-wave",
+          "name": "Healing Wave",
+          "section_type": "base_skill",
+          "source_label": "Healing Wave",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Heals one weakest ally for 280% ATK HP.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-revitalize",
+          "name": "Revitalize",
+          "section_type": "base_skill",
+          "source_label": "Revitalize",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Heals an ally; adds extra healing when their HP ratio is below 50%. Higher levels also dispel dispellable debuffs with per-ally trigger intervals.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK; adds extra ATK after the first Rain Prayer.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-tranquility",
+          "name": "Tranquility",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Tranquility",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "While casting Rain Prayer, Hewynn is unaffected and all allies take 30% less damage. Higher levels improve reduction and add Initial Energy.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Revitalize also grants the healed ally 30 Haste for 6 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Haste (Single Target)",
+              "tag_family": "Haste",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "Temp Buff (Single Target)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "Single Target"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Enhance Force",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Healing grants the target an ATK buff for 8 s; higher ranks add Healing to the caster after a total-healing threshold.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Temp Buff",
+              "tag_family": "Temp Buff",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Season Charm",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides a separate first-low-HP ally heal/shield and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hewynn",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "lumont",
+      "tracker_name": "Lumont",
+      "source_display_name": "Lumont",
+      "source_display_names": [
+        "Lumont"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/lumont",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/lumont",
+      "page_tags": [
+        {
+          "raw_tag": "Airborne",
+          "tag_family": "Airborne",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-lumont-s-charge",
+          "name": "Lumont's Charge",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Lumont's Charge",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Charges to a selected tile, pushes enemies along the path, then damages adjacent enemies and taunts them for 3 s; unaffected while casting.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-totem-ward",
+          "name": "Totem Ward",
+          "section_type": "base_skill",
+          "source_label": "Totem Ward",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Creates a self-shield that grows with adjacent enemies. Increases Phys DEF of the two closest allies.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-war-stomp",
+          "name": "War Stomp",
+          "section_type": "base_skill",
+          "source_label": "War Stomp",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Damages and stuns adjacent enemies; LV 3 cooldown falls per enemy hit.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases Haste; adds extra Haste when at least two enemies are nearby.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-totem-slam",
+          "name": "Totem Slam",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Totem Slam",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "After receiving damage equal to 40% max HP, slams at expanding radii, reduces enemy ATK, and the third slam knocks enemies airborne.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Heals while Totem Ward shield is active; LV 2 grants a shield on first Totem Slam and permanently extends War Stomp stun.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Provides opening and periodic nearby ally shields; higher ranks add damage reduction.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate low-HP mitigation/healing effects and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/lumont",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "cyran",
+      "tracker_name": "Cyran",
+      "source_display_name": "Cyran",
+      "source_display_names": [
+        "Cyran"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/cyran",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/cyran",
+      "page_tags": [
+        {
+          "raw_tag": "Airborne",
+          "tag_family": "Airborne",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Debuff (Global)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Global"
+          ]
+        },
+        {
+          "raw_tag": "Execute",
+          "tag_family": "Execute",
+          "qualifier": []
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-gravitic-requiem",
+          "name": "Gravitic Requiem",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Gravitic Requiem",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Selects a tile and creates a 5 s black hole. Repeatedly damages the center and outer radius, pulls all enemies toward the center, and executes center enemies below both an ATK-based HP threshold and 15% HP ratio.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cyran",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-arcane-barrage",
+          "name": "Arcane Barrage",
+          "section_type": "base_skill",
+          "source_label": "Arcane Barrage",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Fires three orbs toward the area with the most enemies.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cyran",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-cursed-grasp",
+          "name": "Cursed Grasp",
+          "section_type": "base_skill",
+          "source_label": "Cursed Grasp",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Lifts the nearest enemy, briefly imprisons it, then throws it toward the densest enemy area; damages nearby enemies on landing. Prioritizes targets that are neither unaffected nor steadfast.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Airborne",
+              "tag_family": "Airborne",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Cursed Grasp",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cyran",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases Haste.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cyran",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "source_section_group-exclusive-equipment-enhance-force-season-charm",
+          "name": "Exclusive Equipment / Enhance Force / Season Charm",
+          "section_type": "source_section_group",
+          "source_label": "Exclusive Equipment / Enhance Force / Season Charm",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "The page excerpt contains special anti-Merlin behavior, +200 Initial Energy, and a stationary-tile damage/Haste charm; the captured result interleaves later sections, so exact section-to-effect mapping must be rechecked on recapture.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cyran",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Provides separate damage and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cyran",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "Cyran's capture is treated as complete for the visible core page, but section attribution for Exclusive Equipment, Enhance Force and Season Charm remains unresolved; recheck before using those effects as structured fields."
+      ],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "kazim",
+      "tracker_name": "Kazim",
+      "source_display_name": "Kazim",
+      "source_display_names": [
+        "Kazim"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/kazim",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_01",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/kazim",
+      "page_tags": [
+        {
+          "raw_tag": "Airborne",
+          "tag_family": "Airborne",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Haste (Opening, Global)",
+          "tag_family": "Haste",
+          "qualifier": [
+            "Opening",
+            "Global"
+          ]
+        },
+        {
+          "raw_tag": "Temp Buff (Opening, Global)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "Global"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-gale-barrage",
+          "name": "Gale Barrage",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Gale Barrage",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Passive extends airborne duration when an enemy hero is knocked up and fires tracking feathers; active volley damages and knocks up enemies in the densest arc-shaped area, followed by repeated volleys for 3 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-soaring-falcon",
+          "name": "Soaring Falcon",
+          "section_type": "base_skill",
+          "source_label": "Soaring Falcon",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Opening 10 s airborne/invulnerable state. When an enemy hero is knocked airborne, Kazim dives, damages and marks them as prey; after Soaring ends, fires at marked prey and stuns them.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-stormy-dominion",
+          "name": "Stormy Dominion",
+          "section_type": "base_skill",
+          "source_label": "Stormy Dominion",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Opening global wind field grants allies Haste; each prey mark adds Haste stacks. On ending Soaring, Kazim absorbs double the Haste bonus. Active arrow damages and knocks up enemies; prey marks permanently increase its damage and range.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK SPD.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-raptor-s-vigil",
+          "name": "Raptor's Vigil",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Raptor's Vigil",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Normal attacks deal more damage and lock on to prey; LV 3 adds an airborne effect and capped true damage after a number of normal attacks.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "After Soaring starts, knocks up the rearmost stationary enemy (excluding unaffected/steadfast targets). Prey marks or enemy defeats permanently grant ATK SPD and Energy, with ATK SPD stacks capped.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Increases ATK SPD and normal-attack lifesteal; higher ranks add Penetration while above 50% HP.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate normal-attack stacking effects and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/kazim",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    }
+  ],
+  "partial_recapture_supplements": [
+    {
+      "hero_id": "rolan",
+      "tracker_name": "Rolan",
+      "source_display_name": "Rolan",
+      "source_display_names": [
+        "Rolan"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/rolan",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "partial_recapture_supplement"
+      },
+      "profile_completion_status": "partial",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/rolan",
+      "page_tags": [
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Haste (Single Target)",
+          "tag_family": "Haste",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff",
+          "tag_family": "Temp Buff",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Opening, Global)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "Global"
+          ]
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-oath-in-the-stone",
+          "name": "Oath in the Stone",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Oath in the Stone",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Cleanses dispellable debuffs from allies, equalizes HP percentages among non-summoned allies, increases all allies' max HP by 150%, restores 1000% ATK HP, and grants 15% Morale. Temporary max HP decays over 12 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/rolan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-undying-valor",
+          "name": "Undying Valor",
+          "section_type": "base_skill",
+          "source_label": "Undying Valor",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Opening passive grants 20% team Morale; every 20% Morale gives all allies ATK equal to 10% of Rolan's initial ATK.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/rolan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Healing and damage reduction scale with team Morale.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/rolan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-radiant-reign",
+          "name": "Radiant Reign",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Radiant Reign",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "At 100% Morale creates a ward; when an ally casts Ultimate, a radiant clone appears and casts that Ultimate again.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/rolan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "Capture is truncated after the opening Exclusive Equipment description. Remaining equipment levels, other skills, Enhance Force, Season Charm and Rivalry Mode require recapture."
+      ],
+      "normalization_status": "supplement_normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "callan",
+      "tracker_name": "Callan",
+      "source_display_name": "Callan",
+      "source_display_names": [
+        "Callan"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/callan",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "partial_recapture_supplement"
+      },
+      "profile_completion_status": "partial",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/callan",
+      "page_tags": null,
+      "page_tags_status": "not_visible_in_excerpt",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Increases Vitality.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/callan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-hollowed-wrath",
+          "name": "Hollowed Wrath",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Hollowed Wrath",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Once per battle when Callan or a non-summoned ally falls below 30% HP, deals repeated AOE damage and stuns; Callan is unaffected while casting.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/callan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Gaining a shield heals Callan for 15% of its maximum value. LV 2 improves Restless Guardian's opening shield and damage absorption.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/callan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Provides opening and periodic shields for allies within 2 tiles; higher ranks add damage reduction.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/callan",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "Base Ultimate and other base abilities were not included in the captured search excerpt; recapture required."
+      ],
+      "normalization_status": "supplement_normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "hodgkin",
+      "tracker_name": "Hodgkin",
+      "source_display_name": "Hodgkin",
+      "source_display_names": [
+        "Hodgkin"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/hodgkin",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "partial_recapture_supplement"
+      },
+      "profile_completion_status": "partial",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/hodgkin",
+      "page_tags": [
+        {
+          "raw_tag": "Debuff",
+          "tag_family": "Debuff",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        },
+        {
+          "raw_tag": "Debuff (Global)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Global"
+          ]
+        },
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-cannon-fire",
+          "name": "Cannon Fire",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Cannon Fire",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Fires at each enemy hero in sequence; each cannon deals 320% ATK to the target and adjacent enemies. Allies adjacent to the hit enemy also take damage. A unit hit more than twice receives reduced subsequent damage; at least five cannons are fired.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hodgkin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-phantom-respite",
+          "name": "Phantom Respite",
+          "section_type": "base_skill",
+          "source_label": "Phantom Respite",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Enters ethereal state for 8 s, immune to physical damage and recovering HP per second; passive triggers a shorter ethereal state after Cannon Fire.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hodgkin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-rending-cleave",
+          "name": "Rending Cleave",
+          "section_type": "base_skill",
+          "source_label": "Rending Cleave",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Damages enemies in a 2-tile arc and steals 70 Energy.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Energy Denial",
+              "tag_family": "Energy Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Rending Cleave",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/hodgkin",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "Capture truncated after Rending Cleave level details; remaining skills and equipment require recapture."
+      ],
+      "normalization_status": "supplement_normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "atalanta",
+      "tracker_name": "Atalanta",
+      "source_display_name": "Atalanta",
+      "source_display_names": [
+        "Atalanta"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/atalanta",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "partial_recapture_supplement"
+      },
+      "profile_completion_status": "partial",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/atalanta",
+      "page_tags": [
+        {
+          "raw_tag": "Airborne",
+          "tag_family": "Airborne",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-wild-sniper",
+          "name": "Wild Sniper",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Wild Sniper",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Dashes to a selected tile and fires a penetrative bolt along a 1-tile-wide path, dealing damage and stunning enemies for 2 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/atalanta",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-sweet-encounter",
+          "name": "Sweet Encounter",
+          "section_type": "base_skill",
+          "source_label": "Sweet Encounter",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Whip attack knocks an enemy back and immobilizes it. If another enemy is behind the target, can knock the target into that enemy and immobilize both.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Airborne",
+              "tag_family": "Airborne",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Sweet Encounter",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/atalanta",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "Capture excerpt is incomplete; remaining skills/equipment require recapture."
+      ],
+      "normalization_status": "supplement_normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "cryonaia",
+      "tracker_name": "Cryonaia",
+      "source_display_name": "Cryonaia",
+      "source_display_names": [
+        "Cryonaia"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/cryonaia",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "partial_recapture_supplement"
+      },
+      "profile_completion_status": "partial",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/cryonaia",
+      "page_tags": null,
+      "page_tags_status": "not_visible_in_excerpt",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-frostveil-domain",
+          "name": "Frostveil Domain",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Frostveil Domain",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Traps up to three highest-cumulative-damage enemy heroes and their summons in a separate domain for 12 s. Gains a Frost Shield; while active, Cryonaia is control-immune, gains Haste and ATK, and cannot be defeated. Domain ends early if trapped enemies die or shield is destroyed.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cryonaia",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-icicle-tempest",
+          "name": "Icicle Tempest",
+          "section_type": "base_skill",
+          "source_label": "Icicle Tempest",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Creates a 6 s moving storm with repeated damage; after Frostveil Domain, creates a large storm and two smaller storms that persist for the Frost Shield duration.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cryonaia",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-frigid-edge",
+          "name": "Frigid Edge",
+          "section_type": "base_skill",
+          "source_label": "Frigid Edge",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Launches five ice shards at one enemy; cooldown falls to 3 s while Frost Shield is active.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cryonaia",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK during battle and stacks while Frost Shield remains active.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/cryonaia",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "Capture excerpt ends during Hero Focus; remaining equipment, Enhance Force, Season Charm and Rivalry Mode require recapture."
+      ],
+      "normalization_status": "supplement_normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "faramor",
+      "tracker_name": "Faramor",
+      "source_display_name": "Faramor",
+      "source_display_names": [
+        "Faramor"
+      ],
+      "source_alias": null,
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/faramor",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 1,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 1,
+        "kind": "partial_recapture_supplement"
+      },
+      "profile_completion_status": "partial",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/faramor",
+      "page_tags": [
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        },
+        {
+          "raw_tag": "Heal Denial",
+          "tag_family": "Heal Denial",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Special Target",
+          "tag_family": "Special Target",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Opening, Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "Single Target"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-sanctified-circle",
+          "name": "Sanctified Circle",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Sanctified Circle",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Consumes Energy to summon a 1-tile circle centered on the current target; initial true damage, then repeated true damage and extra damage based on target lost HP. Enemies inside cannot heal; circle ends if no enemies remain inside for 1 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Heal Denial",
+              "tag_family": "Heal Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Ultimate — Sanctified Circle",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/faramor",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Increases Haste.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/faramor",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-bitter-requiem",
+          "name": "Bitter Requiem",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Bitter Requiem",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Replaces normal attacks with Glory's Embrace while the magic circle is active; shield value is capped.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/faramor",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+            "capture_batch": 1,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "Capture excerpt is truncated and interleaves later skill text; remaining base skills, Enhance Force, Season Charm and Rivalry Mode require recapture."
+      ],
+      "normalization_status": "supplement_normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    }
+  ]
+}
