@@ -106,8 +106,36 @@ No browser execution, mobile interaction test, Turnstile test, Supabase RPC call
 
 The current development entry point passes the available static baseline checks. No application code or database state changed.
 
+
+## Stage 3 — automated static validator
+
+**Status: implemented; GitHub Actions result pending.**
+
+### Changes
+
+- Added `scripts/validate-runtime.py`, a dependency-free validator for local script/stylesheet references in an HTML entry point.
+- The validator strips cache query strings, skips remote URLs and JSON data payloads, checks local asset existence, and uses Node.js syntax checking for classic and module scripts.
+- Added `.github/workflows/validate-runtime.yml`, triggered by relevant changes on `development`, pull requests targeting `development`, or manual dispatch.
+- The workflow has read-only repository permissions. It does not deploy, call Supabase, mutate data, or run module-generation scripts.
+
+### Local checks performed against the same validator source
+
+- Minimal valid fixture: passed.
+- Invalid JavaScript fixture: failed as expected.
+- Missing stylesheet fixture: failed as expected.
+- Uploaded archive root entry point: passed (34 executable JS files, 22 stylesheets).
+- Uploaded archive V2 entry point: passed (1 module JS file, 1 stylesheet).
+
+The validator was tested locally against fixtures and the uploaded archive. It has not yet been confirmed by a completed GitHub Actions run against the newly committed current `development` tree.
+
+### Exit result
+
+Validator and workflow implementation complete. No application runtime files or Supabase state changed. `main` remains untouched.
+
+**Next:** confirm the workflow result, then begin the first isolated runtime cleanup only after the check is green.
+
 ## Restart point
 
-**Next action:** Stage 3 — add a repeatable automated validation command/CI check for entrypoint asset existence and JavaScript syntax. It must be read-only, must not call Supabase, and must not regenerate or overwrite module files.
+**Next action:** Stage 4 — confirm the automated validator workflow is green on `development`; then select and isolate the first cleanup target using the architecture audit.
 
-**Do not start:** replacing `index.html`, removing legacy modules, changing Supabase, or changing draft/TOP/Tier algorithms until Stage 1 is documented and reviewed.
+**Do not start:** replacing `index.html`, removing legacy modules, changing Supabase, or changing draft/TOP/Tier algorithms without a separate risk review and explicit scope.
