@@ -387,6 +387,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2W
+## Stage 2W — Batch 02 normalization
 
-Next, inspect **Batch 02**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_02.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_02_NORMALIZATION_AUDIT.md`
+
+- Four complete profiles normalized: Antandra, Eironn, Viperian and Athalia.
+- 32 sections, 8 explicitly tagged sections and 9 raw per-skill tag records.
+- Six partial recaptures (Talene, Baden, Phraesto, Cecia, Nara and Valen) remain supplemental: 19 sections, 7 explicitly tagged sections and 12 raw per-skill tag records.
+- 32 page-level tag records are retained separately and are not copied onto abilities.
+- Talene and Cecia remain partial because their capture notes identify missing/incomplete sections.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2X
+
+Next, inspect **Batch 01**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
