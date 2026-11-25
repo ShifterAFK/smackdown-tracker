@@ -307,30 +307,30 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0006
+## 10. Current restart point after ACTION 0007
 
-**Task:** advance the approved ability-based composition analysis after the bounded five-hero source-verification pilot.
+**Task:** continue the approved ability-based composition analysis using the available hero-skill descriptions; Season Charm is excluded from this mode.
 
 **Confirmed:**
 - The approved three-layer ability model and detailed schema/tagging rules remain recorded in sections 13–14.
 - V4 remains a structural index and is still `consolidated_dry_run_not_for_import`.
-- ACTION 0006 completed a bounded cross-check of 40 V4 sections for Lily May, Ravion, Odie, Himmel and Valka against available secondary hero references.
-- 32/40 section summaries received external corroboration; 8 remain unverified, including one auxiliary `targeting_rule`.
-- Direct AFK Stargazer page retrieval failed with cache misses for all five profiles. Per-hero source patch/version remains unestablished.
-- Public patch references identify 1.8.2 as the latest published patch notes found; 1.8.3 was only a preview with no release date in the reviewed announcement.
+- ACTION 0006 completed the bounded five-hero cross-check: 32/40 section summaries had external corroboration; eight sections remained unresolved at that point.
+- ACTION 0007 found indexed AFK Stargazer evidence for all eight: five Season Charm records, two Rivalry Mode records and Ravion's auxiliary targeting rule.
+- Season Charm does not affect the mode in scope and is excluded from the composition model. Keep Season Charm distinct from Season Skill; do not map one category onto the other.
+- The two Rivalry Mode sections and Ravion's targeting rule have indexed supporting evidence. Ravion's targeting rule remains auxiliary, not a standalone ability.
+- The project accepts the available current hero-skill descriptions as sufficiently up to date for this task. Further patch/version research and per-hero patch mapping are explicitly closed unless the user reopens that decision.
+- Stargazer's public repository uses an external, commit-pinned data pack for skill text. Its pinned commit has no verified mapping to a game patch; this is a documented limitation, not an active blocker.
 - Existing Match Indicator and Showdown Draft Indicator remain separate protected systems.
 
-**Not confirmed:**
-- No per-hero source patch/version verification.
-- No primary-source direct-page confirmation for the five profiles.
-- No approved final indicator formula or weights.
-- No verified availability of actual in-match combat action telemetry.
-- No implemented composition feature extractor or validated predictive model.
-- No approval to import V4, change Supabase, or implement the composition model.
+**Not approved / unchanged:**
+- No V4 import or Supabase schema/data change.
+- No application implementation, indicator formula/weights, predictive thresholds or UI change.
+- No claim of primary-source direct-page retrieval or per-hero patch verification.
+- No changes to Tier List, TOP Picks, migrations or `main`.
 
-**Completed actions:** reconciliation ACTION 0002; approved model ACTION 0003; approved schema ACTION 0004; V4 coverage assessment ACTION 0005; bounded source-verification pilot ACTION 0006.
+**Completed actions:** reconciliation ACTION 0002; approved model ACTION 0003; approved schema ACTION 0004; V4 coverage assessment ACTION 0005; bounded source-verification pilot ACTION 0006; second bounded indexed-source pass and scope decision ACTION 0007.
 
-**Next single action:** obtain authorization for a second, narrowly scoped evidence pass on the eight unresolved sections and per-hero patch applicability. Do not expand the roster, import data, or change application/database code without separate approval.
+**Next single action:** continue the already approved composition-analysis work from the current hero-skill evidence, excluding Season Charm. Do not resume patch research or expand the scope without explicit user direction.
 
 ---
 
@@ -559,3 +559,36 @@ Commit one coherent documentation or code change at a time on `development`. Bef
   - Patch context: `https://www.afk.global/afk-journey/patch-notes/1-8-2` and `https://www.afk.global/afk-journey/news`.
 - Scope protection: no V4 shard, manifest, application code, existing indicator, Tier List, TOP Picks, Supabase schema/data, migration or `main` branch was changed. No automated test or in-game visual verification was performed.
 - Next single action: request authorization before any second evidence pass beyond this completed five-hero pilot.
+## 17. Second bounded source-verification pass and scope decision — 2026-11-25
+
+### ACTION 0007 — Resolve the eight indexed-source gaps and close patch research
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / second bounded source-verification pass
+- Status: COMPLETED; patch research closed by user decision
+- Exact target: the same five pilot heroes only — Lily May, Ravion, Odie, Himmel and Valka — and the eight sections left unresolved by ACTION 0006. No roster expansion.
+- Operation:
+  - Reviewed the Fandom hero skill pages and confirmed that they contain skill-description sections, while the wiki itself warns that skill descriptions are still being updated. Fandom was treated as supplementary, not as the sole completeness/currentness authority.
+  - Reviewed indexed AFK Stargazer skill-page content for the five heroes. Indexed results supplied evidence for all eight previously unresolved sections.
+  - Inspected Stargazer's public repository architecture. The public repository obtains skill text from an external, commit-pinned data pack; the pinned data-pack commit does not expose a verified game-patch mapping.
+  - Reviewed AFK.global Magic Charm and hero-profile references to preserve the distinction between Season Charm and Season Skill.
+- Result — eight previously unresolved sections:
+  - Lily May: Rivalry Mode and Season Charm have indexed Stargazer evidence.
+  - Ravion: Season Charm and the auxiliary rearmost-ally targeting rule have indexed Stargazer evidence.
+  - Odie: Season Charm has indexed Stargazer evidence.
+  - Himmel: Rivalry Mode and Season Charm have indexed Stargazer evidence.
+  - Valka: Season Charm has indexed Stargazer evidence.
+  - Total: indexed Stargazer evidence located for all 8/8 sections. Direct retrieval of the Stargazer pages still returned cache misses; indexed evidence is not represented as a successful direct-page fetch.
+- User decision / project scope:
+  - Do not conduct further patch/version research or seek a per-hero patch mapping.
+  - For this task, accept the available current hero-skill descriptions as sufficiently up to date; do not block progress on patch metadata.
+  - Season Charm has no relevance to the mode in scope and is excluded from the model. Keep it separate from Season Skill; do not treat either category as a substitute for the other.
+  - Retain the two Rivalry Mode records as indexed supporting skill evidence. Retain Ravion's targeting rule as auxiliary evidence, not as a standalone ability.
+- Limitations:
+  - Indexed source evidence does not establish a source patch label. This is intentionally not an active investigation item following the user's decision.
+  - Fandom's skill pages may be incomplete or still updating; they are supplementary.
+  - No claim of in-game verification is made.
+- Scope protection:
+  - No V4 shard, source manifest, application code, existing indicator, Tier List, TOP Picks, Supabase schema/data, migration or `main` branch was changed.
+  - No import was performed or authorized.
+- Next single action: continue the approved ability-based composition-analysis work using the available hero-skill descriptions, with Season Charm excluded. Reopen patch research only if the user explicitly changes this decision.
+
