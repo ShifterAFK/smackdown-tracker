@@ -524,3 +524,18 @@ Additional source details were captured for Voracia, Igor, Marilee, Aster and Pa
 **Updated first-pass capture coverage: 95/131 complete (72.5%); 36/131 partial (27.5%).** This is a source-capture metric only; it does not imply second-source validation, in-game patch verification, or database readiness.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 26. Partial-profile recapture pass 6 (2026-11-25)
+
+Nineteenth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_19.md` — sixth recapture pass.
+
+Nine tracker profiles upgraded to complete first-pass captures:
+- `evie`, `lamentis`, `aster`, `soren`, `florabelle`, `zandrok`, `brutus`, `alna`, `lorsan`.
+
+Sylphira gained its Hero Focus, Exclusive Equipment, Enhance Force and Season Charm details, but remains partial because the returned source excerpt still omits required base-skill and/or Rivalry Mode detail.
+
+**Updated first-pass capture coverage: 104/131 complete (79.4%); 27/131 partial (20.6%).** This is source-capture completeness only. It does not imply second-source cross-check, in-game patch validation, or database readiness.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
