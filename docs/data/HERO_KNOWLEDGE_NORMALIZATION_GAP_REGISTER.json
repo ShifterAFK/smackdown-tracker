@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-25",
+  "status": "open_source_capture_gaps",
+  "scope": "12 profiles that remain partial in normalized data despite a 131/131 page-source coverage statement",
+  "interpretation": "These are not missing roster records. They have source URLs and captured evidence, but extraction notes explicitly identify missing, incomplete, or unheaded source sections. Do not promote them to complete normalized profiles until the stated checks are resolved.",
+  "count": 12,
+  "profiles": [
+    {
+      "hero_id": "talene",
+      "name": "Talene",
+      "source_batch": 2,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/talene",
+      "issue_type": "section_visibility_ambiguous",
+      "affected_sections": [
+        "Rivalry Mode"
+      ],
+      "evidence_note": "No separate Rivalry Mode section was visible in the captured excerpt; verify before recording as absent.",
+      "required_action": "Inspect the full source page and confirm whether Rivalry Mode exists or is genuinely absent."
+    },
+    {
+      "hero_id": "cecia",
+      "name": "Cecia",
+      "source_batch": 2,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/cecia",
+      "issue_type": "incomplete_section_description",
+      "affected_sections": [
+        "Earth's Offering"
+      ],
+      "evidence_note": "Earth's Offering is only partially described in the returned excerpt; keep this profile partial until the full section is recaptured.",
+      "required_action": "Recapture the full Earth's Offering section and its progression/effect details."
+    },
+    {
+      "hero_id": "granny-dahnie",
+      "name": "Granny Dahnie",
+      "source_batch": 3,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+      "issue_type": "missing_progression_sections",
+      "affected_sections": [
+        "Enhance Force",
+        "Season Charm"
+      ],
+      "evidence_note": "Capture did not expose Enhance Force or Season Charm; verify whether absent or beyond the returned excerpt.",
+      "required_action": "Inspect the full page and record both sections if present; otherwise record verified absence."
+    },
+    {
+      "hero_id": "valka",
+      "name": "Valka",
+      "source_batch": 3,
+      "recapture_batches": [
+        18
+      ],
+      "captured_source_url": "https://afkstargazer.com/en/skill/valka",
+      "issue_type": "missing_progression_sections",
+      "affected_sections": [
+        "Enhance Force",
+        "Season Charm"
+      ],
+      "evidence_note": "Capture excerpt did not include Enhance Force or Season Charm; verify whether absent or beyond the indexed excerpt.",
+      "required_action": "Review the Batch 18 recapture and full page; confirm presence/absence of both progression sections."
+    },
+    {
+      "hero_id": "indris",
+      "name": "Indris",
+      "source_batch": 3,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/indris",
+      "issue_type": "missing_kit_and_progression_sections",
+      "affected_sections": [
+        "Hero Focus",
+        "Exclusive Equipment",
+        "Rivalry Mode"
+      ],
+      "evidence_note": "Capture did not expose Hero Focus, Exclusive Equipment or Rivalry Mode; verify in the full page.",
+      "required_action": "Inspect the full page and capture the three missing sections if present."
+    },
+    {
+      "hero_id": "reinier",
+      "name": "Reinier",
+      "source_batch": 5,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/reinier",
+      "issue_type": "missing_progression_sections",
+      "affected_sections": [
+        "Enhance Force",
+        "Season Charm"
+      ],
+      "evidence_note": "Capture did not expose Enhance Force or Season Charm; verify whether they are absent or outside the returned excerpt.",
+      "required_action": "Inspect the full page and capture both progression sections if present."
+    },
+    {
+      "hero_id": "satrana",
+      "name": "Satrana",
+      "source_batch": 6,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/satrana",
+      "issue_type": "missing_progression_sections",
+      "affected_sections": [
+        "Enhance Force",
+        "Season Charm",
+        "Rivalry Mode"
+      ],
+      "evidence_note": "The capture excerpt does not show Enhance Force, Season Charm or Rivalry Mode; recapture the remainder.",
+      "required_action": "Recapture the remaining page sections and verify exact section order."
+    },
+    {
+      "hero_id": "nerion",
+      "name": "Nerion",
+      "source_batch": 6,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/nerion",
+      "issue_type": "unheaded_ability_evidence",
+      "affected_sections": [
+        "Unidentified base skill between Ultimate and Hero Focus"
+      ],
+      "evidence_note": "The base-skill excerpt contains a section between Drowning Doom and Hero Focus but its heading is absent. Do not assign the orphaned level-scaling detail to a guessed skill.",
+      "required_action": "Re-open the full page to identify the exact skill heading and recover its complete description; keep the orphaned evidence separate until then."
+    },
+    {
+      "hero_id": "mehira",
+      "name": "Mehira",
+      "source_batch": 6,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/mehira",
+      "issue_type": "missing_progression_section",
+      "affected_sections": [
+        "Season Charm"
+      ],
+      "evidence_note": "The capture excerpt does not show Season Charm; recapture the remaining progression section.",
+      "required_action": "Recapture Season Charm and verify whether any further page content follows."
+    },
+    {
+      "hero_id": "hammie",
+      "name": "Hammie",
+      "source_batch": 8,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/hammie",
+      "issue_type": "missing_kit_and_progression_sections",
+      "affected_sections": [
+        "Hero Focus",
+        "Exclusive Equipment",
+        "Enhance Force",
+        "Rivalry Mode"
+      ],
+      "evidence_note": "The capture excerpt does not show Hero Focus, Exclusive Equipment, Enhance Force or Rivalry Mode; recapture remainder.",
+      "required_action": "Recapture the missing kit/progression sections and check the page's end."
+    },
+    {
+      "hero_id": "bryon",
+      "name": "Bryon",
+      "source_batch": 11,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/bryon",
+      "issue_type": "missing_progression_sections",
+      "affected_sections": [
+        "Enhance Force",
+        "Season Charm"
+      ],
+      "evidence_note": "Capture excerpt ends before Enhance Force and Season Charm; recapture the remainder before treating the profile as complete.",
+      "required_action": "Recapture the remaining progression sections."
+    },
+    {
+      "hero_id": "chippy",
+      "name": "Chippy",
+      "source_batch": 11,
+      "recapture_batches": [],
+      "captured_source_url": "https://afkstargazer.com/en/skill/chippy",
+      "issue_type": "missing_tags_kit_and_progression_sections",
+      "affected_sections": [
+        "Page tags",
+        "Hero Focus",
+        "Exclusive Equipment",
+        "Enhance Force",
+        "Rivalry Mode"
+      ],
+      "evidence_note": "The excerpt does not show page tags, Hero Focus, Exclusive Equipment, Enhance Force or Rivalry Mode; recapture the remainder.",
+      "required_action": "Recapture the full page from its beginning, including page-level tags and all missing sections."
+    }
+  ],
+  "policy": [
+    "Source URL presence does not prove full ability-kit capture.",
+    "A heading without a PARTIAL suffix does not override explicit capture-gap notes.",
+    "Do not infer that an unseen section is absent.",
+    "Do not assign orphaned details to guessed ability names.",
+    "Keep profile normalization/review status separate from source-page mapping status."
+  ]
+}
