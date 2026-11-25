@@ -8,10 +8,10 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before ACTION 0015:** `24a54c1519d3b44d5dbf269192ceacde5452e691`  
+**Last confirmed development HEAD before ACTION 0016:** `c5d7bf28e2f8027e2294f29d40517386e5bcc015`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
-**Current stage:** five-hero pilot accepted as the reference method; second bounded batch (Cecia, Granny Dahnie, Indris, Nerion, Solise) analyzed and structured artifact added; awaiting next user instruction  
+**Current stage:** five-hero pilot accepted as the reference method; second bounded batch committed; user confirmed the GitHub Handoff startup rule has been pasted into project instructions; awaiting next task instruction  
 **Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
@@ -784,3 +784,15 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Scope protection: no V4 shard, pilot JSON, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was modified.
 - Verification required after commit: read back both paths from `development`, verify the branch HEAD and compare the commit to its parent to confirm exactly these two paths changed.
 - Next single action: await the user's next instruction; no further batch or implementation is implied.
+
+## 24. Project instructions synchronized with GitHub Handoff — 2026-11-25
+
+### ACTION 0016 — User confirms the Handoff rule is installed in project instructions
+- Date: 2026-11-25
+- Status: USER CONFIRMATION RECORDED
+- Prior confirmed `development` HEAD: `c5d7bf28e2f8027e2294f29d40517386e5bcc015`
+- User explicitly confirmed that the ready-to-paste instruction block requiring the assistant to fetch the current `docs/AI_SESSION_HANDOFF.md` from GitHub `development`, check the branch HEAD SHA, and stop if GitHub is unavailable has now been pasted into the project's instructions.
+- This is a user-reported settings change. The assistant did not directly modify or independently inspect the project settings UI.
+- From this point, treat the startup instruction as installed per user confirmation. At each new session/context recovery, still verify the actual current branch HEAD and fetch the live Handoff before acting.
+- No source files, data artifacts, application code, Supabase, `main`, Tier List or TOP Picks changed as part of this confirmation.
+- Next single action: await the user's next task instruction.
