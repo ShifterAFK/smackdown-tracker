@@ -164,3 +164,17 @@ If the page changes and no source patch label is available, create a new capture
 - No automatic hero-role labels inferred from faction/class.
 - No composition score or synergy/counter formula.
 - No claims of patch accuracy until in-game/official validation is performed.
+
+
+## 5.1. Important distinction for the existing extraction batches
+
+The 24 Markdown extraction batches contain concise **paraphrased capture summaries**, not guaranteed verbatim Stargazer descriptions. When normalizing those files:
+
+- Store the paraphrase as `description_summary`.
+- Leave `description_raw` null until the exact source wording has been transcribed.
+- Preserve `description_kind` / provenance so downstream analysis cannot mistake a summary for a quotation.
+- Keep page-level tags in a separate `page_tags` field until a specific ability mapping is explicitly captured.
+- For an ability with no per-skill mapping in the batch, use `tags: null` and a status such as `not_explicitly_recorded_in_batch`. Do not convert this to an empty tag set.
+- Use `tags: []` only when the source explicitly establishes that the section has no tags.
+
+The three-hero pilot at `docs/data/HERO_KNOWLEDGE_NORMALIZED_PILOT.json` follows these rules. It is a schema/normalization pilot, not an approved import dataset.
