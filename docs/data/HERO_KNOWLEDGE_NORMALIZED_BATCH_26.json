@@ -53,7 +53,7 @@
           }
         }
       ],
-      "historical_variant_note": "Earlier Batch 16 and Batch 21 paraphrases included an additional effect healing two weakest allies and reducing ATK of two highest-damage enemies. That effect is not present in the current indexed AFK Stargazer page capture. Preserve those summaries as historical variants; do not merge the extra effect into the current primary description without direct/version verification."
+      "historical_variant_note": "The extra active effect healing the two weakest allies and reducing ATK of the two highest-damage enemies is the active effect of Mandatory Civility, a separate base skill. Batch 27 captures Mandatory Civility and reassigns the older Batch 16/21 evidence to that section. It is not a second active effect of Detention Pass."
     }
   ]
 }
