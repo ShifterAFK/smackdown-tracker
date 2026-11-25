@@ -8,9 +8,9 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25  
-**Audited development HEAD:** `68eb9ea7e6b073dcb0eec8069ad3dc1af8cad210`  
+**Audited development HEAD before this documentation update:** `30c05bf1d28b1b4c3e97d11922ca22754012a922`  
 **Current task family:** new, independent team/composition indicator grounded in what heroes' abilities actually do  
-**Current implementation status of that new analysis:** not implemented; planning document says planning only
+**Current implementation status of that new analysis:** not implemented; the three-layer ability-analysis model is user-approved, while the detailed tag vocabulary, schema fields, formula and weights remain to be designed
 
 ---
 
@@ -325,7 +325,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 
 **Reconciliation status:** completed and recorded in ACTION 0002 below.
 
-**Next single action:** prepare an ability-to-function representation proposal using the existing V4 evidence. It must explicitly distinguish (a) the function/effect of each ability, (b) how that ability can enable or amplify an ally, and (c) how it can disrupt or counter an opponent. First check whether the existing evidence supports those distinctions; do not repeat hero extraction or normalization.
+**Next single action:** define the concrete field schema and tagging rules for the approved three-layer model, using existing V4 evidence. Check evidence coverage and record gaps; do not repeat hero extraction or normalization.
 
 ---
 
@@ -377,3 +377,35 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Decision: the next schema proposal must represent ability function, ally interaction/enabling, and opponent disruption/counter as distinguishable concepts. A hero may cover several functions; official class remains metadata only. The final taxonomy, formula and weights remain unapproved.
 - Scope protection: no application code, Supabase data/schema, migrations, existing indicators or `main` branch were changed by this action.
 - Next single action: prepare the ability-to-function representation proposal from the existing V4 evidence and assess whether it supports the three distinctions above. Do not repeat extraction or normalization.
+
+
+## 13. Approved three-layer ability model — 2026-11-25
+
+### ACTION 0003 — Record approved ability-analysis model
+- Started: 2026-11-25 17:48 CET
+- Task / phase: new ability-based composition analysis / approved conceptual model
+- Status: COMPLETED
+- Purpose: preserve the user's approved model and concrete gameplay motivation so future sessions do not have to reconstruct the decision from chat history.
+- Exact target: `docs/AI_SESSION_HANDOFF.md`, repository `ShifterAFK/smackdown-tracker`, branch `development`.
+- Inputs / prior state: development commit `30c05bf1d28b1b4c3e97d11922ca22754012a922`; file blob SHA `050be062815f5eb31a6269f20f8a58a7db13206c`.
+- Operation: documented the approved three-layer representation, its interpretation rules, the motivating hero examples and the next restart point.
+- Result: the user approved the conceptual separation below. This approval concerns the model's structure, not a finalized vocabulary, full schema, scoring formula or implementation.
+- **APPROVED conceptual model — three distinct layers:**
+  1. **Ability effect / mechanic:** what the individual ability actually does. Preserve source-supported mechanics such as damage, interruption, energy drain, buff, debuff, healing, shielding, control, summon, mark, execute; also preserve ability type, target, trigger, conditions, duration, range, cooldown and restrictions when the source provides them. Do not infer missing facts.
+  2. **Team function:** what capability the ability/hero contributes to the composition, potentially in several dimensions at once (for example damage, utility/disruption, ally support, durability/protection, control). A hero is not forced into one exclusive role. Official class remains metadata and must not determine function by itself.
+  3. **Interactions:** how an effect relates to other units:
+     - **Ally interaction:** enables, amplifies, protects, sustains or otherwise creates an opportunity for an ally to benefit.
+     - **Opponent interaction:** disrupts, weakens, interrupts, controls, denies or conditionally counters an opponent.
+     - Each relation must retain its target and conditions. Do not claim a concrete synergy/counter merely because two heroes share a class or appear together.
+- **User-provided motivating hypotheses — not yet verified source facts or established match rules:**
+  - **Lily May + Ravion:** both are Rogues, but the user's interpretation is that Lily May's ultimate brings utility by interfering with the opponent, while Ravion strengthens allies and also contributes damage. The duo may lack sufficient damage without a stronger damage source.
+  - **Odie or Himmel:** named by the user as possible damage sources that could complement the duo. Whether either actually improves the composition, and under which conditions, remains to be tested rather than hard-coded.
+  - **Valka:** the user's counterexample to class-based role assumptions; despite being a Warrior, her kit is perceived as more survival-oriented than as the damage source this composition needs. Verify the exact ability mechanics separately from this composition-level assessment.
+- Interpretation rules:
+  - Keep source-described mechanics, derived team-function labels and composition-level hypotheses separately identifiable.
+  - Preserve provenance, patch/version, confidence and unknown values. V4 is a paraphrased, unverified dry run and must not be treated as patch-verified facts or imported.
+  - A documented ability capability is not proof that the ability activated in a particular match. The currently documented capture pipeline does not record ordered ability activations.
+  - Descriptive coverage, predictive value and explanatory hypotheses remain separate evaluation questions.
+- **Still OPEN / not approved:** exact controlled vocabulary and tag list; detailed schema fields; interaction matching rules; any numerical synergy/counter bonus; indicator formula and weights; predictive thresholds; UI or implementation.
+- Scope protection: this documentation decision does not authorize changes to application code, existing indicators, Tier List, TOP Picks, Supabase, migrations or `main`.
+- Next single action: define the concrete field schema and tagging rules for the three approved layers using existing V4 evidence, and record which distinctions V4 can and cannot support without repeating extraction or normalization.
