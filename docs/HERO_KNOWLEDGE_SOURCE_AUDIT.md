@@ -220,3 +220,29 @@ This is a **confirmed page-discovery list**, not yet a complete structured expor
 ### Next extraction batch
 
 Continue confirming the remaining 86 tracker IDs individually, then convert all confirmed pages into a normalized hero → ability → raw tag/evidence dataset. Do not mark a hero as `no_tags` until its full page has been inspected.
+
+
+## 9. Expanded roster reconciliation pass
+
+Further targeted searches confirmed Stargazer skill pages for the remaining records found in this pass, including:
+
+`Aliceth, Arden, Berial, Bryon, Cassadee, Chippy, Contess, Damian, Dionel, Dunlingr, Elijah & Lailah, Estrilda, Frieren, Gerda, Gwyneth, Hammie, Hepler, Himmel, Isabella, Kafra, Karma, Kordan, Korin, Kulu, Laios, Lyca, Marene, Marilee, Mikola, Mirael, Natsu, Nazrik, Nerion, Niru, Odie, Orion, Pandora, Parisa, Peggy, Perseus, Pippa, Rhys, Rowan, Saida, Salazer, Satrana, Scarlita, Seth, Shemira, Shakir, Silvina, Smokey & Meerky, Solise, Sonja, Taichi & Agumon, Tasi, Thoran, Ulmus, Vala, Voracia, Walker, Yamato & Gabumon`.
+
+Combining the initial and subsequent discovery passes gives **130 matched/confirmed Stargazer hero skill pages for 131 tracker roster rows**, with one unresolved identity: tracker ID `gala` (display name `Gala`). A search for `Gala` did not return a corresponding Stargazer skill page. Stargazer does have a separate `Galahad` page, but it must **not** be assumed to be the same hero or substituted for `Gala` without checking the actual game identity and tracker record.
+
+### Alias / identity reconciliation flags
+
+- Tracker ID `taichi` corresponds to Stargazer's `Taichi & Agumon` page (`taichi-agumon`).
+- Tracker ID `yamato` corresponds to Stargazer's `Yamato & Gabumon` page (`yamato-gabumon`).
+- Tracker ID `elijah-lailah` corresponds to the page slug `elijah-lailah`.
+- `Galahad` is a distinct Stargazer page; do not silently map it to tracker ID `gala`.
+- Several pages were returned in Polish or Indonesian locales by search, but the canonical English URLs are generally `/en/skill/{slug}`; keep source language recorded per capture.
+
+### Current discovery status
+
+- Tracker roster rows: **131** (Supabase read-only count).
+- Individual Stargazer skill pages matched: **130**.
+- Unresolved tracker identity: **Gala** (`gala`).
+- Fully extracted and normalized ability/tag records: **not yet complete**. Page discovery does not mean every skill, upgrade branch, or tag has already been transcribed into structured records.
+- No hero should be marked as having no tags until the full skill page and its ability sections have been checked.
+- Next task: resolve the Gala identity against the tracker source data/game roster; then perform structured extraction of all 130 matched pages, preserving base abilities separately from Exclusive Equipment, Enhance Force, Season Charm, and Rivalry Mode refinements.
