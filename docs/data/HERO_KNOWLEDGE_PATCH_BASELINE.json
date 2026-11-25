@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-11-25",
+  "latest_patch_notes": {
+    "version": "1.8.2",
+    "published": "2026-10-28",
+    "source": "https://www.afk.global/afk-journey/patch-notes/1-8-2"
+  },
+  "latest_app_store_build": {
+    "version": "1.8.2.1",
+    "listed_date": "2026-11-09",
+    "source": "https://apps.apple.com/us/app/afk-journey/id1628970855?platform=ipad"
+  },
+  "next_version_preview": {
+    "version": "1.8.3",
+    "preview_published": "2026-11-19",
+    "release_date": null,
+    "confirmed_live_as_of_check": false,
+    "source": "https://www.afk.global/afk-journey/news/patch-1-8-3-preview-aneva-sherlock-holmes-and-tephesia-join"
+  },
+  "patch_notes_index": "https://www.afk.global/afk-journey/patch-notes",
+  "relevant_1_8_2_changes": [
+    "Talene — Resurging Flame: a bug fix for incorrect allied hero avatar status when Pyre of Renewal triggered revival; patch notes describe this as a bug fix, not a kit redesign.",
+    "Kazim — Falcon's Vow: fix for an Enhance Force trigger issue.",
+    "Aster — Chaos Observer: animation display fix.",
+    "Estrilda — Knight of Valor: Gallant Charge terrain-related fix."
+  ],
+  "preview_1_8_3_changes": [
+    "Preview lists new heroes Aneva, Sherlock Holmes and Tephesia.",
+    "Preview lists Enhance Force upgrades for Sinbad and Mikola.",
+    "The preview did not provide a release date; do not treat 1.8.3 as live based on the preview alone."
+  ],
+  "data_policy": {
+    "per_hero_source_patch_label": "unknown",
+    "do_not_assume_every_afk_stargazer_page_reflects_1_8_2_1": "true",
+    "indexed_page_recaptures_pending_direct_fetch": 20,
+    "patch_verification_pending_profiles": 131,
+    "source_patch_label_must_remain_null_until_page_or_in_game_version_is_confirmed": true
+  },
+  "interpretation": "As checked on 2026-11-25, the latest app-store build listed is 1.8.2.1 (Nov 9); the latest published patch notes are 1.8.2 (Oct 28). Version 1.8.3 is a preview from Nov 19 with no confirmed release date. This establishes a project reference baseline, not the version of each Stargazer page."
+}
