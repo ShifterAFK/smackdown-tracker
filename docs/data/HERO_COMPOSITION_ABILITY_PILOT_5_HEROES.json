@@ -813,6 +813,13 @@
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
           "capture_batch": 16,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md",
+          "capture_batch": 21,
+          "evidence_kind": "captured_summary_and_per_skill_tag_listing"
         }
       ],
       "source_tags": [
@@ -844,6 +851,13 @@
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
           "capture_batch": 16,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md",
+          "capture_batch": 21,
+          "evidence_kind": "captured_summary_and_per_skill_tag_listing"
         }
       ],
       "source_tags": [
@@ -870,9 +884,23 @@
         {
           "source_name": "AFK Stargazer",
           "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_09.md",
+          "capture_batch": 9,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
           "capture_batch": 16,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md",
+          "capture_batch": 21,
+          "evidence_kind": "captured_summary_and_per_skill_tag_listing"
         }
       ],
       "source_tags": null
@@ -893,9 +921,23 @@
         {
           "source_name": "AFK Stargazer",
           "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_09.md",
+          "capture_batch": 9,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
           "capture_batch": 16,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md",
+          "capture_batch": 21,
+          "evidence_kind": "captured_summary_and_per_skill_tag_listing"
         }
       ],
       "source_tags": null
@@ -918,9 +960,23 @@
         {
           "source_name": "AFK Stargazer",
           "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_09.md",
+          "capture_batch": 9,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
           "capture_batch": 16,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md",
+          "capture_batch": 21,
+          "evidence_kind": "captured_summary_and_per_skill_tag_listing"
         }
       ],
       "source_tags": null
@@ -941,9 +997,9 @@
         {
           "source_name": "AFK Stargazer",
           "source_url": "https://afkstargazer.com/en/skill/himmel",
-          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
-          "capture_batch": 16,
-          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md",
+          "capture_batch": 21,
+          "evidence_kind": "captured_summary_and_per_skill_tag_listing"
         }
       ],
       "source_tags": null
@@ -964,9 +1020,9 @@
         {
           "source_name": "AFK Stargazer",
           "source_url": "https://afkstargazer.com/en/skill/himmel",
-          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
-          "capture_batch": 16,
-          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md",
+          "capture_batch": 21,
+          "evidence_kind": "captured_summary_and_per_skill_tag_listing"
         }
       ],
       "source_tags": null
@@ -989,6 +1045,13 @@
           "source_url": "https://afkstargazer.com/en/skill/valka",
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
           "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
         }
       ],
@@ -1013,6 +1076,13 @@
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
           "capture_batch": 3,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
         }
       ],
       "source_tags": null
@@ -1035,6 +1105,13 @@
           "source_url": "https://afkstargazer.com/en/skill/valka",
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
           "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
         }
       ],
@@ -1070,6 +1147,13 @@
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
           "capture_batch": 3,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
         }
       ],
       "source_tags": [
@@ -1100,6 +1184,13 @@
           "source_url": "https://afkstargazer.com/en/skill/valka",
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
           "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
         }
       ],
@@ -1134,6 +1225,13 @@
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
           "capture_batch": 3,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
         }
       ],
       "source_tags": null
@@ -1157,6 +1255,109 @@
           "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
           "capture_batch": 3,
           "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "ravion_phantom_gambit_reposition",
+      "hero_id": "ravion",
+      "ability_key": "base_skill-phantom-gambit",
+      "mechanic_type": "self_reposition",
+      "target_side": "self",
+      "trigger": "third_teleport",
+      "effect_summary": "The third teleport moves Ravion to a tile farthest from enemies.",
+      "duration": "instant",
+      "conditions": [],
+      "target_selector": "tile_farthest_from_enemies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "valka_enhance_force_energy_gain",
+      "hero_id": "valka",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "energy_gain",
+      "target_side": "self",
+      "trigger": "normal_attack_while_spectral_bulwark_shield_active",
+      "effect_summary": "While Spectral Bulwark's shield is active, Valka gains extra Energy from normal attacks.",
+      "duration": "while_spectral_bulwark_shield_active",
+      "conditions": [],
+      "target_selector": "self",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "valka_enhance_force_ultimate_damage",
+      "hero_id": "valka",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "damage_amplification",
+      "target_side": "opponent",
+      "trigger": "ultimate_cast",
+      "effect_summary": "The next Enhance Force level increases Ultimate damage based on ATK SPD and Haste.",
+      "duration": "during_ultimate",
+      "conditions": [
+        "enhance_force_level_requirement_unspecified"
+      ],
+      "target_selector": "ultimate_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "valka_enhance_force_post_ultimate_shield",
+      "hero_id": "valka",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "self_shield",
+      "target_side": "self",
+      "trigger": "after_ultimate_cast",
+      "effect_summary": "The next Enhance Force level grants a Bulwark-style shield after casting Ultimate.",
+      "duration": "unspecified",
+      "conditions": [
+        "enhance_force_level_requirement_unspecified"
+      ],
+      "target_selector": "self",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
         }
       ],
       "source_tags": null
@@ -1194,7 +1395,8 @@
         "ravion_designated_duty_energy_reward",
         "ravion_designated_duty_attack_buff",
         "ravion_objective_acceptance_atk_buff",
-        "ravion_shadow_patron_permanent_buffs"
+        "ravion_shadow_patron_permanent_buffs",
+        "ravion_phantom_gambit_reposition"
       ],
       "rationale": "Nagrody dla sojuszników realizujących cele: Energia i wzmocnienia statystyk.",
       "interpretation_status": "derived_interpretation_not_match_observation"
@@ -1296,7 +1498,8 @@
       "function_type": "durability",
       "supporting_mechanic_ids": [
         "valka_spectral_bulwark_shield",
-        "valka_soulshock_ultimate_block"
+        "valka_soulshock_ultimate_block",
+        "valka_enhance_force_post_ultimate_shield"
       ],
       "rationale": "Ochrona przez tarczę i warunkowe zablokowanie obrażeń z Ultimate.",
       "interpretation_status": "derived_interpretation_not_match_observation"
@@ -1307,7 +1510,8 @@
       "function_type": "support",
       "supporting_mechanic_ids": [
         "valka_spectral_bulwark_shield",
-        "valka_spectral_bulwark_attack_speed"
+        "valka_spectral_bulwark_attack_speed",
+        "valka_enhance_force_energy_gain"
       ],
       "rationale": "Otwierające wsparcie dla sąsiadujących sojuszników.",
       "interpretation_status": "derived_interpretation_not_match_observation"
@@ -1329,7 +1533,8 @@
       "function_type": "damage",
       "supporting_mechanic_ids": [
         "valka_blooming_terror_stun_execute",
-        "valka_soulshock_counter_cast"
+        "valka_soulshock_counter_cast",
+        "valka_enhance_force_ultimate_damage"
       ],
       "rationale": "Warunkowe obrażenia/wykonanie celu oraz kontratak po blokadzie Ultimate.",
       "interpretation_status": "derived_interpretation_not_match_observation"
