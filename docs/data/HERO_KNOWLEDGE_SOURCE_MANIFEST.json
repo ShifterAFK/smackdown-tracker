@@ -1,0 +1,3331 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-25",
+  "status": "first_pass_source_manifest_complete",
+  "primary_source": "AFK Stargazer",
+  "tracker_roster": {
+    "table": "public.ss_heroes",
+    "count": 131,
+    "validated_read_only": true
+  },
+  "coverage": {
+    "first_pass_complete_count": 131,
+    "first_pass_partial_count": 0,
+    "unique_tracker_hero_ids": 131,
+    "capture_occurrence_count": 229,
+    "heroes_with_recaptures": 52,
+    "extra_out_of_roster_sources": 1
+  },
+  "identity_aliases": [
+    {
+      "hero_id": "gala",
+      "tracker_name": "Gala",
+      "source_display_name": "Galahad",
+      "source_slug": "galahad"
+    },
+    {
+      "hero_id": "taichi",
+      "tracker_name": "Taichi",
+      "source_display_name": "Taichi & Agumon",
+      "source_slug": "taichi-agumon"
+    },
+    {
+      "hero_id": "yamato",
+      "tracker_name": "Yamato",
+      "source_display_name": "Yamato & Gabumon",
+      "source_slug": "yamato-gabumon"
+    }
+  ],
+  "validation": {
+    "roster_ids_match_exactly": true,
+    "missing_roster_ids": [],
+    "unexpected_tracker_ids": [],
+    "missing_source_urls": [],
+    "source_url_conflicts": [],
+    "unresolved_name_conflicts": [],
+    "partial_initial_captures_without_recapture": [],
+    "missing_source_locales": [],
+    "known_aliases_resolved": true,
+    "known_out_of_roster_record": "thane"
+  },
+  "heroes": [
+    {
+      "hero_id": "aliceth",
+      "tracker_name": "Aliceth",
+      "source_display_name": "Aliceth",
+      "source_display_names": [
+        "Aliceth"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/aliceth",
+      "source_locale": "en",
+      "source_slug": "aliceth",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        10
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "alna",
+      "tracker_name": "Alna",
+      "source_display_name": "Alna",
+      "source_display_names": [
+        "Alna"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/alna",
+      "source_locale": "en",
+      "source_slug": "alna",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19
+      ],
+      "capture_batches": [
+        4,
+        15,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "alsa",
+      "tracker_name": "Alsa",
+      "source_display_name": "Alsa",
+      "source_display_names": [
+        "Alsa"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/alsa",
+      "source_locale": "en",
+      "source_slug": "alsa",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "antandra",
+      "tracker_name": "Antandra",
+      "source_display_name": "Antandra",
+      "source_display_names": [
+        "Antandra"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/antandra",
+      "source_locale": "en",
+      "source_slug": "antandra",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        2
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "arden",
+      "tracker_name": "Arden",
+      "source_display_name": "Arden",
+      "source_display_names": [
+        "Arden"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/arden",
+      "source_locale": "en",
+      "source_slug": "arden",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        12
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "aster",
+      "tracker_name": "Aster",
+      "source_display_name": "Aster",
+      "source_display_names": [
+        "Aster"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/aster",
+      "source_locale": "en",
+      "source_slug": "aster",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        18,
+        19
+      ],
+      "capture_batches": [
+        3,
+        15,
+        18,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "atalanta",
+      "tracker_name": "Atalanta",
+      "source_display_name": "Atalanta",
+      "source_display_names": [
+        "Atalanta"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/atalanta",
+      "source_locale": "en",
+      "source_slug": "atalanta",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20,
+        22
+      ],
+      "capture_batches": [
+        1,
+        14,
+        20,
+        22
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "athalia",
+      "tracker_name": "Athalia",
+      "source_display_name": "Athalia",
+      "source_display_names": [
+        "Athalia"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/athalia",
+      "source_locale": "en",
+      "source_slug": "athalia",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        2
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "aurora",
+      "tracker_name": "Aurora",
+      "source_display_name": "Aurora",
+      "source_display_names": [
+        "Aurora"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/aurora",
+      "source_locale": "en",
+      "source_slug": "aurora",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        4
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "baden",
+      "tracker_name": "Baden",
+      "source_display_name": "Baden",
+      "source_display_names": [
+        "Baden"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/baden",
+      "source_locale": "en",
+      "source_slug": "baden",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20,
+        22,
+        23,
+        24
+      ],
+      "capture_batches": [
+        2,
+        14,
+        20,
+        22,
+        23,
+        24
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "baelran",
+      "tracker_name": "Baelran",
+      "source_display_name": "Baelran",
+      "source_display_names": [
+        "Baelran"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/baelran",
+      "source_locale": "en",
+      "source_slug": "baelran",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "berial",
+      "tracker_name": "Berial",
+      "source_display_name": "Berial",
+      "source_display_names": [
+        "Berial"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/berial",
+      "source_locale": "en",
+      "source_slug": "berial",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17,
+        23
+      ],
+      "capture_batches": [
+        11,
+        17,
+        23
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "bonnie",
+      "tracker_name": "Bonnie",
+      "source_display_name": "Bonnie",
+      "source_display_names": [
+        "Bonnie"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/bonnie",
+      "source_locale": "en",
+      "source_slug": "bonnie",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "brutus",
+      "tracker_name": "Brutus",
+      "source_display_name": "Brutus",
+      "source_display_names": [
+        "Brutus"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/brutus",
+      "source_locale": "en",
+      "source_slug": "brutus",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19
+      ],
+      "capture_batches": [
+        4,
+        15,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "bryon",
+      "tracker_name": "Bryon",
+      "source_display_name": "Bryon",
+      "source_display_names": [
+        "Bryon"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/bryon",
+      "source_locale": "en",
+      "source_slug": "bryon",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "callan",
+      "tracker_name": "Callan",
+      "source_display_name": "Callan",
+      "source_display_names": [
+        "Callan"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/callan",
+      "source_locale": "en",
+      "source_slug": "callan",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20
+      ],
+      "capture_batches": [
+        1,
+        14,
+        20
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "carolina",
+      "tracker_name": "Carolina",
+      "source_display_name": "Carolina",
+      "source_display_names": [
+        "Carolina"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/carolina",
+      "source_locale": "en",
+      "source_slug": "carolina",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        12
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "cassadee",
+      "tracker_name": "Cassadee",
+      "source_display_name": "Cassadee",
+      "source_display_names": [
+        "Cassadee"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/cassadee",
+      "source_locale": "en",
+      "source_slug": "cassadee",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        12
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "cecia",
+      "tracker_name": "Cecia",
+      "source_display_name": "Cecia",
+      "source_display_names": [
+        "Cecia"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/cecia",
+      "source_locale": "en",
+      "source_slug": "cecia",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        2
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "chippy",
+      "tracker_name": "Chippy",
+      "source_display_name": "Chippy",
+      "source_display_names": [
+        "Chippy"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/chippy",
+      "source_locale": "en",
+      "source_slug": "chippy",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "contess",
+      "tracker_name": "Contess",
+      "source_display_name": "Contess",
+      "source_display_names": [
+        "Contess"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/contess",
+      "source_locale": "en",
+      "source_slug": "contess",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16,
+        21
+      ],
+      "capture_batches": [
+        9,
+        16,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "cryonaia",
+      "tracker_name": "Cryonaia",
+      "source_display_name": "Cryonaia",
+      "source_display_names": [
+        "Cryonaia"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/cryonaia",
+      "source_locale": "en",
+      "source_slug": "cryonaia",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20
+      ],
+      "capture_batches": [
+        1,
+        14,
+        20
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "cyran",
+      "tracker_name": "Cyran",
+      "source_display_name": "Cyran",
+      "source_display_names": [
+        "Cyran"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/cyran",
+      "source_locale": "en",
+      "source_slug": "cyran",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "daimon",
+      "tracker_name": "Daimon",
+      "source_display_name": "Daimon",
+      "source_display_names": [
+        "Daimon"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/daimon",
+      "source_locale": "en",
+      "source_slug": "daimon",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 13,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        13
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "damian",
+      "tracker_name": "Damian",
+      "source_display_name": "Damian",
+      "source_display_names": [
+        "Damian"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/damian",
+      "source_locale": "en",
+      "source_slug": "damian",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        8
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "dionel",
+      "tracker_name": "Dionel",
+      "source_display_name": "Dionel",
+      "source_display_names": [
+        "Dionel"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/dionel",
+      "source_locale": "en",
+      "source_slug": "dionel",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        9
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "dunlingr",
+      "tracker_name": "Dunlingr",
+      "source_display_name": "Dunlingr",
+      "source_display_names": [
+        "Dunlingr"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/dunlingr",
+      "source_locale": "en",
+      "source_slug": "dunlingr",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        12
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "eironn",
+      "tracker_name": "Eironn",
+      "source_display_name": "Eironn",
+      "source_display_names": [
+        "Eironn"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/eironn",
+      "source_locale": "en",
+      "source_slug": "eironn",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        2
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "elijah-lailah",
+      "tracker_name": "Elijah & Lailah",
+      "source_display_name": "Elijah & Lailah",
+      "source_display_names": [
+        "Elijah & Lailah"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/elijah-lailah",
+      "source_locale": "en",
+      "source_slug": "elijah-lailah",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        18
+      ],
+      "capture_batches": [
+        9,
+        18
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "eryndor",
+      "tracker_name": "Eryndor",
+      "source_display_name": "Eryndor",
+      "source_display_names": [
+        "Eryndor"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/eryndor",
+      "source_locale": "en",
+      "source_slug": "eryndor",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "estrilda",
+      "tracker_name": "Estrilda",
+      "source_display_name": "Estrilda",
+      "source_display_names": [
+        "Estrilda"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/estrilda",
+      "source_locale": "en",
+      "source_slug": "estrilda",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "evie",
+      "tracker_name": "Evie",
+      "source_display_name": "Evie",
+      "source_display_names": [
+        "Evie"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/evie",
+      "source_locale": "en",
+      "source_slug": "evie",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19
+      ],
+      "capture_batches": [
+        3,
+        15,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "faramor",
+      "tracker_name": "Faramor",
+      "source_display_name": "Faramor",
+      "source_display_names": [
+        "Faramor"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/faramor",
+      "source_locale": "en",
+      "source_slug": "faramor",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20
+      ],
+      "capture_batches": [
+        1,
+        14,
+        20
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "fay",
+      "tracker_name": "Fay",
+      "source_display_name": "Fay",
+      "source_display_names": [
+        "Fay"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/fay",
+      "source_locale": "en",
+      "source_slug": "fay",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14
+      ],
+      "capture_batches": [
+        6,
+        14
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "florabelle",
+      "tracker_name": "Florabelle",
+      "source_display_name": "Florabelle",
+      "source_display_names": [
+        "Florabelle"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/florabelle",
+      "source_locale": "en",
+      "source_slug": "florabelle",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19
+      ],
+      "capture_batches": [
+        3,
+        15,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "frieren",
+      "tracker_name": "Frieren",
+      "source_display_name": "Frieren",
+      "source_display_names": [
+        "Frieren"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/frieren",
+      "source_locale": "en",
+      "source_slug": "frieren",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "gala",
+      "tracker_name": "Gala",
+      "source_display_name": "Galahad",
+      "source_display_names": [
+        "Galahad"
+      ],
+      "source_alias": "Galahad",
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/galahad",
+      "source_locale": "en",
+      "source_slug": "galahad",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "gerda",
+      "tracker_name": "Gerda",
+      "source_display_name": "Gerda",
+      "source_display_names": [
+        "Gerda"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/gerda",
+      "source_locale": "en",
+      "source_slug": "gerda",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 13,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        13
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "granny-dahnie",
+      "tracker_name": "Granny Dahnie",
+      "source_display_name": "Granny Dahnie",
+      "source_display_names": [
+        "Granny Dahnie"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+      "source_locale": "en",
+      "source_slug": "granny-dahnie",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        3
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "gunnar",
+      "tracker_name": "Gunnar",
+      "source_display_name": "Gunnar",
+      "source_display_names": [
+        "Gunnar"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/gunnar",
+      "source_locale": "en",
+      "source_slug": "gunnar",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16
+      ],
+      "capture_batches": [
+        8,
+        16
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "gwyneth",
+      "tracker_name": "Gwyneth",
+      "source_display_name": "Gwyneth",
+      "source_display_names": [
+        "Gwyneth"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/gwyneth",
+      "source_locale": "en",
+      "source_slug": "gwyneth",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16,
+        21
+      ],
+      "capture_batches": [
+        8,
+        16,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "hammie",
+      "tracker_name": "Hammie",
+      "source_display_name": "Hammie",
+      "source_display_names": [
+        "Hammie"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/hammie",
+      "source_locale": "en",
+      "source_slug": "hammie",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        8
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "harak",
+      "tracker_name": "Harak",
+      "source_display_name": "Harak",
+      "source_display_names": [
+        "Harak"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/harak",
+      "source_locale": "en",
+      "source_slug": "harak",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        4
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "hepler",
+      "tracker_name": "Hepler",
+      "source_display_name": "Hepler",
+      "source_display_names": [
+        "Hepler"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/pl/skill/hepler",
+      "source_locale": "pl",
+      "source_slug": "hepler",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        10
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "hewynn",
+      "tracker_name": "Hewynn",
+      "source_display_name": "Hewynn",
+      "source_display_names": [
+        "Hewynn"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/hewynn",
+      "source_locale": "en",
+      "source_slug": "hewynn",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "himmel",
+      "tracker_name": "Himmel",
+      "source_display_name": "Himmel",
+      "source_display_names": [
+        "Himmel"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/himmel",
+      "source_locale": "en",
+      "source_slug": "himmel",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16,
+        21
+      ],
+      "capture_batches": [
+        9,
+        16,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "hodgkin",
+      "tracker_name": "Hodgkin",
+      "source_display_name": "Hodgkin",
+      "source_display_names": [
+        "Hodgkin"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/hodgkin",
+      "source_locale": "en",
+      "source_slug": "hodgkin",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20
+      ],
+      "capture_batches": [
+        1,
+        14,
+        20
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "hugin",
+      "tracker_name": "Hugin",
+      "source_display_name": "Hugin",
+      "source_display_names": [
+        "Hugin"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/hugin",
+      "source_locale": "en",
+      "source_slug": "hugin",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "igor",
+      "tracker_name": "Igor",
+      "source_display_name": "Igor",
+      "source_display_names": [
+        "Igor"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/igor",
+      "source_locale": "en",
+      "source_slug": "igor",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        18,
+        21
+      ],
+      "capture_batches": [
+        7,
+        18,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "indris",
+      "tracker_name": "Indris",
+      "source_display_name": "Indris",
+      "source_display_names": [
+        "Indris"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/indris",
+      "source_locale": "en",
+      "source_slug": "indris",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        3
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "isabella",
+      "tracker_name": "Isabella",
+      "source_display_name": "Isabella",
+      "source_display_names": [
+        "Isabella"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/isabella",
+      "source_locale": "en",
+      "source_slug": "isabella",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "kafra",
+      "tracker_name": "Kafra",
+      "source_display_name": "Kafra",
+      "source_display_names": [
+        "Kafra"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/kafra",
+      "source_locale": "en",
+      "source_slug": "kafra",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        8
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "karma",
+      "tracker_name": "Karma",
+      "source_display_name": "Karma",
+      "source_display_names": [
+        "Karma"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/karma",
+      "source_locale": "en",
+      "source_slug": "karma",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17
+      ],
+      "capture_batches": [
+        10,
+        17
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "kazim",
+      "tracker_name": "Kazim",
+      "source_display_name": "Kazim",
+      "source_display_names": [
+        "Kazim"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/kazim",
+      "source_locale": "en",
+      "source_slug": "kazim",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "koko",
+      "tracker_name": "Koko",
+      "source_display_name": "Koko",
+      "source_display_names": [
+        "Koko"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/koko",
+      "source_locale": "en",
+      "source_slug": "koko",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14
+      ],
+      "capture_batches": [
+        6,
+        14
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "kordan",
+      "tracker_name": "Kordan",
+      "source_display_name": "Kordan",
+      "source_display_names": [
+        "Kordan"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/kordan",
+      "source_locale": "en",
+      "source_slug": "kordan",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "korin",
+      "tracker_name": "Korin",
+      "source_display_name": "Korin",
+      "source_display_names": [
+        "Korin"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/korin",
+      "source_locale": "en",
+      "source_slug": "korin",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        10
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "kruger",
+      "tracker_name": "Kruger",
+      "source_display_name": "Kruger",
+      "source_display_names": [
+        "Kruger"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/kruger",
+      "source_locale": "en",
+      "source_slug": "kruger",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16,
+        21
+      ],
+      "capture_batches": [
+        8,
+        16,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "kulu",
+      "tracker_name": "Kulu",
+      "source_display_name": "Kulu",
+      "source_display_names": [
+        "Kulu"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/kulu",
+      "source_locale": "en",
+      "source_slug": "kulu",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        12
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "laios",
+      "tracker_name": "Laios",
+      "source_display_name": "Laios",
+      "source_display_names": [
+        "Laios"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/laios",
+      "source_locale": "en",
+      "source_slug": "laios",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16,
+        23
+      ],
+      "capture_batches": [
+        8,
+        16,
+        23
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lamentis",
+      "tracker_name": "Lamentis",
+      "source_display_name": "Lamentis",
+      "source_display_names": [
+        "Lamentis"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lamentis",
+      "source_locale": "en",
+      "source_slug": "lamentis",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        19
+      ],
+      "capture_batches": [
+        3,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lenya",
+      "tracker_name": "Lenya",
+      "source_display_name": "Lenya",
+      "source_display_names": [
+        "Lenya"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lenya",
+      "source_locale": "en",
+      "source_slug": "lenya",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        8
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lily-may",
+      "tracker_name": "Lily May",
+      "source_display_name": "Lily May",
+      "source_display_names": [
+        "Lily May"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lily-may",
+      "source_locale": "en",
+      "source_slug": "lily-may",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lorsan",
+      "tracker_name": "Lorsan",
+      "source_display_name": "Lorsan",
+      "source_display_names": [
+        "Lorsan"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lorsan",
+      "source_locale": "en",
+      "source_slug": "lorsan",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19
+      ],
+      "capture_batches": [
+        6,
+        15,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lucca",
+      "tracker_name": "Lucca",
+      "source_display_name": "Lucca",
+      "source_display_names": [
+        "Lucca"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lucca",
+      "source_locale": "en",
+      "source_slug": "lucca",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16
+      ],
+      "capture_batches": [
+        8,
+        16
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lucius",
+      "tracker_name": "Lucius",
+      "source_display_name": "Lucius",
+      "source_display_names": [
+        "Lucius"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lucius",
+      "source_locale": "en",
+      "source_slug": "lucius",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 8,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16
+      ],
+      "capture_batches": [
+        8,
+        16
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lucy",
+      "tracker_name": "Lucy",
+      "source_display_name": "Lucy",
+      "source_display_names": [
+        "Lucy"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lucy",
+      "source_locale": "en",
+      "source_slug": "lucy",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "ludovic",
+      "tracker_name": "Ludovic",
+      "source_display_name": "Ludovic",
+      "source_display_names": [
+        "Ludovic"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/ludovic",
+      "source_locale": "en",
+      "source_slug": "ludovic",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        7
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lumont",
+      "tracker_name": "Lumont",
+      "source_display_name": "Lumont",
+      "source_display_names": [
+        "Lumont"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lumont",
+      "source_locale": "en",
+      "source_slug": "lumont",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "lyca",
+      "tracker_name": "Lyca",
+      "source_display_name": "Lyca",
+      "source_display_names": [
+        "Lyca"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/lyca",
+      "source_locale": "en",
+      "source_slug": "lyca",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        10
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "marcille",
+      "tracker_name": "Marcille",
+      "source_display_name": "Marcille",
+      "source_display_names": [
+        "Marcille"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/marcille",
+      "source_locale": "en",
+      "source_slug": "marcille",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        18
+      ],
+      "capture_batches": [
+        7,
+        18
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "marene",
+      "tracker_name": "Marene",
+      "source_display_name": "Marene",
+      "source_display_names": [
+        "Marene"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/marene",
+      "source_locale": "en",
+      "source_slug": "marene",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "marilee",
+      "tracker_name": "Marilee",
+      "source_display_name": "Marilee",
+      "source_display_names": [
+        "Marilee"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/marilee",
+      "source_locale": "en",
+      "source_slug": "marilee",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        18,
+        21
+      ],
+      "capture_batches": [
+        9,
+        18,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "mehira",
+      "tracker_name": "Mehira",
+      "source_display_name": "Mehira",
+      "source_display_names": [
+        "Mehira"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/mehira",
+      "source_locale": "en",
+      "source_slug": "mehira",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        6
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "mikola",
+      "tracker_name": "Mikola",
+      "source_display_name": "Mikola",
+      "source_display_names": [
+        "Mikola"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/mikola",
+      "source_locale": "en",
+      "source_slug": "mikola",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        10
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "mirael",
+      "tracker_name": "Mirael",
+      "source_display_name": "Mirael",
+      "source_display_names": [
+        "Mirael"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/mirael",
+      "source_locale": "en",
+      "source_slug": "mirael",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        9
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "nara",
+      "tracker_name": "Nara",
+      "source_display_name": "Nara",
+      "source_display_names": [
+        "Nara"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/nara",
+      "source_locale": "en",
+      "source_slug": "nara",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20
+      ],
+      "capture_batches": [
+        2,
+        14,
+        20
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "natsu",
+      "tracker_name": "Natsu",
+      "source_display_name": "Natsu",
+      "source_display_names": [
+        "Natsu"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/natsu",
+      "source_locale": "en",
+      "source_slug": "natsu",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17
+      ],
+      "capture_batches": [
+        12,
+        17
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "nazrik",
+      "tracker_name": "Nazrik",
+      "source_display_name": "Nazrik",
+      "source_display_names": [
+        "Nazrik"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/nazrik",
+      "source_locale": "en",
+      "source_slug": "nazrik",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        7
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "nerion",
+      "tracker_name": "Nerion",
+      "source_display_name": "Nerion",
+      "source_display_names": [
+        "Nerion"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/nerion",
+      "source_locale": "en",
+      "source_slug": "nerion",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        6
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "niru",
+      "tracker_name": "Niru",
+      "source_display_name": "Niru",
+      "source_display_names": [
+        "Niru"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/niru",
+      "source_locale": "en",
+      "source_slug": "niru",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        9
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "odie",
+      "tracker_name": "Odie",
+      "source_display_name": "Odie",
+      "source_display_names": [
+        "Odie"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/odie",
+      "source_locale": "en",
+      "source_slug": "odie",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        10
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "orion",
+      "tracker_name": "Orion",
+      "source_display_name": "Orion",
+      "source_display_names": [
+        "Orion"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/orion",
+      "source_locale": "en",
+      "source_slug": "orion",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17,
+        21
+      ],
+      "capture_batches": [
+        12,
+        17,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "pandora",
+      "tracker_name": "Pandora",
+      "source_display_name": "Pandora",
+      "source_display_names": [
+        "Pandora"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/pandora",
+      "source_locale": "en",
+      "source_slug": "pandora",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        18,
+        22
+      ],
+      "capture_batches": [
+        10,
+        18,
+        22
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "pang",
+      "tracker_name": "Pang",
+      "source_display_name": "Pang",
+      "source_display_names": [
+        "Pang"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/pang",
+      "source_locale": "en",
+      "source_slug": "pang",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15
+      ],
+      "capture_batches": [
+        6,
+        15
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "parisa",
+      "tracker_name": "Parisa",
+      "source_display_name": "Parisa",
+      "source_display_names": [
+        "Parisa"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/parisa",
+      "source_locale": "en",
+      "source_slug": "parisa",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        7
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "peggy",
+      "tracker_name": "Peggy",
+      "source_display_name": "Peggy",
+      "source_display_names": [
+        "Peggy"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/peggy",
+      "source_locale": "en",
+      "source_slug": "peggy",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 13,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        13
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "perseus",
+      "tracker_name": "Perseus",
+      "source_display_name": "Perseus",
+      "source_display_names": [
+        "Perseus"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/perseus",
+      "source_locale": "en",
+      "source_slug": "perseus",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 13,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        23,
+        24
+      ],
+      "capture_batches": [
+        13,
+        23,
+        24
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "phraesto",
+      "tracker_name": "Phraesto",
+      "source_display_name": "Phraesto",
+      "source_display_names": [
+        "Phraesto"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/phraesto",
+      "source_locale": "en",
+      "source_slug": "phraesto",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20,
+        22
+      ],
+      "capture_batches": [
+        2,
+        14,
+        20,
+        22
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "pippa",
+      "tracker_name": "Pippa",
+      "source_display_name": "Pippa",
+      "source_display_names": [
+        "Pippa"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/pippa",
+      "source_locale": "en",
+      "source_slug": "pippa",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16,
+        22
+      ],
+      "capture_batches": [
+        9,
+        16,
+        22
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "ravion",
+      "tracker_name": "Ravion",
+      "source_display_name": "Ravion",
+      "source_display_names": [
+        "Ravion"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/ravion",
+      "source_locale": "en",
+      "source_slug": "ravion",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 13,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        13
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "reinier",
+      "tracker_name": "Reinier",
+      "source_display_name": "Reinier",
+      "source_display_names": [
+        "Reinier"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/reinier",
+      "source_locale": "en",
+      "source_slug": "reinier",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "rhys",
+      "tracker_name": "Rhys",
+      "source_display_name": "Rhys",
+      "source_display_names": [
+        "Rhys"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/rhys",
+      "source_locale": "en",
+      "source_slug": "rhys",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17
+      ],
+      "capture_batches": [
+        10,
+        17
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "rolan",
+      "tracker_name": "Rolan",
+      "source_display_name": "Rolan",
+      "source_display_names": [
+        "Rolan"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/rolan",
+      "source_locale": "en",
+      "source_slug": "rolan",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20
+      ],
+      "capture_batches": [
+        1,
+        14,
+        20
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "rowan",
+      "tracker_name": "Rowan",
+      "source_display_name": "Rowan",
+      "source_display_names": [
+        "Rowan"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/rowan",
+      "source_locale": "en",
+      "source_slug": "rowan",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 10,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        10
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "saida",
+      "tracker_name": "Saida",
+      "source_display_name": "Saida",
+      "source_display_names": [
+        "Saida"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/saida",
+      "source_locale": "en",
+      "source_slug": "saida",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        16,
+        22,
+        23,
+        24
+      ],
+      "capture_batches": [
+        9,
+        16,
+        22,
+        23,
+        24
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "salazer",
+      "tracker_name": "Salazer",
+      "source_display_name": "Salazer",
+      "source_display_names": [
+        "Salazer"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/salazer",
+      "source_locale": "en",
+      "source_slug": "salazer",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 9,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        9
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "satrana",
+      "tracker_name": "Satrana",
+      "source_display_name": "Satrana",
+      "source_display_names": [
+        "Satrana"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/satrana",
+      "source_locale": "en",
+      "source_slug": "satrana",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        6
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "scarlita",
+      "tracker_name": "Scarlita",
+      "source_display_name": "Scarlita",
+      "source_display_names": [
+        "Scarlita"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/scarlita",
+      "source_locale": "en",
+      "source_slug": "scarlita",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "senea",
+      "tracker_name": "Senea",
+      "source_display_name": "Senea",
+      "source_display_names": [
+        "Senea"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/senea",
+      "source_locale": "en",
+      "source_slug": "senea",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "seth",
+      "tracker_name": "Seth",
+      "source_display_name": "Seth",
+      "source_display_names": [
+        "Seth"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/seth",
+      "source_locale": "en",
+      "source_slug": "seth",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17
+      ],
+      "capture_batches": [
+        12,
+        17
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "shadewing",
+      "tracker_name": "Shadewing",
+      "source_display_name": "Shadewing",
+      "source_display_names": [
+        "Shadewing"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/shadewing",
+      "source_locale": "en",
+      "source_slug": "shadewing",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        4
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "shakir",
+      "tracker_name": "Shakir",
+      "source_display_name": "Shakir",
+      "source_display_names": [
+        "Shakir"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/shakir",
+      "source_locale": "en",
+      "source_slug": "shakir",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 13,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        13
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "shemira",
+      "tracker_name": "Shemira",
+      "source_display_name": "Shemira",
+      "source_display_names": [
+        "Shemira"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/shemira",
+      "source_locale": "en",
+      "source_slug": "shemira",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        7
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "silven",
+      "tracker_name": "Silven",
+      "source_display_name": "Silven",
+      "source_display_names": [
+        "Silven"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/silven",
+      "source_locale": "en",
+      "source_slug": "silven",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        4
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "silvina",
+      "tracker_name": "Silvina",
+      "source_display_name": "Silvina",
+      "source_display_names": [
+        "Silvina"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/silvina",
+      "source_locale": "en",
+      "source_slug": "silvina",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 12,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17
+      ],
+      "capture_batches": [
+        12,
+        17
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "sinbad",
+      "tracker_name": "Sinbad",
+      "source_display_name": "Sinbad",
+      "source_display_names": [
+        "Sinbad"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/sinbad",
+      "source_locale": "en",
+      "source_slug": "sinbad",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 5,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        5
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "smokey-meerky",
+      "tracker_name": "Smokey & Meerky",
+      "source_display_name": "Smokey & Meerky",
+      "source_display_names": [
+        "Smokey & Meerky"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/smokey-meerky",
+      "source_locale": "en",
+      "source_slug": "smokey-meerky",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14
+      ],
+      "capture_batches": [
+        11,
+        14
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "solise",
+      "tracker_name": "Solise",
+      "source_display_name": "Solise",
+      "source_display_names": [
+        "Solise"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/solise",
+      "source_locale": "en",
+      "source_slug": "solise",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        18
+      ],
+      "capture_batches": [
+        7,
+        18
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "sonja",
+      "tracker_name": "Sonja",
+      "source_display_name": "Sonja",
+      "source_display_names": [
+        "Sonja"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/sonja",
+      "source_locale": "en",
+      "source_slug": "sonja",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "soren",
+      "tracker_name": "Soren",
+      "source_display_name": "Soren",
+      "source_display_names": [
+        "Soren"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/soren",
+      "source_locale": "en",
+      "source_slug": "soren",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19
+      ],
+      "capture_batches": [
+        3,
+        15,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "sylphira",
+      "tracker_name": "Sylphira",
+      "source_display_name": "Sylphira",
+      "source_display_names": [
+        "Sylphira"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/sylphira",
+      "source_locale": "en",
+      "source_slug": "sylphira",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19,
+        23
+      ],
+      "capture_batches": [
+        4,
+        15,
+        19,
+        23
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "taichi",
+      "tracker_name": "Taichi",
+      "source_display_name": "Taichi & Agumon",
+      "source_display_names": [
+        "Taichi & Agumon"
+      ],
+      "source_alias": "Taichi & Agumon",
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/taichi-agumon",
+      "source_locale": "en",
+      "source_slug": "taichi-agumon",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "talene",
+      "tracker_name": "Talene",
+      "source_display_name": "Talene",
+      "source_display_names": [
+        "Talene"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/talene",
+      "source_locale": "en",
+      "source_slug": "talene",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        2
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "tasi",
+      "tracker_name": "Tasi",
+      "source_display_name": "Tasi",
+      "source_display_names": [
+        "Tasi"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/tasi",
+      "source_locale": "en",
+      "source_slug": "tasi",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 13,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        13
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "temesia",
+      "tracker_name": "Temesia",
+      "source_display_name": "Temesia",
+      "source_display_names": [
+        "Temesia"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/temesia",
+      "source_locale": "en",
+      "source_slug": "temesia",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        3
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "thador",
+      "tracker_name": "Thador",
+      "source_display_name": "Thador",
+      "source_display_names": [
+        "Thador"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/thador",
+      "source_locale": "en",
+      "source_slug": "thador",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        6
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "thoran",
+      "tracker_name": "Thoran",
+      "source_display_name": "Thoran",
+      "source_display_names": [
+        "Thoran"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/thoran",
+      "source_locale": "en",
+      "source_slug": "thoran",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17,
+        22
+      ],
+      "capture_batches": [
+        7,
+        17,
+        22
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "tilaya",
+      "tracker_name": "Tilaya",
+      "source_display_name": "Tilaya",
+      "source_display_names": [
+        "Tilaya"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/tilaya",
+      "source_locale": "en",
+      "source_slug": "tilaya",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        6
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "ulmus",
+      "tracker_name": "Ulmus",
+      "source_display_name": "Ulmus",
+      "source_display_names": [
+        "Ulmus"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/ulmus",
+      "source_locale": "en",
+      "source_slug": "ulmus",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 6,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        6
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "vala",
+      "tracker_name": "Vala",
+      "source_display_name": "Vala",
+      "source_display_names": [
+        "Vala"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/vala",
+      "source_locale": "en",
+      "source_slug": "vala",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 11,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        11
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "valen",
+      "tracker_name": "Valen",
+      "source_display_name": "Valen",
+      "source_display_names": [
+        "Valen"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/valen",
+      "source_locale": "en",
+      "source_slug": "valen",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        14,
+        20,
+        23
+      ],
+      "capture_batches": [
+        2,
+        14,
+        20,
+        23
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "valka",
+      "tracker_name": "Valka",
+      "source_display_name": "Valka",
+      "source_display_names": [
+        "Valka"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/valka",
+      "source_locale": "en",
+      "source_slug": "valka",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [
+        18
+      ],
+      "capture_batches": [
+        3,
+        18
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "velara",
+      "tracker_name": "Velara",
+      "source_display_name": "Velara",
+      "source_display_names": [
+        "Velara"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/velara",
+      "source_locale": "en",
+      "source_slug": "velara",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 3,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        3
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "viperian",
+      "tracker_name": "Viperian",
+      "source_display_name": "Viperian",
+      "source_display_names": [
+        "Viperian"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/viperian",
+      "source_locale": "en",
+      "source_slug": "viperian",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 2,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        2
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "voracia",
+      "tracker_name": "Voracia",
+      "source_display_name": "Voracia",
+      "source_display_names": [
+        "Voracia"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/voracia",
+      "source_locale": "en",
+      "source_slug": "voracia",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        18,
+        21
+      ],
+      "capture_batches": [
+        7,
+        18,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "walker",
+      "tracker_name": "Walker",
+      "source_display_name": "Walker",
+      "source_display_names": [
+        "Walker"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/walker",
+      "source_locale": "en",
+      "source_slug": "walker",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 7,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        17,
+        21
+      ],
+      "capture_batches": [
+        7,
+        17,
+        21
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "yamato",
+      "tracker_name": "Yamato",
+      "source_display_name": "Yamato & Gabumon",
+      "source_display_names": [
+        "Yamato & Gabumon"
+      ],
+      "source_alias": "Yamato & Gabumon",
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/yamato-gabumon",
+      "source_locale": "en",
+      "source_slug": "yamato-gabumon",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 1,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        1
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "zandrok",
+      "tracker_name": "Zandrok",
+      "source_display_name": "Zandrok",
+      "source_display_names": [
+        "Zandrok"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/zandrok",
+      "source_locale": "en",
+      "source_slug": "zandrok",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "partial",
+      "recapture_batches": [
+        15,
+        19
+      ],
+      "capture_batches": [
+        4,
+        15,
+        19
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "zanie",
+      "tracker_name": "Zanie",
+      "source_display_name": "Zanie",
+      "source_display_names": [
+        "Zanie"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/zanie",
+      "source_locale": "en",
+      "source_slug": "zanie",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        4
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    },
+    {
+      "hero_id": "zorya",
+      "tracker_name": "Zorya",
+      "source_display_name": "Zorya",
+      "source_display_names": [
+        "Zorya"
+      ],
+      "source_alias": null,
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/en/skill/zorya",
+      "source_locale": "en",
+      "source_slug": "zorya",
+      "source_patch_label": null,
+      "source_updated_at": null,
+      "retrieved_at": "2026-11-25",
+      "first_pass_batch": 4,
+      "initial_capture_marker": "complete",
+      "recapture_batches": [],
+      "capture_batches": [
+        4
+      ],
+      "first_pass_capture_status": "first_pass_captured"
+    }
+  ],
+  "out_of_roster_sources": [
+    {
+      "source_display_name": "Thane",
+      "source_name": "AFK Stargazer",
+      "source_url": "https://afkstargazer.com/id/skill/thane",
+      "source_locale": "id",
+      "source_slug": "thane",
+      "capture_batches": [
+        12
+      ],
+      "status": "out_of_roster_not_importable"
+    }
+  ],
+  "limitations": [
+    "First-pass capture completion is based on the Batch 24 coverage statement and extraction records; this is not second-source cross-checking.",
+    "No source patch/version label was established; source_patch_label and source_updated_at remain null.",
+    "The manifest maps sources only. It does not contain normalized ability data and is not an instruction to import data into Supabase.",
+    "Thane is retained as an out-of-roster source record and excluded from the 131-row tracker roster."
+  ]
+}
