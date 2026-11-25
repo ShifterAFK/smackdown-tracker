@@ -346,6 +346,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2T
+## Stage 2T — Batch 05 normalization
 
-Next, inspect **Batch 05**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_05.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_05_NORMALIZATION_AUDIT.md`
+
+- Nine complete profiles normalized: Sinbad, Bonnie, Alsa, Marene, Eryndor, Lucy, Scarlita, Senea and Baelran.
+- 71 sections, 27 explicitly tagged sections and 33 raw per-skill tag records.
+- Reinier remains partial: 7 supplemental sections, including separate Dynamic Balance targeting metadata; 4 explicitly tagged sections and 6 raw per-skill tag records.
+- 30 page-level tag records are retained separately and are not copied onto abilities.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2U
+
+Next, inspect **Batch 04**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
