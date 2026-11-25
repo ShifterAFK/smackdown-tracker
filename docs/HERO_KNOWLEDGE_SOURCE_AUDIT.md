@@ -416,3 +416,21 @@ Twelfth extraction artifact committed:
 This is source transcription progress only; it does not imply second-source validation, patch verification, or database readiness.
 
 **No Supabase schema/data changes have been made.** All twelve extraction batches and audit updates are documentation-only commits on `development`.
+
+
+## 20. Tracker roster reconciliation and extraction completion (2026-11-25)
+
+Thirteenth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md` — the seven tracker IDs missing after the initial batch-to-roster comparison.
+
+A read-only query of `public.ss_heroes` returned 131 tracker rows. Comparing IDs against all 13 extraction batches confirms:
+- **131/131 tracker hero IDs now have a Stargazer page/source record.**
+- `gala` → Galahad remains the user-confirmed mapping.
+- `taichi` → Taichi & Agumon and `yamato` → Yamato & Gabumon remain documented source aliases.
+- The batches also contain one extra source record, **Thane**, which is not a row in the current `ss_heroes` roster. It must not be counted as a tracker hero.
+- **80/131 roster records** have captures sufficiently complete for the current first-pass summary.
+- **51/131 roster records** remain explicitly partial and need source-page recapture before verification.
+
+This closes *roster coverage*, not complete transcription/verification. In particular, a partial record is not a complete skill kit, and a first-pass summary is not yet patch-verified or cross-checked against a second source.
+
+All 13 extraction batches are documentation-only on `development`. **No Supabase schema or data was modified.**
