@@ -1,0 +1,2434 @@
+{
+  "schema_version": "1.0",
+  "dataset_status": "draft_for_review_not_committed",
+  "purpose": "Second bounded batch of descriptive hero-kit capability analysis, following the accepted five-hero pilot schema.",
+  "scope": {
+    "heroes": [
+      "cecia",
+      "granny-dahnie",
+      "indris",
+      "nerion",
+      "solise"
+    ],
+    "included_section_types": [
+      "base_skill",
+      "ultimate",
+      "enhance_force",
+      "exclusive_equipment",
+      "rivalry_mode_when_specific_effects_are_available"
+    ],
+    "excluded_section_types": [
+      "season_charm",
+      "hero_focus"
+    ],
+    "season_skill_observations": "retained_as_distinct_secondary_source_context_only; not modeled as Season Charm or active mechanics",
+    "patch_research": "closed",
+    "source_descriptions_accepted_as_sufficient_for_this_task": true
+  },
+  "analysis_constraints": {
+    "formation_prediction": "not_supported",
+    "ability_activation_prediction": "not_supported",
+    "actual_match_effects": "not_observed",
+    "combat_timeline_or_target_selection": "not_available_in_reviewed_match_capture",
+    "capability_based_analysis_only": true,
+    "position_or_timing_dependent_interactions": "conditional_capabilities_only",
+    "named_hero_pair_synergy": "not_asserted",
+    "composition_scores_or_weights": "not_defined"
+  },
+  "provenance": {
+    "primary_source": "AFK Stargazer",
+    "source_representation": "V4 paraphrased extraction summaries, not verbatim ability text",
+    "direct_page_retrieval": "not_claimed_for_all_records; Batch 25 recaptures use indexed primary-source content where direct page opens returned cache misses",
+    "secondary_sources": [
+      "AFK.global"
+    ],
+    "patch_label": "not_verified_and_not_required_for_this_task; patch research intentionally closed",
+    "source_tags": "preserved separately on each mechanic as captured source metadata; unknown remains null",
+    "unknown_values": "remain unknown; absence of a modeled field is not evidence that an effect does not exist",
+    "observation_date": "2026-11-25",
+    "source_manifest_note": "The shared source manifest records the original first-pass capture batches and is not exhaustive of later section-level recapture evidence visible in V4. Ability-level source attribution therefore follows each V4 section source_evidence record and the cited extraction batch document."
+  },
+  "mechanics": [
+    {
+      "mechanic_id": "cecia_queens_summons_summon",
+      "hero_id": "cecia",
+      "ability_key": "ultimate-queen-s-summons",
+      "mechanic_type": "summon",
+      "target_side": "ally",
+      "trigger": "ultimate_cast",
+      "effect_summary": "Summons Mr. Carlyle to a selected tile; he inherits Cecia's stats and gains bonus max HP that decays over time.",
+      "duration": "summoned_presence; bonus_max_hp_decays_over_time",
+      "conditions": [],
+      "target_selector": "selected_tile; exact placement not predicted",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_queens_summons_entangle",
+      "hero_id": "cecia",
+      "ability_key": "ultimate-queen-s-summons",
+      "mechanic_type": "control",
+      "target_side": "opponent",
+      "trigger": "mr_carlyle_summon_or_ultimate_recast_while_carlyle_present",
+      "effect_summary": "Mr. Carlyle entangles enemies within 2 tiles, preventing movement and actions.",
+      "duration": "unspecified",
+      "conditions": [
+        "enemy_within_2_tiles_of_mr_carlyle"
+      ],
+      "target_selector": "enemies_within_2_tiles_of_mr_carlyle",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_queens_summons_entangle_dot",
+      "hero_id": "cecia",
+      "ability_key": "ultimate-queen-s-summons",
+      "mechanic_type": "damage_over_time",
+      "target_side": "opponent",
+      "trigger": "while_entangled_by_mr_carlyle",
+      "effect_summary": "Entangled enemies take damage over time.",
+      "duration": "while_entangled; exact duration unspecified",
+      "conditions": [
+        "target_entangled_by_mr_carlyle"
+      ],
+      "target_selector": "enemies_within_2_tiles_of_mr_carlyle",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_queens_summons_restore_carlyle",
+      "hero_id": "cecia",
+      "ability_key": "ultimate-queen-s-summons",
+      "mechanic_type": "healing",
+      "target_side": "ally",
+      "trigger": "ultimate_recast_while_mr_carlyle_is_present",
+      "effect_summary": "Recasting the Ultimate while Mr. Carlyle is present restores him to max HP and repeats the entangle effect.",
+      "duration": "instant_restore; entangle_duration_unspecified",
+      "conditions": [
+        "mr_carlyle_already_present"
+      ],
+      "target_selector": "mr_carlyle",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_trial_of_thorns_control_dot",
+      "hero_id": "cecia",
+      "ability_key": "exclusive_equipment-trial-of-thorns",
+      "mechanic_type": "control",
+      "target_side": "opponent",
+      "trigger": "exclusive_equipment_effect_applies",
+      "effect_summary": "Entangles one enemy, dealing damage over time and preventing movement and actions.",
+      "duration": "unspecified",
+      "conditions": [],
+      "target_selector": "single_enemy; exact selection rule not stated",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_trial_of_thorns_stat_drain",
+      "hero_id": "cecia",
+      "ability_key": "exclusive_equipment-trial-of-thorns",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "while_target_is_affected_by_trial_of_thorns",
+      "effect_summary": "Cecia absorbs Phys DEF and Magic DEF from the target; the stolen stats are shared with Mr. Carlyle.",
+      "duration": "unspecified",
+      "conditions": [
+        "target_affected_by_trial_of_thorns"
+      ],
+      "target_selector": "entangled_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_earths_offering_attack_speed",
+      "hero_id": "cecia",
+      "ability_key": "base_skill-earth-s-offering",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "earths_offering_effect",
+      "effect_summary": "Increases Cecia's and Mr. Carlyle's ATK SPD for 8 seconds.",
+      "duration": "8_seconds",
+      "conditions": [
+        "mr_carlyle_presence_for_carlyle_benefit"
+      ],
+      "target_selector": "cecia_and_mr_carlyle",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "cecia_earths_offering_quake",
+      "hero_id": "cecia",
+      "ability_key": "base_skill-earth-s-offering",
+      "mechanic_type": "area_damage",
+      "target_side": "opponent",
+      "trigger": "mr_carlyles_next_normal_attack_at_the_relevant_skill_level",
+      "effect_summary": "At a stated skill level, Mr. Carlyle's next normal attack is replaced by a quake affecting a 2-tile area and granting Life Drain.",
+      "duration": "single_attack_effect",
+      "conditions": [
+        "specific_skill_level_unspecified"
+      ],
+      "target_selector": "2_tile_area_around_attack_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "cecia_earths_offering_life_drain",
+      "hero_id": "cecia",
+      "ability_key": "base_skill-earth-s-offering",
+      "mechanic_type": "self_sustain",
+      "target_side": "ally",
+      "trigger": "mr_carlyles_next_normal_attack_is_replaced_by_quake_at_the_relevant_skill_level",
+      "effect_summary": "The 2-tile area quake grants Mr. Carlyle Life Drain.",
+      "duration": "unspecified",
+      "conditions": [
+        "specific_skill_level_unspecified",
+        "mr_carlyle_performs_replaced_normal_attack"
+      ],
+      "target_selector": "mr_carlyle",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "cecia_agonizing_puncture_def_pen",
+      "hero_id": "cecia",
+      "ability_key": "base_skill-agonizing-puncture",
+      "mechanic_type": "debuff",
+      "target_side": "ally",
+      "trigger": "passive_skill_effect",
+      "effect_summary": "Cecia and Mr. Carlyle gain DEF Penetration.",
+      "duration": "unspecified",
+      "conditions": [],
+      "target_selector": "cecia_and_mr_carlyle",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "cecia_agonizing_puncture_enhanced_attack",
+      "hero_id": "cecia",
+      "ability_key": "base_skill-agonizing-puncture",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "after_every_three_normal_attacks",
+      "effect_summary": "Cecia's next normal attack is enhanced; later levels increase its damage.",
+      "duration": "one_enhanced_normal_attack",
+      "conditions": [
+        "three_normal_attacks_completed"
+      ],
+      "target_selector": "normal_attack_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "cecia_enhance_force_attack_cycle",
+      "hero_id": "cecia",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "trigger_modification",
+      "target_side": "self",
+      "trigger": "enhance_force_effect",
+      "effect_summary": "Reduces the number of normal attacks required to trigger Agonizing Puncture.",
+      "duration": "persistent_while_effect_applies",
+      "conditions": [
+        "enhance_force_level_unspecified"
+      ],
+      "target_selector": "cecia",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_enhance_force_initial_energy",
+      "hero_id": "cecia",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "energy_gain",
+      "target_side": "self",
+      "trigger": "enhance_force_level_2_start_of_battle",
+      "effect_summary": "Grants 500 Initial Energy.",
+      "duration": "initial_energy",
+      "conditions": [
+        "enhance_force_level_2"
+      ],
+      "target_selector": "cecia",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "cecia_enhance_force_stat_steal",
+      "hero_id": "cecia",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "stat_steal",
+      "target_side": "opponent",
+      "trigger": "ultimate_cast_at_enhance_force_level_2",
+      "effect_summary": "Cecia permanently steals stats from entangled enemies; the stolen stats are shared with Mr. Carlyle.",
+      "duration": "permanent",
+      "conditions": [
+        "enhance_force_level_2",
+        "target_entangled"
+      ],
+      "target_selector": "entangled_enemies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/cecia",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md",
+          "capture_batch": 2,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_angry_taunt_taunt",
+      "hero_id": "granny-dahnie",
+      "ability_key": "base_skill-angry-taunt",
+      "mechanic_type": "taunt",
+      "target_side": "opponent",
+      "trigger": "angry_taunt_activation",
+      "effect_summary": "Taunts an enemy for 3 seconds; the target-selection priority is the enemy currently targeting the weakest ally.",
+      "duration": "3_seconds",
+      "conditions": [],
+      "target_selector": "enemy_targeting_weakest_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "granny_angry_taunt_self_heal",
+      "hero_id": "granny-dahnie",
+      "ability_key": "base_skill-angry-taunt",
+      "mechanic_type": "self_healing",
+      "target_side": "self",
+      "trigger": "angry_taunt_activation",
+      "effect_summary": "Granny Dahnie restores HP when using Angry Taunt.",
+      "duration": "instant_or_unspecified",
+      "conditions": [],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "granny_seed_cannon_retaliation",
+      "hero_id": "granny-dahnie",
+      "ability_key": "base_skill-seed-cannon",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "enemy_deals_cumulative_damage_equal_to_15_percent_of_grannys_max_hp_to_her",
+      "effect_summary": "Granny fires Parasitic Seeds at the triggering enemy and deals damage.",
+      "duration": "instant",
+      "conditions": [
+        "cumulative_damage_to_granny_reaches_15_percent_max_hp"
+      ],
+      "target_selector": "triggering_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_seed_cannon_haste_reduction",
+      "hero_id": "granny-dahnie",
+      "ability_key": "base_skill-seed-cannon",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "seed_cannon_hits",
+      "effect_summary": "Reduces the target's Haste for 6 seconds.",
+      "duration": "6_seconds",
+      "conditions": [
+        "seed_cannon_trigger_condition_met"
+      ],
+      "target_selector": "triggering_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_seed_cannon_attack_reduction",
+      "hero_id": "granny-dahnie",
+      "ability_key": "base_skill-seed-cannon",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "seed_cannon_hits",
+      "effect_summary": "Seed Cannon reduces the target's ATK; the exact base reduction value is not present in the summary.",
+      "duration": "unspecified",
+      "conditions": [
+        "seed_cannon_trigger_condition_met"
+      ],
+      "target_selector": "triggering_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_glimmerbloom_defense",
+      "hero_id": "granny-dahnie",
+      "ability_key": "exclusive_equipment-glimmerbloom-blessings",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "hp_drops_below_50_percent_once_per_battle",
+      "effect_summary": "Increases Granny Dahnie's Phys DEF and Magic DEF.",
+      "duration": "12_seconds",
+      "conditions": [
+        "hp_below_50_percent",
+        "once_per_battle"
+      ],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "granny_glimmerbloom_healing",
+      "hero_id": "granny-dahnie",
+      "ability_key": "exclusive_equipment-glimmerbloom-blessings",
+      "mechanic_type": "self_healing",
+      "target_side": "self",
+      "trigger": "hp_drops_below_50_percent_once_per_battle",
+      "effect_summary": "Restores Granny Dahnie's HP over time.",
+      "duration": "12_seconds",
+      "conditions": [
+        "hp_below_50_percent",
+        "once_per_battle"
+      ],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "granny_threshold_of_jade_control",
+      "hero_id": "granny-dahnie",
+      "ability_key": "ultimate-threshold-of-jade",
+      "mechanic_type": "control",
+      "target_side": "opponent",
+      "trigger": "ultimate_summons_parasitic_grass",
+      "effect_summary": "For 3 seconds, enemies within 2 tiles of Parasitic Grass cannot move or act.",
+      "duration": "3_seconds",
+      "conditions": [
+        "enemy_within_2_tiles_of_parasitic_grass"
+      ],
+      "target_selector": "enemies_within_2_tiles",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_threshold_of_jade_energy_denial",
+      "hero_id": "granny-dahnie",
+      "ability_key": "ultimate-threshold-of-jade",
+      "mechanic_type": "energy_drain",
+      "target_side": "opponent",
+      "trigger": "each_second_while_enemy_is_in_parasitic_grass_range",
+      "effect_summary": "Affected enemies lose 25 Energy each second.",
+      "duration": "3_seconds",
+      "conditions": [
+        "enemy_within_2_tiles_of_parasitic_grass"
+      ],
+      "target_selector": "enemies_within_2_tiles",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_threshold_of_jade_hp_loss",
+      "hero_id": "granny-dahnie",
+      "ability_key": "ultimate-threshold-of-jade",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "each_second_while_enemy_is_in_parasitic_grass_range",
+      "effect_summary": "Affected enemies lose HP equal to at least 60% ATK per second; the summary gives total HP loss as 130% ATK per second.",
+      "duration": "3_seconds",
+      "conditions": [
+        "enemy_within_2_tiles_of_parasitic_grass"
+      ],
+      "target_selector": "enemies_within_2_tiles",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_threshold_of_jade_self_recovery",
+      "hero_id": "granny-dahnie",
+      "ability_key": "ultimate-threshold-of-jade",
+      "mechanic_type": "self_healing",
+      "target_side": "self",
+      "trigger": "while_parasitic_grass_exists",
+      "effect_summary": "Granny Dahnie recovers HP equal to the HP loss inflicted by Parasitic Grass.",
+      "duration": "3_seconds",
+      "conditions": [
+        "parasitic_grass_exists"
+      ],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_threshold_of_jade_unaffected",
+      "hero_id": "granny-dahnie",
+      "ability_key": "ultimate-threshold-of-jade",
+      "mechanic_type": "defensive_state",
+      "target_side": "self",
+      "trigger": "while_parasitic_grass_exists",
+      "effect_summary": "Granny Dahnie is unaffected while Parasitic Grass exists.",
+      "duration": "3_seconds",
+      "conditions": [
+        "parasitic_grass_exists"
+      ],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "granny_enhance_force_seed_heal",
+      "hero_id": "granny-dahnie",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "self_healing",
+      "target_side": "self",
+      "trigger": "seed_cannon_fires",
+      "effect_summary": "Seed Cannon restores HP to Granny Dahnie when it fires.",
+      "duration": "instant",
+      "conditions": [
+        "seed_cannon_trigger_condition_met"
+      ],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "granny_enhance_force_seed_energy",
+      "hero_id": "granny-dahnie",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "energy_restore",
+      "target_side": "self",
+      "trigger": "seed_cannon_fires_at_the_next_enhance_force_level",
+      "effect_summary": "Firing a seed also restores Energy.",
+      "duration": "instant",
+      "conditions": [
+        "next_enhance_force_level"
+      ],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "granny_enhance_force_seed_haste",
+      "hero_id": "granny-dahnie",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "seed_cannon_fires_at_the_next_enhance_force_level",
+      "effect_summary": "Firing a seed grants a large temporary Haste increase.",
+      "duration": "temporary_unspecified",
+      "conditions": [
+        "next_enhance_force_level"
+      ],
+      "target_selector": "granny_dahnie",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "granny_enhance_force_seed_attack_reduction",
+      "hero_id": "granny-dahnie",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "seed_cannon_hits_at_the_next_enhance_force_level",
+      "effect_summary": "Strengthens Seed Cannon's ATK reduction on the target.",
+      "duration": "unspecified",
+      "conditions": [
+        "next_enhance_force_level"
+      ],
+      "target_selector": "seed_cannon_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_arcane_binding_knockback",
+      "hero_id": "indris",
+      "ability_key": "base_skill-arcane-binding",
+      "mechanic_type": "displacement",
+      "target_side": "opponent",
+      "trigger": "arcane_binding_activation",
+      "effect_summary": "Knocks back enemies within 2 tiles.",
+      "duration": "instant_displacement",
+      "conditions": [
+        "enemy_within_2_tiles"
+      ],
+      "target_selector": "enemies_within_2_tiles",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_arcane_binding_immobilize",
+      "hero_id": "indris",
+      "ability_key": "base_skill-arcane-binding",
+      "mechanic_type": "control",
+      "target_side": "opponent",
+      "trigger": "after_knockback_arcane_binding_binds_nearest_enemy",
+      "effect_summary": "Binds the nearest enemy, deals damage and immobilizes it for 5 seconds.",
+      "duration": "5_seconds",
+      "conditions": [
+        "nearest_enemy_after_knockback"
+      ],
+      "target_selector": "nearest_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_true_sight_exposed_weakness",
+      "hero_id": "indris",
+      "ability_key": "base_skill-true-sight",
+      "mechanic_type": "conditional_debuff",
+      "target_side": "opponent",
+      "trigger": "enemy_receives_stat_reduction_debuffs_from_more_than_three_different_allies",
+      "effect_summary": "Exposes the enemy's weakness after stat-reduction debuffs have been applied by more than three different allied heroes.",
+      "duration": "unspecified",
+      "conditions": [
+        "more_than_three_distinct_allies_have_applied_stat_reduction_debuffs"
+      ],
+      "target_selector": "enemy_meeting_exposed_weakness_condition",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_true_sight_true_damage",
+      "hero_id": "indris",
+      "ability_key": "base_skill-true-sight",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "indris_normal_attack_hits_exposed_weakness_target",
+      "effect_summary": "Indris' normal attacks deal additional true damage against exposed targets.",
+      "duration": "while_target_is_exposed; exact duration unknown",
+      "conditions": [
+        "target_has_exposed_weakness"
+      ],
+      "target_selector": "exposed_weakness_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_true_sight_three_arrows",
+      "hero_id": "indris",
+      "ability_key": "base_skill-true-sight",
+      "mechanic_type": "multi_hit_damage",
+      "target_side": "opponent",
+      "trigger": "indris_normal_attack_against_exposed_target",
+      "effect_summary": "Indris fires three arrows with target-priority rules; the exact priority sequence is not detailed in the summary.",
+      "duration": "normal_attack_sequence",
+      "conditions": [
+        "target_has_exposed_weakness"
+      ],
+      "target_selector": "target_priority_rules_unspecified",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_spellbane_silence",
+      "hero_id": "indris",
+      "ability_key": "ultimate-spellbane-shot",
+      "mechanic_type": "silence",
+      "target_side": "opponent",
+      "trigger": "ultimate_cast",
+      "effect_summary": "Spellbane Shot's arrow silences its target.",
+      "duration": "unspecified",
+      "conditions": [],
+      "target_selector": "single_arrow_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "indris_spellbane_buff_disable",
+      "hero_id": "indris",
+      "ability_key": "ultimate-spellbane-shot",
+      "mechanic_type": "buff_denial",
+      "target_side": "opponent",
+      "trigger": "spellbane_shot_hits",
+      "effect_summary": "Disables the target's stat buffs for 8 seconds; this effect does not work on Bosses.",
+      "duration": "8_seconds",
+      "conditions": [
+        "target_is_not_boss"
+      ],
+      "target_selector": "single_arrow_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "indris_spellbane_def_reduction",
+      "hero_id": "indris",
+      "ability_key": "ultimate-spellbane-shot",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "spellbane_shot_hits",
+      "effect_summary": "Permanently reduces the target's Phys DEF and Magic DEF by 20%; the effect does not stack.",
+      "duration": "permanent",
+      "conditions": [
+        "unstackable"
+      ],
+      "target_selector": "single_arrow_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "indris_spellbane_conditional_true_damage",
+      "hero_id": "indris",
+      "ability_key": "ultimate-spellbane-shot",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "higher_skill_level_spellbane_shot_hits_exposed_weakness_target",
+      "effect_summary": "At a higher skill level, can deal true damage based on the target's max HP to an exposed-weakness target.",
+      "duration": "instant",
+      "conditions": [
+        "higher_skill_level_unspecified",
+        "target_has_exposed_weakness"
+      ],
+      "target_selector": "exposed_weakness_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "indris_windpiercer_attack_speed",
+      "hero_id": "indris",
+      "ability_key": "exclusive_equipment-windpiercer",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "indris_triggers_exposed_weakness_bonus_damage",
+      "effect_summary": "Increases Indris' ATK SPD for 6 seconds; higher ranks improve the bonus.",
+      "duration": "6_seconds",
+      "conditions": [
+        "exposed_weakness_bonus_damage_triggered"
+      ],
+      "target_selector": "indris",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_windpiercer_phys_def_reduction",
+      "hero_id": "indris",
+      "ability_key": "exclusive_equipment-windpiercer",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "higher_windpiercer_rank_normal_attack",
+      "effect_summary": "At higher ranks, normal attacks also reduce the target's Phys DEF.",
+      "duration": "unspecified",
+      "conditions": [
+        "higher_rank_unspecified"
+      ],
+      "target_selector": "normal_attack_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_enhance_force_exposed_damage_window",
+      "hero_id": "indris",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "damage_amplification",
+      "target_side": "opponent",
+      "trigger": "after_arcane_binding_hits",
+      "effect_summary": "For 5 seconds after Arcane Binding hits, normal attacks can trigger exposed-weakness bonus damage without a cooldown.",
+      "duration": "5_seconds",
+      "conditions": [
+        "arcane_binding_hit"
+      ],
+      "target_selector": "normal_attack_targets_meeting_exposed_weakness_condition",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_enhance_force_max_hp_damage",
+      "hero_id": "indris",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "after_indris_breaks_a_weakness_at_enhance_force_level_2",
+      "effect_summary": "At Enhance Force level 2, arrows deal additional physical damage based on target max HP after Indris breaks a weakness.",
+      "duration": "unspecified",
+      "conditions": [
+        "enhance_force_level_2",
+        "indris_breaks_weakness"
+      ],
+      "target_selector": "arrow_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "indris_rivalry_stacking",
+      "hero_id": "indris",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "each_normal_attack_in_rivalry_mode",
+      "effect_summary": "Each normal attack adds a stack of ATK SPD and normal-attack damage, up to 10 stacks.",
+      "duration": "rivalry_mode; stack_duration_unspecified",
+      "conditions": [
+        "rivalry_mode"
+      ],
+      "target_selector": "indris",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/indris",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_drowning_doom_drowning",
+      "hero_id": "nerion",
+      "ability_key": "ultimate-drowning-doom",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "enemy_remains_under_control_effects_for_6_seconds_or_4_seconds_if_magic_damage_dealer",
+      "effect_summary": "The enemy takes damage and becomes Drowning after the stated control-duration threshold.",
+      "duration": "unspecified",
+      "conditions": [
+        "6_seconds_control; 4_seconds_for_enemies_dealing_magic_damage"
+      ],
+      "target_selector": "enemy_sustained_under_control",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_drowning_doom_bonus_damage",
+      "hero_id": "nerion",
+      "ability_key": "ultimate-drowning-doom",
+      "mechanic_type": "damage_amplification",
+      "target_side": "opponent",
+      "trigger": "nerion_attacks_drowning_enemy",
+      "effect_summary": "Nerion deals increased damage to enemies affected by Drowning.",
+      "duration": "while_target_is_drowning; exact duration unknown",
+      "conditions": [
+        "target_is_drowning"
+      ],
+      "target_selector": "drowning_enemies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_drowning_doom_ultimate_empowerment",
+      "hero_id": "nerion",
+      "ability_key": "ultimate-drowning-doom",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "active_ultimate_cast",
+      "effect_summary": "Empowers Nerion with ATK and ATK SPD for 12 seconds.",
+      "duration": "12_seconds",
+      "conditions": [],
+      "target_selector": "nerion",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_drowning_doom_deluge",
+      "hero_id": "nerion",
+      "ability_key": "ultimate-drowning-doom",
+      "mechanic_type": "area_damage",
+      "target_side": "opponent",
+      "trigger": "during_ultimate_empowerment",
+      "effect_summary": "Deluge deals damage that bounces between enemies affected by Drowning.",
+      "duration": "during_12_second_empowerment; exact hit timing unspecified",
+      "conditions": [
+        "targets_affected_by_drowning"
+      ],
+      "target_selector": "drowning_enemies; bounce_targeting_details_unspecified",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_tidal_rebuke_knockback_stun",
+      "hero_id": "nerion",
+      "ability_key": "base_skill-tidal-rebuke",
+      "mechanic_type": "control",
+      "target_side": "opponent",
+      "trigger": "after_every_three_normal_attacks_next_normal_attack_is_enhanced",
+      "effect_summary": "The enhanced normal attack deals damage, knocks back the target and stuns it.",
+      "duration": "stun_duration_unspecified",
+      "conditions": [
+        "three_normal_attacks_completed"
+      ],
+      "target_selector": "normal_attack_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_riptide_wrath_initial_area_damage",
+      "hero_id": "nerion",
+      "ability_key": "base_skill-riptide-wrath",
+      "mechanic_type": "area_damage",
+      "target_side": "opponent",
+      "trigger": "riptide_wrath_spear_throw",
+      "effect_summary": "Throws a spear at the area with the most enemies and damages nearby enemies.",
+      "duration": "instant",
+      "conditions": [],
+      "target_selector": "area_with_most_enemies; placement_is_not_predicted",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_riptide_wrath_delayed_airborne",
+      "hero_id": "nerion",
+      "ability_key": "base_skill-riptide-wrath",
+      "mechanic_type": "airborne",
+      "target_side": "opponent",
+      "trigger": "two_seconds_after_spear_throw",
+      "effect_summary": "A current erupts, launches enemies and deals a second hit.",
+      "duration": "airborne_duration_unspecified; occurs_2_seconds_after_initial_throw",
+      "conditions": [
+        "enemy_affected_by_initial_area_sequence"
+      ],
+      "target_selector": "enemies_in_riptide_wrath_area",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+          "capture_batch": 25,
+          "evidence_kind": "indexed_primary_source_content"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_abyssal_embrace_drowning",
+      "hero_id": "nerion",
+      "ability_key": "exclusive_equipment-abyssal-embrace",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "battle_start",
+      "effect_summary": "Applies Drowning to the rearmost enemy.",
+      "duration": "unspecified",
+      "conditions": [],
+      "target_selector": "rearmost_enemy; exact formation is not predicted",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "nerion_abyssal_embrace_debuff_dot",
+      "hero_id": "nerion",
+      "ability_key": "exclusive_equipment-abyssal-embrace",
+      "mechanic_type": "debuff_dot",
+      "target_side": "opponent",
+      "trigger": "while_drowning_target_is_controlled",
+      "effect_summary": "The affected enemy has reduced ATK and Haste and takes periodic damage while controlled.",
+      "duration": "while_target_is_controlled; exact duration unspecified",
+      "conditions": [
+        "target_is_drowning",
+        "target_is_controlled"
+      ],
+      "target_selector": "rearmost_enemy_marked_drowning",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "nerion_enhance_force_energy_empowerment",
+      "hero_id": "nerion",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "energy_gain",
+      "target_side": "self",
+      "trigger": "all_non_summoned_enemies_or_four_total_enemies_are_drowning",
+      "effect_summary": "Grants Nerion 1000 Energy and permanently empowers him when the stated Drowning threshold is met.",
+      "duration": "permanent_empowerment; energy_gain_instant",
+      "conditions": [
+        "all_non_summoned_enemies_drowning_or_four_total_drowning"
+      ],
+      "target_selector": "drowning_enemy_count_condition",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "nerion_enhance_force_penetration",
+      "hero_id": "nerion",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "energy_above_stated_threshold",
+      "effect_summary": "Grants Penetration while Nerion is above an Energy threshold; the exact threshold and value are not present in the summary.",
+      "duration": "while_energy_threshold_is_met",
+      "conditions": [
+        "energy_above_unspecified_threshold"
+      ],
+      "target_selector": "nerion",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/nerion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_06.md",
+          "capture_batch": 6,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_lifebloom_buds_ally_healing",
+      "hero_id": "solise",
+      "ability_key": "base_skill-lifebloom-buds",
+      "mechanic_type": "healing",
+      "target_side": "ally",
+      "trigger": "battle_start_and_periodically_after_bulb_is_assigned",
+      "effect_summary": "Sends a Bulb to each non-summoned ally; Bulbs periodically heal their host.",
+      "duration": "periodic_while_bulb_is_active",
+      "conditions": [
+        "ally_is_not_summoned"
+      ],
+      "target_selector": "each_non_summoned_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_lifebloom_buds_excess_heal_storage",
+      "hero_id": "solise",
+      "ability_key": "base_skill-lifebloom-buds",
+      "mechanic_type": "healing_conversion",
+      "target_side": "ally",
+      "trigger": "bulb_healing_exceeds_host_missing_hp",
+      "effect_summary": "Bulbs store excess healing; when stored healing reaches a threshold, the Bulb blooms into a Bulbsprite.",
+      "duration": "until_bloom_threshold_is_reached",
+      "conditions": [
+        "excess_healing_accumulates_to_unspecified_threshold"
+      ],
+      "target_selector": "bulb_host_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_lifebloom_buds_permanent_atk",
+      "hero_id": "solise",
+      "ability_key": "base_skill-lifebloom-buds",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "bulb_blooms_into_bulbsprite",
+      "effect_summary": "The Bulbsprite permanently increases its host's ATK.",
+      "duration": "permanent",
+      "conditions": [
+        "bulb_reaches_bloom_threshold"
+      ],
+      "target_selector": "bulb_host_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_bulbs_persist_after_solise_defeat",
+      "hero_id": "solise",
+      "ability_key": "base_skill-lifebloom-buds",
+      "mechanic_type": "persistent_ally_effect",
+      "target_side": "ally",
+      "trigger": "solise_is_defeated",
+      "effect_summary": "Existing Bulbs and Bulbsprites remain active after Solise is defeated, but cannot grow or respond to her after that point.",
+      "duration": "until_otherwise_removed; exact duration unknown",
+      "conditions": [
+        "bulb_or_bulbsprite_already_active"
+      ],
+      "target_selector": "existing_bulb_hosts",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_floral_favor_healing",
+      "hero_id": "solise",
+      "ability_key": "base_skill-floral-favor",
+      "mechanic_type": "healing",
+      "target_side": "ally",
+      "trigger": "floral_favor_activation",
+      "effect_summary": "Heals the two allies with the lowest HP.",
+      "duration": "instant",
+      "conditions": [],
+      "target_selector": "two_allies_with_lowest_hp",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_floral_favor_bulbsprite_shield",
+      "hero_id": "solise",
+      "ability_key": "base_skill-floral-favor",
+      "mechanic_type": "ally_shield",
+      "target_side": "ally",
+      "trigger": "floral_favor_heals_ally_who_already_has_bulbsprite",
+      "effect_summary": "Healing an ally who already has a Bulbsprite grants that ally a permanent shield, subject to a cap.",
+      "duration": "permanent_until_shield_consumed_or_removed; exact rules unspecified",
+      "conditions": [
+        "healed_ally_has_bulbsprite",
+        "shield_cap_applies"
+      ],
+      "target_selector": "healed_ally_with_bulbsprite",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_resonant_bloom_permanent_defense",
+      "hero_id": "solise",
+      "ability_key": "exclusive_equipment-resonant-bloom",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "bulb_blooms",
+      "effect_summary": "When a Bulb blooms, its host gains permanent Phys DEF and Magic DEF.",
+      "duration": "permanent",
+      "conditions": [
+        "bulb_blooms"
+      ],
+      "target_selector": "bulb_host_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_resonant_bloom_bulbsprite_upgrades",
+      "hero_id": "solise",
+      "ability_key": "exclusive_equipment-resonant-bloom",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "further_excess_healing_after_bulbsprite_bloom",
+      "effect_summary": "Further excess healing upgrades the Bulbsprite up to three times and adds permanent ATK to its host; maximum level also grants max HP.",
+      "duration": "permanent",
+      "conditions": [
+        "bulbsprite_has_bloomed",
+        "up_to_three_upgrades"
+      ],
+      "target_selector": "bulbsprite_host_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_lifes_embrace_ally_healing",
+      "hero_id": "solise",
+      "ability_key": "ultimate-life-s-embrace",
+      "mechanic_type": "healing",
+      "target_side": "ally",
+      "trigger": "ultimate_cast",
+      "effect_summary": "Releases three waves of healing across the battlefield; each wave restores 140% ATK HP to affected allies.",
+      "duration": "three_waves; wave_timing_unspecified",
+      "conditions": [],
+      "target_selector": "affected_allies_across_battlefield",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_lifes_embrace_bulbsprite_damage",
+      "hero_id": "solise",
+      "ability_key": "ultimate-life-s-embrace",
+      "mechanic_type": "area_damage",
+      "target_side": "opponent",
+      "trigger": "life_s_embrace_heals_a_bulbsprite",
+      "effect_summary": "When a Bulbsprite is healed, it emits a water ring from its host that damages all enemies.",
+      "duration": "instant_per_trigger; trigger_count_unspecified",
+      "conditions": [
+        "healed_target_is_bulbsprite"
+      ],
+      "target_selector": "all_enemies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_lifes_embrace_unaffected",
+      "hero_id": "solise",
+      "ability_key": "ultimate-life-s-embrace",
+      "mechanic_type": "defensive_state",
+      "target_side": "self",
+      "trigger": "while_casting_lifes_embrace",
+      "effect_summary": "Solise is unaffected while casting Life's Embrace.",
+      "duration": "during_cast",
+      "conditions": [],
+      "target_selector": "solise",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_enhance_force_excess_heal_damage",
+      "hero_id": "solise",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "damage_amplification",
+      "target_side": "opponent",
+      "trigger": "bulbsprite_damage_during_lifes_embrace",
+      "effect_summary": "During Life's Embrace, Bulbsprite damage triggers additional damage based on total excess healing stored during the Bulbsprite phase, subject to an ATK cap.",
+      "duration": "during_lifes_embrace_trigger_window",
+      "conditions": [
+        "bulbsprite_damage_occurs",
+        "stored_excess_healing_available",
+        "atk_cap_applies"
+      ],
+      "target_selector": "targets_of_bulbsprite_damage",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_rivalry_low_hp_ally_heal",
+      "hero_id": "solise",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "mechanic_type": "healing",
+      "target_side": "ally",
+      "trigger": "first_ally_drops_below_40_percent_hp_in_rivalry_mode",
+      "effect_summary": "The first ally to fall below 40% HP is healed for 160% of Solise's ATK as HP.",
+      "duration": "instant",
+      "conditions": [
+        "rivalry_mode",
+        "first_ally_below_40_percent_hp"
+      ],
+      "target_selector": "first_ally_to_fall_below_40_percent_hp",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "solise_rivalry_low_hp_ally_shield",
+      "hero_id": "solise",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "mechanic_type": "ally_shield",
+      "target_side": "ally",
+      "trigger": "first_ally_drops_below_40_percent_hp_in_rivalry_mode",
+      "effect_summary": "The same first ally to fall below 40% HP receives a shield equal to 160% of Solise's ATK.",
+      "duration": "unspecified",
+      "conditions": [
+        "rivalry_mode",
+        "first_ally_below_40_percent_hp"
+      ],
+      "target_selector": "first_ally_to_fall_below_40_percent_hp",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_07.md",
+          "capture_batch": 7,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        },
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/solise",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md",
+          "capture_batch": 18,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    }
+  ],
+  "team_functions": [
+    {
+      "team_function_id": "cecia_damage",
+      "hero_id": "cecia",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "cecia_queens_summons_entangle_dot",
+        "cecia_earths_offering_quake",
+        "cecia_agonizing_puncture_enhanced_attack"
+      ],
+      "rationale": "Mr. Carlyle and Cecia provide repeated damage opportunities, including damage over time and a conditional area quake; exact output depends on summon presence and skill level.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "cecia_support",
+      "hero_id": "cecia",
+      "function_type": "support",
+      "supporting_mechanic_ids": [
+        "cecia_earths_offering_attack_speed",
+        "cecia_earths_offering_life_drain"
+      ],
+      "rationale": "Earth's Offering can amplify the attack speed of Cecia and her summon, and its enhanced Carlyle attack grants Life Drain.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "cecia_control_disruption",
+      "hero_id": "cecia",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "cecia_queens_summons_entangle",
+        "cecia_trial_of_thorns_control_dot"
+      ],
+      "rationale": "Entangle can prevent affected enemies from moving or acting; its availability depends on the relevant ability effect and target proximity.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "cecia_specialist",
+      "hero_id": "cecia",
+      "function_type": "specialist",
+      "supporting_mechanic_ids": [
+        "cecia_queens_summons_summon",
+        "cecia_trial_of_thorns_stat_drain",
+        "cecia_enhance_force_stat_steal"
+      ],
+      "rationale": "Mr. Carlyle is a summon linked to Cecia's stats, and entangled targets can enable defensive-stat absorption and sharing.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "granny_dahnie_durability",
+      "hero_id": "granny-dahnie",
+      "function_type": "durability",
+      "supporting_mechanic_ids": [
+        "granny_angry_taunt_self_heal",
+        "granny_glimmerbloom_defense",
+        "granny_glimmerbloom_healing",
+        "granny_threshold_of_jade_self_recovery",
+        "granny_threshold_of_jade_unaffected",
+        "granny_enhance_force_seed_heal"
+      ],
+      "rationale": "Granny has several self-preservation effects, including healing, defensive stats and a temporary unaffected state.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "granny_dahnie_control_disruption",
+      "hero_id": "granny-dahnie",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "granny_angry_taunt_taunt",
+        "granny_threshold_of_jade_control",
+        "granny_threshold_of_jade_energy_denial",
+        "granny_seed_cannon_haste_reduction",
+        "granny_enhance_force_seed_attack_reduction"
+      ],
+      "rationale": "Taunt, action/movement denial, Energy loss and Haste/ATK reductions disrupt opposing actions and output.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "granny_dahnie_damage",
+      "hero_id": "granny-dahnie",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "granny_seed_cannon_retaliation",
+        "granny_threshold_of_jade_hp_loss"
+      ],
+      "rationale": "Seed Cannon retaliates with damage and Threshold of Jade inflicts repeated HP loss while its area effect persists.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "indris_damage",
+      "hero_id": "indris",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "indris_true_sight_true_damage",
+        "indris_spellbane_conditional_true_damage",
+        "indris_enhance_force_max_hp_damage",
+        "indris_rivalry_stacking"
+      ],
+      "rationale": "Indris gains conditional true-damage and max-HP-based damage opportunities against exposed targets, with a separate Rivalry Mode normal-attack stacking effect.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "indris_control_disruption",
+      "hero_id": "indris",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "indris_arcane_binding_knockback",
+        "indris_arcane_binding_immobilize",
+        "indris_spellbane_silence",
+        "indris_spellbane_buff_disable"
+      ],
+      "rationale": "Knockback, immobilization, silence and temporary stat-buff denial provide multiple forms of control/disruption.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "indris_specialist",
+      "hero_id": "indris",
+      "function_type": "specialist",
+      "supporting_mechanic_ids": [
+        "indris_true_sight_exposed_weakness",
+        "indris_enhance_force_exposed_damage_window",
+        "indris_spellbane_def_reduction",
+        "indris_windpiercer_phys_def_reduction"
+      ],
+      "rationale": "Indris has a conditional exposed-weakness sequence and persistent/conditional defensive-stat reduction; exposed weakness depends on debuffs from more than three distinct allies.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "nerion_damage",
+      "hero_id": "nerion",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "nerion_drowning_doom_bonus_damage",
+        "nerion_drowning_doom_deluge",
+        "nerion_tidal_rebuke_knockback_stun",
+        "nerion_riptide_wrath_initial_area_damage",
+        "nerion_riptide_wrath_delayed_airborne"
+      ],
+      "rationale": "Nerion combines area damage and repeated hits with additional damage against Drowning targets and Deluge's conditional bounce behavior.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "nerion_control_disruption",
+      "hero_id": "nerion",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "nerion_drowning_doom_drowning",
+        "nerion_tidal_rebuke_knockback_stun",
+        "nerion_riptide_wrath_delayed_airborne",
+        "nerion_abyssal_embrace_debuff_dot"
+      ],
+      "rationale": "Control effects can contribute to the Drowning condition; knockback, stun and airborne provide further disruption.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "nerion_specialist",
+      "hero_id": "nerion",
+      "function_type": "specialist",
+      "supporting_mechanic_ids": [
+        "nerion_drowning_doom_drowning",
+        "nerion_abyssal_embrace_drowning",
+        "nerion_enhance_force_energy_empowerment",
+        "nerion_enhance_force_penetration"
+      ],
+      "rationale": "Nerion's Drowning state and threshold-based permanent empowerment form a conditional kit-specific sequence.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "solise_support",
+      "hero_id": "solise",
+      "function_type": "support",
+      "supporting_mechanic_ids": [
+        "solise_lifebloom_buds_ally_healing",
+        "solise_floral_favor_healing",
+        "solise_lifes_embrace_ally_healing",
+        "solise_rivalry_low_hp_ally_heal"
+      ],
+      "rationale": "Solise distributes periodic and burst healing to allies, including targeted healing for the two lowest-HP allies and a Rivalry Mode threshold response.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "solise_durability",
+      "hero_id": "solise",
+      "function_type": "durability",
+      "supporting_mechanic_ids": [
+        "solise_floral_favor_bulbsprite_shield",
+        "solise_resonant_bloom_permanent_defense",
+        "solise_resonant_bloom_bulbsprite_upgrades",
+        "solise_rivalry_low_hp_ally_shield"
+      ],
+      "rationale": "Bulbsprite progression grants permanent defensive stats and conditional shields to allied hosts.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "solise_damage",
+      "hero_id": "solise",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "solise_lifes_embrace_bulbsprite_damage",
+        "solise_enhance_force_excess_heal_damage"
+      ],
+      "rationale": "Solise's Ultimate and Enhance Force can convert Bulbsprite healing interactions and stored excess healing into enemy damage.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "solise_specialist",
+      "hero_id": "solise",
+      "function_type": "specialist",
+      "supporting_mechanic_ids": [
+        "solise_lifebloom_buds_excess_heal_storage",
+        "solise_lifebloom_buds_permanent_atk",
+        "solise_bulbs_persist_after_solise_defeat",
+        "solise_resonant_bloom_bulbsprite_upgrades"
+      ],
+      "rationale": "The Bulb/Bulbsprite system stores excess healing and converts it into persistent ally progression; existing units can persist after Solise is defeated but no longer grow or respond to her.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "cecia_enabling_controlled_targets",
+      "source_hero_id": "cecia",
+      "direction": "opponent",
+      "interaction_type": "controlling",
+      "target_selector": "enemies_entangled_by_mr_carlyle_or_trial_of_thorns",
+      "supporting_mechanic_id": "cecia_queens_summons_entangle",
+      "conditions": "target_must_be_within_relevant_entangle_range; summon/ability must take effect",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Cecia's entangle can deny movement and actions to affected enemies; this describes her own control capability, not a guaranteed team follow-up."
+    },
+    {
+      "interaction_id": "cecia_amplifying_summon_pair",
+      "source_hero_id": "cecia",
+      "direction": "ally",
+      "interaction_type": "amplifying",
+      "target_selector": "mr_carlyle",
+      "supporting_mechanic_id": "cecia_earths_offering_attack_speed",
+      "conditions": "mr_carlyle_must_be_present",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Earth's Offering can increase both Cecia's and Mr. Carlyle's ATK SPD while Carlyle is present."
+    },
+    {
+      "interaction_id": "granny_weakening_opponent",
+      "source_hero_id": "granny-dahnie",
+      "direction": "opponent",
+      "interaction_type": "weakening",
+      "target_selector": "seed_cannon_target_or_enemies_in_threshold_of_jade_area",
+      "supporting_mechanic_id": "granny_seed_cannon_haste_reduction",
+      "conditions": "seed_cannon_damage_threshold_or_ultimate_area_condition_must_be_met",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Granny can reduce Haste/ATK and deny Energy/actions under their respective triggers; no target or timing outcome is predicted."
+    },
+    {
+      "interaction_id": "granny_sustaining_self",
+      "source_hero_id": "granny-dahnie",
+      "direction": "ally",
+      "interaction_type": "sustaining",
+      "target_selector": "granny_dahnie",
+      "supporting_mechanic_id": "granny_threshold_of_jade_self_recovery",
+      "conditions": "parasitic_grass_must_exist_and_inflict_hp_loss",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Threshold of Jade converts its HP-loss effect into self-recovery for Granny while the grass exists."
+    },
+    {
+      "interaction_id": "indris_enabling_exposed_weakness",
+      "source_hero_id": "indris",
+      "direction": "opponent",
+      "interaction_type": "weakening",
+      "target_selector": "enemy_receiving_stat_reduction_debuffs_from_more_than_three_distinct_allies",
+      "supporting_mechanic_id": "indris_true_sight_exposed_weakness",
+      "conditions": "more_than_three_different_allies_must_apply_stat_reduction_debuffs_to_the_same_enemy",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Indris can expose an enemy's weakness after the stated multi-ally debuff condition; the presence and timing of those debuffs are not predicted."
+    },
+    {
+      "interaction_id": "indris_disabling_stat_buffs",
+      "source_hero_id": "indris",
+      "direction": "opponent",
+      "interaction_type": "denying",
+      "target_selector": "spellbane_shot_target",
+      "supporting_mechanic_id": "indris_spellbane_buff_disable",
+      "conditions": "Spellbane Shot must hit; target must not be a Boss",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Spellbane Shot can disable target stat buffs for 8 seconds, except against Bosses."
+    },
+    {
+      "interaction_id": "nerion_control_to_drowning",
+      "source_hero_id": "nerion",
+      "direction": "opponent",
+      "interaction_type": "controlling",
+      "target_selector": "enemy_sustained_under_control_for_required_duration",
+      "supporting_mechanic_id": "nerion_drowning_doom_drowning",
+      "conditions": "control_must_be_maintained_for_6_seconds_or_4_seconds_for_magic_damage_dealers",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Sustained control can satisfy Nerion's Drowning trigger; whether a target remains controlled long enough is match-dependent."
+    },
+    {
+      "interaction_id": "nerion_amplifying_drowning_targets",
+      "source_hero_id": "nerion",
+      "direction": "opponent",
+      "interaction_type": "amplifying",
+      "target_selector": "drowning_enemies",
+      "supporting_mechanic_id": "nerion_drowning_doom_bonus_damage",
+      "conditions": "target_must_be_affected_by_drowning",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Nerion deals increased damage to Drowning enemies and can use Deluge's conditional bounce effect against them."
+    },
+    {
+      "interaction_id": "solise_sustaining_bulb_hosts",
+      "source_hero_id": "solise",
+      "direction": "ally",
+      "interaction_type": "sustaining",
+      "target_selector": "non_summoned_allies_with_bulbs",
+      "supporting_mechanic_id": "solise_lifebloom_buds_ally_healing",
+      "conditions": "bulb_assigned_to_eligible_ally_and_solise_effect_has_been_applied",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Bulbs provide periodic healing to eligible allied hosts and can accumulate excess healing toward Bulbsprite growth."
+    },
+    {
+      "interaction_id": "solise_protecting_bulbsprite_hosts",
+      "source_hero_id": "solise",
+      "direction": "ally",
+      "interaction_type": "protecting",
+      "target_selector": "ally_healed_by_floral_favor_who_already_has_bulbsprite",
+      "supporting_mechanic_id": "solise_floral_favor_bulbsprite_shield",
+      "conditions": "floral_favor_must_heal_an_ally_with_an_existing_bulbsprite; shield_cap_applies",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Floral Favor can grant a permanent capped shield to an ally with a Bulbsprite when that ally is healed."
+    }
+  ],
+  "unmodeled_sections": [
+    {
+      "hero_id": "cecia",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "The summary only states separate normal-attack stacking effects and refine stats; exact mechanics and triggers are not sufficiently specified."
+    },
+    {
+      "hero_id": "granny-dahnie",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "The summary only states low-HP mitigation/healing effects and refine stats without exact values or trigger semantics."
+    },
+    {
+      "hero_id": "indris",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "The 10-stack normal-attack ATK SPD/damage effect is modeled, but Refine 4 Execution details are too underspecified to atomize separately."
+    },
+    {
+      "hero_id": "nerion",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "The summary only states separate normal-attack stacking effects and refine stats; exact effects are not sufficiently specified."
+    },
+    {
+      "hero_id": "solise",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "The first ally below 40% HP heal and shield are modeled; additional Refine Healing/Haste details are not quantified or sufficiently described."
+    },
+    {
+      "hero_id": "cecia",
+      "ability_key": "hero_focus-hero-focus",
+      "reason": "Hero Focus is outside the pilot's modeled section scope for this batch; it remains in source data and is not interpreted as an ability mechanic here."
+    },
+    {
+      "hero_id": "granny-dahnie",
+      "ability_key": "hero_focus-hero-focus",
+      "reason": "Hero Focus is outside the pilot's modeled section scope for this batch; it remains in source data and is not interpreted as an ability mechanic here."
+    },
+    {
+      "hero_id": "indris",
+      "ability_key": "hero_focus-hero-focus",
+      "reason": "Hero Focus is outside the pilot's modeled section scope for this batch; it remains in source data and is not interpreted as an ability mechanic here."
+    },
+    {
+      "hero_id": "nerion",
+      "ability_key": "hero_focus-hero-focus",
+      "reason": "Hero Focus is outside the pilot's modeled section scope for this batch; it remains in source data and is not interpreted as an ability mechanic here."
+    },
+    {
+      "hero_id": "solise",
+      "ability_key": "hero_focus-hero-focus",
+      "reason": "Hero Focus is outside the pilot's modeled section scope for this batch; it remains in source data and is not interpreted as an ability mechanic here."
+    }
+  ],
+  "validation_expectations": {
+    "every_mechanic_has_hero_and_ability_key": true,
+    "every_mechanic_has_source_evidence": true,
+    "every_team_function_references_existing_mechanics": true,
+    "every_interaction_references_existing_mechanic": true,
+    "season_charm_records_absent": true,
+    "source_tags_not_reinterpreted_as_team_functions": true,
+    "unknown_tags_remain_null": true,
+    "named_hero_pair_synergy_not_asserted": true,
+    "formation_and_activation_prediction_not_supported": true
+  }
+}

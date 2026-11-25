@@ -8,10 +8,10 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before this handoff update:** `4bef2c21ef9355012d192ff30b5fe3ab7627a3c6`  
+**Last confirmed development HEAD before ACTION 0015:** `24a54c1519d3b44d5dbf269192ceacde5452e691`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
-**Current stage:** five-hero pilot accepted as the reference method; roster-wide coverage audit completed; second bounded batch approved and source analysis completed for Cecia, Granny Dahnie, Indris, Nerion and Solise; structured artifact draft not yet created  
+**Current stage:** five-hero pilot accepted as the reference method; second bounded batch (Cecia, Granny Dahnie, Indris, Nerion, Solise) analyzed and structured artifact added; awaiting next user instruction  
 **Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
@@ -20,13 +20,14 @@
 
 When a session starts, context is missing, or the user presses Retry:
 
-1. Read this file from top to bottom.
-2. Read the current versions of the linked source-of-truth documents in the repository. Do not rely on an old chat summary if the repository has moved.
-3. Check the current `development` branch HEAD and compare it with the audited HEAD recorded above.
-4. Inspect the latest entries in the relevant progress log and this file's action log.
+1. Fetch the **current** `docs/AI_SESSION_HANDOFF.md` directly from GitHub on branch `development`; do not rely on a prior-chat copy, attachment, or memory summary.
+2. Check the current `development` branch HEAD SHA and record it for the session.
+3. Read this Handoff from top to bottom, including the latest ACTION entries and restart point.
+4. Read only the current source-of-truth documents and data files needed for the active task, as directed by this Handoff.
 5. Identify the last **confirmed completed** action and the first **not completed** action.
 6. Verify whether an action marked STARTED/INTERRUPTED actually changed anything before retrying it.
 7. Continue from that exact point. Do not restart a phase, batch, extraction, audit, or analysis that is already complete.
+8. If GitHub cannot be read, report a BLOCKER with the last confirmed HEAD; do not assume any local or previous-chat copy is current.
 
 **Retry is not permission to replay the whole workflow.** It means recover the state, verify the last operation, and resume only the unfinished part.
 
@@ -319,44 +320,39 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0014
+## 10. Current restart point after ACTION 0015
 
-**Task:** ability-based composition analysis; five-hero pilot accepted as the reference method; roster-wide coverage audit completed; second bounded batch selected and approved.
+**Task:** ability-based composition analysis; the accepted five-hero pilot remains the reference method.
 
 **Confirmed current state:**
-- The approved three-layer model and detailed schema/tagging rules remain recorded in sections 13–14.
-- The five-hero pilot artifact is present at `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`: 5 heroes, 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
-- The user explicitly accepted the pilot as the correct reference method for descriptive kit-capability analysis.
-- The roster-wide audit read all four V4 shards, the canonical index and validation, the source manifest, and the pilot. The development HEAD before the prior Handoff update was `02910826b50c905fb3c1dbe06c1ae0dd0aaf84a4`; the current starting HEAD for this update is `4bef2c21ef9355012d192ff30b5fe3ab7627a3c6`.
-- V4 contains 131/131 roster heroes, 1,032 logical sections and 1,329 section-evidence records; all 131 profiles are marked normalized-complete and there are no open section gaps.
-- Every section has source evidence. All 1,032 descriptions are paraphrased summaries (1,024 from extraction batches and 8 from indexed primary-source content); no raw descriptions are present.
-- Section tags: 301 `consistent_explicit_capture`, 731 `unknown`. Unknown does not mean that an ability has no mechanic.
-- The four section types used as the pilot's core input (`base_skill`, `ultimate`, `enhance_force`, `exclusive_equipment`) account for 637 structural sections across the roster. These are candidate source sections, not pre-validated mechanics.
-- Only 5 profiles have recorded secondary-source observations (Cecia, Granny Dahnie, Indris, Nerion and Valka); 126 profiles remain pending broader secondary-source review. 17 profiles have only unknown per-section tags.
-- Source patch/update metadata is absent for all 131 profiles. Per the user's prior decision, patch/version research remains closed and this is not an active blocker.
-- The pilot's limits remain explicit: no formation prediction, no ability-activation prediction, no observation of actual match effects, and no guaranteed synergy/counter claims.
+- The approved three-layer model and schema/tagging rules remain recorded in sections 13–14.
+- First pilot: `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — 5 heroes, 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
+- Second bounded batch artifact: `docs/data/HERO_COMPOSITION_ABILITY_BATCH_2_CECIA_GRANNY_INDRIS_NERION_SOLISE.json` — 5 heroes, 69 mechanics, 17 team functions, 10 interactions and 10 unmodeled sections.
+- The second batch covers Cecia, Granny Dahnie, Indris, Nerion and Solise. Contess remains excluded because she is banned in the mode under consideration.
+- Static validation of the second-batch JSON passed: JSON parse; unique mechanic and function IDs; source evidence present for all mechanics; team-function mechanic references valid; interaction mechanic references valid; no Season Charm mechanics; exactly the five approved hero IDs.
+- The artifact preserves source evidence and tags per mechanic. Unknown tags remain unknown; Season Skill remains distinct from Season Charm.
+- Some Rivalry Mode sections remain unmodeled where the available summary is insufficient. The exact unresolved details are recorded in `unmodeled_sections`.
+- Patch research remains closed. The model describes kit capabilities, not actual match execution, guaranteed synergy/counter effects or match outcomes.
+- The user was provided a project-instructions text block requiring fresh Handoff retrieval from GitHub at the start of each session. The user must paste that text into the project's instruction settings; it has not been separately written to another repository file.
+- No application code, Supabase schema/data, migrations, existing indicators, Tier List, TOP Picks or `main` branch were changed.
 
 **Approved scope and closed decisions:**
-- The five-hero pilot is accepted as the reference method for describing kit capabilities.
-- The roster-wide coverage audit was approved and completed as a read-only analysis of existing repository artifacts.
-- Available current hero-skill descriptions are accepted as sufficiently up to date for this task; patch research remains closed unless the user reopens it.
-- Season Charm is out of scope and excluded; it remains distinct from Season Skill.
-- The model describes kit capabilities, not actual match execution or guaranteed effects.
+- The five-hero pilot is accepted as the reference method.
+- The second bounded batch and its structured JSON artifact are approved.
+- Season Charm is excluded and remains distinct from Season Skill.
+- Formation prediction, ability-activation prediction, actual match-effect claims, named-pair synergy assertions and composition scoring/weights remain unsupported or unapproved.
 - Existing Match Indicator and Showdown Draft Indicator remain separate protected systems.
 
 **Not done / not authorized:**
-- No automatic conversion of V4 summaries into mechanics, team functions or interactions.
-- No expansion of the pilot to additional heroes yet.
 - No application implementation, scoring formula/weights, predictive thresholds or UI.
 - No V4 import, Supabase schema/data change, migration or production RPC change.
 - No changes to Tier List, TOP Picks or `main`.
 - No in-game verification or Live Preview validation.
 
-**Completed actions:** ACTION 0002–0009 as recorded below; ACTION 0010's pending pilot decision was resolved by ACTION 0011; ACTION 0012 completed the roster-wide coverage audit.
-
-**Next single action:** await the user's decision on whether to authorize a second bounded hero batch and agree its selection. Do not expand the roster or implement anything before that approval.
+**Next single action:** await the user's next instruction. Do not automatically start another hero batch or implementation stage.
 
 ---
+
 
 ## 11. Initial audit log
 
@@ -756,3 +752,35 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Decision / interpretation: all five profiles have sufficient captured material for a bounded capability-based mapping, but some Rivalry Mode details remain unmodeled. Position-dependent selectors and activation triggers are recorded as conditional capabilities only; no formation, timing or match-outcome prediction is inferred.
 - Scope protection: read-only source review and analysis only. No structured data artifact, V4 shard, pilot artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
 - Next single action: prepare the separate second-batch JSON artifact using the accepted pilot schema and show its path/minimal diff before committing.
+
+## 23. Second-batch structured artifact and Handoff synchronization — 2026-11-25
+
+### ACTION 0015 — Commit the Cecia / Granny Dahnie / Indris / Nerion / Solise batch
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / second bounded batch artifact
+- Status: COMPLETED IN THIS COMMIT; static validation PASS
+- Purpose: persist the user-approved second-batch analysis in the same accepted schema pattern as the five-hero pilot and synchronize the operational restart document.
+- Exact target paths:
+  - New: `docs/data/HERO_COMPOSITION_ABILITY_BATCH_2_CECIA_GRANNY_INDRIS_NERION_SOLISE.json`
+  - Updated: `docs/AI_SESSION_HANDOFF.md`
+- Inputs / prior state:
+  - branch: `development`
+  - parent HEAD before this commit: `24a54c1519d3b44d5dbf269192ceacde5452e691`
+  - existing pilot reference: `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`
+  - source basis: V4 shards PART_01 through PART_04 and extraction batches 02, 03, 06, 07, 18 and 25, as documented in ACTION 0014.
+- User approval: explicit approval received to commit both paths as one coherent change.
+- Artifact contents: 69 mechanics, 17 team functions, 10 interactions and 10 unmodeled sections for Cecia, Granny Dahnie, Indris, Nerion and Solise.
+- Static validation performed immediately before commit:
+  - JSON parsed successfully.
+  - Five and only five approved hero IDs are present in mechanics.
+  - Mechanic IDs and team-function IDs are unique.
+  - Every mechanic has source evidence.
+  - Every team-function supporting mechanic reference resolves.
+  - Every interaction supporting mechanic reference resolves.
+  - No Season Charm mechanics are included.
+  - Prediction and scoring limitations remain explicit in `analysis_constraints`.
+- Handoff synchronization: updated top-level current stage; replaced the stale section 10 restart point; strengthened session-start instructions to fetch the current Handoff from GitHub `development`, record the branch HEAD SHA, and stop if GitHub is unavailable; appended this ACTION record. Earlier ACTION history remains preserved.
+- Project-instructions guidance: supplied the user with a ready-to-paste instruction block making the live GitHub Handoff authoritative. The block is guidance for project settings and is not represented as an applied settings change.
+- Scope protection: no V4 shard, pilot JSON, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was modified.
+- Verification required after commit: read back both paths from `development`, verify the branch HEAD and compare the commit to its parent to confirm exactly these two paths changed.
+- Next single action: await the user's next instruction; no further batch or implementation is implied.
