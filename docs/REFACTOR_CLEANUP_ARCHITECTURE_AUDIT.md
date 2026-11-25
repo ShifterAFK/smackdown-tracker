@@ -118,4 +118,4 @@ The safe direction is incremental cleanup of the current `development` runtime:
 
 **Stage 1 — architecture inventory: complete.**
 
-Next: Stage 2 — establish a repeatable, non-destructive baseline validation procedure for the current runtime (script loading, syntax checks, required DOM IDs, RPC call inventory, and module drift report). Do not modify production behavior during that stage.
+Stage 2 static validation is now complete and documented in `docs/REFACTOR_CLEANUP_BASELINE_VALIDATION.md`. Next: Stage 3 — add a repeatable automated validation command/CI check for entrypoint asset existence and JavaScript syntax. It must be read-only, must not call Supabase, and must not regenerate or overwrite module files.
