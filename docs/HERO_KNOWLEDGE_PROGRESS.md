@@ -681,3 +681,18 @@ Attempt direct source-page retrieval for the 20 indexed-only profiles; verify pa
 ## Restart point — Stage 2AD2
 
 Attempt alternate direct retrieval routes for the 20 indexed-only Stargazer pages, then cross-check high-impact hero mechanics against AFK.global and official patch notes. Preserve the distinction between page-level source evidence, secondary Season Skill records and Stargazer Season Charm. Review Contess's historical variant against the patch baseline.
+
+## Stage 2AD2 — Contess full-page section correction
+
+**Status: complete at indexed-source level; direct-page/patch verification pending.**  
+**Artifacts:** `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md`, `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_27.json`, `docs/HERO_KNOWLEDGE_BATCH_27_NORMALIZATION_AUDIT.md`
+
+The current indexed Stargazer page shows that the extra active effect previously attached to Detention Pass in Batches 16/21 belongs to a separate base skill: **Mandatory Civility**. Batch 27 captures all eight current page sections, adds Mandatory Civility, refreshes per-section tags and parameters, and reassigns the historical effect evidence without deleting it.
+
+The Detention Pass description now contains only its current Ultimate behavior. The old misattributed summary remains preserved with its provenance and reassignment note.
+
+No Supabase writes or application changes.
+
+## Restart point — Stage 2AD3
+
+Standardize Batch 27, rebuild V4 shards, update the Contess type/content reconciliation register, and rerun section/tag validation.
