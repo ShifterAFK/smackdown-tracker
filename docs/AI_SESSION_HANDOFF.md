@@ -307,25 +307,25 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point at file creation
+## 10. Current restart point after ACTION 0005
 
-**Task:** establish a reliable restart mechanism and recover the actual status of the new ability/action-based composition analysis.
+**Task:** advance the approved ability-based composition analysis from schema coverage assessment to a bounded source-verification pilot proposal.
 
 **Confirmed:**
-- The hero knowledge V4 dry-run exists and passed its recorded structural/tag/provenance checks, with the limitations listed above.
-- The hero knowledge source-verification workstream's latest recorded restart point is Stage 2AD4.
-- The new composition-analysis plan exists but is marked planning only; implementation is not started in that plan.
+- The hero knowledge V4 dry-run exists and its schema coverage/gaps are recorded in ACTION 0005 and section 15.
+- The approved three-layer model and detailed schema/tagging rules are recorded in sections 13–14.
+- The hero knowledge source-verification workstream's latest recorded restart point is Stage 2AD4; it remains a distinct workstream.
 - Existing Match Indicator and Showdown Draft Indicator are separate protected systems.
 
 **Not confirmed:**
-- No approved final indicator formula.
+- No approved final indicator formula or weights.
 - No verified availability of actual in-match combat action telemetry.
-- No implemented composition feature extractor or validated predictive model established by the planning document.
-- No approval to import V4 or change Supabase.
+- No implemented composition feature extractor or validated predictive model.
+- No approval to import V4, change Supabase, or begin the proposed source-verification pilot.
 
-**Reconciliation status:** completed and recorded in ACTION 0002 below.
+**Completed reconciliation:** ACTION 0002. **Completed V4 schema coverage assessment:** ACTION 0005.
 
-**Next single action:** define the concrete field schema and tagging rules for the approved three-layer model, using existing V4 evidence. Check evidence coverage and record gaps; do not repeat hero extraction or normalization.
+**Next single action:** prepare a bounded source-verification pilot proposal for selected heroes, using existing V4 records as an index. Do not start the pilot, repeat extraction/normalization, or import data until separately authorized.
 
 ---
 
@@ -449,7 +449,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - **Candidate labels are not a claim that V4 already supports them.** Populate only what the available evidence supports; preserve unknowns and record coverage gaps. Where the source provides no value for an attribute, do not manufacture one.
 - **Still OPEN / not approved:** final matching/evaluation rules between interactions; numerical synergy/counter bonuses; indicator formula and weights; predictive thresholds; UI and application/database implementation.
 - Scope protection: no application code, existing indicators, Tier List, TOP Picks, Supabase, migrations or `main` branch were changed by this action.
-- Next single action: map the approved fields against the existing V4 structure and produce a field-coverage/gap assessment, without repeating extraction or normalization.
+- Next single action: see ACTION 0005 / section 15 for the completed V4 field-coverage and gap assessment.
 
 
 ## 15. V4 schema coverage and gap assessment — 2026-11-25
