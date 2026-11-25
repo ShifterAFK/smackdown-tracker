@@ -136,6 +136,23 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Section names/order, explicit per-skill mappings and source URLs match Batch 21.
 - No duplicate section keys, missing summaries or non-null raw descriptions.
 
-## Restart point — Stage 2E
+
+## Stage 2E — Batch 20 normalization
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_20.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_20_NORMALIZATION_AUDIT.md`
+
+- Six complete profiles normalized: Rolan, Faramor, Callan, Hodgkin, Nara and Cryonaia.
+- 45 sections, 19 page-level tags kept separate, 15 explicitly tagged sections and 20 per-section tag records.
+- 30 sections retain `tags: null` because no per-skill mapping was recorded in Batch 20.
+- Four partial recaptures (Atalanta, Baden, Phraesto, Valen) remain supplemental and are not promoted to complete profiles.
+- Structural checks passed: manifest IDs/URLs/locales, unique section keys, non-empty summaries, null raw descriptions, and tag mapping consistency.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2F
+
+Next, inspect **Batch 19**. Separate complete first-pass profiles from partial recaptures, normalize only complete profiles, and preserve partial data as supplements. Validate the result, commit its artifact and audit, then update this log. No Supabase import.
+
 
 Next, inspect **Batch 20**. Distinguish complete captures from partial recaptures. Normalize only profiles whose full first-pass capture is established by the extraction record; preserve partial recaptures as supplemental evidence for later reconciliation. Validate and commit the batch unit, then update the progress log. No Supabase import.
