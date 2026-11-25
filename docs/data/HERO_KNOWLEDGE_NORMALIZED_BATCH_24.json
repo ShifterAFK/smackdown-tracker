@@ -1,0 +1,790 @@
+{
+  "schema_version": 1,
+  "dataset_status": "batch_normalized_dry_run",
+  "generated_at": "2026-11-25",
+  "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+  "normalization_spec": "docs/HERO_KNOWLEDGE_NORMALIZATION_SPEC.md",
+  "description_policy": "Descriptions are paraphrased capture summaries, not verbatim source text. description_raw is null.",
+  "tag_policy": "Page-level tags remain separate. Only explicit per-skill tag mappings from Batch 24 are attached to ability sections.",
+  "hero_count": 3,
+  "summary": {
+    "complete_profiles": 3,
+    "sections": 24,
+    "tagged_sections": 9,
+    "per_skill_tag_records": 15,
+    "page_tag_records": 13
+  },
+  "heroes": [
+    {
+      "hero_id": "baden",
+      "tracker_name": "Baden",
+      "source_display_name": "Baden",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/baden",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "page_tags": [
+        {
+          "raw_tag": "Airborne",
+          "tag_family": "Airborne",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Cheat Death (Self)",
+          "tag_family": "Cheat Death",
+          "qualifier": [
+            "Self"
+          ]
+        },
+        {
+          "raw_tag": "Debuff",
+          "tag_family": "Debuff",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Debuff (AOE)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "AOE"
+          ]
+        },
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Heal Denial",
+          "tag_family": "Heal Denial",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        }
+      ],
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-omen-s-grasp",
+          "name": "Omen's Grasp",
+          "section_type": "ultimate",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Baden and all phantoms attack a designated enemy in four successive strikes, keeping it stunned. Final strike deals true damage to the target and enemies within 1 tile, drains HP, reduces max HP and prevents HP/Energy recovery for 8 s. Baden is invincible while casting.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Airborne",
+              "tag_family": "Airborne",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Debuff (AOE)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "AOE"
+              ]
+            },
+            {
+              "raw_tag": "Energy Denial",
+              "tag_family": "Energy Denial",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Heal Denial",
+              "tag_family": "Heal Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "base_skill-wraithbrand",
+          "name": "Wraithbrand",
+          "section_type": "base_skill",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Opening curse damages enemies in a straight line. When a cursed non-Boss enemy first falls below 50% HP, a phantom appears nearby; Boss enemies summon phantoms each time they lose HP equal to a threshold based on Baden's initial ATK. Phantoms inherit stats, remain invincible and attack their summoning target. Active cast stuns the current target, steals max HP and Energy, then damages them.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Energy Denial",
+              "tag_family": "Energy Denial",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Summon",
+              "tag_family": "Summon",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "base_skill-soul-sunder",
+          "name": "Soul Sunder",
+          "section_type": "base_skill",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Baden and phantoms unleash five slashes. Final shockwave damages enemies within 2 tiles and reduces their Vitality, stacking up to three times.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Debuff (AOE)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "hero_focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases Penetration, with extra Penetration while any phantom Baden created is on the battlefield.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-revenant-s-due",
+          "name": "Revenant's Due",
+          "section_type": "exclusive_equipment",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Opening Wraithbrand curse deals increased damage with guaranteed critical and max-HP reduction; each phantom summoned by the curse steals target ATK for Baden and itself.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target, AOE)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target",
+                "AOE"
+              ]
+            },
+            {
+              "raw_tag": "Summon",
+              "tag_family": "Summon",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "enhance_force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "If Baden is defeated while any phantom remains, possesses one, is deprioritized by enemies and takes reduced damage for 8 s; up to three triggers per battle.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Cheat Death (Self)",
+              "tag_family": "Cheat Death",
+              "qualifier": [
+                "Self"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "season_charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Increases damage dealt and reduces damage taken, amplified on enemy side; higher ranks grant a permanent shield on first entry to enemy territory.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Opening/assist/defeat grants Penetration and Haste; refine adds Crit and Ranged DEF.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/baden",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        }
+      ],
+      "source_notes": [],
+      "normalization_status": "normalized_from_batch_24",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "saida",
+      "tracker_name": "Saida",
+      "source_display_name": "Saida",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/saida",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "page_tags": [
+        {
+          "raw_tag": "Cheat Death (Self)",
+          "tag_family": "Cheat Death",
+          "qualifier": [
+            "Self"
+          ]
+        },
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        }
+      ],
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-seed-siphon",
+          "name": "Seed Siphon",
+          "section_type": "ultimate",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Teleports in front of an enemy, prevents movement/actions, deals damage and drains Energy, then plants a Drain Seed. Seeds periodically damage their host and reduce Energy. Up to eight seeds can exist at once.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Energy Denial",
+              "tag_family": "Energy Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "base_skill-crimson-claim",
+          "name": "Crimson Claim",
+          "section_type": "base_skill",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Passive converts some damage from Saida's normal attacks and skills into healing, with excess healing becoming a shield. Active cast pierces an enemy, damages and interrupts them; nearby Drain Seeds also create blood spikes against the same target.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "base_skill-revenant-sprout",
+          "name": "Revenant Sprout",
+          "section_type": "base_skill",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "When defeated, consumes a Drain Seed to revive at its location and restore HP. Prioritizes the oldest seed; restored HP scales with seed age, subject to caps.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Cheat Death (Self)",
+              "tag_family": "Cheat Death",
+              "qualifier": [
+                "Self"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "hero_focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Reduces damage taken; additional reduction scales with the number of existing Drain Seeds, up to a cap.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-deepening-roots",
+          "name": "Deepening Roots",
+          "section_type": "exclusive_equipment",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Reduces damage dealt by enemies afflicted with Drain Seed and shortens the interval between seed attacks each time Saida casts her Ultimate. At max interval reduction, deals large damage to all enemies and traps them, preventing movement/actions while causing periodic HP loss.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "DoT",
+              "tag_family": "DoT",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "enhance_force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Plants Drain Seeds on two nearby allies at battle start; allied seeds do not harm them and instead grant shields.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "season_charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Energy recovery per second; after three Ultimates increases ATK. Higher ranks add true damage to all enemies on each Ultimate.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Opening/assist/defeat grants Penetration and Haste; refine adds Ranged DEF and DEF Penetration.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/saida",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        }
+      ],
+      "source_notes": [],
+      "normalization_status": "normalized_from_batch_24",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "perseus",
+      "tracker_name": "Perseus",
+      "source_display_name": "Perseus",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/perseus",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "page_tags": [
+        {
+          "raw_tag": "Temp Buff (Opening, AOE)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "AOE"
+          ]
+        }
+      ],
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate-divine-rend",
+          "name": "Divine Rend",
+          "section_type": "ultimate",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Marches three tiles in a chosen direction, repeatedly damaging and knocking back adjacent enemies, then performs a shield bash that damages and stuns enemies within 1 tile. Perseus is unaffected while casting.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "base_skill-spear-shield-combo",
+          "name": "Spear-Shield Combo",
+          "section_type": "base_skill",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Circular spear and shield strikes damage adjacent enemies; shield strike grants a shield based on ATK and damage dealt, and increases Perseus's ATK SPD while it lasts.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "base_skill-fertile-ground",
+          "name": "Fertile Ground",
+          "section_type": "base_skill",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Before Perseus takes heavy damage, creates fertile ground within 1 tile. Allies standing on it gain ATK and Phys & Magic DEF. The first time Perseus falls below 40% of initial max HP, permanently increases his max HP and heals him; fertile ground then withers permanently.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Temp Buff (Opening, AOE)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "Opening",
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_per_skill_tag_mapping",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "hero_focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK, with additional ATK while Perseus has temporary stat buffs from allies.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-divine-grace",
+          "name": "Divine Grace",
+          "section_type": "exclusive_equipment",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Each temporary stat buff increases its effect and grants damage dealt/damage taken modifiers, stacking up to four times. With two temporary stat buffs from different allies, damage becomes true damage and Perseus becomes unaffected for at least 6 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "enhance_force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Expands Fertile Ground range by 1 tile.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "season_charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Increases damage dealt and reduces damage taken; both bonuses are amplified while on the enemy side. Higher ranks grant a permanent shield on first entry to enemy territory.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Reduces damage taken at battle start, then increases damage dealt after 20 s; refine adds Crit Resist and Crit DMG DEF.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md",
+            "capture_status": "first_pass_captured",
+            "evidence_kind": "captured_summary_and_per_skill_tag_listing"
+          }
+        }
+      ],
+      "source_notes": [
+        "Stargazer explicitly defines a temporary stat buff as an in-battle stat increase that expires by timer or condition. Shields, control immunity and damage dealt/taken modifiers do not count toward Divine Grace's trigger."
+      ],
+      "normalization_status": "normalized_from_batch_24",
+      "review_status": "needs_verbatim_source_crosscheck"
+    }
+  ]
+}
