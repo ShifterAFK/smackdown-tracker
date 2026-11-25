@@ -1,0 +1,1680 @@
+{
+  "schema_version": 1,
+  "dataset_status": "batch_normalized_dry_run",
+  "generated_at": "2026-11-25",
+  "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+  "normalization_spec": "docs/HERO_KNOWLEDGE_NORMALIZATION_SPEC.md",
+  "description_policy": "Descriptions are paraphrased capture summaries, not verbatim source text. description_raw is null.",
+  "tag_policy": "Page-level tags remain separate. Only explicit per-skill list entries and inline section tag prefixes are attached. Null tags mean no section-level mapping was recorded in this batch.",
+  "summary": {
+    "complete_profile_count": 6,
+    "complete_section_count": 49,
+    "complete_tagged_section_count": 14,
+    "complete_tag_record_count": 23,
+    "complete_page_tag_record_count": 2,
+    "partial_profile_count": 1,
+    "partial_supplement_section_count": 1,
+    "partial_tagged_section_count": 0,
+    "partial_tag_record_count": 0,
+    "partial_page_tag_record_count": 1
+  },
+  "completed_profiles": [
+    {
+      "hero_id": "daimon",
+      "tracker_name": "Daimon",
+      "source_display_name": "Daimon",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/daimon",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 13,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 13,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_13",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/daimon",
+      "page_tags": null,
+      "page_tags_status": "not_recorded_in_batch_13",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate",
+          "name": "Dolly Defender",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Dolly Defender",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Stitchy fights alongside Daimon, automatically attacking the nearest enemy. Active cast: Stitchy slashes an X-shaped area for max-HP-based true damage; Daimon and two weakest allies gain shields based on damage dealt.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Summon",
+              "tag_family": "Summon",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Ultimate — Dolly Defender",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-playtime-plunder",
+          "name": "Playtime Plunder",
+          "section_type": "base_skill",
+          "source_label": "Playtime Plunder",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Stitchy periodically deals max-HP-based true damage to the target and adjacent enemies; damage converts to Daimon's shield. Active cast: Daimon drains the target's max HP and converts it to a shield.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-buddy-barrier",
+          "name": "Buddy Barrier",
+          "section_type": "base_skill",
+          "source_label": "Buddy Barrier",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Bonds with the ally placed behind Daimon during preparation. When Daimon gains a shield, the bonded ally receives a portion; while shielded by Daimon, the bonded ally gains Life Drain and ATK. Re-bonds to the weakest ally if the companion is defeated.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Special Target",
+              "tag_family": "Special Target",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Temp Buff (Opening, Single Target)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "Opening",
+                "Single Target"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Buddy Barrier",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases damage reduction; grants extra reduction while shielded.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-guardian-growl",
+          "name": "Guardian Growl",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Guardian Growl",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "When cumulative damage taken and shield loss exceed a threshold, Stitchy returns and frightens nearby enemies plus the enemy who dealt the most damage to Daimon.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target, AOE)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target",
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Exclusive Equipment — Guardian Growl",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "When an allied hero's shield expires, converts half of the remaining shield into healing for that hero.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Increases shield value and grants Phys/Magic DEF when shielding; higher ranks also heal based on shield value.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Temp Buff",
+              "tag_family": "Temp Buff",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Season Charm",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate low-HP mitigation/healing effects and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/daimon",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "gerda",
+      "tracker_name": "Gerda",
+      "source_display_name": "Gerda",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/gerda",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 13,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 13,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_13",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/gerda",
+      "page_tags": null,
+      "page_tags_status": "not_visible_in_excerpt",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate",
+          "name": "Splashing Fun",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Splashing Fun",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Splashes spring water within 2 tiles, healing allies and damaging enemies; enemies are slept. Healing received from the hot spring extends sleep duration, up to a cap.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-spring-therapy",
+          "name": "Spring Therapy",
+          "section_type": "base_skill",
+          "source_label": "Spring Therapy",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Opening leap and ground stomp damages and interrupts enemies, then creates a hot spring. Allies in it heal over time; enemies also recover a small capped amount of HP.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-mighty-smash",
+          "name": "Mighty Smash",
+          "section_type": "base_skill",
+          "source_label": "Mighty Smash",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Damages and stuns an enemy; Gerda gains a shield.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases damage reduction.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-spring-of-life",
+          "name": "Spring of Life",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Spring of Life",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Increases healing received from allied hot spring; each ally heal reduces Mighty Smash cooldown. Higher level makes allies unaffected briefly when entering the spring for the first time.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Spring Therapy's stomp stuns instead of interrupting. LV 2 grants a first-entry shield to allies in the hot spring, with further shields per healing instance and a per-ally cap.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Deals magic damage to adjacent enemies and heals Gerda; higher ranks add opening unaffected duration.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate low-HP mitigation/healing effects and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/gerda",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "peggy",
+      "tracker_name": "Peggy",
+      "source_display_name": "Peggy",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/peggy",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 13,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 13,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_13",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/peggy",
+      "page_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Summon",
+          "tag_family": "Summon",
+          "qualifier": []
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate",
+          "name": "Princess' Rally",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Princess' Rally",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Summons two royal guards that inherit Peggy's HP and ATK. Active cast heals remaining guards and orders them to protect all allies; 70% of ally damage taken is shared among guards, whose own HP loss is reduced.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Summon",
+              "tag_family": "Summon",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Ultimate — Princess' Rally",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-royal-scroll",
+          "name": "Royal Scroll",
+          "section_type": "base_skill",
+          "source_label": "Royal Scroll",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Heals remaining royal guards and the two weakest allies over 8 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-royal-barrage",
+          "name": "Royal Barrage",
+          "section_type": "base_skill",
+          "source_label": "Royal Barrage",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Summons a royal marksman in the backline to attack two frontmost enemies with armor-piercing arrows. Hit enemies take increased ranged damage; allied summons gain an additional ranged-damage bonus against them.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "Summon",
+              "tag_family": "Summon",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Royal Barrage",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases Haste; grants extra Haste while two royal guards remain.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-royal-protection",
+          "name": "Royal Protection",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Royal Protection",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Royal guards use sword moves while Princess' Rally is active, dealing AOE damage and gaining shields. LV 3 creates a glory aura increasing melee damage for allies, with an extra bonus for allied summons.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "When at least three allied summons from different allies are alive, all allied summons gain ATK and Phys/Magic DEF based on Peggy's initial stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Increases ATK and Phys/Magic DEF for the caster and created units; higher ranks add Haste after 5 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides a first-low-HP ally heal/shield and refine stats.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/peggy",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "ravion",
+      "tracker_name": "Ravion",
+      "source_display_name": "Ravion",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/ravion",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 13,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 13,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_13",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/ravion",
+      "page_tags": null,
+      "page_tags_status": "not_recorded_in_batch_13",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate",
+          "name": "Killer Flush",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Killer Flush",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Launches 15 leaf cards at an enemy, each dealing ATK damage plus extra damage based on the target's lost HP. Ravion is unaffected while casting.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-designated-duty",
+          "name": "Designated Duty",
+          "section_type": "base_skill",
+          "source_label": "Designated Duty",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Assigns an Objective to each of two rearmost allies. Completing an objective by damage, assist or defeat restores Energy and grants ATK based on Ravion's initial ATK. After both complete, Ravion activates Mortal Ace against the enemy with the highest cumulative damage, reducing ATK/Phys DEF and striking/knocking down.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "Energy Battery",
+              "tag_family": "Energy Battery",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Special Target",
+              "tag_family": "Special Target",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Temp Buff (Single Target)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "Single Target"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Designated Duty",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-phantom-gambit",
+          "name": "Phantom Gambit",
+          "section_type": "base_skill",
+          "source_label": "Phantom Gambit",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Teleports three times; the first two arrivals damage the densest enemy tiles, and the third moves Ravion to a tile farthest from enemies.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK; grants extra ATK after the first Mortal Ace.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-shadow-patron",
+          "name": "Shadow Patron",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Shadow Patron",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "After the first Mortal Ace, permanently increases Haste and ATK for Ravion and allies who completed Objectives. LV 3 prevents the first fatal blow to Ravion or an objective ally, grants shield/Life Drain, and may swap the ally with Ravion.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Cheat Death (Self, Ally)",
+              "tag_family": "Cheat Death",
+              "qualifier": [
+                "Self",
+                "Ally"
+              ]
+            },
+            {
+              "raw_tag": "Haste (Single Target)",
+              "tag_family": "Haste",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "Temp Buff (Single Target)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "Single Target"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Exclusive Equipment — Shadow Patron",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "When an ally accepts an Objective, increases ATK and makes them unaffected for 5 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Temp Buff (Opening, Single Target)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "Opening",
+                "Single Target"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Enhance Force",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Ravion's own-skill displacement grants ATK; higher ranks also grant a shield.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate opening/assist/defeat stats and refine effects.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "targeting_rule-rearmost-ally-targeting-order",
+          "name": "Rearmost-ally targeting order",
+          "section_type": "targeting_rule",
+          "source_label": "Rearmost-ally targeting order",
+          "order_index": 9,
+          "description_raw": null,
+          "description_summary": "The page specifies the rearmost-ally scan order by row and hex ID; the exact ordering rule is retained as a separate targeting record.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/ravion",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "shakir",
+      "tracker_name": "Shakir",
+      "source_display_name": "Shakir",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/shakir",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 13,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 13,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_13",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/shakir",
+      "page_tags": null,
+      "page_tags_status": "not_recorded_in_batch_13",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate",
+          "name": "Ravaging Claws",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Ravaging Claws",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Morphs into wolf, knocks the target airborne and damages enemies within 2 tiles. While in Wolf Form, creates Lupine Aura; Shakir's normal attacks hit a frontal area, allies in the aura take less damage and gain Haste. Maintaining wolf form consumes Energy per second.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Airborne",
+              "tag_family": "Airborne",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Haste (AOE)",
+              "tag_family": "Haste",
+              "qualifier": [
+                "AOE"
+              ]
+            },
+            {
+              "raw_tag": "Temp Buff (AOE)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Ultimate — Ravaging Claws",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-savage-cleave",
+          "name": "Savage Cleave",
+          "section_type": "base_skill",
+          "source_label": "Savage Cleave",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Performs three consecutive strikes; in Wolf Form, damages enemies in a frontal arc.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-wolf-s-will",
+          "name": "Wolf's Will",
+          "section_type": "base_skill",
+          "source_label": "Wolf's Will",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "Provides passive Ranged DEF; in Wolf Form Shakir is unaffected and gains Life Drain. Each non-summoned ally in Lupine Aura grants Shakir ATK.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases damage reduction; grants extra reduction when at least two non-summoned allies are buffed by Lupine Aura.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-all-conquering",
+          "name": "All-Conquering",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — All-Conquering",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Can cast Ultimate above the Energy threshold and remains in Wolf Form without Energy cost for a period after Ultimate. Higher rank shares Wolf's Will ATK bonus with allies in the aura.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Temp Buff (AOE)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Exclusive Equipment — All-Conquering",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "The third hit of Savage Cleave reduces target Vitality for 4 s.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target, AOE)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target",
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Enhance Force",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Every 8 s increases ATK and Life Drain for allies within 2 tiles; higher ranks add a shield for Shakir per ally affected.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Temp Buff (AOE)",
+              "tag_family": "Temp Buff",
+              "qualifier": [
+                "AOE"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Season Charm",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate opening/assist/defeat stats and refine effects.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/shakir",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    },
+    {
+      "hero_id": "tasi",
+      "tracker_name": "Tasi",
+      "source_display_name": "Tasi",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/tasi",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 13,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 13,
+        "kind": "complete_first_pass_capture"
+      },
+      "profile_completion_status": "complete_in_batch_13",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/tasi",
+      "page_tags": null,
+      "page_tags_status": "not_visible_in_excerpt",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate",
+          "name": "Eternal Dreamscape",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Eternal Dreamscape",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Creates a 3.5 s dream hypnotizing all enemies; they cannot move or act and take damage over time.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-dream-dance",
+          "name": "Dream Dance",
+          "section_type": "base_skill",
+          "source_label": "Dream Dance",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Consumes part of current HP to damage and stun adjacent enemies, then flies to the farthest enemy and repeats the effect with reduced damage against targets hit twice.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "base_skill-fluttering-dream",
+          "name": "Fluttering Dream",
+          "section_type": "base_skill",
+          "source_label": "Fluttering Dream",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "When Tasi loses 50% HP, enters the dream realm and transforms into a butterfly, becoming invincible, recovering HP and damaging adjacent enemies. Can trigger twice per battle.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": [
+            {
+              "raw_tag": "Cheat Death (Self)",
+              "tag_family": "Cheat Death",
+              "qualifier": [
+                "Self"
+              ]
+            }
+          ],
+          "tag_capture_status": "explicit_inline_per_skill_tag",
+          "tag_mapping_label": "Fluttering Dream",
+          "tag_mapping_method": "explicit_per_skill_tag_list_or_inline_prefix",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Increases ATK; grants extra ATK while Eternal Dreamscape lasts.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-shimmering-dust",
+          "name": "Shimmering Dust",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Shimmering Dust",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "After Ultimate, gains Haste and damage reduction; Dream Dance no longer costs HP or has cooldown during this window and prioritizes the farthest hypnotized enemy.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "Each assist/defeat of a non-summoned enemy grants an extra Fluttering Dream attempt.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "Provides Energy recovery per second; after three Ultimates adds ATK, with higher ranks adding true damage to all enemies.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Provides separate Ultimate-triggered damage/Energy effects and refine effects.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/tasi",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [],
+      "normalization_status": "normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    }
+  ],
+  "partial_recapture_supplements": [
+    {
+      "hero_id": "perseus",
+      "tracker_name": "Perseus",
+      "source_display_name": "Perseus",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/perseus",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "first_pass_batch": 13,
+      "recapture_batches": [],
+      "first_pass_capture_status": "first_pass_captured",
+      "batch_capture": {
+        "batch": 13,
+        "kind": "partial_recapture_supplement"
+      },
+      "profile_completion_status": "partial",
+      "source_url_in_batch": "https://afkstargazer.com/en/skill/perseus",
+      "page_tags": [
+        {
+          "raw_tag": "Temp Buff (Opening, AOE)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "AOE"
+          ]
+        }
+      ],
+      "page_tags_status": "captured",
+      "page_tags_mapping_status": "page_level_tags_not_copied_to_abilities",
+      "sections": [
+        {
+          "ability_key": "ultimate",
+          "name": "Divine Rend",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Divine Rend",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "Marches three tiles in the chosen direction, striking adjacent enemies repeatedly and pushing them along the path; ends with a shield bash that damages and stuns enemies within 1 tile. Perseus is unaffected while casting.",
+          "description_kind": "paraphrased_summary_from_extraction_batch",
+          "cooldown": null,
+          "initial_cooldown": null,
+          "range": null,
+          "initial_energy": null,
+          "tags": null,
+          "tag_capture_status": "not_explicitly_recorded_in_batch",
+          "tag_mapping_label": null,
+          "tag_mapping_method": null,
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/perseus",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+            "capture_batch": 13,
+            "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+          }
+        }
+      ],
+      "source_notes": [],
+      "capture_status_notes": [
+        "The capture excerpt ends during Ultimate level scaling. Remaining abilities, Hero Focus, Exclusive Equipment, Enhance Force, Season Charm and Rivalry Mode require recapture."
+      ],
+      "normalization_status": "supplement_normalized",
+      "review_status": "needs_verbatim_source_crosscheck"
+    }
+  ]
+}
