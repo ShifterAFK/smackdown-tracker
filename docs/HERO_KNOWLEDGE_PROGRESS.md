@@ -428,6 +428,31 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - All IDs, source URLs, locales, eight-section profile structures and unique ability keys validated.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2Z
+
+
+## Stage 2Z — global normalized-data audit
+
+**Status: completed with reconciliation blockers.**  
+**Audit:** `docs/HERO_KNOWLEDGE_GLOBAL_NORMALIZATION_AUDIT.md`
+
+### Results
+
+- All **131/131** tracker IDs are represented in normalized batch artifacts 01–24; no missing or unexpected roster IDs.
+- 223 profile capture records across 24 files; 1,299 section records including recapture duplicates.
+- 119 unique heroes have at least one complete normalized record.
+- 12 heroes remain partial-only in the normalized batch groups: Bryon, Cecia, Chippy, Granny Dahnie, Hammie, Indris, Mehira, Nerion, Reinier, Satrana, Talene and Valka.
+- This is a status mismatch against the final source audit's 131/131 first-pass capture statement. The same 12-profile difference exists in the historical 80/131 vs 68/131 count after Batch 13.
+- Per-batch structural checks passed: manifest IDs, source URLs/locales, source-evidence URLs, section keys, summaries, raw-description nulls, and tag object shape.
+- Recapture duplicates are present and must be merged by hero ID + ability key; inspected repeated records agree on names/types/tags.
+- Top-level schema varies between Batches 01–19, 20 and 21–24.
+
+### Safety
+
+No Supabase writes, application code changes, indicator/tier changes or main-branch changes.
+
+### Restart point — Stage 2AA
+
+Reconcile the 12 source-audit-complete / normalized-partial profiles without inventing absent sections; standardize the batch envelope; merge repeated section evidence; then produce one canonical 131-hero consolidated dry-run JSON and validation report. No Supabase import.
+
 
 Audit all normalized batch artifacts 01–24 for schema consistency, duplicate hero/section keys, tag mapping parity, source URL/locale agreement, provenance, and cross-batch completeness. Resolve discrepancies before proposing a Supabase import. No Supabase writes or application changes.
