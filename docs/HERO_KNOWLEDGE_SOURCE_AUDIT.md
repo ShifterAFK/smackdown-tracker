@@ -555,3 +555,16 @@ Four additional profiles gained substantial source details but remain partial:
 **Updated first-pass capture coverage: 110/131 complete (84.0%); 21/131 partial (16.0%).** This is source-capture completeness only. It does not imply second-source validation, in-game patch verification, or database readiness.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 28. Partial-profile recapture pass 8 (2026-11-25)
+
+Twenty-first extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_21.md` — eighth recapture pass.
+
+Nine tracker profiles upgraded to complete first-pass captures:
+- `voracia`, `igor`, `kruger`, `contess`, `walker`, `gwyneth`, `orion`, `marilee`, `himmel`.
+
+**Updated first-pass capture coverage: 119/131 complete (90.8%); 12/131 partial (9.2%).** This is a source-capture completeness measure only. It does not imply second-source cross-check, in-game patch verification, or database readiness.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
