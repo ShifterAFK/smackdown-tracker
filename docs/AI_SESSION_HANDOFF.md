@@ -8,10 +8,10 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before ACTION 0017:** `f9d3187567412ef9e301ac6c45e11afc2e4ad45c`  
+**Last confirmed development HEAD before ACTION 0018:** `6d9eda60435bdc0fb28fea577f192cad00b77efd`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
-**Current stage:** five-hero pilot accepted as the reference method; first and second bounded batches committed; third bounded batch approved in alphabetical order (Aliceth, Alna, Alsa, Antandra, Arden); source review not yet started  
+**Current stage:** five-hero pilot accepted as the reference method; first and second bounded batches committed; third alphabetical batch source review completed for Aliceth, Alna, Alsa, Antandra and Arden; third structured JSON artifact not yet created  
 **Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
@@ -320,7 +320,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0017
+## 10. Current restart point after ACTION 0018
 
 **Task:** ability-based composition analysis; the accepted five-hero pilot remains the reference method.
 
@@ -328,31 +328,16 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - The approved three-layer model and schema/tagging rules remain recorded in sections 13–14.
 - First pilot: `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — 5 heroes, 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
 - Second bounded batch artifact: `docs/data/HERO_COMPOSITION_ABILITY_BATCH_2_CECIA_GRANNY_INDRIS_NERION_SOLISE.json` — 5 heroes, 69 mechanics, 17 team functions, 10 interactions and 10 unmodeled sections.
-- The second batch covers Cecia, Granny Dahnie, Indris, Nerion and Solise. Contess remains excluded because she is banned in the mode under consideration.
-- The third bounded batch is approved in alphabetical order: Aliceth, Alna, Alsa, Antandra and Arden. Its source review and analysis have not started.
+- Third alphabetical batch source review is complete for Aliceth, Alna, Alsa, Antandra and Arden. The structured third-batch JSON artifact has not yet been created.
+- Third-batch source captures were read from V4 PART_01 and extraction batches 02, 04, 05, 10, 12, 15 and 19; the accepted pilot and second-batch artifacts were read as schema references.
+- Existing hero descriptions may be distributed across multiple JSON shards/files. Treat source files as evidence inputs, not as the final analytical model. Identify heroes by stable `hero_id`, abilities by `ability_key`, retain per-record provenance, and compare duplicate/conflicting descriptions before reconciliation. Do not silently merge or duplicate records. The V4 shards collectively contain roster descriptions, but their paraphrased sections are not already atomized mechanics.
+- Third-batch preliminary capability relations include Arden control potentially satisfying Alsa's controlled-target condition, ally control potentially satisfying Arden's Energy trigger, and Aliceth's conditional Brightfeather ally amplification. These remain conditional kit-capability relations, not observed match synergies.
 - Season Charm remains excluded and distinct from Season Skill. Unknown tags remain unknown.
 - Patch research remains closed. The model describes kit capabilities, not actual match execution, guaranteed synergy/counter effects or match outcomes.
 - Formation prediction and ability-activation prediction are unsupported. Position- and activation-dependent interactions remain conditional capabilities.
-- No application code, Supabase schema/data, migrations, existing indicators, Tier List, TOP Picks or `main` branch were changed.
+- No application indicator, scoring, weighting, predictive thresholds, UI or Supabase implementation is approved or implemented.
 
-**Approved scope and closed decisions:**
-- The five-hero pilot is accepted as the reference method.
-- The first and second bounded batches and their structured JSON artifacts are complete.
-- The third batch selection is approved; this does not imply its analysis or artifact creation is complete.
-- Existing Match Indicator and Showdown Draft Indicator remain separate protected systems.
-
-**Not done / not authorized:**
-- No third-batch source analysis or structured JSON artifact yet.
-- No application implementation, scoring formula/weights, predictive thresholds or UI.
-- No V4 import, Supabase schema/data change, migration or production RPC change.
-- No changes to Tier List, TOP Picks or `main`.
-- No in-game verification or Live Preview validation.
-
-**Next single action:** inspect the V4 records and corresponding source captures for Aliceth, Alna, Alsa, Antandra and Arden; then perform only this approved bounded analysis.
-
-
----
-
+**Next single action:** prepare the separate third-batch JSON artifact using the accepted pilot schema; then show the exact new path and minimal diff for approval before committing it.
 
 ## 11. Initial audit log
 
@@ -813,3 +798,32 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Decision: continue using the accepted pilot method and existing constraints; do not expand beyond these five heroes. Season Charm remains excluded; patch research remains closed; unknown tags remain unknown.
 - Scope protection: only `docs/AI_SESSION_HANDOFF.md` is changed. No V4 shard, pilot or second-batch JSON, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch is changed.
 - Next single action: inspect the V4 records and relevant source captures for Aliceth, Alna, Alsa, Antandra and Arden, then conduct the bounded analysis.
+
+
+## 26. Third alphabetical batch source review and multi-file source handling — 2026-11-25
+
+### ACTION 0018 — Review Aliceth, Alna, Alsa, Antandra and Arden
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / third bounded alphabetical hero batch
+- Status: SOURCE REVIEW AND PRELIMINARY CAPABILITY ANALYSIS COMPLETED; STRUCTURED ARTIFACT NOT YET CREATED
+- Purpose: apply the accepted five-hero descriptive pilot method to the approved third batch, and clarify how hero ability descriptions distributed across multiple JSON files are treated.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; V4 shard PART_01, extraction batches 02, 04, 05, 10, 12, 15 and 19; pilot and second-batch JSON schema references; `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `6d9eda60435bdc0fb28fea577f192cad00b77efd`; Handoff blob SHA `1f42ea1d07e19ec2663ee29102ca8de7ce74b709`.
+- Operation: reviewed the five selected hero profiles and source evidence, compared the capture structure against the accepted JSON schema, and clarified that source descriptions may be distributed across multiple JSON files. No data artifact was written in this action.
+- Result:
+  - Aliceth: Radiant Rain multi-volley damage scaling with target lost HP and airborne invulnerability; Brightfeather ally support and conditional extra strikes; marked-target focus/Penetration and conditional execute; lethal-hit prevention for Aliceth/Brightfeather allies; Enhance Force adds Radiant Rain volleys after Brightfeather feather-strike thresholds. Season Charm excluded.
+  - Alna: battle-opening Haste/range reduction; Winter Warrior ally selection/protection and max-HP increase; blizzard damage and healing conversion; repeated damage/Haste reduction; stacking damage reduction; periodic and conditional shared invulnerability; conditional freeze/Vitality reduction. Rivalry Mode low-HP mitigation/healing has enough detail for a separately identified capability if retained within batch scope.
+  - Alsa: area damage and Combat Stance; Energy-consuming Vigorous Slam; conditional adjacent-hit evasion/damage/slow/reposition/shield; stun and knockback via Stone Barrier; bonus damage against recently controlled enemies; Enhance Force amplifies damage against multiply controlled targets and adds conditional boulder/DEF reduction.
+  - Antandra: area taunt, damage reduction, stun/knockdown and self-healing; selected frontmost ally protection with shields; frontal damage/ATK reduction; conditional rescue and damage mitigation; guarded-ally Energy support; defensive stacking and conditional healing.
+  - Arden: area lightning and persistent cloud; control-prioritized repeated strikes; multi-target entangle/immobilization and DoT; Energy recovery triggered by controlling non-summoned enemies; cloud-conditioned all-target Entangling Vines; Enhance Force shortens repeated strike interval.
+  - Secondary/seasonal distinctions and unknown tags remain separate; Season Charm is excluded, and no patch research was reopened.
+- Preliminary derived relations: Arden's control can conditionally satisfy Alsa's recently-controlled target requirement; ally control can conditionally trigger Arden's Energy recovery; Aliceth can conditionally amplify Brightfeather allies. These are kit-level capability relations only, not guaranteed or observed match synergies. Alna/Antandra beneficiary selection remains conditional where formation/targeting matters.
+- User clarification: ability descriptions may be stored in different JSON files. The agreed handling is to use those files as source inputs, identify heroes with `hero_id` and abilities with `ability_key`, preserve provenance for each record, compare duplicate or conflicting descriptions before reconciliation, and never silently merge or duplicate them. A description being present does not mean its mechanics have already been atomized into the composition model.
+- Decision / interpretation: the five profiles contain sufficient captured material for a bounded capability-based mapping, with vague Rivalry Mode sections left unmodeled where details do not support atomization. Formation and activation prediction remain unsupported.
+- Scope protection: read-only source review and Handoff synchronization only. No new structured artifact, V4 shard, pilot artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
+- Next single action: prepare the third-batch JSON artifact using the accepted pilot schema, then present its exact path and minimal diff for user approval before committing.
+
+### ACTION 0019 — Record user's approval of Handoff update
+- Status: APPROVED AND INCLUDED IN THIS Handoff synchronization
+- User explicitly approved the proposed minimal Handoff update. The user also asked how to handle heroes and ability descriptions distributed across other JSON files; the answer and resulting source-handling rule are recorded in ACTION 0018.
+- No additional repository/data scope was authorized by this clarification.
