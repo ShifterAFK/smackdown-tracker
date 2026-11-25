@@ -356,3 +356,18 @@ Eighth extraction artifact committed:
 This is source transcription progress only; it does not imply second-source validation, patch verification, or database readiness.
 
 **No Supabase schema/data changes have been made.** All eight extraction batches and audit updates are documentation-only commits on `development`.
+
+
+## 16. Structured extraction progress update (2026-11-25)
+
+Ninth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_09.md` — 10 additional hero records.
+
+**Updated structured extraction progress: 95/131 tracker heroes (72.5%).**
+- 54 records have page captures sufficiently complete for the current first-pass summary.
+- 41 records remain explicitly partial and need page recapture before verification.
+- 36 tracker heroes remain to be transcribed into the extraction artifacts.
+
+This is source transcription progress only; it does not imply second-source validation, patch verification, or database readiness.
+
+**No Supabase schema/data changes have been made.** All nine extraction batches and audit updates are documentation-only commits on `development`.
