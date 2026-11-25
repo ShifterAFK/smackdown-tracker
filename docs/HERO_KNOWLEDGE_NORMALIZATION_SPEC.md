@@ -178,3 +178,17 @@ The 24 Markdown extraction batches contain concise **paraphrased capture summari
 - Use `tags: []` only when the source explicitly establishes that the section has no tags.
 
 The three-hero pilot at `docs/data/HERO_KNOWLEDGE_NORMALIZED_PILOT.json` follows these rules. It is a schema/normalization pilot, not an approved import dataset.
+
+
+## Extension — Season Charm vs Season Skill (2026-11-25)
+
+Keep these as separate progression systems:
+
+- `season_charm`: AFK Stargazer's Season Charm effect, including Elite/Epic/Legendary/Mythic tiers.
+- `season_skill`: AFK.global's Season skill progression (for example Focus Hit, Lock-on Projectiles, Soul-lifting Touch), including its own levels.
+
+Do not map a Season Skill into `season_charm`, replace one with the other, or treat differences as a conflict without a shared patch/version context. Store secondary-source Season Skill observations separately from primary-source Stargazer sections until the schema has an explicit source-aware representation.
+
+## Extension — source capture method and review
+
+Record whether a source was directly fetched or only available through indexed search content. An indexed-page capture can resolve a missing section name/content for a dry run, but it remains `pending_direct_page_fetch` when the live page could not be opened. Source patch/version remains unknown unless explicitly shown.
