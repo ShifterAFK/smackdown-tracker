@@ -288,6 +288,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2P
+## Stage 2P — Batch 09 normalization
 
-Next, inspect **Batch 09**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_09.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_09_NORMALIZATION_AUDIT.md`
+
+- Four complete profiles normalized: Dionel, Salazer, Mirael and Niru.
+- 31 sections; 6 explicitly tagged sections and 8 raw per-skill tag records.
+- Six partial recaptures (Saida, Contess, Pippa, Himmel, Marilee and Elijah & Lailah) remain supplemental: 19 sections, 4 explicitly tagged sections and 6 raw per-skill tag records.
+- 15 page-level tag records are retained separately and are not copied onto abilities.
+- Niru's documented targeting-rule requirement is noted separately because exact selection details are absent from this extraction.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2Q
+
+Next, inspect **Batch 08**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
