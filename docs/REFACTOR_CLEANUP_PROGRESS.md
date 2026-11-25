@@ -40,7 +40,7 @@ This log is the durable restart point. Update it in every completed work stage, 
    - Keep Supabase schema/RPCs/Edge Function and artwork assets.
    - Rebuild the frontend with vanilla JS ES modules.
    - Planned phases: foundation, draft tracker, assistant, submission, later statistics/tier list, then visual polish.
-   - It explicitly calls out duplicate `render()` logic in `tracker-app.js` and `04-draft-assist-script-v1.js`, plus visual issues (VS mark, suggestions, missing tab, Solise portrait).
+   - It calls out possible duplicate `render()` logic plus visual issues (VS mark, suggestions, missing tab, Solise portrait). The architecture audit later established that the current entry point loads generated modules, not the monolithic `tracker-app.js`; matching function names alone do not prove duplicate runtime execution.
 
 ### Baseline and safety conclusions
 
@@ -65,7 +65,7 @@ Source files and the intended rebuild direction are identified. The safe next st
 ### Findings
 
 - The archive contains 308 files (44 JS, 24 CSS, no SQL migrations); current `development` contains 336 files (47 JS, 27 CSS, six Supabase migrations).
-- Archive root `index.html` references `assets/js/main.js` and `assets/css/main.css`, but those paths are absent. V2 files exist under `v2/assets/js/`; the archive root does not correctly reference them.
+- The archive contains two separate entry points: a root legacy app and a small V2 prototype under `v2/`. V2 asset paths resolve correctly relative to `v2/index.html`; that prototype is not integrated into the root app.
 - Current `development` has Record Match, Tier List, Tier Side, Statistics, and Model Comparison. The archive instead has a Tier S 30+ page and no Model Comparison. A wholesale replacement would change the feature set.
 - Current runtime loads generated classic-script modules from `index.html`; it does not load `assets/js/tracker-app.js`.
 - Five of nine generated modules differ from their marker-delimited chunks in `tracker-app.js`. Running the split workflow could overwrite those module-specific changes. Do not run it until the drift is reconciled.
