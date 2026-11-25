@@ -221,6 +221,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2K
+## Stage 2K — Batch 14 normalization
 
-Next, inspect **Batch 14**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_14.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_14_NORMALIZATION_AUDIT.md`
+
+- Three complete profiles normalized: Koko, Smokey & Meerky and Fay.
+- 24 sections, 10 explicitly tagged sections and 13 raw per-skill tag records.
+- Ten partial recaptures (Rolan, Callan, Hodgkin, Cryonaia, Faramor, Phraesto, Nara, Valen, Baden and Atalanta) remain supplemental: 28 sections, 13 explicitly tagged sections and 13 raw per-skill tag records.
+- 6 page-level tag records are retained separately and are not copied onto abilities.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2L
+
+Next, inspect **Batch 13**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
