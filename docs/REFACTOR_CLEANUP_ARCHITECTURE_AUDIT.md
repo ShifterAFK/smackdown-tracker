@@ -31,10 +31,11 @@ The counts are file inventory counts, not a measure of feature completeness.
 
 ### Uploaded archive
 
-- Its root `index.html` also loads the legacy classic-script stack.
-- It additionally references `assets/js/main.js` as a native module and `assets/css/main.css`.
-- Neither referenced root path exists in the archive. The files that do exist are `v2/assets/js/main.js` and `v2/assets/js/supabase.js`.
-- Thus the archive's root page does not correctly point to its V2 entry point/assets. Do not treat the archive as a verified runnable replacement.
+- The root `index.html` loads the legacy classic-script stack.
+- The archive also contains a separate, minimal V2 entry point at `v2/index.html`.
+- That V2 page references `v2/assets/js/main.js` and `v2/assets/css/main.css` relative to its own directory; both files exist. The module imports `v2/assets/js/supabase.js`.
+- The V2 prototype is not wired into the root page. It is a separate entry point, not a replacement already integrated with the legacy app.
+- Both archive entry points pass the asset-reference and JavaScript syntax checks described in the baseline validation report.
 
 ## 3. Source-to-generated module drift
 
@@ -106,7 +107,7 @@ The safe direction is incremental cleanup of the current `development` runtime:
 - Inspected the archive plan, README, root index, core tracker code, assistant module, split scripts, and relevant GitHub workflows.
 - Enumerated archive and current branch file counts.
 - Enumerated current navigation pages and script references.
-- Checked the archive's referenced V2 asset paths against its file list.
+- Checked the root and V2 entry points separately; their relative asset paths exist.
 - Compared all nine generated module files with the corresponding marker-delimited source chunks.
 - Read current draft-rule sequence definitions.
 - No application code was changed.
