@@ -323,8 +323,9 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - No implemented composition feature extractor or validated predictive model established by the planning document.
 - No approval to import V4 or change Supabase.
 
-**Next single action after this handoff is committed:**
-Reconcile the current repository history and the user's `afk.txt` conversation history against the composition-analysis plan to identify any later attempts, failures, decisions or artifacts that are not represented in the current plan. Record those findings before proposing or executing a new technical step. Do not restart hero extraction or begin implementation during this reconciliation.
+**Reconciliation status:** completed and recorded in ACTION 0002 below.
+
+**Next single action:** prepare an ability-to-function representation proposal using the existing V4 evidence. It must explicitly distinguish (a) the function/effect of each ability, (b) how that ability can enable or amplify an ally, and (c) how it can disrupt or counter an opponent. First check whether the existing evidence supports those distinctions; do not repeat hero extraction or normalization.
 
 ---
 
@@ -349,3 +350,30 @@ Reconcile the current repository history and the user's `afk.txt` conversation h
   - development HEAD: `68eb9ea7e6b073dcb0eec8069ad3dc1af8cad210`
 - Decision: this handoff is the first document to read after context loss; it does not mark the proposed composition analysis as implemented.
 - Next single action: reconcile the remaining history and artifacts for the action-based composition analysis before starting any new implementation.
+
+
+## 12. Reconciliation and clarified design intent — 2026-11-25
+
+### ACTION 0002 — Reconcile historical work and clarify ability-interaction tags
+- Started: 2026-11-25
+- Task / phase: new ability-based composition analysis / context reconciliation
+- Status: COMPLETED
+- Purpose: prevent repetition of completed hero-knowledge work and record the user's intended meaning of ability tags before designing the representation.
+- Exact target: uploaded `afk.txt`; repository `ShifterAFK/smackdown-tracker`, branch `development`; hero-knowledge and composition-analysis documents; match-prediction capture documentation; relevant commit history.
+- Inputs / prior state: development handoff commit `c5171f5ac3499755f4706ae9f29cd35947279735`; handoff blob SHA `443ca727a4a860c0889261f577384db493469659`.
+- Operation: reconciled the historical record and current repository artifacts; reviewed the documented match-capture fields and existing class-partner experiment; recorded the user's clarification of ability-tag intent.
+- Result:
+  - Hero knowledge extraction, normalization and V4 consolidation already exist; do not repeat them.
+  - The historical hero × partner-class experiment belongs to the old Match Indicator, not the new ability-based model. Its recorded results were 620/1055 walk-forward matches with the interaction versus 619/1055 without it, and 192/317 holdout versus 191/317 without it. This marginal class-based result is not evidence that an ability-interaction model exists.
+  - The documented match-prediction capture stores lineups/picks, pick order, side, map, event, timestamp and outcome; it does not document ability activations or ordered combat events. Do not describe the current capture pipeline as actual action telemetry.
+  - No implemented ability-interaction composition model, validated formula or dedicated implementation was found in the audited repository materials.
+  - V4 remains a paraphrased, unverified dry run, not a fully patch-verified source of ability facts.
+- User-approved design clarification (intent, not yet validated game-data facts):
+  - Ability tags are intended to help determine how a hero works with allies and how the hero can interfere with or counter opponents. They must therefore describe interaction value, not merely broad ability categories or the hero's official class.
+  - Record the ability's own function/effect separately from ally-enabling or ally-amplifying interactions and from opponent-disruption/counter interactions. Preserve conditions and targets; do not infer a synergy or counter solely from a class label.
+  - Lily May + Ravion is the motivating example: although both are Rogues, the user's interpretation is that Lily May brings utility through an ultimate that interferes with the opponent, while Ravion buffs allies and also contributes damage. The duo may therefore need a stronger damage source (the user named Odie or Himmel) to convert those effects into sufficient team damage.
+  - Valka is the counterexample to class-based assumptions: despite being a Warrior, the user's assessment is that her kit is more oriented toward surviving than supplying the damage the composition needs.
+  - These hero-specific statements are user-provided gameplay hypotheses to check against the existing ability evidence and match data. They are not verified source facts, established synergy/counter rules, or permission to hard-code bonuses.
+- Decision: the next schema proposal must represent ability function, ally interaction/enabling, and opponent disruption/counter as distinguishable concepts. A hero may cover several functions; official class remains metadata only. The final taxonomy, formula and weights remain unapproved.
+- Scope protection: no application code, Supabase data/schema, migrations, existing indicators or `main` branch were changed by this action.
+- Next single action: prepare the ability-to-function representation proposal from the existing V4 evidence and assess whether it supports the three distinctions above. Do not repeat extraction or normalization.
