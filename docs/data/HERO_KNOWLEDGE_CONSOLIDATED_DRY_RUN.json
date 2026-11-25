@@ -1,31 +1,32 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "dataset_status": "consolidated_dry_run_not_for_import",
   "generated_at": "2026-11-25",
   "source_manifest": "docs/data/HERO_KNOWLEDGE_SOURCE_MANIFEST.json",
   "gap_register": "docs/data/HERO_KNOWLEDGE_NORMALIZATION_GAP_REGISTER.json",
   "section_type_reconciliation_register": "docs/data/HERO_KNOWLEDGE_SECTION_TYPE_RECONCILIATION_REGISTER.json",
+  "patch_baseline": "docs/data/HERO_KNOWLEDGE_PATCH_BASELINE.json",
   "validation_report": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json",
   "hero_count": 131,
   "shard_count": 4,
   "shards": [
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V3_PART_01.json",
-      "bytes": 835310,
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_01.json",
+      "bytes": 852595,
       "hero_count": 33
     },
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V3_PART_02.json",
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_02.json",
       "bytes": 822164,
       "hero_count": 33
     },
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V3_PART_03.json",
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_03.json",
       "bytes": 817122,
       "hero_count": 33
     },
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V3_PART_04.json",
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_04.json",
       "bytes": 775319,
       "hero_count": 32
     }
@@ -35,39 +36,37 @@
     "consolidated_heroes": 131,
     "missing_hero_ids": 0,
     "unexpected_hero_ids": 0,
-    "capture_records": 236,
-    "complete_capture_records": 132,
+    "capture_records": 237,
+    "complete_capture_records": 133,
     "partial_capture_records": 104,
     "normalized_complete_profiles": 131,
     "profiles_needing_review": 0,
     "open_section_gaps": 0,
     "profiles_pending_direct_page_fetch": 20,
     "profiles_pending_patch_verification": 131,
+    "profiles_pending_secondary_source_review": 126,
     "verified_absence_profiles": 2,
     "secondary_source_profiles": 5,
     "secondary_season_skill_observations": 3,
-    "section_evidence_records": 1321,
-    "unique_logical_sections": 1031,
-    "sections_with_consistent_explicit_tags": 299,
-    "sections_with_unknown_tags": 732,
+    "section_evidence_records": 1329,
+    "unique_logical_sections": 1032,
+    "sections_with_consistent_explicit_tags": 301,
+    "sections_with_unknown_tags": 731,
     "sections_with_tag_conflicts": 0,
-    "sections_with_multiple_paraphrase_variants": 220,
+    "sections_with_multiple_paraphrase_variants": 223,
     "profiles_with_page_tag_set_variance": 0,
     "profiles_with_section_type_reconciliation": 9,
-    "profiles_with_content_variant_review": 1,
+    "profiles_with_content_variant_review": 0,
     "source_manifest_mismatches": 0
   },
   "out_of_roster_policy": "Out-of-roster sources are stored in shard 01 and are not counted in the 131 tracker heroes.",
   "limitations": [
     "Descriptions are paraphrased summaries, not verbatim source text.",
-    "No source patch/version has been verified for any hero.",
+    "No source patch/version has been verified for any of the 131 profiles.",
     "No second-source cross-check or in-game verification has been performed for all 131 profiles.",
-    "Batch 25, Batch 26 and section-type reconciliation use indexed page content because direct page opens returned cache misses; 20 profiles remain pending direct-page verification.",
-    "Contess's older additional active-effect summary is retained as a historical variant and requires direct/version review.",
+    "Batch 25–27 and section-type reconciliation use indexed page content because direct page opens returned cache misses; 20 profiles remain pending direct-page verification.",
     "AFK.global Season Skill observations are kept separate from AFK Stargazer Season Charm records.",
     "Page tags are an observed union with per-capture observations retained.",
-    "This is a dry-run artifact only and must not be imported into Supabase.",
-    "Project patch reference is 1.8.2.1 app-store build (Nov 9, 2026); per-hero Stargazer source patch remains unknown. 1.8.3 is preview-only as of this check."
-  ],
-  "patch_baseline": "docs/data/HERO_KNOWLEDGE_PATCH_BASELINE.json"
+    "This is a dry-run artifact only and must not be imported into Supabase."
+  ]
 }
