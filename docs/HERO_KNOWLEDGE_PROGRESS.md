@@ -487,3 +487,17 @@ Audit all normalized batch artifacts 01–24 for schema consistency, duplicate h
 - All source URLs, locales and section evidence URLs match the source manifest.
 - No Supabase writes or application changes.
 
+
+## Stage 2AB2 — standardize consolidation input 09–16
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATION_PART_09_16.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATION_PART_09_16_AUDIT.md`
+
+- 79 profile capture records across 8 source batches; 74 unique tracker IDs.
+- 35 complete and 44 partial capture records.
+- 426 section records preserved.
+- 1 out-of-roster source records retained separately.
+- Canonical envelope and source-manifest URL/locale/section provenance checks passed.
+- No Supabase writes or application changes.
+
