@@ -281,3 +281,18 @@ This resolves the full **131-row tracker roster mapping**. Keep tracker IDs cano
 The batch files preserve source tag labels and separate base abilities from Hero Focus, Exclusive Equipment, Enhance Force, Season Charm, and Rivalry Mode where the captured page exposes them. They also flag truncated pages rather than filling gaps from assumptions.
 
 **No Supabase schema/data changes have been made.** These are documentation-only commits on `development`.
+
+
+## 11. Structured extraction progress update (2026-11-25)
+
+Fourth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_04.md` — 10 additional hero records.
+
+**Updated structured extraction progress: 45/131 tracker heroes (34.4%).**
+- 26 records have page captures sufficiently complete for the current first-pass summary.
+- 19 records are explicitly partial and need page recapture before verification.
+- These counts describe documentation coverage, not cross-source verification or database readiness.
+
+The user's identity correction remains authoritative: `gala` → Galahad. The roster mapping is resolved at the identity-alias level; full ability transcription remains in progress.
+
+**No Supabase schema/data changes have been made.** All four extraction batches and this audit update are documentation-only commits on `development`.
