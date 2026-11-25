@@ -454,3 +454,18 @@ Ten additional page recaptures supplied useful missing sections for Rolan, Calla
 Source retrieval note: direct page opens returned cache misses in this pass, so recapture relied on indexed Stargazer page content. Search excerpts were treated conservatively; no missing skill sections were reconstructed from memory or inference.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 22. Partial-profile recapture pass 2 (2026-11-25)
+
+Fifteenth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_15.md` — second recapture pass across previously partial pages.
+
+Pang (`pang`) is upgraded to a complete first-pass capture. The returned source included the Ultimate, Zen Ward, Hero Focus, Exclusive Equipment, Enhance Force, Season Charm and Rivalry Mode sections.
+
+Nine more pages yielded useful recaptured sections but remain partial because at least one required section is still absent from the returned source excerpt:
+- Evie, Aster, Soren, Florabelle, Zandrok, Sylphira, Brutus, Alna, Lorsan.
+
+**Updated first-pass capture coverage: 84/131 complete (64.1%); 47/131 partial (35.9%).** This remains a source-capture metric only; no second-source verification, in-game patch validation, or database readiness is implied.
+
+All changes are documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
