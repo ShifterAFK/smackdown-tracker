@@ -141,6 +141,6 @@ Source: https://afkstargazer.com/en/skill/kruger
 ## Coverage update
 
 - Lucius, Lucca and Gunnar upgraded from partial to complete first-pass source captures.
-- Six additional pages (Contess, Gwyneth, Saida, Laios, Pippa, Himmel, Kruger) yielded useful missing details but remain partial. Note: seven profiles are listed here.
+- Seven additional pages (Contess, Gwyneth, Saida, Laios, Pippa, Himmel, Kruger) yielded useful missing details but remain partial. Note: seven profiles are listed here.
 - This is not second-source validation or patch verification.
 - No Supabase schema/data changes were made.
