@@ -648,3 +648,18 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Evidence: this file, `docs/AI_SESSION_HANDOFF.md`; resulting GitHub contents commit is the commit created by this update.
 - Decision: future project responses must leave this file current before the response ends. A discussion-only interaction must also be logged; a tool operation must be logged with its actual result.
 - Next single action: await the user's review or next explicit instruction. No additional project work is authorized by this documentation update.
+
+## 19. Pilot review decision pending — 2026-11-25
+
+### ACTION 0010 — Clarify the pending user decision after the five-hero pilot
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / pilot review
+- Status: AWAITING USER DECISION
+- Purpose: clarify the exact point at which the work paused and the decision required to resume.
+- User asked where the project stopped and what decision is needed.
+- Confirmed state: the five-hero descriptive pilot is complete and validated as recorded in ACTION 0008; the Handoff was updated in ACTION 0009. No application indicator, scoring, weighting, predictive logic, UI or Supabase implementation has been performed or approved.
+- Decision requested: whether to accept the five-hero pilot as a valid proof-of-method / reference pattern for the ability-mechanics model, or request specific corrections before proceeding.
+- Recommendation communicated: accept it only as a validated descriptive method for recording hero-kit capabilities, not as a finished indicator, predictive model, guaranteed synergy/counter model, or proof of match outcomes.
+- No user approval or rejection of the pilot has been given yet. Do not expand the roster or implement anything until the user decides.
+- Repository changes from this discussion: none to application/data artifacts; this action-log entry only.
+- Next single action: await the user's explicit pilot review decision and then proceed only within the scope that decision authorizes.
