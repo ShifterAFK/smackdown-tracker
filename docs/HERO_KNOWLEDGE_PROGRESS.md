@@ -96,6 +96,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - No duplicate section keys, missing summaries, or mapping mismatches.
 - This validates consistency with Batch 24 only; it does not independently re-open Stargazer pages or cross-check another source.
 
-## Restart point — Stage 2B
+## Stage 2B — Batch 23 normalization
 
-Next, inspect and normalize **Batch 23** as a separate unit. Use only facts, section ordering, and per-skill tag mappings explicitly present in that batch. Validate the normalized records against the batch, commit the artifact, and update this log before moving to another batch. Keep unknown descriptions/fields/tags null or `needs_review`; do not import to Supabase.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_23.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_23_NORMALIZATION_AUDIT.md`
+
+- Four complete profiles normalized: Valen, Sylphira, Berial and Laios.
+- 32 sections, 15 page-level tags kept separate, 10 explicitly tagged sections and 15 per-section tag records.
+- 22 sections retain `tags: null` because no per-skill mapping was recorded in Batch 23.
+- Exact section order/names and every explicit per-skill tag mapping match Batch 23.
+- No duplicate section keys, missing summaries, non-null raw descriptions, or source URL provenance mismatches.
+- Baden, Saida and Perseus were not duplicated; Batch 23 still marks them partial and Batch 24 has the final complete captures. Their supplemental details remain for a later reconciliation pass.
+
+## Restart point — Stage 2C
+
+Next, inspect **Batch 22** as the next independent unit. Normalize only profiles explicitly marked complete in that batch; keep partial recaptures as supplemental evidence for later reconciliation. Validate names/order, tags, section keys and provenance, then commit the batch artifact and update this log. No Supabase import.
