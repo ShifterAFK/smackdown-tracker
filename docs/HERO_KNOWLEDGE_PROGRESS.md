@@ -274,6 +274,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2O
+## Stage 2O — Batch 10 normalization
 
-Next, inspect **Batch 10**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_10.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_10_NORMALIZATION_AUDIT.md`
+
+- Seven complete profiles normalized: Rowan, Lyca, Mikola, Korin, Hepler, Odie and Aliceth.
+- 56 sections, 21 explicitly tagged sections and 26 raw per-skill tag records.
+- Three partial recaptures (Rhys, Pandora and Karma) remain supplemental: 13 sections, 2 explicitly tagged sections and 6 raw per-skill tag records.
+- 13 page-level tag records are retained separately and are not copied onto abilities.
+- Hepler's Polish source locale is preserved; only the English paraphrased extraction summary is stored, not fabricated raw Polish text.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2P
+
+Next, inspect **Batch 09**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
