@@ -469,3 +469,21 @@ Nine more pages yielded useful recaptured sections but remain partial because at
 **Updated first-pass capture coverage: 84/131 complete (64.1%); 47/131 partial (35.9%).** This remains a source-capture metric only; no second-source verification, in-game patch validation, or database readiness is implied.
 
 All changes are documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 23. Partial-profile recapture pass 3 (2026-11-25)
+
+Sixteenth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md` — third recapture pass.
+
+Three tracker profiles upgraded to complete first-pass captures:
+- `lucius`
+- `lucca`
+- `gunnar`
+
+Seven additional profiles yielded useful missing sections but remain partial:
+- `contess`, `gwyneth`, `saida`, `laios`, `pippa`, `himmel`, `kruger`.
+
+**Updated first-pass capture coverage: 87/131 complete (66.4%); 44/131 partial (33.6%).** This is only a source-capture completeness measure. It does not imply second-source cross-check, patch verification, or database readiness.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
