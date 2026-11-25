@@ -8,10 +8,10 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before ACTION 0016:** `c5d7bf28e2f8027e2294f29d40517386e5bcc015`  
+**Last confirmed development HEAD before ACTION 0017:** `f9d3187567412ef9e301ac6c45e11afc2e4ad45c`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
-**Current stage:** five-hero pilot accepted as the reference method; second bounded batch committed; user confirmed the GitHub Handoff startup rule has been pasted into project instructions; awaiting next task instruction  
+**Current stage:** five-hero pilot accepted as the reference method; first and second bounded batches committed; third bounded batch approved in alphabetical order (Aliceth, Alna, Alsa, Antandra, Arden); source review not yet started  
 **Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
@@ -320,7 +320,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0015
+## 10. Current restart point after ACTION 0017
 
 **Task:** ability-based composition analysis; the accepted five-hero pilot remains the reference method.
 
@@ -329,27 +329,27 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - First pilot: `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — 5 heroes, 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
 - Second bounded batch artifact: `docs/data/HERO_COMPOSITION_ABILITY_BATCH_2_CECIA_GRANNY_INDRIS_NERION_SOLISE.json` — 5 heroes, 69 mechanics, 17 team functions, 10 interactions and 10 unmodeled sections.
 - The second batch covers Cecia, Granny Dahnie, Indris, Nerion and Solise. Contess remains excluded because she is banned in the mode under consideration.
-- Static validation of the second-batch JSON passed: JSON parse; unique mechanic and function IDs; source evidence present for all mechanics; team-function mechanic references valid; interaction mechanic references valid; no Season Charm mechanics; exactly the five approved hero IDs.
-- The artifact preserves source evidence and tags per mechanic. Unknown tags remain unknown; Season Skill remains distinct from Season Charm.
-- Some Rivalry Mode sections remain unmodeled where the available summary is insufficient. The exact unresolved details are recorded in `unmodeled_sections`.
+- The third bounded batch is approved in alphabetical order: Aliceth, Alna, Alsa, Antandra and Arden. Its source review and analysis have not started.
+- Season Charm remains excluded and distinct from Season Skill. Unknown tags remain unknown.
 - Patch research remains closed. The model describes kit capabilities, not actual match execution, guaranteed synergy/counter effects or match outcomes.
-- The user was provided a project-instructions text block requiring fresh Handoff retrieval from GitHub at the start of each session. The user must paste that text into the project's instruction settings; it has not been separately written to another repository file.
+- Formation prediction and ability-activation prediction are unsupported. Position- and activation-dependent interactions remain conditional capabilities.
 - No application code, Supabase schema/data, migrations, existing indicators, Tier List, TOP Picks or `main` branch were changed.
 
 **Approved scope and closed decisions:**
 - The five-hero pilot is accepted as the reference method.
-- The second bounded batch and its structured JSON artifact are approved.
-- Season Charm is excluded and remains distinct from Season Skill.
-- Formation prediction, ability-activation prediction, actual match-effect claims, named-pair synergy assertions and composition scoring/weights remain unsupported or unapproved.
+- The first and second bounded batches and their structured JSON artifacts are complete.
+- The third batch selection is approved; this does not imply its analysis or artifact creation is complete.
 - Existing Match Indicator and Showdown Draft Indicator remain separate protected systems.
 
 **Not done / not authorized:**
+- No third-batch source analysis or structured JSON artifact yet.
 - No application implementation, scoring formula/weights, predictive thresholds or UI.
 - No V4 import, Supabase schema/data change, migration or production RPC change.
 - No changes to Tier List, TOP Picks or `main`.
 - No in-game verification or Live Preview validation.
 
-**Next single action:** await the user's next instruction. Do not automatically start another hero batch or implementation stage.
+**Next single action:** inspect the V4 records and corresponding source captures for Aliceth, Alna, Alsa, Antandra and Arden; then perform only this approved bounded analysis.
+
 
 ---
 
@@ -796,3 +796,20 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - From this point, treat the startup instruction as installed per user confirmation. At each new session/context recovery, still verify the actual current branch HEAD and fetch the live Handoff before acting.
 - No source files, data artifacts, application code, Supabase, `main`, Tier List or TOP Picks changed as part of this confirmation.
 - Next single action: await the user's next task instruction.
+
+
+## 25. Third alphabetical hero batch approval — 2026-11-25
+
+### ACTION 0017 — Approve the third alphabetical batch
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / third bounded hero batch selection
+- Status: APPROVED; Handoff synchronization committed; source analysis not started
+- Purpose: record the user's decision to select the next five not-yet-analyzed heroes in alphabetical order.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `f9d3187567412ef9e301ac6c45e11afc2e4ad45c`; Handoff blob SHA `97c0d1851844172fda0fb1a6f51a2c6532cca7fa`.
+- User decision: use alphabetical order for subsequent hero batches. The approved third batch is Aliceth, Alna, Alsa, Antandra and Arden.
+- Operation: updated the top-level current stage, replaced the stale restart point with the current approved batch and appended this ACTION record. Earlier action history was preserved.
+- Result: approval and restart point are recorded in Handoff. No hero source review, mechanic extraction, team-function mapping, interaction mapping or structured data artifact has been performed for this batch.
+- Decision: continue using the accepted pilot method and existing constraints; do not expand beyond these five heroes. Season Charm remains excluded; patch research remains closed; unknown tags remain unknown.
+- Scope protection: only `docs/AI_SESSION_HANDOFF.md` is changed. No V4 shard, pilot or second-batch JSON, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch is changed.
+- Next single action: inspect the V4 records and relevant source captures for Aliceth, Alna, Alsa, Antandra and Arden, then conduct the bounded analysis.
