@@ -67,7 +67,20 @@ This inventory was extracted from source code only. No RPC was called and no Sup
 
 No application code or database state was changed in this stage.
 
-## 7. Exit result and next step
+
+
+## 7. Uploaded archive entry-point sanity check
+
+The archive was also checked with the same local validation script after extraction:
+
+| Entry point | Executable JS parsed | Stylesheets found | Result |
+|---|---:|---:|---|
+| Archive root `index.html` | 34 | 22 | Passed |
+| Archive `v2/index.html` | 1 | 1 | Passed |
+
+The two pages are independent entry points. The V2 page's asset references are valid relative to its `v2/` directory. This confirms asset existence and JavaScript syntax only; it does not establish full browser behavior or integration with the root app.
+
+## 8. Exit result and next step
 
 **Stage 2 — static baseline validation: complete.**
 
