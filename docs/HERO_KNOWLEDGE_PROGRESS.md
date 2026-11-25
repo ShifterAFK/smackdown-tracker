@@ -52,7 +52,36 @@ This file is the durable restart point. Update it after every completed stage.
 - Supabase was queried read-only for the roster; no database changes were made.
 - No application code or indicator/tier algorithms were changed.
 
-## Restart point
+
+## Stage 2 — ability-level normalization pilot
+
+**Status: pilot complete; bulk normalization not started.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_PILOT.json`
+
+### Pilot contents
+
+- Three complete Batch 24 profiles: Baden, Saida, Perseus.
+- 24 ability/progression sections across the three heroes.
+- 9 sections have explicit per-skill tag mappings.
+- 15 sections use `tags: null` because no section-level mapping was explicitly recorded in the batch. This does not mean those abilities have no mechanics.
+- Page-level tags are retained separately and are not copied onto abilities.
+- Descriptions are stored as paraphrased `description_summary`; `description_raw` remains null.
+- Cooldown, range, initial cooldown, and initial energy remain null where not supplied by the capture.
+- Perseus's explicit source rule note about temporary stat buffs is preserved separately.
+
+### Structural validation
+
+- 3 unique hero IDs.
+- 24 sections; no duplicate ability keys within a hero.
+- Every section has a non-empty summary and source URL provenance.
+- No paraphrase is marked as verbatim source text.
+- No Supabase schema/data writes; no application code changes.
+
+### Exit result
+
+The pilot demonstrates a conservative ability-level shape that preserves tag uncertainty and provenance. It is not yet a complete 131-hero dataset and is not approved for import.
+
+
 
 **Next action — Stage 2: normalized dry-run dataset.**
 
