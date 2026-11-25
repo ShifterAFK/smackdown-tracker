@@ -1,0 +1,1199 @@
+{
+  "schema_version": 1,
+  "part": "25",
+  "generated_at": "2026-11-25",
+  "canonical_envelope": "hero_capture_record_v1",
+  "source_manifest": "docs/data/HERO_KNOWLEDGE_SOURCE_MANIFEST.json",
+  "summary": {
+    "batch_range": "25",
+    "profile_capture_records": 12,
+    "complete_capture_records": 12,
+    "partial_capture_records": 0,
+    "unique_hero_ids": 12,
+    "section_records": 22,
+    "verified_absence_profiles": 2,
+    "secondary_source_profiles": 5,
+    "source_manifest_mismatches": 0
+  },
+  "profiles": [
+    {
+      "hero_id": "talene",
+      "tracker_name": "Talene",
+      "source_display_name": "Talene",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/talene",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 2,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "talene",
+        "sections": [
+          {
+            "ability_key": "exclusive_equipment-pyre-of-renewal",
+            "name": "Pyre of Renewal",
+            "section_type": "exclusive_equipment",
+            "source_label": "Pyre of Renewal",
+            "order_index": 5,
+            "description_raw": null,
+            "description_summary": "Grants a persistent effect to the frontmost ally other than Talene: adjacent damage also heals the carrier. Healing received builds up to three permanent damage increases; at maximum stacks, the carrier can resurrect once after defeat.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": "Global",
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/talene",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "rivalry_mode-rivalry-mode",
+            "name": "Rivalry Mode",
+            "section_type": "rivalry_mode",
+            "source_label": "Rivalry Mode",
+            "order_index": 6,
+            "description_raw": null,
+            "description_summary": "Casting an Ultimate increases damage dealt for 8 seconds; the first Ultimate also permanently improves Energy recovery from attacks. Refine 4 adds Vitality and Healing.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/talene",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "The indexed primary page contains the previously missing Exclusive Equipment and Rivalry Mode details. Targeting rules for the frontmost ally are retained in the earlier extraction's targeting metadata."
+        ],
+        "hero_id": "talene",
+        "tracker_name": "Talene",
+        "source_display_name": "Talene",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/talene",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": []
+      }
+    },
+    {
+      "hero_id": "cecia",
+      "tracker_name": "Cecia",
+      "source_display_name": "Cecia",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/cecia",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 2,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "cecia",
+        "sections": [
+          {
+            "ability_key": "base_skill-earth-s-offering",
+            "name": "Earth's Offering",
+            "section_type": "base_skill",
+            "source_label": "Earth's Offering",
+            "order_index": 2,
+            "description_raw": null,
+            "description_summary": "Increases Cecia's and Mr. Carlyle's ATK SPD for 8 seconds. Later levels improve the speed bonus; one level replaces Carlyle's next normal attack with a 2-tile area quake that also grants Life Drain.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 12,
+            "initial_cooldown": 0,
+            "range": 1,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/cecia",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "base_skill-agonizing-puncture",
+            "name": "Agonizing Puncture",
+            "section_type": "base_skill",
+            "source_label": "Agonizing Puncture",
+            "order_index": 3,
+            "description_raw": null,
+            "description_summary": "Cecia and Mr. Carlyle gain DEF Penetration. After every three normal attacks, Cecia's next normal attack is enhanced; later levels increase the penetration and enhanced-attack damage.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": 5,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/cecia",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "hero_focus-hero-focus",
+            "name": "Hero Focus",
+            "section_type": "hero_focus",
+            "source_label": "Hero Focus",
+            "order_index": 4,
+            "description_raw": null,
+            "description_summary": "Increases Cecia's ATK SPD and grants an additional ATK SPD bonus while Mr. Carlyle is on the battlefield.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": 1,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/cecia",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "AFK.global separately lists Focus Hit as a Season skill. Keep that record separate from Stargazer's Season Charm; they are different progression systems, not interchangeable labels."
+        ],
+        "hero_id": "cecia",
+        "tracker_name": "Cecia",
+        "source_display_name": "Cecia",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/cecia",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": [
+          {
+            "source_name": "AFK.global",
+            "source_url": "https://www.afk.global/afk-journey/characters/cecia",
+            "section_name": "Focus Hit",
+            "section_type": "season_skill",
+            "summary": "A proximity-triggered Season skill: after no enemy is within 2 tiles for 3 seconds, Cecia gains Crit and Haste; ranks increase both bonuses.",
+            "cross_check": "Core kit headings and Earth's Offering/Agonizing Puncture/Hero Focus/Enhance Force align with the Stargazer capture; Focus Hit is a separate Season skill."
+          }
+        ]
+      }
+    },
+    {
+      "hero_id": "granny-dahnie",
+      "tracker_name": "Granny Dahnie",
+      "source_display_name": "Granny Dahnie",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/granny-dahnie",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 3,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "granny-dahnie",
+        "sections": [
+          {
+            "ability_key": "enhance_force-enhance-force",
+            "name": "Enhance Force",
+            "section_type": "enhance_force",
+            "source_label": "Enhance Force",
+            "order_index": 7,
+            "description_raw": null,
+            "description_summary": "Seed Cannon restores HP when it fires. At the next level, firing a seed also restores Energy, grants a large temporary Haste increase and strengthens the seed's ATK reduction.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "season_charm-season-charm",
+            "name": "Season Charm",
+            "section_type": "season_charm",
+            "source_label": "Season Charm",
+            "order_index": 8,
+            "description_raw": null,
+            "description_summary": "Deals recurring magic damage to adjacent enemies and heals Granny Dahnie based on actual damage dealt. Higher ranks improve damage/healing and add an opening unaffected window.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/granny-dahnie",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "AFK.global lists Lock-on Projectiles as a Season skill; keep it distinct from the Stargazer Season Charm."
+        ],
+        "hero_id": "granny-dahnie",
+        "tracker_name": "Granny Dahnie",
+        "source_display_name": "Granny Dahnie",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/granny-dahnie",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": [
+          {
+            "source_name": "AFK.global",
+            "source_url": "https://www.afk.global/afk-journey/characters/granny-dahnie",
+            "section_name": "Lock-on Projectiles",
+            "section_type": "season_skill",
+            "summary": "While a target remains controlled, fires a projectile at it every 2 seconds; the initial damage is 120% ATK and increases by rank.",
+            "cross_check": "Base kit, Hero Focus, Exclusive Equipment and Enhance Force headings agree with Stargazer. Lock-on Projectiles is a separate Season skill, not the Season Charm."
+          }
+        ]
+      }
+    },
+    {
+      "hero_id": "valka",
+      "tracker_name": "Valka",
+      "source_display_name": "Valka",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/valka",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 3,
+        "recapture_batches": [
+          18
+        ],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "valka",
+        "sections": [
+          {
+            "ability_key": "enhance_force-enhance-force",
+            "name": "Enhance Force",
+            "section_type": "enhance_force",
+            "source_label": "Enhance Force",
+            "order_index": 5,
+            "description_raw": null,
+            "description_summary": "While Spectral Bulwark's shield is active, Valka gains extra Energy from normal attacks. The next level increases Ultimate damage based on ATK SPD and Haste and grants a Bulwark-style shield after casting Ultimate.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/valka",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "season_charm-season-charm",
+            "name": "Season Charm",
+            "section_type": "season_charm",
+            "source_label": "Season Charm",
+            "order_index": 8,
+            "description_raw": null,
+            "description_summary": "Increases damage dealt and reduces damage taken; both bonuses are stronger while Valka is on the enemy side. Higher ranks add a permanent shield on the first entry to the enemy side.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/valka",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "AFK.global lists Soul-lifting Touch as a Season skill; keep it distinct from Stargazer's Season Charm."
+        ],
+        "hero_id": "valka",
+        "tracker_name": "Valka",
+        "source_display_name": "Valka",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/valka",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": [
+          {
+            "source_name": "AFK.global",
+            "source_url": "https://www.afk.global/afk-journey/characters/valka",
+            "section_name": "Soul-lifting Touch",
+            "section_type": "season_skill",
+            "summary": "Every 5 seconds, buffs the highest-damage ally whose HP is above 75%, increasing ATK and Haste for 3 seconds; ranks raise both bonuses.",
+            "cross_check": "Base kit, Hero Focus, Exclusive Equipment and Enhance Force agree with Stargazer. Soul-lifting Touch is a separate Season skill."
+          }
+        ]
+      }
+    },
+    {
+      "hero_id": "indris",
+      "tracker_name": "Indris",
+      "source_display_name": "Indris",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/indris",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 3,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "indris",
+        "sections": [
+          {
+            "ability_key": "hero_focus-hero-focus",
+            "name": "Hero Focus",
+            "section_type": "hero_focus",
+            "source_label": "Hero Focus",
+            "order_index": 4,
+            "description_raw": null,
+            "description_summary": "Increases ATK during battle, with an additional ATK bonus while any enemy has exposed weakness.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": 1,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/indris",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "exclusive_equipment-windpiercer",
+            "name": "Windpiercer",
+            "section_type": "exclusive_equipment",
+            "source_label": "Windpiercer",
+            "order_index": 5,
+            "description_raw": null,
+            "description_summary": "Whenever Indris triggers exposed-weakness bonus damage, his ATK SPD increases for 6 seconds. Higher ranks increase the speed bonus and add a Phys DEF reduction to normal attacks.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": "Global",
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/indris",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "rivalry_mode-rivalry-mode",
+            "name": "Rivalry Mode",
+            "section_type": "rivalry_mode",
+            "source_label": "Rivalry Mode",
+            "order_index": 6,
+            "description_raw": null,
+            "description_summary": "Each normal attack stacks ATK SPD and normal-attack damage, up to 10 stacks. Refine 4 adds ATK SPD and Execution.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/indris",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "Enhance Force and Season Charm were already present in the consolidated capture; this recapture closes the remaining Hero Focus, Exclusive Equipment and Rivalry Mode gaps."
+        ],
+        "hero_id": "indris",
+        "tracker_name": "Indris",
+        "source_display_name": "Indris",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/indris",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": [
+          {
+            "source_name": "AFK.global",
+            "source_url": "https://www.afk.global/afk-journey/characters/indris",
+            "section_name": "Core kit cross-check",
+            "section_type": "secondary_source_comparison",
+            "summary": "AFK.global lists Spellbane Shot, True Sight, Arcane Binding, Hero Focus, Enhance Force and Windpiercer; these names and key effects align with the Stargazer capture.",
+            "cross_check": "Agreement on core kit and progression headings; no conflicting tag assignment observed."
+          }
+        ]
+      }
+    },
+    {
+      "hero_id": "reinier",
+      "tracker_name": "Reinier",
+      "source_display_name": "Reinier",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/reinier",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 5,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "reinier",
+        "sections": [
+          {
+            "ability_key": "enhance_force-enhance-force",
+            "name": "Enhance Force",
+            "section_type": "enhance_force",
+            "source_label": "Enhance Force",
+            "order_index": 7,
+            "description_raw": null,
+            "description_summary": "Increases the allied hero's ATK by 4% until the battle ends when that ally is in a symmetrical position with an enemy hero.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/reinier",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "season_charm-season-charm",
+            "name": "Season Charm",
+            "section_type": "season_charm",
+            "source_label": "Season Charm",
+            "order_index": 8,
+            "description_raw": null,
+            "description_summary": "At battle start, increases ranged damage for the ally positioned one tile behind Reinier. Higher ranks add a one-time shield when that ally first drops below 50% HP.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/reinier",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "Both missing progression sections are present in the indexed Stargazer page capture."
+        ],
+        "hero_id": "reinier",
+        "tracker_name": "Reinier",
+        "source_display_name": "Reinier",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/reinier",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": []
+      }
+    },
+    {
+      "hero_id": "satrana",
+      "tracker_name": "Satrana",
+      "source_display_name": "Satrana",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/satrana",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 6,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "satrana",
+        "sections": [
+          {
+            "ability_key": "rivalry_mode-rivalry-mode",
+            "name": "Rivalry Mode",
+            "section_type": "rivalry_mode",
+            "source_label": "Rivalry Mode",
+            "order_index": 3,
+            "description_raw": null,
+            "description_summary": "Casting an Ultimate increases damage dealt for 8 seconds; the first Ultimate also permanently improves Energy recovery from attacks. Refine 4 adds Haste and Ranged DEF.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/satrana",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "enhance_force-enhance-force",
+            "name": "Enhance Force",
+            "section_type": "enhance_force",
+            "source_label": "Enhance Force",
+            "order_index": 4,
+            "description_raw": null,
+            "description_summary": "Vixen Rush's cooldown is removed when all enemy heroes are ignited or when five enemies in total have been ignited. The next level improves ignite damage and lowers the trigger threshold.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/satrana",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "season_charm-season-charm",
+            "name": "Season Charm",
+            "section_type": "season_charm",
+            "source_label": "Season Charm",
+            "order_index": 5,
+            "description_raw": null,
+            "description_summary": "For each enemy affected by the caster's continuous damage, increases ATK up to a cap. Higher ranks also reduce the affected target's Phys and Magic DEF.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/satrana",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "The page's Rivalry Mode, Enhance Force and Season Charm sections are now captured."
+        ],
+        "hero_id": "satrana",
+        "tracker_name": "Satrana",
+        "source_display_name": "Satrana",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/satrana",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": []
+      }
+    },
+    {
+      "hero_id": "nerion",
+      "tracker_name": "Nerion",
+      "source_display_name": "Nerion",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/nerion",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 6,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "nerion",
+        "sections": [
+          {
+            "ability_key": "base_skill-tidal-rebuke",
+            "name": "Tidal Rebuke",
+            "section_type": "base_skill",
+            "source_label": "Tidal Rebuke",
+            "order_index": 2,
+            "description_raw": null,
+            "description_summary": "After every three normal attacks, the next normal attack is enhanced; it knocks the target back, deals damage and stuns. Later levels increase the damage.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": 7,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/nerion",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "base_skill-riptide-wrath",
+            "name": "Riptide Wrath",
+            "section_type": "base_skill",
+            "source_label": "Riptide Wrath",
+            "order_index": 3,
+            "description_raw": null,
+            "description_summary": "Throws a spear at the area with the most enemies, damaging nearby enemies; two seconds later a current erupts, launching enemies and dealing another hit. Later levels increase both damage values.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 12,
+            "initial_cooldown": 1,
+            "range": 10,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/nerion",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "The full Stargazer page identifies the previously unheaded skill as Tidal Rebuke and also exposes Riptide Wrath, which was absent from the earlier normalized record."
+        ],
+        "hero_id": "nerion",
+        "tracker_name": "Nerion",
+        "source_display_name": "Nerion",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/nerion",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": [
+          {
+            "source_name": "AFK.global",
+            "source_url": "https://www.afk.global/afk-journey/characters/nerion",
+            "section_name": "Drowning Doom / Hero Focus / Enhance Force",
+            "section_type": "secondary_source_comparison",
+            "summary": "AFK.global independently shows Drowning Doom, Hero Focus and the drowning-triggered Enhance Force. The indexed snippet does not expose the two additional base-skill sections, so it is not used to contradict Stargazer's Tidal Rebuke and Riptide Wrath.",
+            "cross_check": "Partial agreement on the visible kit; secondary excerpt coverage is incomplete."
+          }
+        ]
+      }
+    },
+    {
+      "hero_id": "mehira",
+      "tracker_name": "Mehira",
+      "source_display_name": "Mehira",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/mehira",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 6,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "mehira",
+        "sections": [
+          {
+            "ability_key": "season_charm-season-charm",
+            "name": "Season Charm",
+            "section_type": "season_charm",
+            "source_label": "Season Charm",
+            "order_index": 8,
+            "description_raw": null,
+            "description_summary": "Restores Energy per second, with the amount halved after 10 seconds. After three Ultimate casts, increases ATK; higher ranks add true damage to all enemies whenever the caster uses an Ultimate.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/mehira",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "The missing Season Charm section is now captured; existing Hero Focus, Exclusive Equipment, Rivalry Mode and Enhance Force records remain unchanged."
+        ],
+        "hero_id": "mehira",
+        "tracker_name": "Mehira",
+        "source_display_name": "Mehira",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/mehira",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": []
+      }
+    },
+    {
+      "hero_id": "bryon",
+      "tracker_name": "Bryon",
+      "source_display_name": "Bryon",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/bryon",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 11,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "bryon",
+        "sections": [
+          {
+            "ability_key": "enhance_force-enhance-force",
+            "name": "Enhance Force",
+            "section_type": "enhance_force",
+            "source_label": "Enhance Force",
+            "order_index": 7,
+            "description_raw": null,
+            "description_summary": "When Elona is on the battlefield as Leafblade Gale is cast, Bryon generates two leaves beside her. The next level lets Elona's thunderbolts jump to two enemies and permanently increases Bryon's Haste after repeated Elona hits.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": 0,
+            "initial_cooldown": 0,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/bryon",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          },
+          {
+            "ability_key": "season_charm-season-charm",
+            "name": "Season Charm",
+            "section_type": "season_charm",
+            "source_label": "Season Charm",
+            "order_index": 8,
+            "description_raw": null,
+            "description_summary": "Increases ATK SPD and restores HP based on normal-attack damage. Higher ranks add Penetration to normal attacks while the caster remains above 50% HP.",
+            "description_kind": "paraphrased_summary_from_indexed_primary_source",
+            "cooldown": null,
+            "initial_cooldown": null,
+            "range": null,
+            "initial_energy": null,
+            "tags": null,
+            "tag_capture_status": "not_shown_at_section_level_in_indexed_capture",
+            "tag_mapping_label": null,
+            "tag_mapping_method": null,
+            "source_evidence": {
+              "source_name": "AFK Stargazer",
+              "source_url": "https://afkstargazer.com/en/skill/bryon",
+              "retrieved_at": "2026-11-25",
+              "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md",
+              "capture_batch": 25,
+              "evidence_kind": "indexed_primary_source_content"
+            }
+          }
+        ],
+        "notes": [
+          "The missing Enhance Force and Season Charm sections are now captured from the current indexed Stargazer page."
+        ],
+        "hero_id": "bryon",
+        "tracker_name": "Bryon",
+        "source_display_name": "Bryon",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/bryon",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_missing_sections_recaptured",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": []
+      }
+    },
+    {
+      "hero_id": "hammie",
+      "tracker_name": "Hammie",
+      "source_display_name": "Hammie",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/hammie",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 8,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "hammie",
+        "sections": [],
+        "verified_absent_sections": [
+          "Hero Focus",
+          "Exclusive Equipment",
+          "Enhance Force",
+          "Rivalry Mode"
+        ],
+        "absence_note": "The current indexed AFK Stargazer skill page lists Ultimate: Pretty Fireball, You'll Be Fine, I'm Hungry and Season Charm. It does not list Hero Focus, Exclusive Equipment, Enhance Force or Rivalry Mode. This is recorded as page-level absence only, not a claim that the systems do not exist elsewhere in the game.",
+        "page_tag_status": "Temp Buff (Single Target) retained from the earlier page capture.",
+        "hero_id": "hammie",
+        "tracker_name": "Hammie",
+        "source_display_name": "Hammie",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/hammie",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_verified_page_absence",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": []
+      }
+    },
+    {
+      "hero_id": "chippy",
+      "tracker_name": "Chippy",
+      "source_display_name": "Chippy",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/chippy",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "source_manifest": {
+        "first_pass_batch": 11,
+        "recapture_batches": [],
+        "first_pass_capture_status": "first_pass_captured"
+      },
+      "capture_batch": 25,
+      "capture_group": "complete",
+      "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json",
+      "profile_record": {
+        "id": "chippy",
+        "sections": [],
+        "verified_absent_sections": [
+          "Hero Focus",
+          "Exclusive Equipment",
+          "Enhance Force",
+          "Rivalry Mode"
+        ],
+        "absence_note": "The current indexed AFK Stargazer skill page lists Ultimate: Brothers-in-arms, Take This!, Eureka! and Season Charm. It does not list Hero Focus, Exclusive Equipment, Enhance Force or Rivalry Mode. No page-level mechanic buttons are displayed in the indexed page content; retain page_tags as an observed empty set only with this visibility qualifier.",
+        "page_tag_status": "No page-level mechanic buttons displayed in current indexed page content.",
+        "hero_id": "chippy",
+        "tracker_name": "Chippy",
+        "source_display_name": "Chippy",
+        "source": {
+          "name": "AFK Stargazer",
+          "url": "https://afkstargazer.com/en/skill/chippy",
+          "locale": "en",
+          "retrieved_at": "2026-11-25",
+          "source_patch_label": null,
+          "source_updated_at": null
+        },
+        "capture_batch": 25,
+        "capture_method": "indexed_primary_source_content; direct page open returned cache miss",
+        "profile_completion_status": "complete_after_verified_page_absence",
+        "normalization_status": "normalized_from_batch25",
+        "review_status": "primary_source_indexed_capture_pending_patch_verification",
+        "secondary_source_observations": []
+      }
+    }
+  ]
+}
