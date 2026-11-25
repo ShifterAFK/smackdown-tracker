@@ -192,3 +192,8 @@ Do not map a Season Skill into `season_charm`, replace one with the other, or tr
 ## Extension — source capture method and review
 
 Record whether a source was directly fetched or only available through indexed search content. An indexed-page capture can resolve a missing section name/content for a dry run, but it remains `pending_direct_page_fetch` when the live page could not be opened. Source patch/version remains unknown unless explicitly shown.
+
+
+## Extension — logical section identity and type reconciliation
+
+The logical section key is scoped to a hero and includes section type plus normalized ability name. If the same hero has the same ability name recorded under different section types, do not silently keep both or merge automatically. Create a reconciliation record and inspect the primary source label. Where the current primary page explicitly labels the ability as Ultimate and lists other base skills separately, merge the duplicate base-skill evidence into the Ultimate record while preserving every source variant and provenance. Conflicting historical descriptions remain flagged for review.
