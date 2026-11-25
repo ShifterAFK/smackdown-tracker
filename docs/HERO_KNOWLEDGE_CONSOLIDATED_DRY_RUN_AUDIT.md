@@ -1,60 +1,54 @@
-# Consolidated Hero Knowledge Dry Run — Stage 2AC6
+# Consolidated Hero Knowledge Dry Run — Stage 2AD3
 
-**Status:** completed — structural and section-type reconciliation passed; direct-source/patch review pending  
+**Status:** completed — structure, tags, source provenance and section semantics reconciled; direct-source/patch review pending  
 **Canonical index:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN.json`  
 **Validation:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json`  
-**Current shards:** `HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V3_PART_01.json` through `PART_04.json`
+**Current shards:** `HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_01.json` through `PART_04.json`
 
-Batch 25 and Batch 26 are merged. Nine same-name `base_skill`/ `ultimate` duplicates were reconciled into the Ultimate section after checking the current indexed AFK Stargazer page. The duplicate base-skill evidence was not discarded; its summaries, source keys, tags and provenance are retained on the Ultimate record.
+Batch 27 corrected Contess's section assignment. The effect previously included under Detention Pass in Batches 16/21 is the active effect of the separate base skill **Mandatory Civility**. Batch 27 now captures all eight Contess sections, their visible per-section tags and parameters, and reassigns the historical evidence. The current Detention Pass description is kept separate.
+
+Nine same-name `base_skill`/ `ultimate` duplicates have been reconciled. All duplicate evidence remains preserved under the primary-page-confirmed Ultimate section.
 
 | Measure | Result |
 |---|---:|
 | Tracker heroes | 131 / 131 |
 | Missing / unexpected IDs | 0 / 0 |
-| Capture records | 236 |
-| Complete / historical partial capture records | 132 / 104 |
+| Capture records | 237 |
+| Complete / historical partial capture records | 133 / 104 |
 | Normalized-complete profiles | 131 |
 | Open section-capture gaps | 0 |
 | Profiles pending direct page fetch | 20 |
 | Profiles pending patch verification | 131 |
+| Profiles pending secondary-source review | 126 |
 | Verified page-level absence profiles | 2 (Hammie, Chippy) |
 | Secondary-source profiles cross-checked | 5 |
 | Separate AFK.global Season Skill observations | 3 |
-| Section evidence records | 1,321 |
-| Unique logical sections after semantic reconciliation | 1,031 |
-| Sections with consistent explicit tags | 299 |
-| Sections with unknown per-section tags | 732 |
+| Section evidence records | 1,329 |
+| Unique logical sections | 1,032 |
+| Sections with consistent explicit tags | 301 |
+| Sections with unknown per-section tags | 731 |
 | Tag conflicts | 0 |
-| Sections with multiple paraphrased summary variants | 220 |
+| Sections with multiple paraphrased summary variants | 223 |
 | Same-name section-type conflicts unresolved | 0 |
 | Profiles with section-type reconciliation | 9 |
-| Profiles with content-variant review flag | 1 (Contess) |
+| Unresolved content-variant flags | 0 |
 | Source/locale/provenance mismatches | 0 |
 
-## Semantic reconciliation
+## Contess correction
 
-Current indexed primary pages explicitly label these abilities as Ultimates and list other base skills separately: Atalanta / Wild Sniper, Berial / Scared Swamp, Contess / Detention Pass, Igor / Funereal Ring, Marilee / Mid-Air Shot, Orion / Fatal Waltz, Thoran / Soul Retaliation, Valka / Blooming Terror and Voracia / The Main Course.
+The old Batch 16/21 Detention Pass summary contained two effects. The current indexed Stargazer page identifies the second effect as **Mandatory Civility**, a separate base skill. Batch 27 records Mandatory Civility with its own cooldown, range and `Debuff (Single Target)` tag, and assigns the earlier evidence to that section. The Ultimate retains only its own passive/active effect.
 
-The base-skill capture evidence is merged into the corresponding Ultimate section. For Contess, Batch 26's current page summary is surfaced; older Batch 16/21 descriptions containing an additional active effect remain preserved as historical variants pending direct-page/version verification.
-
-## Data interpretation
+## Data interpretation and remaining limits
 
 - All 131 profiles have normalized source records and no open section-capture gaps.
-- Twenty profiles still need direct page fetch because the latest capture used indexed page content after direct page opens returned cache misses.
-- Patch/season applicability has not been verified for any of the 131 profiles.
-- AFK.global Focus Hit, Lock-on Projectiles and Soul-lifting Touch remain secondary-source `season_skill` observations; they are not substituted for Stargazer `season_charm`.
-- 732 sections have unknown per-section tags. Unknown is not an empty tag set.
+- Twenty profiles still require direct page fetch; the latest captures used indexed page content after direct opens returned cache misses.
+- Patch/season applicability is not verified for any profile. Reference baseline: app-store build 1.8.2.1; latest patch notes 1.8.2; 1.8.3 preview only.
+- Five profiles have AFK.global cross-checks. Three Season Skill observations remain separate from Stargazer Season Charm.
+- 731 sections have unknown per-section tags. Unknown is not an empty tag set.
 - Page-level tags remain separate from ability-level tags.
 - Thane remains outside the tracker roster.
 
 ## Exit decision
 
-**Stage 2AC6 — consolidated V3 dry run: PASS for roster, structure, provenance, tags and section-type reconciliation.**  
-**Not ready for Supabase import:** direct-page verification, patch/season validation and Contess's historical content variant review remain outstanding.
-
-
-## Patch baseline — 2026-11-25
-
-Reference baseline: app-store build 1.8.2.1 (Nov 9); latest published patch notes 1.8.2 (Oct 28). Version 1.8.3 is preview-only in the checked source and has no confirmed release date. See `docs/HERO_KNOWLEDGE_PATCH_BASELINE.md`.
-
-This does not prove that each AFK Stargazer page reflects 1.8.2.1. All 131 profiles remain pending per-hero patch verification; 20 indexed-only profiles also remain pending direct page fetch. Keep `source_patch_label` null until verified.
+**Stage 2AD3 — consolidated V4 dry run: PASS for structure, tag consistency, provenance and section-type reconciliation.**  
+**Not ready for Supabase import:** direct-page verification, per-hero patch verification and broader secondary-source comparison remain outstanding.
