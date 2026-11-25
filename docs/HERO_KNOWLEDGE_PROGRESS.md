@@ -619,3 +619,17 @@ No source tag values or Supabase data changed.
 ## Restart point — Stage 2AC5
 
 Rebuild V3 shards with the nine section-type reconciliations. Retain Contess's content variant as a review flag. Re-run duplicate-name/type, tag, source provenance and roster validation.
+
+## Stage 2AC5 — Contess current Ultimate recapture
+
+**Status: complete at indexed-source level; direct-page/version verification pending.**  
+**Artifacts:** `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_26.md`, `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_26.json`, `docs/HERO_KNOWLEDGE_BATCH_26_NORMALIZATION_AUDIT.md`
+
+- Recaptured the current indexed AFK Stargazer description for Contess's Ultimate — Detention Pass.
+- The same-name `base_skill` record is confirmed to be a duplicate of the Ultimate and will be merged.
+- Batch 16/21 summaries contain an extra active effect not shown on the current indexed page; both are retained as historical variants and flagged for direct-page/version review.
+- No tag values inferred; source patch unknown; direct page open cache miss recorded.
+
+## Restart point — Stage 2AC6
+
+Merge the nine type-conflict pairs into their Ultimate sections, incorporate Batch 26's current Contess description, and rebuild V3 shards. Preserve Contess's historical variants and review flag.
