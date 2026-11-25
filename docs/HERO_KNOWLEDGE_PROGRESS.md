@@ -705,3 +705,26 @@ Standardize Batch 27, rebuild V4 shards, update the Contess type/content reconci
 
 One Contess capture record with eight section records was standardized. Mandatory Civility is a new logical section; seven existing sections were refreshed. The misattributed effect evidence remains preserved and correctly assigned.
 
+
+## Stage 2AD3 — Contess correction and consolidated V4
+
+**Status: complete — structural/tag/provenance/section-type PASS; direct-source/patch review pending.**  
+**Index:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN.json`  
+**V4 shards:** `HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_01.json` through `PART_04.json`  
+**Validation:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_AUDIT.md`
+
+- Batch 27 adds Mandatory Civility and refreshes all eight Contess page sections, including per-section tags and parameters.
+- The extra active effect previously misattributed to Detention Pass is reassigned to Mandatory Civility; historical evidence remains preserved.
+- Nine same-name base_skill/Ultimate duplicates are reconciled; zero unresolved type conflicts.
+- 1,329 section evidence records merge into 1,032 logical sections.
+- 131/131 profiles normalized-complete; zero open section-capture gaps.
+- 301 sections have consistent explicit tags; 731 remain unknown; zero tag conflicts.
+- 20 profiles pending direct page fetch; all 131 pending patch verification; 126 pending secondary-source review.
+- No roster, source URL, locale or section provenance mismatches.
+
+No Supabase writes or application changes.
+
+## Restart point — Stage 2AD4
+
+Try alternate retrieval routes for the 20 indexed-only pages; verify the source version and patch applicability per hero; expand AFK.global cross-checks beyond the five reviewed profiles. Preserve Season Skill versus Season Charm. Only after those gates should an import schema/dry-run be proposed.
