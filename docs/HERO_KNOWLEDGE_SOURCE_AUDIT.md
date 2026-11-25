@@ -150,3 +150,73 @@ Before creating database tables or importing data:
 - produce a coverage report with explicit missing/uncertain cases.
 
 **No Supabase changes have been made. No Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code has been touched.**
+
+
+## 8. Initial roster-page extraction pass (2026-11-25)
+
+A targeted search pass against Stargazer's individual `/en/skill/{slug}` pages confirmed accessible skill records for the following **45 tracker roster entries**:
+
+`Alna, Alsa, Antandra, Athalia, Atalanta, Aster, Aurora, Baden, Bonnie, Brutus, Callan, Cecia, Cyran, Cryonaia, Evie, Eironn, Faramor, Florabelle, Granny Dahnie, Harak, Hewynn, Hodgkin, Hugin, Indris, Kazim, Lamentis, Lily May, Lumont, Nara, Phraesto, Rolan, Shadewing, Silven, Sinbad, Soren, Sylphira, Talene, Valen, Valka, Velara, Viperian, Zandrok, Zanie, Zorya`.
+
+This is a **confirmed page-discovery list**, not yet a complete structured export of every ability row. The pages returned skill text and, where applicable, source mechanic tags. The remaining 86 roster IDs have not yet been individually confirmed in this pass. A missing search result is not evidence that a Stargazer page or hero is absent.
+
+### Representative source pages captured in this pass
+
+- Hugin: https://afkstargazer.com/en/skill/hugin
+- Lily May: https://afkstargazer.com/en/skill/lily-may
+- Ravion: https://afkstargazer.com/en/skill/ravion (previous spot-check; not in the 45-page search return set above)
+- Hewynn: https://afkstargazer.com/en/skill/hewynn
+- Rolan: https://afkstargazer.com/en/skill/rolan
+- Callan: https://afkstargazer.com/en/skill/callan
+- Hodgkin: https://afkstargazer.com/en/skill/hodgkin
+- Lumont: https://afkstargazer.com/en/skill/lumont
+- Atalanta: https://afkstargazer.com/en/skill/atalanta
+- Cyran: https://afkstargazer.com/en/skill/cyran
+- Faramor: https://afkstargazer.com/en/skill/faramor
+- Kazim: https://afkstargazer.com/en/skill/kazim
+- Nara: https://afkstargazer.com/en/skill/nara
+- Antandra: https://afkstargazer.com/en/skill/antandra
+- Eironn: https://afkstargazer.com/en/skill/eironn
+- Phraesto: https://afkstargazer.com/en/skill/phraesto
+- Athalia: https://afkstargazer.com/en/skill/athalia
+- Viperian: https://afkstargazer.com/en/skill/viperian
+- Valen: https://afkstargazer.com/en/skill/valen
+- Talene: https://afkstargazer.com/en/skill/talene
+- Baden: https://afkstargazer.com/en/skill/baden
+- Cecia: https://afkstargazer.com/en/skill/cecia
+- Granny Dahnie: https://afkstargazer.com/en/skill/granny-dahnie
+- Velara: https://afkstargazer.com/en/skill/velara
+- Temesia: https://afkstargazer.com/en/skill/temesia
+- Evie: https://afkstargazer.com/en/skill/evie
+- Lamentis: https://afkstargazer.com/en/skill/lamentis
+- Valka: https://afkstargazer.com/en/skill/valka
+- Aster: https://afkstargazer.com/en/skill/aster
+- Indris: https://afkstargazer.com/en/skill/indris
+- Soren: https://afkstargazer.com/en/skill/soren
+- Florabelle: https://afkstargazer.com/en/skill/florabelle
+- Harak: https://afkstargazer.com/en/skill/harak
+- Zanie: https://afkstargazer.com/en/skill/zanie
+- Shadewing: https://afkstargazer.com/en/skill/shadewing
+- Zandrok: https://afkstargazer.com/en/skill/zandrok
+- Silven: https://afkstargazer.com/en/skill/silven
+- Sylphira: https://afkstargazer.com/en/skill/sylphira
+- Brutus: https://afkstargazer.com/en/skill/brutus
+- Aurora: https://afkstargazer.com/en/skill/aurora
+- Alna: https://afkstargazer.com/en/skill/alna
+- Zorya: https://afkstargazer.com/en/skill/zorya
+- Sinbad: https://afkstargazer.com/en/skill/sinbad
+- Bonnie: https://afkstargazer.com/en/skill/bonnie
+- Alsa: https://afkstargazer.com/en/skill/alsa
+
+### Important extraction details found
+
+- Stargazer's skill page separates the ability tags from the ability text. Both must be captured.
+- Some mechanics appear only on non-Ultimate skills, e.g. Hugin's `Energy Battery` is on `Mechanized Bond`.
+- Some tags are qualified by scope/timing, e.g. `Temp Buff (Opening, Single Target)`, `Haste (Opening, AOE)`, `Debuff (Single Target, Global)`.
+- Some relevant mechanics are present in skill text without a corresponding top-level tag in the snippets, so full ability text remains necessary.
+- Pages include additional progression systems (Exclusive Equipment, Enhance Force, Season Charm and Rivalry Mode refinements). These must be stored separately from the base skill kit to avoid attributing upgrade-only effects to every copy of a hero.
+- Current site-wide mechanic counts were observed as: Airborne 26, Cheat Death 18, Debuff 86, DoT 24, Energy Battery 12, Energy Denial 19, Execute 8, Haste 17, Heal Denial 7, Init Energy > 500 17, Invincibility 3, Special Target 19, Summon 18, Temp Buff 46, Tile Effect 9, Ult (Opening) 4, Ult Denial 9. These counts are volatile site aggregates, not counts of unique heroes or database records.
+
+### Next extraction batch
+
+Continue confirming the remaining 86 tracker IDs individually, then convert all confirmed pages into a normalized hero → ability → raw tag/evidence dataset. Do not mark a hero as `no_tags` until its full page has been inspected.
