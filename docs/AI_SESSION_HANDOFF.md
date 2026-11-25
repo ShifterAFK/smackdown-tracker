@@ -8,10 +8,10 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before this handoff update:** `02910826b50c905fb3c1dbe06c1ae0dd0aaf84a4`  
+**Last confirmed development HEAD before this handoff update:** `4bef2c21ef9355012d192ff30b5fe3ab7627a3c6`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
-**Current stage:** five-hero pilot accepted as the reference method; roster-wide coverage audit completed; no roster expansion started  
+**Current stage:** five-hero pilot accepted as the reference method; roster-wide coverage audit completed; second bounded batch approved (Cecia, Granny Dahnie, Indris, Nerion, Solise); analysis not started  
 **Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
@@ -319,15 +319,15 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0012
+## 10. Current restart point after ACTION 0013
 
-**Task:** ability-based composition analysis; five-hero pilot accepted as the reference method; roster-wide coverage audit completed.
+**Task:** ability-based composition analysis; five-hero pilot accepted as the reference method; roster-wide coverage audit completed; second bounded batch selected and approved.
 
 **Confirmed current state:**
 - The approved three-layer model and detailed schema/tagging rules remain recorded in sections 13–14.
 - The five-hero pilot artifact is present at `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`: 5 heroes, 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
 - The user explicitly accepted the pilot as the correct reference method for descriptive kit-capability analysis.
-- The roster-wide audit read all four V4 shards, the canonical index and validation, the source manifest, and the pilot. The current `development` HEAD before this Handoff update was `02910826b50c905fb3c1dbe06c1ae0dd0aaf84a4`.
+- The roster-wide audit read all four V4 shards, the canonical index and validation, the source manifest, and the pilot. The development HEAD before the prior Handoff update was `02910826b50c905fb3c1dbe06c1ae0dd0aaf84a4`; the current starting HEAD for this update is `4bef2c21ef9355012d192ff30b5fe3ab7627a3c6`.
 - V4 contains 131/131 roster heroes, 1,032 logical sections and 1,329 section-evidence records; all 131 profiles are marked normalized-complete and there are no open section gaps.
 - Every section has source evidence. All 1,032 descriptions are paraphrased summaries (1,024 from extraction batches and 8 from indexed primary-source content); no raw descriptions are present.
 - Section tags: 301 `consistent_explicit_capture`, 731 `unknown`. Unknown does not mean that an ability has no mechanic.
@@ -711,5 +711,22 @@ Commit one coherent documentation or code change at a time on `development`. Bef
   - Source patch/update labels are absent for all 131 profiles; patch research remains intentionally closed under the user's prior decision.
 - Decision / interpretation: V4 has broad structural roster coverage and source provenance, but it is not a ready-made ability-mechanics model. Its descriptions are paraphrased and its structured mechanics/functions/interactions are absent. The pilot method must be applied conservatively in bounded hero batches; unknowns remain unknown and no automatic bulk conversion is justified.
 - Scope protection: read-only inspection only. No repository data artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
-- Next single action: ask the user whether to authorize a second bounded hero batch and agree its selection; do not begin that batch without approval.
+- The user approved the second bounded batch: Cecia, Granny Dahnie, Indris, Nerion and Solise. Contess is excluded because she is banned in the mode under consideration.
+- Selection approval does not mean the analysis has started; no new hero mechanics, functions, interactions or data records have been created.
+- Next single action: begin the approved bounded analysis batch for Cecia, Granny Dahnie, Indris, Nerion and Solise, following the accepted pilot method and existing scope constraints.
 
+
+## 21. Second bounded batch selection — 2026-11-25
+
+### ACTION 0013 — Replace Contess with Solise in the second batch
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / second bounded hero batch selection
+- Status: APPROVED; analysis not started
+- Purpose: record the user's correction to the proposed five-hero batch before any analysis begins.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; decision and restart state in `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `4bef2c21ef9355012d192ff30b5fe3ab7627a3c6`; Handoff blob SHA `1876e52aac1090dcb67abec283bd1b2bc5d04856`.
+- Operation: user rejected Contess for this batch because she is banned in the mode under consideration and selected Solise instead. Approved batch: Cecia, Granny Dahnie, Indris, Nerion and Solise.
+- Result: the second bounded batch selection is explicit and approved. No hero source review, mechanic extraction, team-function mapping, interaction mapping or data artifact modification has been performed in this action.
+- Decision: exclude Contess from this mode-specific batch; include Solise. Continue to apply the accepted five-hero pilot method, with Season Charm excluded and existing model limitations preserved.
+- Scope protection: this update changes only the Handoff document. No pilot JSON, V4 shard, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch is changed.
+- Next single action: start the approved analysis batch for Cecia, Granny Dahnie, Indris, Nerion and Solise.
