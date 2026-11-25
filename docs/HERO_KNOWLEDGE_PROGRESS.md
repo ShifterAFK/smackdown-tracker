@@ -665,3 +665,19 @@ No Supabase writes or application changes.
 ## Restart point — Stage 2AD
 
 Attempt direct source-page retrieval for the 20 indexed-only profiles; verify patch/season applicability; investigate Contess's historical Detention Pass variant; and expand secondary-source comparison. Keep Season Skill separate from Season Charm. Do not propose Supabase import until these review gates are satisfied.
+
+## Stage 2AD1 — establish patch/version reference baseline
+
+**Status: complete — reference baseline recorded; per-hero verification pending.**  
+**Artifacts:** `docs/HERO_KNOWLEDGE_PATCH_BASELINE.md`, `docs/data/HERO_KNOWLEDGE_PATCH_BASELINE.json`
+
+- Latest app-store build listed: 1.8.2.1 (2026-11-09).
+- Latest published patch notes: 1.8.2 (2026-10-28).
+- 1.8.3 is a preview published 2026-11-19 with no confirmed release date.
+- Relevant 1.8.2 hero notes include Talene's Pyre of Renewal avatar-status bug fix; no kit redesign is described.
+- Per-hero Stargazer source patch remains unknown for all 131 profiles; do not stamp 1.8.2.1 into hero records without evidence.
+- Twenty indexed-only profiles still need direct page retrieval.
+
+## Restart point — Stage 2AD2
+
+Attempt alternate direct retrieval routes for the 20 indexed-only Stargazer pages, then cross-check high-impact hero mechanics against AFK.global and official patch notes. Preserve the distinction between page-level source evidence, secondary Season Skill records and Stargazer Season Charm. Review Contess's historical variant against the patch baseline.
