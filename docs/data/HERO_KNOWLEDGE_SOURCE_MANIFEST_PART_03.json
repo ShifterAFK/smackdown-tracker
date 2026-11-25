@@ -1,0 +1,606 @@
+{
+  "batch_range": "17-24",
+  "capture_occurrences": [
+    {
+      "hero_id": "seth",
+      "hero_name": "Seth",
+      "source_url": "https://afkstargazer.com/en/skill/seth",
+      "source_slug": "seth",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "karma",
+      "hero_name": "Karma",
+      "source_url": "https://afkstargazer.com/en/skill/karma",
+      "source_slug": "karma",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "silvina",
+      "hero_name": "Silvina",
+      "source_url": "https://afkstargazer.com/en/skill/silvina",
+      "source_slug": "silvina",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "natsu",
+      "hero_name": "Natsu",
+      "source_url": "https://afkstargazer.com/en/skill/natsu",
+      "source_slug": "natsu",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "rhys",
+      "hero_name": "Rhys",
+      "source_url": "https://afkstargazer.com/en/skill/rhys",
+      "source_slug": "rhys",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "berial",
+      "hero_name": "Berial",
+      "source_url": "https://afkstargazer.com/en/skill/berial",
+      "source_slug": "berial",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "thoran",
+      "hero_name": "Thoran",
+      "source_url": "https://afkstargazer.com/en/skill/thoran",
+      "source_slug": "thoran",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "orion",
+      "hero_name": "Orion",
+      "source_url": "https://afkstargazer.com/en/skill/orion",
+      "source_slug": "orion",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "walker",
+      "hero_name": "Walker",
+      "source_url": "https://afkstargazer.com/en/skill/walker",
+      "source_slug": "walker",
+      "source_locale": "en",
+      "batch": 17,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "solise",
+      "hero_name": "Solise",
+      "source_url": "https://afkstargazer.com/en/skill/solise",
+      "source_slug": "solise",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "marcille",
+      "hero_name": "Marcille",
+      "source_url": "https://afkstargazer.com/en/skill/marcille",
+      "source_slug": "marcille",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "elijah-lailah",
+      "hero_name": "Elijah & Lailah",
+      "source_url": "https://afkstargazer.com/en/skill/elijah-lailah",
+      "source_slug": "elijah-lailah",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "voracia",
+      "hero_name": "Voracia",
+      "source_url": "https://afkstargazer.com/en/skill/voracia",
+      "source_slug": "voracia",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "igor",
+      "hero_name": "Igor",
+      "source_url": "https://afkstargazer.com/en/skill/igor",
+      "source_slug": "igor",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "marilee",
+      "hero_name": "Marilee",
+      "source_url": "https://afkstargazer.com/en/skill/marilee",
+      "source_slug": "marilee",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "valka",
+      "hero_name": "Valka",
+      "source_url": "https://afkstargazer.com/en/skill/valka",
+      "source_slug": "valka",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "aster",
+      "hero_name": "Aster",
+      "source_url": "https://afkstargazer.com/en/skill/aster",
+      "source_slug": "aster",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "pandora",
+      "hero_name": "Pandora",
+      "source_url": "https://afkstargazer.com/en/skill/pandora",
+      "source_slug": "pandora",
+      "source_locale": "en",
+      "batch": 18,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "evie",
+      "hero_name": "Evie",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "lamentis",
+      "hero_name": "Lamentis",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "aster",
+      "hero_name": "Aster",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "soren",
+      "hero_name": "Soren",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "florabelle",
+      "hero_name": "Florabelle",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "zandrok",
+      "hero_name": "Zandrok",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "brutus",
+      "hero_name": "Brutus",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "alna",
+      "hero_name": "Alna",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "lorsan",
+      "hero_name": "Lorsan",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "sylphira",
+      "hero_name": "Sylphira",
+      "source_url": "https://afkstargazer.com/en/skill/sylphira",
+      "source_slug": "sylphira",
+      "source_locale": "en",
+      "batch": 19,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "rolan",
+      "hero_name": "Rolan",
+      "source_url": "https://afkstargazer.com/en/skill/rolan",
+      "source_slug": "rolan",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "faramor",
+      "hero_name": "Faramor",
+      "source_url": "https://afkstargazer.com/en/skill/faramor",
+      "source_slug": "faramor",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "callan",
+      "hero_name": "Callan",
+      "source_url": "https://afkstargazer.com/en/skill/callan",
+      "source_slug": "callan",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "hodgkin",
+      "hero_name": "Hodgkin",
+      "source_url": "https://afkstargazer.com/en/skill/hodgkin",
+      "source_slug": "hodgkin",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "nara",
+      "hero_name": "Nara",
+      "source_url": "https://afkstargazer.com/en/skill/nara",
+      "source_slug": "nara",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "cryonaia",
+      "hero_name": "Cryonaia",
+      "source_url": "https://afkstargazer.com/en/skill/cryonaia",
+      "source_slug": "cryonaia",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "atalanta",
+      "hero_name": "Atalanta",
+      "source_url": "https://afkstargazer.com/en/skill/atalanta",
+      "source_slug": "atalanta",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "baden",
+      "hero_name": "Baden",
+      "source_url": "https://afkstargazer.com/en/skill/baden",
+      "source_slug": "baden",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "phraesto",
+      "hero_name": "Phraesto",
+      "source_url": "https://afkstargazer.com/en/skill/phraesto",
+      "source_slug": "phraesto",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "valen",
+      "hero_name": "Valen",
+      "source_url": "https://afkstargazer.com/en/skill/valen",
+      "source_slug": "valen",
+      "source_locale": "en",
+      "batch": 20,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "voracia",
+      "hero_name": "Voracia",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "igor",
+      "hero_name": "Igor",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "kruger",
+      "hero_name": "Kruger",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "contess",
+      "hero_name": "Contess",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "walker",
+      "hero_name": "Walker",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "gwyneth",
+      "hero_name": "Gwyneth",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "orion",
+      "hero_name": "Orion",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "marilee",
+      "hero_name": "Marilee",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "himmel",
+      "hero_name": "Himmel",
+      "source_url": null,
+      "source_slug": null,
+      "source_locale": null,
+      "batch": 21,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "atalanta",
+      "hero_name": "Atalanta",
+      "source_url": "https://afkstargazer.com/en/skill/atalanta",
+      "source_slug": "atalanta",
+      "source_locale": "en",
+      "batch": 22,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "phraesto",
+      "hero_name": "Phraesto",
+      "source_url": "https://afkstargazer.com/en/skill/phraesto",
+      "source_slug": "phraesto",
+      "source_locale": "en",
+      "batch": 22,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "thoran",
+      "hero_name": "Thoran",
+      "source_url": "https://afkstargazer.com/en/skill/thoran",
+      "source_slug": "thoran",
+      "source_locale": "en",
+      "batch": 22,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "pandora",
+      "hero_name": "Pandora",
+      "source_url": "https://afkstargazer.com/en/skill/pandora",
+      "source_slug": "pandora",
+      "source_locale": "en",
+      "batch": 22,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "pippa",
+      "hero_name": "Pippa",
+      "source_url": "https://afkstargazer.com/en/skill/pippa",
+      "source_slug": "pippa",
+      "source_locale": "en",
+      "batch": 22,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "baden",
+      "hero_name": "Baden",
+      "source_url": "https://afkstargazer.com/en/skill/baden",
+      "source_slug": "baden",
+      "source_locale": "en",
+      "batch": 22,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "saida",
+      "hero_name": "Saida",
+      "source_url": "https://afkstargazer.com/en/skill/saida",
+      "source_slug": "saida",
+      "source_locale": "en",
+      "batch": 22,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "valen",
+      "hero_name": "Valen",
+      "source_url": "https://afkstargazer.com/en/skill/valen",
+      "source_slug": "valen",
+      "source_locale": "en",
+      "batch": 23,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "sylphira",
+      "hero_name": "Sylphira",
+      "source_url": "https://afkstargazer.com/en/skill/sylphira",
+      "source_slug": "sylphira",
+      "source_locale": "en",
+      "batch": 23,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "berial",
+      "hero_name": "Berial",
+      "source_url": "https://afkstargazer.com/en/skill/berial",
+      "source_slug": "berial",
+      "source_locale": "en",
+      "batch": 23,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "laios",
+      "hero_name": "Laios",
+      "source_url": "https://afkstargazer.com/en/skill/laios",
+      "source_slug": "laios",
+      "source_locale": "en",
+      "batch": 23,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "baden",
+      "hero_name": "Baden",
+      "source_url": "https://afkstargazer.com/en/skill/baden",
+      "source_slug": "baden",
+      "source_locale": "en",
+      "batch": 23,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "saida",
+      "hero_name": "Saida",
+      "source_url": "https://afkstargazer.com/en/skill/saida",
+      "source_slug": "saida",
+      "source_locale": "en",
+      "batch": 23,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "perseus",
+      "hero_name": "Perseus",
+      "source_url": "https://afkstargazer.com/en/skill/perseus",
+      "source_slug": "perseus",
+      "source_locale": "en",
+      "batch": 23,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "baden",
+      "hero_name": "Baden",
+      "source_url": "https://afkstargazer.com/en/skill/baden",
+      "source_slug": "baden",
+      "source_locale": "en",
+      "batch": 24,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "saida",
+      "hero_name": "Saida",
+      "source_url": "https://afkstargazer.com/en/skill/saida",
+      "source_slug": "saida",
+      "source_locale": "en",
+      "batch": 24,
+      "initial_capture_status": "complete"
+    },
+    {
+      "hero_id": "perseus",
+      "hero_name": "Perseus",
+      "source_url": "https://afkstargazer.com/en/skill/perseus",
+      "source_slug": "perseus",
+      "source_locale": "en",
+      "batch": 24,
+      "initial_capture_status": "complete"
+    }
+  ],
+  "out_of_roster": [],
+  "parse_checks": {
+    "occurrences": 64,
+    "unique_hero_ids": 45,
+    "missing_source_urls": [
+      "evie",
+      "lamentis",
+      "aster",
+      "soren",
+      "florabelle",
+      "zandrok",
+      "brutus",
+      "alna",
+      "lorsan",
+      "voracia",
+      "igor",
+      "kruger",
+      "contess",
+      "walker",
+      "gwyneth",
+      "orion",
+      "marilee",
+      "himmel"
+    ]
+  }
+}
