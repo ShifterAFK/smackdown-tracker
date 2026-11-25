@@ -56,8 +56,9 @@
       "resolution": "merge_base_skill_capture_evidence_into_ultimate",
       "resolved_section_type": "ultimate",
       "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
-      "review_note": "The current page labels Detention Pass as the Ultimate and lists no same-name base skill. Batch 16 also includes an extra active-effect summary not present in the current indexed page; retain that as a conflicting historical description variant.",
-      "review_status": "needs_content_variant_review"
+      "review_note": "The extra active effect in Batch 16/21 belongs to the separate base skill Mandatory Civility, not Detention Pass. Batch 27 captures Mandatory Civility and reassigns the historical evidence.",
+      "review_status": "resolved_by_batch_27_reassignment",
+      "related_section": "base_skill-mandatory-civility"
     },
     {
       "hero_id": "igor",
