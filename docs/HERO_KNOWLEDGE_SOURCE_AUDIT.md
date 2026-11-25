@@ -434,3 +434,23 @@ A read-only query of `public.ss_heroes` returned 131 tracker rows. Comparing IDs
 This closes *roster coverage*, not complete transcription/verification. In particular, a partial record is not a complete skill kit, and a first-pass summary is not yet patch-verified or cross-checked against a second source.
 
 All 13 extraction batches are documentation-only on `development`. **No Supabase schema or data was modified.**
+
+
+
+## 21. Partial-profile recapture pass 1 (2026-11-25)
+
+Fourteenth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_14.md` — recaptured source material for previously partial profiles.
+
+Three tracker profiles now have sufficiently complete first-pass captures and are upgraded from `partial`:
+- `koko` — complete base abilities, Hero Focus, Exclusive Equipment, Enhance Force, Season Charm, Rivalry Mode.
+- `smokey-meerky` — complete base abilities, Hero Focus, Exclusive Equipment, Enhance Force, Season Charm, Rivalry Mode.
+- `fay` — complete base abilities, Hero Focus, Exclusive Equipment, Enhance Force, Season Charm, Rivalry Mode.
+
+Ten additional page recaptures supplied useful missing sections for Rolan, Callan, Hodgkin, Atalanta, Cryonaia, Faramor, Baden, Phraesto, Nara, and Valen. They remain marked partial because at least one required base-skill or progression section is still missing from the captured source excerpt. Do not count these as complete profiles yet.
+
+**Updated first-pass capture coverage: 83/131 complete (63.4%); 48/131 partial (36.6%).** This is a source-capture completeness count only. It does not mean the 83 complete profiles are cross-checked against AFK.global, verified against an in-game patch, or ready for database import.
+
+Source retrieval note: direct page opens returned cache misses in this pass, so recapture relied on indexed Stargazer page content. Search excerpts were treated conservatively; no missing skill sections were reconstructed from memory or inference.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
