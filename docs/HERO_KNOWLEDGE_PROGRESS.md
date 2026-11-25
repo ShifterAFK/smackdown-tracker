@@ -642,3 +642,26 @@ Merge the nine type-conflict pairs into their Ultimate sections, incorporate Bat
 
 One Contess capture record and one current Ultimate section have been standardized. The historical variant note and indexed-source limitation are preserved.
 
+
+## Stage 2AC6 — reconcile and rebuild consolidated V3
+
+**Status: complete — structural and section-type PASS; direct-source/patch review pending.**  
+**Index:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN.json`  
+**V3 shards:** `HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V3_PART_01.json` through `PART_04.json`  
+**Validation:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_AUDIT.md`
+
+- Reconciled 9 same-name base_skill/Ultimate type duplicates using current indexed Stargazer pages; all duplicate evidence remains preserved on the Ultimate records.
+- 1,321 section evidence records merge into 1,031 logical sections.
+- 131/131 profiles normalized-complete; zero open section-capture gaps.
+- 20 profiles pending direct page fetch; all 131 pending patch/season verification.
+- 299 sections have consistent explicit tags; 732 remain unknown; zero tag conflicts.
+- 220 logical sections retain multiple paraphrased summary variants.
+- Contess's historical additional active-effect summary remains flagged and preserved.
+- No roster, source URL, locale or section provenance mismatches.
+
+No Supabase writes or application changes.
+
+## Restart point — Stage 2AD
+
+Attempt direct source-page retrieval for the 20 indexed-only profiles; verify patch/season applicability; investigate Contess's historical Detention Pass variant; and expand secondary-source comparison. Keep Season Skill separate from Season Charm. Do not propose Supabase import until these review gates are satisfied.
