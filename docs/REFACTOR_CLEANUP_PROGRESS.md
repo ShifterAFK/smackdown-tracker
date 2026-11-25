@@ -19,7 +19,7 @@ This log is the durable restart point. Update it in every completed work stage, 
 
 ## Stage 0 — source intake and baseline
 
-<badge>Completed</badge> Source intake only; no application or database changes.
+**Status: completed.** Source intake only; no application or database changes.
 
 ### Sources inspected
 
@@ -55,8 +55,36 @@ This log is the durable restart point. Update it in every completed work stage, 
 
 Source files and the intended rebuild direction are identified. The safe next step is a read-only inventory/diff of the archive against current `development`, including entry points, module loading order, duplicated responsibilities, RPC/Edge Function call sites, and the UI features that must be preserved.
 
+
+
+## Stage 1 — read-only architecture inventory
+
+**Status: completed.**  
+**Audit:** [`docs/REFACTOR_CLEANUP_ARCHITECTURE_AUDIT.md`](REFACTOR_CLEANUP_ARCHITECTURE_AUDIT.md)
+
+### Findings
+
+- The archive contains 308 files (44 JS, 24 CSS, no SQL migrations); current `development` contains 336 files (47 JS, 27 CSS, six Supabase migrations).
+- Archive root `index.html` references `assets/js/main.js` and `assets/css/main.css`, but those paths are absent. V2 files exist under `v2/assets/js/`; the archive root does not correctly reference them.
+- Current `development` has Record Match, Tier List, Tier Side, Statistics, and Model Comparison. The archive instead has a Tier S 30+ page and no Model Comparison. A wholesale replacement would change the feature set.
+- Current runtime loads generated classic-script modules from `index.html`; it does not load `assets/js/tracker-app.js`.
+- Five of nine generated modules differ from their marker-delimited chunks in `tracker-app.js`. Running the split workflow could overwrite those module-specific changes. Do not run it until the drift is reconciled.
+- Draft order ON/OFF sequences were inspected and recorded; OFF currently fills BLUE 1→2→3, then RED 1→2→3.
+- Existing Supabase migrations/data and current indicators must be preserved.
+
+### Validation
+
+- Read-only archive inventory, entry-point/script inspection, module comparison, and draft-rule inspection completed.
+- No application code changed.
+- No Supabase query or write performed.
+- No browser QA performed.
+
+### Exit result
+
+The archive is not a safe drop-in replacement. Continue with incremental cleanup of current `development`, treating the currently loaded generated modules as runtime code and the monolithic file as a reference until drift is reconciled.
+
 ## Restart point
 
-**Next action:** Stage 1 — read-only architecture inventory and archive-vs-`development` comparison. Produce a component map and a preservation checklist before changing application code.
+**Next action:** Stage 2 — establish a repeatable, non-destructive baseline validation procedure for the current runtime (script loading, syntax checks, required DOM IDs, RPC inventory, and module drift report). No production behavior changes in that stage.
 
 **Do not start:** replacing `index.html`, removing legacy modules, changing Supabase, or changing draft/TOP/Tier algorithms until Stage 1 is documented and reviewed.
