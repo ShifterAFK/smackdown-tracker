@@ -302,6 +302,24 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2Q
+
+## Stage 2Q — Batch 08 normalization
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_08.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_08_NORMALIZATION_AUDIT.md`
+
+- Three complete profiles normalized: Lenya, Damian and Kafra.
+- 24 sections, 5 explicitly tagged sections, 6 raw per-section tag records and 5 page-level tag records.
+- Seven partial recaptures (Lucca, Kruger, Lucius, Gunnar, Gwyneth, Hammie and Laios) remain separate: 30 sections, 6 tagged sections, 9 raw tag records and 9 page-level tag records.
+- Kruger's incomplete mid-skill detail is retained separately; no missing base abilities or tags are inferred.
+- Lenya's missing page-level buttons remain unknown, not an empty tag set. Gwyneth and Hammie remain partial because their capture notes list missing sections.
+- Source URLs match the manifest; no unmatched mappings, duplicate section keys, missing summaries or tag conflicts.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2R
+
+Next, inspect **Batch 07**. Separate complete captures from partial recaptures and retain prior-batch references where present. Normalize only profiles explicitly established as complete; keep partial fragments supplemental. Validate section order, tag mapping labels/qualifiers, source URLs and provenance. Commit the batch artifact and audit, then update this log. No Supabase import.
+
 
 Next, inspect **Batch 08**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
