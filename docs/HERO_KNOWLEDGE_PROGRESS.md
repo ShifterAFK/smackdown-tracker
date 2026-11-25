@@ -633,3 +633,12 @@ Rebuild V3 shards with the nine section-type reconciliations. Retain Contess's c
 ## Restart point — Stage 2AC6
 
 Merge the nine type-conflict pairs into their Ultimate sections, incorporate Batch 26's current Contess description, and rebuild V3 shards. Preserve Contess's historical variants and review flag.
+
+## Stage 2AC5b — standardize Batch 26 input
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATION_PART_26.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATION_PART_26_AUDIT.md`
+
+One Contess capture record and one current Ultimate section have been standardized. The historical variant note and indexed-source limitation are preserved.
+
