@@ -332,10 +332,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Source URLs match the manifest; no duplicate section keys or missing summaries.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2S
+## Stage 2S — Batch 06 normalization
 
-Next, inspect **Batch 06**. Separate complete profiles from partial recaptures, preserve cross-batch references and tag-only evidence, and normalize only profiles explicitly established as complete. Keep partial fragments supplemental. Validate source URLs, section names/order, tag mapping labels/qualifiers and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_06.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_06_NORMALIZATION_AUDIT.md`
 
+- Three complete profiles normalized: Ulmus, Tilaya and Thador.
+- 24 sections, 5 explicitly tagged sections and 6 raw per-skill tag records.
+- Seven partial recaptures (Koko, Lorsan, Satrana, Fay, Nerion, Mehira and Pang) remain supplemental: 32 sections, 12 explicitly tagged sections and 18 raw per-skill tag records.
+- 15 page-level tag records are retained separately and are not copied onto abilities.
+- Nerion's unheaded base-skill detail is preserved as an unstructured note; missing ability names are not inferred.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
 
-Next, inspect **Batch 07**. Separate complete captures from partial recaptures and retain prior-batch references where present. Normalize only profiles explicitly established as complete; keep partial fragments supplemental. Validate section order, tag mapping labels/qualifiers, source URLs and provenance. Commit the batch artifact and audit, then update this log. No Supabase import.
+## Restart point — Stage 2T
 
+Next, inspect **Batch 05**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
