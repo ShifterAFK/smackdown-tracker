@@ -585,3 +585,20 @@ Baden and Saida gained further progression details but remain partial because th
 This is source-capture completeness only. It does not imply second-source validation, in-game patch verification, or database readiness.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 30. Partial-profile recapture pass 10 (2026-11-25)
+
+Twenty-third extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_23.md` — tenth recapture pass.
+
+Four tracker profiles upgraded to complete first-pass captures:
+- `valen`, `sylphira`, `berial`, `laios`.
+
+Baden, Saida and Perseus gained additional source details but remain partial because the full base ability set (and for Perseus, other core sections) is still not present in the captured source material.
+
+**Updated first-pass capture coverage: 128/131 complete (97.7%); 3/131 partial (2.3%).** The only tracker IDs still marked partial are Baden (`baden`), Saida (`saida`) and Perseus (`perseus`). Thane remains an extra source page outside the 131-row tracker roster.
+
+This is source-capture completeness only. It does not imply second-source validation, in-game patch verification, or database readiness.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
