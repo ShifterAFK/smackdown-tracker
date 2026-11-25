@@ -8,9 +8,10 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before this handoff update:** `6578abae02538cf873849a2b24f479e7a7599141`  
+**Last confirmed development HEAD before this handoff update:** `02910826b50c905fb3c1dbe06c1ae0dd0aaf84a4`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
+**Current stage:** five-hero pilot accepted as the reference method; roster-wide coverage audit completed; no roster expansion started  
 **Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
@@ -318,36 +319,42 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0009
+## 10. Current restart point after ACTION 0012
 
-**Task:** five-hero ability-based composition analysis pilot; descriptive capability model only.
+**Task:** ability-based composition analysis; five-hero pilot accepted as the reference method; roster-wide coverage audit completed.
 
 **Confirmed current state:**
 - The approved three-layer model and detailed schema/tagging rules remain recorded in sections 13–14.
-- The five-hero pilot artifact is present at `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`.
-- Pilot coverage: 5 heroes (Lily May, Ravion, Odie, Himmel and Valka), 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
-- Season Charm is excluded (zero Season Charm mechanics in the pilot); it remains distinct from Season Skill.
-- Every mechanic is tied to a hero and ability and has source evidence; team functions reference mechanics; interactions reference supporting mechanics.
-- Pilot validation checks passed for mechanic anchors, mechanic evidence, team-function references, interaction references, Season Charm exclusion and the two prediction limitations.
-- The artifact's current constraints are explicit: `formation_prediction: not_supported`, `ability_activation_prediction: not_supported`, `actual_match_effects: not_observed`, and `capability_based_analysis_only: true`.
-- Interactions dependent on position or timing are conditional capabilities only. The model does not predict formations, ability activation, target selection or combat timelines.
-- No named hero-pair synergy, composition score or weighting is asserted.
+- The five-hero pilot artifact is present at `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`: 5 heroes, 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
+- The user explicitly accepted the pilot as the correct reference method for descriptive kit-capability analysis.
+- The roster-wide audit read all four V4 shards, the canonical index and validation, the source manifest, and the pilot. The current `development` HEAD before this Handoff update was `02910826b50c905fb3c1dbe06c1ae0dd0aaf84a4`.
+- V4 contains 131/131 roster heroes, 1,032 logical sections and 1,329 section-evidence records; all 131 profiles are marked normalized-complete and there are no open section gaps.
+- Every section has source evidence. All 1,032 descriptions are paraphrased summaries (1,024 from extraction batches and 8 from indexed primary-source content); no raw descriptions are present.
+- Section tags: 301 `consistent_explicit_capture`, 731 `unknown`. Unknown does not mean that an ability has no mechanic.
+- The four section types used as the pilot's core input (`base_skill`, `ultimate`, `enhance_force`, `exclusive_equipment`) account for 637 structural sections across the roster. These are candidate source sections, not pre-validated mechanics.
+- Only 5 profiles have recorded secondary-source observations (Cecia, Granny Dahnie, Indris, Nerion and Valka); 126 profiles remain pending broader secondary-source review. 17 profiles have only unknown per-section tags.
+- Source patch/update metadata is absent for all 131 profiles. Per the user's prior decision, patch/version research remains closed and this is not an active blocker.
+- The pilot's limits remain explicit: no formation prediction, no ability-activation prediction, no observation of actual match effects, and no guaranteed synergy/counter claims.
 
 **Approved scope and closed decisions:**
-- Available current hero-skill descriptions are accepted as sufficiently up to date for this task; patch/version research remains closed unless the user reopens it.
-- Season Charm is out of scope and excluded.
+- The five-hero pilot is accepted as the reference method for describing kit capabilities.
+- The roster-wide coverage audit was approved and completed as a read-only analysis of existing repository artifacts.
+- Available current hero-skill descriptions are accepted as sufficiently up to date for this task; patch research remains closed unless the user reopens it.
+- Season Charm is out of scope and excluded; it remains distinct from Season Skill.
 - The model describes kit capabilities, not actual match execution or guaranteed effects.
 - Existing Match Indicator and Showdown Draft Indicator remain separate protected systems.
 
 **Not done / not authorized:**
+- No automatic conversion of V4 summaries into mechanics, team functions or interactions.
+- No expansion of the pilot to additional heroes yet.
 - No application implementation, scoring formula/weights, predictive thresholds or UI.
 - No V4 import, Supabase schema/data change, migration or production RPC change.
 - No changes to Tier List, TOP Picks or `main`.
 - No in-game verification or Live Preview validation.
 
-**Completed actions:** ACTION 0002–0007 as recorded below; ACTION 0008 reconciled the five-hero pilot artifact and branch state; ACTION 0009 updated this handoff and made per-interaction documentation mandatory.
+**Completed actions:** ACTION 0002–0009 as recorded below; ACTION 0010's pending pilot decision was resolved by ACTION 0011; ACTION 0012 completed the roster-wide coverage audit.
 
-**Next single action:** await the user's review or next explicit instruction for the pilot. Do not expand the roster, implement the indicator, change scoring, or touch Supabase without separate approval.
+**Next single action:** await the user's decision on whether to authorize a second bounded hero batch and agree its selection. Do not expand the roster or implement anything before that approval.
 
 ---
 
@@ -663,3 +670,46 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - No user approval or rejection of the pilot has been given yet. Do not expand the roster or implement anything until the user decides.
 - Repository changes from this discussion: none to application/data artifacts; this action-log entry only.
 - Next single action: await the user's explicit pilot review decision and then proceed only within the scope that decision authorizes.
+
+
+## 20. Pilot approval and roster-wide coverage audit — 2026-11-25
+
+### ACTION 0011 — Accept the five-hero pilot as the reference method
+- Started: 2026-11-25 19:18 CET
+- Task / phase: ability-based composition analysis / pilot review
+- Status: COMPLETED
+- Purpose: record the user's explicit decision on the five-hero pilot and authorize only the next bounded planning/audit step.
+- Exact target: pilot artifact `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`; project decision record.
+- Decision: the user accepted the five-hero pilot as the correct reference method for descriptive analysis of hero-kit capabilities. This accepts the method, not an implemented indicator, score, predictive model, guaranteed synergy/counter model or match-outcome explanation.
+- Approved next stage: read-only roster-wide coverage audit using existing V4 data and the approved pilot as the reference. No hero roster expansion was authorized by this decision.
+- Repository/data state at this decision: no application, data artifact, Supabase or production changes.
+- Supersedes the pending decision recorded in ACTION 0010.
+- Next single action: complete the bounded roster-wide coverage audit; do not populate more hero profiles.
+
+### ACTION 0012 — Audit existing V4 coverage against the approved pilot
+- Started: 2026-11-25 19:18 CET
+- Task / phase: ability-based composition analysis / roster-wide coverage audit
+- Status: COMPLETED
+- Purpose: establish how much of the existing 131-hero knowledge dataset can structurally support the approved descriptive model, without repeating extraction or automatically deriving mechanics.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; four V4 shards, canonical index, validation report, source manifest and five-hero pilot JSON; composition-analysis plan and hero-knowledge progress log.
+- Inputs / prior state:
+  - development HEAD: `02910826b50c905fb3c1dbe06c1ae0dd0aaf84a4`
+  - V4 shards: `3ef446a8311bd5315d8a535c88e2c3037ef2d94d`, `9fd97e95f6020d333a0d7f31336d9e48ee5ef640`, `74f4c14cb8171a6a1f07bb782cb0d39936e9ca59`, `122cfba6a4953e2dfa043e054d3bbe8f54c5a072`
+  - canonical index blob SHA: `b4a31efbc028ffdca72e36fbeb0f0c64a5102cc6`
+  - validation blob SHA: `053c08fa0444ad571502a3d80945729a4166b141`
+  - source manifest blob SHA: `2de9cbb5cda90370c6cabf9f43af6761aa86ebe6`
+  - pilot blob SHA: `66e4aed61d5904d904c76cd2471c56e75dc71071`
+  - composition-analysis plan blob SHA: `282407853a08df5d090d305d8f68bf5e8bf0e874`
+  - hero-knowledge progress blob SHA: `651874bb0dbcf3dbeb5a10c190bc7672b740313b`
+- Operation: fetched and parsed the existing repository artifacts; aggregated hero, section, tag, description, evidence, section-type and secondary-source coverage. No source research, extraction, normalization, code edit, data edit, import or database operation was performed.
+- Result:
+  - 131 unique roster heroes; 1,032 logical sections; 1,329 section-evidence records; 131 normalized-complete profiles; zero open section gaps.
+  - All 1,032 sections have source evidence. Descriptions comprise 1,024 paraphrased extraction-batch summaries and 8 paraphrased indexed-primary-source summaries; zero raw descriptions are present.
+  - 301 sections have consistent explicit tags; 731 have unknown tags. Seventeen profiles have only unknown section tags.
+  - The pilot's four core input section types (`base_skill`, `ultimate`, `enhance_force`, `exclusive_equipment`) account for 637 structural sections across the roster. This is a coverage count, not a count of verified mechanics.
+  - Five profiles have recorded secondary-source observations: Cecia, Granny Dahnie, Indris, Nerion and Valka. The V4 index records 126 profiles pending broader secondary-source review.
+  - Source patch/update labels are absent for all 131 profiles; patch research remains intentionally closed under the user's prior decision.
+- Decision / interpretation: V4 has broad structural roster coverage and source provenance, but it is not a ready-made ability-mechanics model. Its descriptions are paraphrased and its structured mechanics/functions/interactions are absent. The pilot method must be applied conservatively in bounded hero batches; unknowns remain unknown and no automatic bulk conversion is justified.
+- Scope protection: read-only inspection only. No repository data artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
+- Next single action: ask the user whether to authorize a second bounded hero batch and agree its selection; do not begin that batch without approval.
+
