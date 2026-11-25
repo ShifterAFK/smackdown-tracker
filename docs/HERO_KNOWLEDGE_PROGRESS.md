@@ -401,6 +401,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2X
+## Stage 2X — Batch 01 normalization
 
-Next, inspect **Batch 01**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_01.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_01_NORMALIZATION_AUDIT.md`
+
+- Nine core-page profiles normalized: Galahad (`gala`), Hugin, Lily May, Taichi & Agumon (`taichi`), Yamato & Gabumon (`yamato`), Hewynn, Lumont, Cyran and Kazim.
+- 70 sections, 5 explicitly tagged sections and 7 raw per-skill tag records.
+- Six partial recaptures (Rolan, Callan, Hodgkin, Atalanta, Cryonaia and Faramor) remain supplemental: 20 sections, 3 explicitly tagged sections and 3 raw per-skill tag records.
+- 42 page-level tag records are retained separately and are not copied onto abilities.
+- Canonical tracker IDs and Stargazer aliases are preserved; Cyran's ambiguous section attribution remains a source note.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2Y
+
+The first-pass batch sequence is now normalized through Batch 01. Next, audit the normalized batch artifacts for schema consistency, duplicate hero/section keys, tag mapping parity, source URL/locale agreement, and cross-batch completeness. Do not import into Supabase or modify application code until the dry-run audit is explicitly approved.
