@@ -359,6 +359,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2U
+## Stage 2U — Batch 04 normalization
 
-Next, inspect **Batch 04**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_04.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_04_NORMALIZATION_AUDIT.md`
+
+- Six complete profiles normalized: Harak, Zanie, Silven, Shadewing, Aurora and Zorya.
+- 45 sections, 13 explicitly tagged sections and 17 raw per-skill tag records.
+- Four partial recaptures (Zandrok, Sylphira, Brutus and Alna) remain supplemental: 14 sections, 7 explicitly tagged sections and 9 raw per-skill tag records.
+- 21 page-level tag records are retained separately and are not copied onto abilities.
+- Zanie's cooldown-format anomaly is noted without guessing a numeric value.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2V
+
+Next, inspect **Batch 03**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
