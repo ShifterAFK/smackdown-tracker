@@ -568,3 +568,20 @@ Nine tracker profiles upgraded to complete first-pass captures:
 **Updated first-pass capture coverage: 119/131 complete (90.8%); 12/131 partial (9.2%).** This is a source-capture completeness measure only. It does not imply second-source cross-check, in-game patch verification, or database readiness.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 29. Partial-profile recapture pass 9 (2026-11-25)
+
+Twenty-second extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_22.md` — ninth recapture pass.
+
+Five tracker profiles upgraded to complete first-pass captures:
+- `atalanta`, `phraesto`, `thoran`, `pandora`, `pippa`.
+
+Baden and Saida gained further progression details but remain partial because the full base ability set is still not present in the captured source material.
+
+**Updated first-pass capture coverage: 124/131 complete (94.7%); 7/131 partial (5.3%).** The remaining tracker profiles requiring recapture are Baden, Valen, Sylphira, Laios, Saida, Berial and Perseus. The extra Thane source page is outside the 131-row tracker roster and is not included in the percentage.
+
+This is source-capture completeness only. It does not imply second-source validation, in-game patch verification, or database readiness.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
