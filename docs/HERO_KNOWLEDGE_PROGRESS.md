@@ -167,6 +167,3 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 ## Restart point — Stage 2G
 
 Next, inspect **Batch 18**. Separate profiles completed by combining Batch 18 with earlier detail captures from profiles that remain partial. Normalize only the completed profiles as completion supplements; keep partial recaptures separate. Validate source URLs, prior-batch references, section order, tags and provenance. Commit the artifact and audit, then update this log. No Supabase import.
-
-
-Next, inspect **Batch 19**. Separate complete first-pass profiles from partial recaptures, normalize only complete profiles, and preserve partial data as supplements. Validate the result, commit its artifact and audit, then update this log. No Supabase import.
