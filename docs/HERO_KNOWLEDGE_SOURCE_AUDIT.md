@@ -254,3 +254,30 @@ Combining the initial and subsequent discovery passes gives **130 matched/confir
 - **2** tracker IDs are matched through the documented crossover naming aliases: `taichi` → `taichi-agumon`; `yamato` → `yamato-gabumon`.
 - **1** tracker ID remains unresolved: `gala`. A separate `galahad` page exists, but it is not safe to treat that as the same hero.
 - This accounts for all **131** tracker rows. The 130 page matches are discovery-level matches; they are not yet a normalized, fully transcribed ability dataset.
+
+
+## 10. Correction: Gala identity and structured extraction progress (2026-11-25)
+
+The previous unresolved identity note for tracker ID `gala` is superseded by the user's explicit confirmation: **tracker `gala` is Galahad**. The matching Stargazer source page is https://afkstargazer.com/en/skill/galahad. Do not retain the former unresolved status.
+
+The discovery-level mapping is now:
+- 128 direct tracker-ID → Stargazer slug matches;
+- 2 documented crossover aliases: `taichi` → `taichi-agumon`; `yamato` → `yamato-gabumon`;
+- 1 user-confirmed identity mapping: `gala` → `galahad`.
+
+This resolves the full **131-row tracker roster mapping**. Keep tracker IDs canonical and store Stargazer slugs/display names as source aliases.
+
+### Structured extraction artifacts committed on `development`
+
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md` — 15 hero records.
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md` — 10 hero records.
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md` — 10 hero records.
+
+**Current extraction progress: 35/131 tracker heroes have a structured source record.**
+- 20 records have sufficiently complete page captures for the current first-pass summary.
+- 15 records are explicitly marked partial because search-indexed content was truncated or began mid-page; they require recapture before verification.
+- This is not yet a normalized database import and does not mean all 35 records have been cross-checked against a second source.
+
+The batch files preserve source tag labels and separate base abilities from Hero Focus, Exclusive Equipment, Enhance Force, Season Charm, and Rivalry Mode where the captured page exposes them. They also flag truncated pages rather than filling gaps from assumptions.
+
+**No Supabase schema/data changes have been made.** These are documentation-only commits on `development`.
