@@ -539,3 +539,23 @@ No Supabase writes or application changes.
 ## Restart point — Stage 2AC
 
 Perform semantic review and source cross-check on a prioritized sample, beginning with the 12 open gap-register profiles and sections with multiple paraphrase variants. Verify exact Stargazer wording/tags and compare a prioritized subset with AFK.global/official patch information. Record conflicts and source dates. Do not import into Supabase yet.
+
+## Stage 2AC1 — Batch 25 source-gap recapture
+
+**Status: complete at indexed-source capture level; direct-page/patch verification pending.**  
+**Artifacts:** `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_25.md`, `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_25.json`, `docs/HERO_KNOWLEDGE_BATCH_25_NORMALIZATION_AUDIT.md`
+
+- Reviewed all 12 prior gap-register profiles.
+- Recaptured 22 missing or incomplete sections across 10 profiles: Talene, Cecia, Granny Dahnie, Valka, Indris, Reinier, Satrana, Nerion, Mehira and Bryon.
+- Confirmed that Hammie and Chippy have no additional Hero Focus, Exclusive Equipment, Enhance Force or Rivalry Mode sections listed on their current indexed Stargazer pages.
+- Cross-checked core-kit details with AFK.global for Cecia, Granny Dahnie, Valka, Indris and Nerion.
+- Recorded three separate AFK.global Season Skill observations (Focus Hit, Lock-on Projectiles, Soul-lifting Touch). The normalization spec now distinguishes `season_skill` from Stargazer `season_charm`.
+- All 12 gap-register entries are closed at section-capture level; direct page fetch and patch verification remain pending.
+- Direct page opens returned cache misses; this is recorded in every Batch 25 evidence record.
+- Ability-level tags remain null when not shown per section; page-level tags remain separate.
+
+No Supabase writes or application changes.
+
+## Restart point — Stage 2AC2
+
+Rebuild the consolidated 131-hero dry run with Batch 25, close the 12 open profile statuses at the section-capture level, preserve indexed-source/direct-fetch limitations, and add the secondary Season Skill observations without merging them into Season Charm. Re-run the full structural/tag/provenance validation. Then prioritize direct page fetch or patch-version verification before any import proposal.
