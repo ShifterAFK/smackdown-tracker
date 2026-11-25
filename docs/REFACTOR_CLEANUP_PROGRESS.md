@@ -83,8 +83,31 @@ Source files and the intended rebuild direction are identified. The safe next st
 
 The archive is not a safe drop-in replacement. Continue with incremental cleanup of current `development`, treating the currently loaded generated modules as runtime code and the monolithic file as a reference until drift is reconciled.
 
+
+
+## Stage 2 — static baseline validation
+
+**Status: completed.**  
+**Report:** [`docs/REFACTOR_CLEANUP_BASELINE_VALIDATION.md`](REFACTOR_CLEANUP_BASELINE_VALIDATION.md)
+
+### Results
+
+- All 38 script references and all 25 CSS references in the current `index.html` resolve to tracked files.
+- The 37 executable scripts pass JavaScript syntax parsing. The remaining script reference is a JSON data payload.
+- A targeted DOM-ID scan found no confirmed missing static HTML ID; unmatched strings correspond to IDs/prefixes created dynamically.
+- RPC names found in the inspected runtime source: `ss_get_config`, `ss_get_stats`, `ss_get_matchups`, `ss_get_first_pick_stats`, `ss_get_side_stats`, `ss_get_showdown_draft_indicator_stats`, `ss_get_model_comparison_stats`.
+- No `package.json` or conventional test suite was found.
+
+### Validation limits
+
+No browser execution, mobile interaction test, Turnstile test, Supabase RPC call, or database read/write was performed. Syntax parsing is not runtime QA.
+
+### Exit result
+
+The current development entry point passes the available static baseline checks. No application code or database state changed.
+
 ## Restart point
 
-**Next action:** Stage 2 — establish a repeatable, non-destructive baseline validation procedure for the current runtime (script loading, syntax checks, required DOM IDs, RPC inventory, and module drift report). No production behavior changes in that stage.
+**Next action:** Stage 3 — add a repeatable automated validation command/CI check for entrypoint asset existence and JavaScript syntax. It must be read-only, must not call Supabase, and must not regenerate or overwrite module files.
 
 **Do not start:** replacing `index.html`, removing legacy modules, changing Supabase, or changing draft/TOP/Tier algorithms until Stage 1 is documented and reviewed.
