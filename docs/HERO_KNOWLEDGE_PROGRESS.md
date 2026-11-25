@@ -373,6 +373,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2V
+## Stage 2V — Batch 03 normalization
 
-Next, inspect **Batch 03**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_03.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_03_NORMALIZATION_AUDIT.md`
+
+- Two complete profiles normalized: Velara and Temesia.
+- 16 sections, 6 explicitly tagged sections and 6 raw per-skill tag records.
+- Eight partial recaptures (Granny Dahnie, Evie, Lamentis, Valka, Aster, Indris, Soren and Florabelle) remain supplemental: 31 sections, 11 explicitly tagged sections and 15 raw per-skill tag records.
+- 13 page-level tag records are retained separately and are not copied onto abilities.
+- Granny Dahnie, Valka and Indris remain partial because detailed captures identify missing sections despite generic index status.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2W
+
+Next, inspect **Batch 02**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
