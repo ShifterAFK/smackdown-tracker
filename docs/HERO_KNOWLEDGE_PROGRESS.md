@@ -109,6 +109,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - No duplicate section keys, missing summaries, non-null raw descriptions, or source URL provenance mismatches.
 - Baden, Saida and Perseus were not duplicated; Batch 23 still marks them partial and Batch 24 has the final complete captures. Their supplemental details remain for a later reconciliation pass.
 
-## Restart point — Stage 2C
+## Stage 2C — Batch 22 normalization
 
-Next, inspect **Batch 22** as the next independent unit. Normalize only profiles explicitly marked complete in that batch; keep partial recaptures as supplemental evidence for later reconciliation. Validate names/order, tags, section keys and provenance, then commit the batch artifact and update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_22.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_22_NORMALIZATION_AUDIT.md`
+
+- Five complete profiles normalized: Atalanta, Phraesto, Thoran, Pandora and Pippa.
+- 39 sections; Pandora has 7 captured sections, preserved as-is rather than inventing an eighth.
+- 12 page-level tags retained separately; Pandora's page-tag list was not recorded and remains `null`.
+- 17 explicitly tagged sections and 24 per-section tag records; 22 sections retain `tags: null`.
+- Section names/order, all explicit per-skill mappings and source URLs match Batch 22.
+- No duplicate section keys, missing summaries or non-null raw descriptions.
+- Baden and Saida are partial recaptures and are intentionally deferred to later reconciliation.
+
+## Restart point — Stage 2D
+
+Next, inspect **Batch 21** as the next independent unit. Normalize only profiles marked complete in that batch; keep partial recaptures as supplemental evidence for later reconciliation. Validate section order/names, tag mappings, unique keys and provenance, then commit the batch artifact and update this log. No Supabase import.
