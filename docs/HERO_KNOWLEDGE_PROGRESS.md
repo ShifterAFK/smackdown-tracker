@@ -317,9 +317,25 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Source URLs match the manifest; no unmatched mappings, duplicate section keys, missing summaries or tag conflicts.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2R
+
+## Stage 2R — Batch 07 normalization
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_07.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_07_NORMALIZATION_AUDIT.md`
+
+- Four complete profiles normalized: Nazrik, Parisa, Shemira and Ludovic.
+- 31 sections, 6 explicitly tagged sections, 6 raw per-section tag records and 5 page-level tag records.
+- Six partial recaptures (Voracia, Solise, Marcille, Thoran, Walker and Igor) remain separate: 22 sections, 4 tagged sections, 5 raw tag records and 9 page-level tag records.
+- Marcille's unnamed revived-ally detail remains an unstructured note; no ability heading was invented.
+- Page-tag visibility gaps remain unknown rather than empty; partial profiles are not promoted to complete.
+- Source URLs match the manifest; no duplicate section keys or missing summaries.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2S
+
+Next, inspect **Batch 06**. Separate complete profiles from partial recaptures, preserve cross-batch references and tag-only evidence, and normalize only profiles explicitly established as complete. Keep partial fragments supplemental. Validate source URLs, section names/order, tag mapping labels/qualifiers and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+
 
 Next, inspect **Batch 07**. Separate complete captures from partial recaptures and retain prior-batch references where present. Normalize only profiles explicitly established as complete; keep partial fragments supplemental. Validate section order, tag mapping labels/qualifiers, source URLs and provenance. Commit the batch artifact and audit, then update this log. No Supabase import.
 
-
-Next, inspect **Batch 08**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
