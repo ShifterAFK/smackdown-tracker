@@ -1,0 +1,1489 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_status": "pilot_draft_not_for_import",
+  "purpose": "Capability-based composition analysis pilot for five heroes; not a combat simulator or match outcome predictor.",
+  "scope": {
+    "heroes": [
+      "lily-may",
+      "ravion",
+      "odie",
+      "himmel",
+      "valka"
+    ],
+    "excluded_section_types": [
+      "season_charm"
+    ],
+    "patch_research": "closed",
+    "source_descriptions_accepted_as_sufficient_for_this_task": true
+  },
+  "analysis_constraints": {
+    "formation_prediction": "not_supported",
+    "ability_activation_prediction": "not_supported",
+    "actual_match_effects": "not_observed",
+    "combat_timeline_or_target_selection": "not_available_in_reviewed_match_capture",
+    "capability_based_analysis_only": true,
+    "position_or_timing_dependent_interactions": "conditional_capabilities_only",
+    "named_hero_pair_synergy": "not_asserted",
+    "composition_scores_or_weights": "not_defined"
+  },
+  "provenance": {
+    "primary_source": "AFK Stargazer",
+    "source_representation": "V4 paraphrased extraction summaries, not verbatim ability text",
+    "direct_page_retrieval": "not_claimed_for_all_records",
+    "patch_label": "not_verified_and_not_required_for_this_pilot",
+    "source_tags": "preserved separately on each mechanic as captured source metadata",
+    "unknown_values": "remain unknown; absence of a modeled field is not evidence that an effect does not exist"
+  },
+  "mechanics": [
+    {
+      "mechanic_id": "lily-may_rainstorm_ballet_damage",
+      "hero_id": "lily-may",
+      "ability_key": "base_skill-rainstorm-ballet",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "skill_sequence",
+      "effect_summary": "Six attacks, each dealing 65% ATK damage.",
+      "duration": "unknown",
+      "conditions": [],
+      "target_selector": null,
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_rainstorm_ballet_invulnerability",
+      "hero_id": "lily-may",
+      "ability_key": "base_skill-rainstorm-ballet",
+      "mechanic_type": "defensive_state",
+      "target_side": "self",
+      "trigger": "during_skill_sequence",
+      "effect_summary": "Lily May is invincible during the attack sequence.",
+      "duration": "during_skill_sequence",
+      "conditions": [],
+      "target_selector": null,
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_swallows_flight_growth",
+      "hero_id": "lily-may",
+      "ability_key": "base_skill-swallow-s-flight",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "growth_completion",
+      "effect_summary": "Each completed growth permanently increases ATK by 10%.",
+      "duration": "permanent",
+      "conditions": [],
+      "target_selector": null,
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_swallows_flight_true_damage",
+      "hero_id": "lily-may",
+      "ability_key": "base_skill-swallow-s-flight",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "after_growth_completion",
+      "effect_summary": "The next four attacks gain true damage based on the target's max HP; stacks up to four times.",
+      "duration": "next_four_attacks",
+      "conditions": [],
+      "target_selector": null,
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_tempest_shot_interrupt",
+      "hero_id": "lily-may",
+      "ability_key": "ultimate-tempest-shot",
+      "mechanic_type": "interrupt",
+      "target_side": "opponent",
+      "trigger": "non_summoned_enemy_ultimate_cast",
+      "effect_summary": "Interrupts the enemy Ultimate when the described response triggers.",
+      "duration": "instant",
+      "conditions": [
+        "does_not_interrupt_bosses",
+        "summoned_enemies_excluded"
+      ],
+      "target_selector": "non_summoned_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_tempest_shot_energy_drain",
+      "hero_id": "lily-may",
+      "ability_key": "ultimate-tempest-shot",
+      "mechanic_type": "energy_drain",
+      "target_side": "opponent",
+      "trigger": "non_summoned_enemy_ultimate_cast",
+      "effect_summary": "Removes 700 Energy from the affected enemy.",
+      "duration": "instant",
+      "conditions": [
+        "bosses_use_alternative_damage_effect"
+      ],
+      "target_selector": "non_summoned_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_tempest_shot_boss_damage",
+      "hero_id": "lily-may",
+      "ability_key": "ultimate-tempest-shot",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "boss_target",
+      "effect_summary": "Against Bosses, the described alternative effect increases damage dealt by 400%.",
+      "duration": "unknown",
+      "conditions": [
+        "interrupt_is_not_applied_to_bosses"
+      ],
+      "target_selector": "boss",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_tempest_shot_first_interrupt_energy_drain",
+      "hero_id": "lily-may",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "energy_drain",
+      "target_side": "opponent",
+      "trigger": "first_tempest_shot_interruption",
+      "effect_summary": "The first Tempest Shot interruption removes 1000 Energy from the enemy.",
+      "duration": "instant",
+      "conditions": [],
+      "target_selector": "interrupted_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "lily-may_rainfall_bliss_growth",
+      "hero_id": "lily-may",
+      "ability_key": "exclusive_equipment-rainfall-bliss",
+      "mechanic_type": "self_buff",
+      "target_side": "self",
+      "trigger": "receives_non_permanent_ally_stat_boost",
+      "effect_summary": "Receiving a non-permanent ally stat boost triggers growth; each ally can trigger it once per battle.",
+      "duration": "once_per_ally_per_battle",
+      "conditions": [],
+      "target_selector": "self",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/lily-may",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_01.md",
+          "capture_batch": 1,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "ravion_designated_duty_objective_assignment",
+      "hero_id": "ravion",
+      "ability_key": "base_skill-designated-duty",
+      "mechanic_type": "ally_objective",
+      "target_side": "ally",
+      "trigger": "skill_effect",
+      "effect_summary": "Assigns an Objective to each of two rearmost allies.",
+      "duration": "until_objective_completion",
+      "conditions": [
+        "two_allies"
+      ],
+      "target_selector": "two_rearmost_allies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Energy Battery",
+          "tag_family": "Energy Battery",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Special Target",
+          "tag_family": "Special Target",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "ravion_designated_duty_energy_reward",
+      "hero_id": "ravion",
+      "ability_key": "base_skill-designated-duty",
+      "mechanic_type": "energy_restore",
+      "target_side": "ally",
+      "trigger": "objective_completed_by_damage_assist_or_defeat",
+      "effect_summary": "Completing an Objective by damage, assist or defeat restores Energy.",
+      "duration": "on_objective_completion",
+      "conditions": [],
+      "target_selector": "objective_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Energy Battery",
+          "tag_family": "Energy Battery",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Special Target",
+          "tag_family": "Special Target",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "ravion_designated_duty_attack_buff",
+      "hero_id": "ravion",
+      "ability_key": "base_skill-designated-duty",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "objective_completed_by_damage_assist_or_defeat",
+      "effect_summary": "Completing an Objective grants ATK based on Ravion's initial ATK.",
+      "duration": "duration_unspecified",
+      "conditions": [],
+      "target_selector": "objective_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Energy Battery",
+          "tag_family": "Energy Battery",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Special Target",
+          "tag_family": "Special Target",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "ravion_mortal_ace_debuff",
+      "hero_id": "ravion",
+      "ability_key": "base_skill-designated-duty",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "both_objectives_completed",
+      "effect_summary": "Mortal Ace reduces the target's ATK and Physical DEF.",
+      "duration": "duration_unspecified",
+      "conditions": [],
+      "target_selector": "enemy_highest_cumulative_damage",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Energy Battery",
+          "tag_family": "Energy Battery",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Special Target",
+          "tag_family": "Special Target",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "ravion_mortal_ace_damage_knockdown",
+      "hero_id": "ravion",
+      "ability_key": "base_skill-designated-duty",
+      "mechanic_type": "damage_control",
+      "target_side": "opponent",
+      "trigger": "both_objectives_completed",
+      "effect_summary": "Mortal Ace strikes and knocks down the selected enemy.",
+      "duration": "instant",
+      "conditions": [],
+      "target_selector": "enemy_highest_cumulative_damage",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "Energy Battery",
+          "tag_family": "Energy Battery",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Special Target",
+          "tag_family": "Special Target",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff (Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "ravion_objective_acceptance_atk_buff",
+      "hero_id": "ravion",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "objective_accepted",
+      "effect_summary": "An ally accepting an Objective gains ATK.",
+      "duration": "duration_unspecified",
+      "conditions": [],
+      "target_selector": "objective_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Temp Buff (Opening, Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "ravion_objective_acceptance_unaffected",
+      "hero_id": "ravion",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "defensive_state",
+      "target_side": "ally",
+      "trigger": "objective_accepted",
+      "effect_summary": "An ally accepting an Objective becomes unaffected for 5 seconds.",
+      "duration": "5_seconds",
+      "conditions": [],
+      "target_selector": "objective_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Temp Buff (Opening, Single Target)",
+          "tag_family": "Temp Buff",
+          "qualifier": [
+            "Opening",
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "ravion_shadow_patron_permanent_buffs",
+      "hero_id": "ravion",
+      "ability_key": "exclusive_equipment-shadow-patron",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "first_mortal_ace",
+      "effect_summary": "Ravion and allies who completed Objectives permanently gain Haste and ATK.",
+      "duration": "permanent",
+      "conditions": [],
+      "target_selector": "ravion_and_objective_allies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "ravion_shadow_patron_fatal_blow_prevention",
+      "hero_id": "ravion",
+      "ability_key": "exclusive_equipment-shadow-patron",
+      "mechanic_type": "survival",
+      "target_side": "ally",
+      "trigger": "first_fatal_blow_at_lv3",
+      "effect_summary": "At LV 3, prevents the first fatal blow to Ravion or an Objective ally.",
+      "duration": "once_per_eligible_hero",
+      "conditions": [
+        "level_3_required"
+      ],
+      "target_selector": "ravion_or_objective_ally",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "ravion_killer_flush_damage",
+      "hero_id": "ravion",
+      "ability_key": "ultimate-killer-flush",
+      "mechanic_type": "damage",
+      "target_side": "opponent",
+      "trigger": "ultimate_cast",
+      "effect_summary": "Fires 15 leaf cards; each deals ATK damage plus extra damage based on the target's lost HP.",
+      "duration": "during_ultimate",
+      "conditions": [],
+      "target_selector": "selected_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "ravion_phantom_gambit_area_damage",
+      "hero_id": "ravion",
+      "ability_key": "base_skill-phantom-gambit",
+      "mechanic_type": "area_damage",
+      "target_side": "opponent",
+      "trigger": "first_two_teleport_arrivals",
+      "effect_summary": "The first two arrivals damage the densest enemy tiles.",
+      "duration": "on_first_two_arrivals",
+      "conditions": [],
+      "target_selector": "densest_enemy_tiles",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/ravion",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_13.md",
+          "capture_batch": 13,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "odie_dart_poison_application",
+      "hero_id": "odie",
+      "ability_key": "ultimate-corrosive-dart",
+      "mechanic_type": "debuff_dot",
+      "target_side": "opponent",
+      "trigger": "ultimate_cast",
+      "effect_summary": "Deals damage and applies non-dispellable Dart Poison.",
+      "duration": "until_target_defeated",
+      "conditions": [
+        "non_dispellable"
+      ],
+      "target_selector": "selected_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/odie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_10.md",
+          "capture_batch": 10,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "odie_dart_poison_damage",
+      "hero_id": "odie",
+      "ability_key": "ultimate-corrosive-dart",
+      "mechanic_type": "damage_over_time",
+      "target_side": "opponent",
+      "trigger": "poison_active",
+      "effect_summary": "Dart Poison deals damage every second until the target is defeated.",
+      "duration": "every_second_until_target_defeated",
+      "conditions": [
+        "non_dispellable"
+      ],
+      "target_selector": "poisoned_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/odie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_10.md",
+          "capture_batch": 10,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "odie_poisoned_enemy_defeat_energy",
+      "hero_id": "odie",
+      "ability_key": "ultimate-corrosive-dart",
+      "mechanic_type": "energy_restore",
+      "target_side": "self",
+      "trigger": "poisoned_enemy_defeated",
+      "effect_summary": "Defeating a poisoned enemy restores Energy.",
+      "duration": "on_enemy_defeat",
+      "conditions": [],
+      "target_selector": "self",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/odie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_10.md",
+          "capture_batch": 10,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "odie_venom_surge_poison_scaling",
+      "hero_id": "odie",
+      "ability_key": "base_skill-venom-surge",
+      "mechanic_type": "damage_amplification",
+      "target_side": "opponent",
+      "trigger": "normal_attack_on_poisoned_target",
+      "effect_summary": "Normal attacks permanently increase Dart Poison base damage on that poisoned target, stacking up to 20.",
+      "duration": "permanent_stacks_max_20",
+      "conditions": [],
+      "target_selector": "poisoned_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/odie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_10.md",
+          "capture_batch": 10,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "odie_heart_crusher_execute",
+      "hero_id": "odie",
+      "ability_key": "exclusive_equipment-heart-crusher",
+      "mechanic_type": "execute",
+      "target_side": "opponent",
+      "trigger": "poisoned_enemy_below_threshold",
+      "effect_summary": "Instantly defeats poisoned enemies below a threshold based on Dart Poison damage per second; each defeat increases the threshold.",
+      "duration": "instant",
+      "conditions": [],
+      "target_selector": "poisoned_enemy_below_threshold",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/odie",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_10.md",
+          "capture_batch": 10,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Execute",
+          "tag_family": "Execute",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "himmel_hero_party_stats_and_shield",
+      "hero_id": "himmel",
+      "ability_key": "base_skill-hero-party",
+      "mechanic_type": "ally_buff_shield",
+      "target_side": "ally",
+      "trigger": "at_least_one_adjacent_mage_tank_support",
+      "effect_summary": "Forms a party with Himmel and one adjacent ally of each class; increases basic stats and grants a shared permanent shield.",
+      "duration": "permanent",
+      "conditions": [
+        "requires_adjacent_mage_tank_support"
+      ],
+      "target_selector": "himmel_and_selected_party_allies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
+          "capture_batch": 16,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Tile Effect",
+          "tag_family": "Tile Effect",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "himmel_hero_party_damage_to_healing",
+      "hero_id": "himmel",
+      "ability_key": "base_skill-hero-party",
+      "mechanic_type": "damage_and_healing",
+      "target_side": "opponent_and_ally",
+      "trigger": "active_cast_with_party",
+      "effect_summary": "Active cast damages a target and converts part of the damage into healing for party members.",
+      "duration": "during_active_cast",
+      "conditions": [
+        "party_membership_condition"
+      ],
+      "target_selector": "target_and_party_members",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
+          "capture_batch": 16,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Tile Effect",
+          "tag_family": "Tile Effect",
+          "qualifier": []
+        }
+      ]
+    },
+    {
+      "mechanic_id": "himmel_heroic_dash_damage_knockdown",
+      "hero_id": "himmel",
+      "ability_key": "base_skill-heroic-dash",
+      "mechanic_type": "damage_control",
+      "target_side": "opponent",
+      "trigger": "skill_activation",
+      "effect_summary": "Dashes to the two enemies with highest cumulative damage, damages and knocks them down, then returns to the original position.",
+      "duration": "during_skill",
+      "conditions": [],
+      "target_selector": "two_enemies_highest_cumulative_damage",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
+          "capture_batch": 16,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "himmel_heroic_slash_area_damage",
+      "hero_id": "himmel",
+      "ability_key": "ultimate-heroic-slash",
+      "mechanic_type": "area_damage",
+      "target_side": "opponent",
+      "trigger": "ultimate_cast",
+      "effect_summary": "Performs nine consecutive slashes in a frontal area, followed by a sweep dealing damage and true damage based on target max HP.",
+      "duration": "during_ultimate",
+      "conditions": [],
+      "target_selector": "frontal_area",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
+          "capture_batch": 16,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "himmel_boss_hp_loss_amplification",
+      "hero_id": "himmel",
+      "ability_key": "enhance_force-enhance-force",
+      "mechanic_type": "damage_amplification",
+      "target_side": "opponent",
+      "trigger": "boss_fight",
+      "effect_summary": "In Boss fights, Himmel and party members cause 12% more HP loss on Boss targets.",
+      "duration": "during_boss_fight",
+      "conditions": [
+        "boss_fight_only"
+      ],
+      "target_selector": "boss_targets",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
+          "capture_batch": 16,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "himmel_blue_moon_party_bonuses",
+      "hero_id": "himmel",
+      "ability_key": "exclusive_equipment-blue-moon-blessings",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "equipment_effect",
+      "effect_summary": "Grants party members class-specific max HP or ATK bonuses based on Himmel's initial ATK.",
+      "duration": "duration_unspecified",
+      "conditions": [],
+      "target_selector": "party_members",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
+          "capture_batch": 16,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "himmel_blue_moon_sweep_heal_cleanse",
+      "hero_id": "himmel",
+      "ability_key": "exclusive_equipment-blue-moon-blessings",
+      "mechanic_type": "healing_debuff_removal",
+      "target_side": "ally",
+      "trigger": "later_sweep",
+      "effect_summary": "A later sweep heals and removes debuffs from eligible allies.",
+      "duration": "on_later_sweep",
+      "conditions": [],
+      "target_selector": "eligible_allies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/himmel",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_16.md",
+          "capture_batch": 16,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "valka_spectral_bulwark_shield",
+      "hero_id": "valka",
+      "ability_key": "base_skill-spectral-bulwark",
+      "mechanic_type": "shield",
+      "target_side": "ally",
+      "trigger": "battle_opening",
+      "effect_summary": "Opening shield scales with the number of adjacent allies.",
+      "duration": "opening_shield",
+      "conditions": [],
+      "target_selector": "adjacent_allies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "valka_spectral_bulwark_attack_speed",
+      "hero_id": "valka",
+      "ability_key": "base_skill-spectral-bulwark",
+      "mechanic_type": "ally_buff",
+      "target_side": "ally",
+      "trigger": "battle_opening",
+      "effect_summary": "Adjacent allies gain ATK SPD for the battle.",
+      "duration": "battle_duration",
+      "conditions": [],
+      "target_selector": "adjacent_allies",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "valka_blooming_terror_panic_stacks",
+      "hero_id": "valka",
+      "ability_key": "ultimate-blooming-terror",
+      "mechanic_type": "debuff",
+      "target_side": "opponent",
+      "trigger": "normal_attacks",
+      "effect_summary": "Normal attacks build Panic on an enemy; at four stacks the target enters Panic and loses Haste.",
+      "duration": "until_unspecified",
+      "conditions": [],
+      "target_selector": "attacked_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "valka_blooming_terror_stun_execute",
+      "hero_id": "valka",
+      "ability_key": "ultimate-blooming-terror",
+      "mechanic_type": "stun_execute",
+      "target_side": "opponent",
+      "trigger": "panic_target_and_100_energy",
+      "effect_summary": "Valka can consume 100 Energy to stun and execute the target with max-HP-based true-damage slashes.",
+      "duration": "during_ultimate",
+      "conditions": [
+        "requires_panic_state",
+        "costs_100_energy"
+      ],
+      "target_selector": "panic_target",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "valka_blooming_terror_self_heal",
+      "hero_id": "valka",
+      "ability_key": "ultimate-blooming-terror",
+      "mechanic_type": "self_healing",
+      "target_side": "self",
+      "trigger": "execute_slashes",
+      "effect_summary": "The execution slashes heal Valka.",
+      "duration": "during_execution",
+      "conditions": [],
+      "target_selector": "self",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        }
+      ]
+    },
+    {
+      "mechanic_id": "valka_soulshock_ultimate_block",
+      "hero_id": "valka",
+      "ability_key": "exclusive_equipment-soulshock-riposte",
+      "mechanic_type": "damage_prevention",
+      "target_side": "self",
+      "trigger": "enemy_ultimate_within_range",
+      "effect_summary": "Blocks Ultimate damage from an enemy within range.",
+      "duration": "instant",
+      "conditions": [
+        "range_condition"
+      ],
+      "target_selector": "self",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    },
+    {
+      "mechanic_id": "valka_soulshock_counter_cast",
+      "hero_id": "valka",
+      "ability_key": "exclusive_equipment-soulshock-riposte",
+      "mechanic_type": "counterattack",
+      "target_side": "opponent",
+      "trigger": "enemy_ultimate_blocked",
+      "effect_summary": "Immediately casts Blooming Terror on the attacker without consuming Energy or removing Panic.",
+      "duration": "immediate",
+      "conditions": [],
+      "target_selector": "attacking_enemy",
+      "interpretation_status": "derived_from_paraphrased_source_summary",
+      "source_evidence": [
+        {
+          "source_name": "AFK Stargazer",
+          "source_url": "https://afkstargazer.com/en/skill/valka",
+          "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_03.md",
+          "capture_batch": 3,
+          "evidence_kind": "captured_summary_and_explicit_tag_mapping"
+        }
+      ],
+      "source_tags": null
+    }
+  ],
+  "team_functions": [
+    {
+      "team_function_id": "lily-may_damage",
+      "hero_id": "lily-may",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "lily-may_rainstorm_ballet_damage",
+        "lily-may_swallows_flight_growth",
+        "lily-may_swallows_flight_true_damage"
+      ],
+      "rationale": "Sekwencyjne obrażenia oraz narastający potencjał obrażeń w dalszej części walki.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "lily-may_control_disruption",
+      "hero_id": "lily-may",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "lily-may_tempest_shot_interrupt",
+        "lily-may_tempest_shot_energy_drain"
+      ],
+      "rationale": "Warunkowe przerywanie Ultimate przeciwnika i ograniczanie jego Energii.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "ravion_support",
+      "hero_id": "ravion",
+      "function_type": "support",
+      "supporting_mechanic_ids": [
+        "ravion_designated_duty_energy_reward",
+        "ravion_designated_duty_attack_buff",
+        "ravion_objective_acceptance_atk_buff",
+        "ravion_shadow_patron_permanent_buffs"
+      ],
+      "rationale": "Nagrody dla sojuszników realizujących cele: Energia i wzmocnienia statystyk.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "ravion_control_disruption",
+      "hero_id": "ravion",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "ravion_mortal_ace_debuff",
+        "ravion_mortal_ace_damage_knockdown"
+      ],
+      "rationale": "Warunkowe osłabienie i knockdown wybranego przeciwnika.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "ravion_damage",
+      "hero_id": "ravion",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "ravion_mortal_ace_damage_knockdown",
+        "ravion_killer_flush_damage",
+        "ravion_phantom_gambit_area_damage"
+      ],
+      "rationale": "Obrażenia pojedynczemu celowi i na obszarze.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "odie_damage",
+      "hero_id": "odie",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "odie_dart_poison_application",
+        "odie_dart_poison_damage",
+        "odie_venom_surge_poison_scaling"
+      ],
+      "rationale": "Obrażenia w czasie z możliwością trwałego wzmacniania trucizny na zatrutym celu.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "odie_specialist",
+      "hero_id": "odie",
+      "function_type": "specialist",
+      "supporting_mechanic_ids": [
+        "odie_heart_crusher_execute",
+        "odie_poisoned_enemy_defeat_energy"
+      ],
+      "rationale": "Wykańczanie zatrutych celów przy progu HP zależnym od obrażeń trucizny.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "himmel_support",
+      "hero_id": "himmel",
+      "function_type": "support",
+      "supporting_mechanic_ids": [
+        "himmel_hero_party_stats_and_shield",
+        "himmel_hero_party_damage_to_healing",
+        "himmel_blue_moon_party_bonuses",
+        "himmel_blue_moon_sweep_heal_cleanse"
+      ],
+      "rationale": "Warunkowe wzmacnianie, osłanianie, leczenie i oczyszczanie członków drużyny.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "himmel_durability",
+      "hero_id": "himmel",
+      "function_type": "durability",
+      "supporting_mechanic_ids": [
+        "himmel_hero_party_stats_and_shield",
+        "himmel_hero_party_damage_to_healing"
+      ],
+      "rationale": "Wspólna tarcza i konwersja części zadanych obrażeń na leczenie.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "himmel_damage",
+      "hero_id": "himmel",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "himmel_heroic_dash_damage_knockdown",
+        "himmel_heroic_slash_area_damage"
+      ],
+      "rationale": "Obrażenia i kontrola w wybranych obszarach/celach.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "himmel_control_disruption",
+      "hero_id": "himmel",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "himmel_heroic_dash_damage_knockdown"
+      ],
+      "rationale": "Knockdown dwóch przeciwników wskazanych przez kryterium skumulowanych obrażeń.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "valka_durability",
+      "hero_id": "valka",
+      "function_type": "durability",
+      "supporting_mechanic_ids": [
+        "valka_spectral_bulwark_shield",
+        "valka_soulshock_ultimate_block"
+      ],
+      "rationale": "Ochrona przez tarczę i warunkowe zablokowanie obrażeń z Ultimate.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "valka_support",
+      "hero_id": "valka",
+      "function_type": "support",
+      "supporting_mechanic_ids": [
+        "valka_spectral_bulwark_shield",
+        "valka_spectral_bulwark_attack_speed"
+      ],
+      "rationale": "Otwierające wsparcie dla sąsiadujących sojuszników.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "valka_control_disruption",
+      "hero_id": "valka",
+      "function_type": "control_disruption",
+      "supporting_mechanic_ids": [
+        "valka_blooming_terror_panic_stacks",
+        "valka_blooming_terror_stun_execute"
+      ],
+      "rationale": "Narastający Panic, utrata Haste i warunkowy stun.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    },
+    {
+      "team_function_id": "valka_damage",
+      "hero_id": "valka",
+      "function_type": "damage",
+      "supporting_mechanic_ids": [
+        "valka_blooming_terror_stun_execute",
+        "valka_soulshock_counter_cast"
+      ],
+      "rationale": "Warunkowe obrażenia/wykonanie celu oraz kontratak po blokadzie Ultimate.",
+      "interpretation_status": "derived_interpretation_not_match_observation"
+    }
+  ],
+  "interactions": [
+    {
+      "interaction_id": "lily-may_interrupting_1",
+      "source_hero_id": "lily-may",
+      "direction": "opponent",
+      "interaction_type": "interrupting",
+      "target_selector": "non_summoned_enemy_ultimate",
+      "supporting_mechanic_id": "lily-may_tempest_shot_interrupt",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Przerwanie Ultimate przeciwnika, jeśli spełniony jest opisany warunek jego użycia; nie jest to prognoza aktywacji."
+    },
+    {
+      "interaction_id": "ravion_amplifying_2",
+      "source_hero_id": "ravion",
+      "direction": "ally",
+      "interaction_type": "amplifying",
+      "target_selector": "objective_allies",
+      "supporting_mechanic_id": "ravion_designated_duty_attack_buff",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Sojusznicy realizujący cele mogą otrzymywać wzmocnienia; ich tożsamość i pozycja nie są przewidywane."
+    },
+    {
+      "interaction_id": "ravion_enabling_3",
+      "source_hero_id": "ravion",
+      "direction": "ally",
+      "interaction_type": "enabling",
+      "target_selector": "objective_allies",
+      "supporting_mechanic_id": "ravion_designated_duty_energy_reward",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Realizacja celu może dostarczyć sojusznikowi Energii; nie zakładamy, że konkretny sojusznik ukończy cel."
+    },
+    {
+      "interaction_id": "odie_weakening_4",
+      "source_hero_id": "odie",
+      "direction": "opponent",
+      "interaction_type": "weakening",
+      "target_selector": "poisoned_enemy",
+      "supporting_mechanic_id": "odie_dart_poison_damage",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Trucizna osłabia cel przez obrażenia w czasie; skuteczność zależy od przebiegu walki."
+    },
+    {
+      "interaction_id": "odie_executing_5",
+      "source_hero_id": "odie",
+      "direction": "opponent",
+      "interaction_type": "executing",
+      "target_selector": "poisoned_enemy_below_threshold",
+      "supporting_mechanic_id": "odie_heart_crusher_execute",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Możliwość wykończenia dotyczy zatrutego celu poniżej progu, nie jest gwarancją eliminacji."
+    },
+    {
+      "interaction_id": "himmel_protecting_6",
+      "source_hero_id": "himmel",
+      "direction": "ally",
+      "interaction_type": "protecting",
+      "target_selector": "eligible_party_members",
+      "supporting_mechanic_id": "himmel_hero_party_stats_and_shield",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Tarcza i bonusy zależą od spełnienia warunku składu klas i sąsiedztwa."
+    },
+    {
+      "interaction_id": "himmel_sustaining_7",
+      "source_hero_id": "himmel",
+      "direction": "ally",
+      "interaction_type": "sustaining",
+      "target_selector": "party_members",
+      "supporting_mechanic_id": "himmel_hero_party_damage_to_healing",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Leczenie członków party zależy od aktywnego castu i konwersji obrażeń."
+    },
+    {
+      "interaction_id": "valka_protecting_8",
+      "source_hero_id": "valka",
+      "direction": "ally",
+      "interaction_type": "protecting",
+      "target_selector": "adjacent_allies",
+      "supporting_mechanic_id": "valka_spectral_bulwark_shield",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Ochrona sojuszników zależy od ich sąsiedztwa względem Valki."
+    },
+    {
+      "interaction_id": "valka_amplifying_9",
+      "source_hero_id": "valka",
+      "direction": "ally",
+      "interaction_type": "amplifying",
+      "target_selector": "adjacent_allies",
+      "supporting_mechanic_id": "valka_spectral_bulwark_attack_speed",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Wzmocnienie szybkości ataku dotyczy sąsiadujących sojuszników; formacja nie jest przewidywana."
+    },
+    {
+      "interaction_id": "valka_controlling_10",
+      "source_hero_id": "valka",
+      "direction": "opponent",
+      "interaction_type": "controlling",
+      "target_selector": "panic_target",
+      "supporting_mechanic_id": "valka_blooming_terror_stun_execute",
+      "conditions": "conditions_inherited_from_supporting_mechanic",
+      "interpretation_status": "capability_relation_not_confirmed_match_synergy",
+      "description": "Kontrola wymaga narastania Panic i dostępności 100 Energii."
+    }
+  ],
+  "unmodeled_sections": [
+    {
+      "hero_id": "lily-may",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "Summary states separate Haste/Penetration and refine effects but does not provide sufficient exact mechanics."
+    },
+    {
+      "hero_id": "ravion",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "Summary states separate opening/assist/defeat stats and refine effects without exact effect details."
+    },
+    {
+      "hero_id": "ravion",
+      "ability_key": "targeting_rule-rearmost-ally-targeting-order",
+      "reason": "Auxiliary targeting reference retained in V4; no formation prediction or extra ability mechanic is inferred."
+    },
+    {
+      "hero_id": "odie",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "Summary states separate normal-attack stacking effects and refine stats without enough detail to atomize."
+    },
+    {
+      "hero_id": "himmel",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "Summary states timed defensive/offensive effects and refine stats without exact values or trigger semantics."
+    },
+    {
+      "hero_id": "valka",
+      "ability_key": "rivalry_mode-rivalry-mode",
+      "reason": "Summary states separate timed defensive/offensive effect and refine stats without exact values or trigger semantics."
+    }
+  ],
+  "validation_expectations": {
+    "every_mechanic_has_hero_and_ability_key": true,
+    "every_team_function_references_existing_mechanics": true,
+    "every_interaction_references_existing_mechanic": true,
+    "season_charm_records_absent": true,
+    "source_tags_not_reinterpreted_as_team_functions": true
+  }
+}
