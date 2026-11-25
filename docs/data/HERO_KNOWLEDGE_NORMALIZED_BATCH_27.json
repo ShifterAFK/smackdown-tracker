@@ -115,6 +115,12 @@
           },
           "description_summary_variants": [
             {
+              "text": "Tracks major HP or shield loss as rule violations and identifies the enemy who contributed most to that loss; allies who violate the rule also receive healing. In Boss battles, the highest-damage unit on each side is checked every 10 seconds. Its active effect heals the two weakest allies and reduces the ATK of the two highest-damage enemies for 6 seconds.",
+              "kind": "paraphrased_summary_from_indexed_primary_source",
+              "batch": 27,
+              "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_27.json"
+            },
+            {
               "text": "An active effect heals the two weakest allies and reduces ATK of the two highest-damage enemies.",
               "kind": "reassigned_from_misattributed_ultimate_capture",
               "batch": 16,
