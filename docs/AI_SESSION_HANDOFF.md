@@ -8,7 +8,7 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before ACTION 0018:** `6d9eda60435bdc0fb28fea577f192cad00b77efd`  
+**Last confirmed development HEAD before ACTION 0020:** `130a5693f02c87829e02fe6f5a5611260c63b398`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
 **Current stage:** five-hero pilot accepted as the reference method; first and second bounded batches committed; third alphabetical batch source review completed for Aliceth, Alna, Alsa, Antandra and Arden; third structured JSON artifact not yet created  
@@ -827,3 +827,21 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Status: APPROVED AND INCLUDED IN THIS Handoff synchronization
 - User explicitly approved the proposed minimal Handoff update. The user also asked how to handle heroes and ability descriptions distributed across other JSON files; the answer and resulting source-handling rule are recorded in ACTION 0018.
 - No additional repository/data scope was authorized by this clarification.
+
+
+## 27. Data architecture clarification — 2026-11-25
+
+### ACTION 0020 — Clarify reusable hero data and composition interactions
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / data architecture clarification
+- Status: COMPLETED — conceptual clarification recorded; no implementation authorized
+- Purpose: correct a possible misunderstanding that distributed JSON source files imply one file per hero-combination or per synergy.
+- User question: whether the model would require as many as 1,000 JSON files for one hero and its synergies across every possible hero pool.
+- Clarification: no. The intended conceptual model is reusable hero/ability data plus reusable, generic mechanic-interaction records. A composition analysis should evaluate which of those records apply to a selected roster. Do not create a separate JSON artifact for every possible five-hero combination or hero pool.
+- Important distinction:
+  - Source descriptions may be distributed across multiple existing JSON files/shards; those are source inputs and do not define the target storage architecture.
+  - Existing pilot and batch JSON files are bounded analysis artifacts used to validate the method. They are not a decision that the final system must store one independent file per hero or per possible composition.
+  - A future canonical data layout may consolidate or shard reusable hero profiles and interaction records, but the final physical storage/schema has not yet been approved or implemented.
+- Model constraints remain: interactions are generic capability relations grounded in ability mechanics; they are not guaranteed outcomes, named-pair synergy scores, or predictions of formation/activation/match results.
+- Scope protection: this was a conceptual clarification only. No data artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
+- Next single action: continue only with the already approved third-batch artifact preparation, keeping data reusable and avoiding composition-combination-specific duplication; present its path and minimal diff before any commit.
