@@ -9,10 +9,11 @@
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
 **Last confirmed development HEAD before ACTION 0020:** `130a5693f02c87829e02fe6f5a5611260c63b398`  
-**Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
-**Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
-**Current stage:** five-hero pilot accepted as the reference method; first and second bounded batches committed; third alphabetical batch source review completed for Aliceth, Alna, Alsa, Antandra and Arden; third structured JSON artifact not yet created  
-**Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
+**Current task family:** draft-state evaluation for the 3v3 Showdown pick sequence, using hero capabilities, synergies and counters  
+**Current analysis artifacts:** accepted ability-analysis pilot and two bounded hero batches remain supporting knowledge artifacts; third-batch JSON is paused pending draft-model clarification  
+**Current stage:** clarify the draft evaluation model before creating further hero-batch artifacts or implementation  
+**Current draft rules confirmed by the user:** Blue picks 1 hero, Red picks 2, Blue picks 2, Red picks 1; the random 20-hero pool is not an available/savable model input and must not be assumed  
+**Current implementation status:** no new draft model, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
 
@@ -320,24 +321,23 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0018
+## 10. Current restart point after ACTION 0021
 
-**Task:** ability-based composition analysis; the accepted five-hero pilot remains the reference method.
+**Task:** define a draft-state evaluation model for the 3v3 Showdown pick sequence. The accepted hero ability pilot remains supporting knowledge, not the complete target model.
 
 **Confirmed current state:**
-- The approved three-layer model and schema/tagging rules remain recorded in sections 13–14.
-- First pilot: `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — 5 heroes, 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
-- Second bounded batch artifact: `docs/data/HERO_COMPOSITION_ABILITY_BATCH_2_CECIA_GRANNY_INDRIS_NERION_SOLISE.json` — 5 heroes, 69 mechanics, 17 team functions, 10 interactions and 10 unmodeled sections.
-- Third alphabetical batch source review is complete for Aliceth, Alna, Alsa, Antandra and Arden. The structured third-batch JSON artifact has not yet been created.
-- Third-batch source captures were read from V4 PART_01 and extraction batches 02, 04, 05, 10, 12, 15 and 19; the accepted pilot and second-batch artifacts were read as schema references.
-- Existing hero descriptions may be distributed across multiple JSON shards/files. Treat source files as evidence inputs, not as the final analytical model. Identify heroes by stable `hero_id`, abilities by `ability_key`, retain per-record provenance, and compare duplicate/conflicting descriptions before reconciliation. Do not silently merge or duplicate records. The V4 shards collectively contain roster descriptions, but their paraphrased sections are not already atomized mechanics.
-- Third-batch preliminary capability relations include Arden control potentially satisfying Alsa's controlled-target condition, ally control potentially satisfying Arden's Energy trigger, and Aliceth's conditional Brightfeather ally amplification. These remain conditional kit-capability relations, not observed match synergies.
-- Season Charm remains excluded and distinct from Season Skill. Unknown tags remain unknown.
-- Patch research remains closed. The model describes kit capabilities, not actual match execution, guaranteed synergy/counter effects or match outcomes.
-- Formation prediction and ability-activation prediction are unsupported. Position- and activation-dependent interactions remain conditional capabilities.
-- No application indicator, scoring, weighting, predictive thresholds, UI or Supabase implementation is approved or implemented.
+- The user clarified the actual problem: compare draft options in a 3v3 pick sequence where synergy and counters can have substantial influence, and hero strength varies in context rather than being a fixed count of strong heroes in every pool.
+- Exact pick order is available and must be represented: Blue picks 1 hero; Red picks 2; Blue picks 2; Red picks 1. Each side finishes with 3 heroes.
+- The random pool of 20 heroes drawn from approximately 130 available heroes is not an available/savable model input. Do not define that random pool as a required stored input or assume the model can inspect all 20 options.
+- The model's scope must distinguish hero capability, ally synergy, opponent counters, and the evolving draft state as picks are made. It must not assume a fixed number of strong heroes in a pool.
+- AFK Stargazer labels were intended as clues for understanding whether and how an ability benefits particular allies or affects opponents; they are not themselves a draft score or universal synergy label.
+- Formation/position and exact ability activation during a match cannot be predicted. Conditional ability relations must not be presented as guaranteed fight outcomes.
+- The five-hero pilot and two batch artifacts remain reusable supporting evidence about hero kits. They do not by themselves define the draft evaluation model.
+- Third alphabetical batch source review is complete for Aliceth, Alna, Alsa, Antandra and Arden, but its structured JSON artifact is paused. Do not prepare it until the draft-model direction is agreed.
+- No new draft scoring formula, weights, role values, pick-value calculation, predictive thresholds, UI or database implementation is approved or implemented.
 
-**Next single action:** prepare the separate third-batch JSON artifact using the accepted pilot schema; then show the exact new path and minimal diff for approval before committing it.
+**Next single action:** agree the conceptual draft-state model and identify which data is actually available at each pick stage, without assuming access to the random 20-hero pool.
+
 
 ## 11. Initial audit log
 
@@ -845,3 +845,21 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Model constraints remain: interactions are generic capability relations grounded in ability mechanics; they are not guaranteed outcomes, named-pair synergy scores, or predictions of formation/activation/match results.
 - Scope protection: this was a conceptual clarification only. No data artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
 - Next single action: continue only with the already approved third-batch artifact preparation, keeping data reusable and avoiding composition-combination-specific duplication; present its path and minimal diff before any commit.
+
+
+## 28. Draft model correction — 2026-11-25
+
+### ACTION 0021 — Clarify pick-order availability and random-pool limitation
+- Started: 2026-11-25
+- Task / phase: 3v3 Showdown draft evaluation / input and pick-sequence clarification
+- Status: COMPLETED — user clarification recorded; no model or application implementation authorized
+- Purpose: correct the draft-model description so it distinguishes information that can be represented from information that is not available as a model input.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `0e1d19c582dff97718d8ef071a0d5bca5dc3d88d`; Handoff blob SHA `8d99468fb366714d16c995acc41625330721ffd4`.
+- User clarification: recording the exact pick order is feasible; recording/using the random 20-hero pool is not.
+- Confirmed pick order: Blue selects 1 hero; Red selects 2; Blue selects 2; Red selects 1. Each side finishes with 3 heroes.
+- Input constraint: do not treat the random 20-hero pool drawn from approximately 130 heroes as a known, stored or required input. Do not assume the model can evaluate unavailable options from that pool.
+- Model direction: evaluate the evolving draft state using the exact pick sequence and the hero information/relations that are actually available. Consider hero capability, ally synergy and opponent counters without assuming a fixed number of strong heroes in each random pool. AFK Stargazer labels are clues for interpreting ability-to-ally and ability-to-opponent relations, not universal synergy labels or a score.
+- Existing limitation remains: formation/position and actual ability activation during a match cannot be predicted; conditional relations are not guaranteed outcomes.
+- Scope protection: this was a documentation clarification only. No hero JSON artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
+- Next single action: agree the conceptual draft-state model and establish which inputs are actually available at each pick stage; do not resume third-batch JSON preparation until that direction is agreed.
