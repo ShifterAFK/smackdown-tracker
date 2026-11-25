@@ -296,3 +296,18 @@ Fourth extraction artifact committed:
 The user's identity correction remains authoritative: `gala` → Galahad. The roster mapping is resolved at the identity-alias level; full ability transcription remains in progress.
 
 **No Supabase schema/data changes have been made.** All four extraction batches and this audit update are documentation-only commits on `development`.
+
+
+## 12. Structured extraction progress update (2026-11-25)
+
+Fifth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_05.md` — 10 additional hero records.
+
+**Updated structured extraction progress: 55/131 tracker heroes (42.0%).**
+- 36 records have page captures sufficiently complete for the current first-pass summary.
+- 19 records remain explicitly partial and need page recapture before verification.
+- The remaining 76 tracker heroes have not yet been transcribed into the batch artifacts.
+
+This is source transcription progress only. No second-source validation, patch-level review, or database import is implied.
+
+**No Supabase schema/data changes have been made.** All five extraction batches and audit updates are documentation-only commits on `development`.
