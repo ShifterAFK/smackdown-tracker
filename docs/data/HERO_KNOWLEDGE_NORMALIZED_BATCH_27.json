@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "dataset_status": "normalized_source_recapture_supplement",
+  "generated_at": "2026-11-25",
+  "summary": {
+    "profiles_reviewed": 1,
+    "sections_recaptured": 8,
+    "new_logical_sections": 1,
+    "existing_sections_updated": 7,
+    "misattributed_effects_reassigned": 1,
+    "per_section_tag_sets_captured": 6
+  },
+  "heroes": [
+    {
+      "hero_id": "contess",
+      "tracker_name": "contess",
+      "source_display_name": "Contess",
+      "source": {
+        "name": "AFK Stargazer",
+        "url": "https://afkstargazer.com/en/skill/contess",
+        "locale": "en",
+        "retrieved_at": "2026-11-25",
+        "source_patch_label": null,
+        "source_updated_at": null
+      },
+      "capture_batch": 27,
+      "capture_method": "indexed_primary_source_full_page_content; direct page open returned cache miss",
+      "profile_completion_status": "complete_after_full_page_section_reconciliation",
+      "normalization_status": "normalized_from_batch27",
+      "review_status": "pending_direct_page_fetch_and_patch_verification",
+      "page_tags": [
+        {
+          "raw_tag": "Debuff (Single Target)",
+          "tag_family": "Debuff",
+          "qualifier": [
+            "Single Target"
+          ]
+        },
+        {
+          "raw_tag": "DoT",
+          "tag_family": "DoT",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Energy Denial",
+          "tag_family": "Energy Denial",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Temp Buff",
+          "tag_family": "Temp Buff",
+          "qualifier": []
+        },
+        {
+          "raw_tag": "Ult Denial",
+          "tag_family": "Ult Denial",
+          "qualifier": []
+        }
+      ],
+      "page_tag_capture_status": "captured_as_page_level_tags_separate_from_section_tags",
+      "sections": [
+        {
+          "ability_key": "ultimate-detention-pass",
+          "name": "Detention Pass",
+          "section_type": "ultimate",
+          "source_label": "Ultimate — Detention Pass",
+          "order_index": 1,
+          "description_raw": null,
+          "description_summary": "At battle start, Contess hides in her rulebook, remains untargetable and recovers Energy each second until a reveal condition is met. Her active Ultimate heals one ally and grants Exemption. While that ally remains above 40% HP, it loses a small amount of max HP over time; part of that loss becomes a capped shield that also increases the ally's ATK.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "cooldown": 0,
+          "initial_cooldown": 0,
+          "range": "Global",
+          "initial_energy": 300,
+          "tags": null,
+          "tag_capture_status": "no_section_level_tag_label_displayed",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          }
+        },
+        {
+          "ability_key": "base_skill-mandatory-civility",
+          "name": "Mandatory Civility",
+          "section_type": "base_skill",
+          "source_label": "Mandatory Civility",
+          "order_index": 2,
+          "description_raw": null,
+          "description_summary": "Tracks major HP or shield loss as rule violations and identifies the enemy who contributed most to that loss; allies who violate the rule also receive healing. In Boss battles, the highest-damage unit on each side is checked every 10 seconds. Its active effect heals the two weakest allies and reduces the ATK of the two highest-damage enemies for 6 seconds.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "cooldown": 10,
+          "initial_cooldown": 8,
+          "range": "Global",
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target"
+              ]
+            }
+          ],
+          "tag_capture_status": "captured_from_section_label",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          },
+          "description_summary_variants": [
+            {
+              "text": "An active effect heals the two weakest allies and reduces ATK of the two highest-damage enemies.",
+              "kind": "reassigned_from_misattributed_ultimate_capture",
+              "batch": 16,
+              "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_16.json"
+            },
+            {
+              "text": "The Ultimate also has an active effect healing the two weakest allies and reducing ATK of the two highest-damage enemies.",
+              "kind": "reassigned_from_misattributed_ultimate_capture",
+              "batch": 21,
+              "source_document": "docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_21.json"
+            }
+          ]
+        },
+        {
+          "ability_key": "base_skill-quiet-period",
+          "name": "Quiet Period",
+          "section_type": "base_skill",
+          "source_label": "Quiet Period",
+          "order_index": 3,
+          "description_raw": null,
+          "description_summary": "An Ultimate cast marks the unit as violating Be Quiet, with each unit able to trigger the rule once every 6 seconds. Contess reduces Energy recovery efficiency for the two enemies who have cast the most Ultimates; the effect lasts 6 seconds.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "cooldown": 12,
+          "initial_cooldown": 10,
+          "range": 10,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "Energy Denial",
+              "tag_family": "Energy Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "captured_from_section_label",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          }
+        },
+        {
+          "ability_key": "hero_focus-hero-focus",
+          "name": "Hero Focus",
+          "section_type": "hero_focus",
+          "source_label": "Hero Focus",
+          "order_index": 4,
+          "description_raw": null,
+          "description_summary": "Whenever an enemy violates a school rule, Contess permanently reduces that enemy's ATK and Energy recovery efficiency, each up to a capped maximum.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "range": 1,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "Energy Denial",
+              "tag_family": "Energy Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "captured_from_section_label",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          }
+        },
+        {
+          "ability_key": "exclusive_equipment-expulsion-notice",
+          "name": "Expulsion Notice",
+          "section_type": "exclusive_equipment",
+          "source_label": "Exclusive Equipment — Expulsion Notice",
+          "order_index": 5,
+          "description_raw": null,
+          "description_summary": "Units punished more than six times are permanently expelled and silenced, and suffer increased HP loss; allies with Exemption are excluded. Higher ranks increase the HP-loss penalty, and the final rank converts part of expelled enemies' HP loss into healing for Contess and exempt allies.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "range": 10,
+          "tags": [
+            {
+              "raw_tag": "Debuff (Single Target)",
+              "tag_family": "Debuff",
+              "qualifier": [
+                "Single Target"
+              ]
+            },
+            {
+              "raw_tag": "DoT",
+              "tag_family": "DoT",
+              "qualifier": []
+            },
+            {
+              "raw_tag": "Ult Denial",
+              "tag_family": "Ult Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "captured_from_section_label",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          }
+        },
+        {
+          "ability_key": "rivalry_mode-rivalry-mode",
+          "name": "Rivalry Mode",
+          "section_type": "rivalry_mode",
+          "source_label": "Rivalry Mode",
+          "order_index": 6,
+          "description_raw": null,
+          "description_summary": "The first ally to fall below 40% HP is healed and receives a shield. Refine 4 adds Healing and Haste.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "tags": null,
+          "tag_capture_status": "no_section_level_tag_label_displayed",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          }
+        },
+        {
+          "ability_key": "enhance_force-enhance-force",
+          "name": "Enhance Force",
+          "section_type": "enhance_force",
+          "source_label": "Enhance Force",
+          "order_index": 7,
+          "description_raw": null,
+          "description_summary": "In regular battles, Contess stuns enemies who violate Be Civil and silences enemies who violate Be Quiet. In Boss battles, she applies one extra punishment to enemies who violate a rule.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "cooldown": 0,
+          "tags": [
+            {
+              "raw_tag": "Ult Denial",
+              "tag_family": "Ult Denial",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "captured_from_section_label",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          }
+        },
+        {
+          "ability_key": "season_charm-season-charm",
+          "name": "Season Charm",
+          "section_type": "season_charm",
+          "source_label": "Season Charm",
+          "order_index": 8,
+          "description_raw": null,
+          "description_summary": "Healing an ally increases that ally's ATK for 8 seconds. Higher ranks increase the ATK bonus and, after a cumulative healing threshold, improve Contess's Healing.",
+          "description_kind": "paraphrased_summary_from_indexed_primary_source",
+          "tags": [
+            {
+              "raw_tag": "Temp Buff",
+              "tag_family": "Temp Buff",
+              "qualifier": []
+            }
+          ],
+          "tag_capture_status": "captured_from_section_label",
+          "source_evidence": {
+            "source_name": "AFK Stargazer",
+            "source_url": "https://afkstargazer.com/en/skill/contess",
+            "retrieved_at": "2026-11-25",
+            "source_document": "docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_27.md",
+            "capture_batch": 27,
+            "evidence_kind": "indexed_primary_source_full_page_content"
+          }
+        }
+      ],
+      "reassignment_note": "The extra active effect previously included in Batch 16/21 Detention Pass summaries is the active effect of Mandatory Civility. It is reassigned to that base skill. The original summaries remain preserved as historical misattributed variants; they are not treated as part of the current Ultimate."
+    }
+  ]
+}
