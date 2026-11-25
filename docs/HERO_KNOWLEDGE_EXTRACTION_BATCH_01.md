@@ -5,7 +5,7 @@
 - **Captured:** 2026-11-25
 - **Scope:** first structured extraction pass; source facts only
 - **Status:** partial transcription. Search-indexed page content is not always complete; entries explicitly marked partial must be revisited before treating the kit as fully captured.
-- **Roster identity:** tracker `gala` maps to Stargazer **Galahad**. Together with the two crossover aliases (`taichi` → Taichi & Agumon; `yamato` → Yamato & Gabumon), this resolves all 131 tracker rows to 130 distinct Stargazer hero pages only if the roster has 131 rows with one combined/alias representation; retain the tracker IDs as canonical keys.
+- **Roster identity:** tracker `gala` maps to Stargazer **Galahad**. Together with the two crossover aliases (`taichi` → Taichi & Agumon; `yamato` → Yamato & Gabumon), all 131 tracker IDs now have a Stargazer page mapping. Retain tracker IDs as canonical keys; use Stargazer display names/slugs only as source aliases.
 
 ## Extraction rules
 
