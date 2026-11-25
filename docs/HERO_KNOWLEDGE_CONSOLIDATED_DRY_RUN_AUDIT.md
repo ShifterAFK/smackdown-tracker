@@ -51,3 +51,10 @@ The base-skill capture evidence is merged into the corresponding Ultimate sectio
 
 **Stage 2AC6 — consolidated V3 dry run: PASS for roster, structure, provenance, tags and section-type reconciliation.**  
 **Not ready for Supabase import:** direct-page verification, patch/season validation and Contess's historical content variant review remain outstanding.
+
+
+## Patch baseline — 2026-11-25
+
+Reference baseline: app-store build 1.8.2.1 (Nov 9); latest published patch notes 1.8.2 (Oct 28). Version 1.8.3 is preview-only in the checked source and has no confirmed release date. See `docs/HERO_KNOWLEDGE_PATCH_BASELINE.md`.
+
+This does not prove that each AFK Stargazer page reflects 1.8.2.1. All 131 profiles remain pending per-hero patch verification; 20 indexed-only profiles also remain pending direct page fetch. Keep `source_patch_label` null until verified.
