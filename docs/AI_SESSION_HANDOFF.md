@@ -450,3 +450,52 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - **Still OPEN / not approved:** final matching/evaluation rules between interactions; numerical synergy/counter bonuses; indicator formula and weights; predictive thresholds; UI and application/database implementation.
 - Scope protection: no application code, existing indicators, Tier List, TOP Picks, Supabase, migrations or `main` branch were changed by this action.
 - Next single action: map the approved fields against the existing V4 structure and produce a field-coverage/gap assessment, without repeating extraction or normalization.
+
+
+## 15. V4 schema coverage and gap assessment — 2026-11-25
+
+### ACTION 0005 — Map approved schema against V4 data
+- Started: 2026-11-25
+- Task / phase: new ability-based composition analysis / V4 schema coverage assessment
+- Status: COMPLETED
+- Purpose: establish which approved fields can be mapped from the existing V4 dry-run structure and identify gaps without repeating extraction or normalization.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; four V4 JSON shards and their shared source manifest.
+- Inputs / prior state:
+  - `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_01.json` — blob SHA `3ef446a8311bd5315d8a535c88e2c3037ef2d94d`
+  - `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_02.json` — blob SHA `9fd97e95f6020d333a0d7f31336d9e48ee5ef640`
+  - `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_03.json` — blob SHA `74f4c14cb8171a6a1f07bb782cb0d39936e9ca59`
+  - `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_04.json` — blob SHA `122cfba6a4953e2dfa043e054d3bbe8f54c5a072`
+  - Shared manifest: `docs/data/HERO_KNOWLEDGE_SOURCE_MANIFEST.json` — blob SHA `2de9cbb5cda90370c6cabf9f43af6761aa86ebe6`
+- Operation: inspected all four existing V4 shards and the source manifest; counted field coverage and section types; compared the available fields with the approved three-layer schema; reviewed the five motivating hero profiles. No extraction, normalization, application-code change, database operation or import was performed.
+- Result — dataset shape:
+  - 131 heroes and 1,032 logical sections across the four shards (part counts: 33/255, 33/261, 33/262 and 32/254 heroes/sections respectively).
+  - All shards declare `dataset_status: consolidated_dry_run_not_for_import`.
+  - Every section has `ability_key`, `section_type`, `description_kind`, `description_summary`, `tag_status`, `tag_observations`, `source_evidence`, `order_observations` and `source_ability_keys` (1,032/1,032 each). `source_labels` is present in 969/1,032 sections.
+  - `description_raw` is absent in all 1,032 sections. All descriptions are paraphrased summaries: 1,024 from extraction batches and 8 from indexed primary sources.
+  - `tags` are present in 301/1,032 sections; all 301 have `tag_status: consistent_explicit_capture`. The remaining 731 sections are unknown. No non-empty `tag_variants` were found.
+  - Section types: `base_skill` 250; `enhance_force` 128; `exclusive_equipment` 129; `hero_focus` 128; `rivalry_mode` 129; `season_charm` 130; `ultimate` 130; `targeting_rule` 7; `source_section_group` 1. The seven `targeting_rule` and one `source_section_group` records are auxiliary sections and must not be automatically treated as abilities or assigned an `ability_type`.
+- Result — mapping to the approved schema:
+  - `hero_id` and `ability_key`: available.
+  - `ability_type`: only partially mappable through `section_type`; auxiliary sections must first be separated, and the distinct nonstandard section types must be retained rather than flattened.
+  - Ability description: available only as paraphrased `description_summary`, not raw source text.
+  - Atomic mechanics: no dedicated structured field.
+  - `target_side`, `target_selector`, `trigger`, `conditions`, `duration`, `range`, `cooldown` and `restrictions`: no dedicated structured fields. Some details may be mentioned in summaries but are not normalized into fields.
+  - Team-function labels and their mechanic/rationale links: absent.
+  - Ally/opponent interaction records and their target/condition fields: absent.
+  - Evidence/provenance: `source_evidence` exists for all 1,032 sections, with source/capture metadata such as `source_name`, `source_url`, `source_document`, `capture_batch` and `evidence_kind`.
+  - Patch/version and claim confidence: not established. The manifest has `generated_at: 2026-11-25` and `retrieved_at` for all 131 heroes, but `source_patch_label` and `source_updated_at` are absent for all 131; it explicitly records no established source patch/version. No confidence value is recorded per claim.
+- Result — five motivating profiles (sections / explicit consistent tags / unknown tags / paraphrased summaries / raw descriptions):
+  - Lily May: 8 / 0 / 8 / 8 / 0.
+  - Ravion: 9 / 3 / 6 / 9 / 0.
+  - Odie: 8 / 2 / 6 / 8 / 0.
+  - Himmel: 8 / 1 / 7 / 8 / 0.
+  - Valka: 7 / 1 / 6 / 7 / 0.
+  - All five have `source_patch_label: null`, `source_updated_at: null`, `retrieved_at: 2026-11-25` and `source_page_record_status: first_pass_captured`; review remains pending patch verification. Valka also has direct-page-fetch verification pending. Their descriptions are paraphrases, not raw source text.
+- Decision / interpretation:
+  - V4 is usable as a structural index and a starting point for targeted source verification, but it is not sufficient to populate the three approved layers automatically.
+  - Preserve existing Stargazer tags as a separate layer. Do not infer new mechanics, team functions or interactions from paraphrased summaries without source verification.
+  - Populate the new fields only from verified source evidence; otherwise retain `unknown`.
+  - V4 remains `consolidated_dry_run_not_for_import`; do not import it into Supabase.
+  - The coverage assessment does not approve interaction-evaluation rules, numerical synergy/counter values, an indicator formula, weights, predictive thresholds, UI or implementation.
+- Scope protection: no application code, existing indicators, Tier List, TOP Picks, Supabase, migrations or `main` branch were changed.
+- Next single action: prepare a bounded source-verification pilot proposal for selected heroes, using existing V4 records as an index; do not start the pilot, repeat extraction/normalization, or import data until separately authorized.
