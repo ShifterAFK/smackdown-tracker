@@ -247,6 +247,20 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2M
+## Stage 2M — Batch 12 normalization
 
-Next, inspect **Batch 12**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_12.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_12_NORMALIZATION_AUDIT.md`
+
+- Five complete profiles normalized: Arden, Carolina, Dunlingr, Cassadee and Kulu.
+- 39 sections, including two separate targeting rules; 14 explicitly tagged sections and 18 raw per-skill tag records.
+- Four partial recaptures (Silvina, Seth, Orion and Natsu) remain supplemental: 14 sections, 4 explicitly tagged sections and 5 raw per-skill tag records.
+- Thane is retained separately as an out-of-roster Indonesian source record; it is not included in the 131 tracker heroes and is not importable.
+- 14 page-level tag records are kept separate from ability tags.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2N
+
+Next, inspect **Batch 11**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
