@@ -109,7 +109,7 @@ The current development entry point passes the available static baseline checks.
 
 ## Stage 3 — automated static validator
 
-**Status: implemented; GitHub Actions result pending.**
+**Status: completed; GitHub Actions passed.**
 
 ### Changes
 
@@ -126,11 +126,11 @@ The current development entry point passes the available static baseline checks.
 - Uploaded archive root entry point: passed (34 executable JS files, 22 stylesheets).
 - Uploaded archive V2 entry point: passed (1 module JS file, 1 stylesheet).
 
-The validator was tested locally against fixtures and the uploaded archive. It has not yet been confirmed by a completed GitHub Actions run against the newly committed current `development` tree.
+The validator was also run by GitHub Actions against the committed current `development` tree and passed: 37 JavaScript files and 25 stylesheets checked. [Workflow run](https://github.com/ShifterAFK/smackdown-tracker/actions/runs/45602496344).
 
 ### Exit result
 
-Validator and workflow implementation complete. No application runtime files or Supabase state changed. `main` remains untouched.
+Validator and workflow implementation complete and green on `development`. No application runtime files or Supabase state changed. `main` remains untouched.
 
 **Next:** confirm the workflow result, then begin the first isolated runtime cleanup only after the check is green.
 
