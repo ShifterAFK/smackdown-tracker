@@ -93,7 +93,7 @@
   "shards": [
     {
       "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_01.json",
-      "bytes": 852595,
+      "bytes": 853193,
       "hero_count": 33
     },
     {
