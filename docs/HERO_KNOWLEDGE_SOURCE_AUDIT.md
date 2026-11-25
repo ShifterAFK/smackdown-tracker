@@ -539,3 +539,19 @@ Sylphira gained its Hero Focus, Exclusive Equipment, Enhance Force and Season Ch
 **Updated first-pass capture coverage: 104/131 complete (79.4%); 27/131 partial (20.6%).** This is source-capture completeness only. It does not imply second-source cross-check, in-game patch validation, or database readiness.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 27. Partial-profile recapture pass 7 (2026-11-25)
+
+Twentieth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_20.md` — seventh recapture pass.
+
+Six tracker profiles upgraded to complete first-pass captures:
+- `rolan`, `faramor`, `callan`, `hodgkin`, `nara`, `cryonaia`.
+
+Four additional profiles gained substantial source details but remain partial:
+- `atalanta`, `baden`, `phraesto`, `valen`.
+
+**Updated first-pass capture coverage: 110/131 complete (84.0%); 21/131 partial (16.0%).** This is source-capture completeness only. It does not imply second-source validation, in-game patch verification, or database readiness.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
