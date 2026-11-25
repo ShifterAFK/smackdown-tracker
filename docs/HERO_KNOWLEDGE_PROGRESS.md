@@ -516,3 +516,26 @@ Audit all normalized batch artifacts 01–24 for schema consistency, duplicate h
 - Source manifest/URL/locale/section provenance checks passed.
 - No Supabase writes or application changes.
 
+
+## Stage 2AB4 — consolidated 131-hero dry run
+
+**Status: complete — structural PASS; review blockers retained.**  
+**Canonical index:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN.json`  
+**Shards:** `HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_PART_01.json` through `PART_04.json`  
+**Validation:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_AUDIT.md`
+
+- Consolidated all 223 capture records into 131 unique tracker profiles.
+- 119 normalized-complete profiles; 12 remain `needs_review`.
+- 1298 section evidence records merged into 1019 logical sections.
+- 300 sections have consistent explicit tags; 719 remain unknown; 0 tag conflicts.
+- 216 logical sections preserve multiple paraphrased summaries.
+- 0 roster, source URL, locale or section provenance mismatches.
+- Thane remains separately out-of-roster.
+- Dataset is sharded for retrievability; the index file is the canonical entry point.
+
+No Supabase writes or application changes.
+
+## Restart point — Stage 2AC
+
+Perform semantic review and source cross-check on a prioritized sample, beginning with the 12 open gap-register profiles and sections with multiple paraphrase variants. Verify exact Stargazer wording/tags and compare a prioritized subset with AFK.global/official patch information. Record conflicts and source dates. Do not import into Supabase yet.
