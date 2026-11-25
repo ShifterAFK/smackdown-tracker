@@ -501,3 +501,18 @@ Audit all normalized batch artifacts 01–24 for schema consistency, duplicate h
 - Canonical envelope and source-manifest URL/locale/section provenance checks passed.
 - No Supabase writes or application changes.
 
+
+## Stage 2AB3 — standardize consolidation input 17–24
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATION_PART_17_24.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATION_PART_17_24_AUDIT.md`
+
+- 59 profile capture records across Batches 17–24; 45 unique tracker IDs.
+- 44 complete and 15 partial capture records.
+- 384 section records preserved.
+- Batch 20 and Batch 21–24 schema variants are wrapped in the same canonical envelope.
+- Batch 24 is the final normalized artifact for Baden, Saida and Perseus; the earlier pilot is superseded.
+- Source manifest/URL/locale/section provenance checks passed.
+- No Supabase writes or application changes.
+
