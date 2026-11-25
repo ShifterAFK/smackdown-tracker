@@ -164,6 +164,24 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Page tags were not re-captured in Batch 19 and remain null in this batch supplement.
 - No duplicate section keys, missing summaries or source URL mismatches. No Supabase writes or application code changes.
 
-## Restart point — Stage 2G
+
+## Stage 2G — Batch 18 normalization
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_18.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_18_NORMALIZATION_AUDIT.md`
+
+- Three complete profiles normalized: Solise, Marcille and Elijah & Lailah.
+- 24 sections, 7 explicitly tagged sections, 9 raw per-section tag records and 1 page-level tag record.
+- Six partial recaptures (Voracia, Igor, Marilee, Valka, Aster and Pandora) are retained separately: 21 sections, 5 tagged sections, 11 raw tag records and 7 page-level tag records.
+- Partial-status notes are preserved; none of the six partial profiles was promoted to complete.
+- Elijah & Lailah's explicit per-skill mapping list and Marcille's visible ability tag are preserved separately from page tags.
+- Source URLs match the manifest; no duplicate keys, missing summaries or tag-mapping conflicts.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2H
+
+Next, inspect **Batch 17**. Separate complete profiles from partial recaptures, preserve prior-batch references where supplied, and normalize only profiles whose complete capture status is explicit. Keep partial records supplemental. Validate tag qualifiers, section order, provenance and manifest URLs. Commit the artifact and audit, then update this log. No Supabase import.
+
 
 Next, inspect **Batch 18**. Separate profiles completed by combining Batch 18 with earlier detail captures from profiles that remain partial. Normalize only the completed profiles as completion supplements; keep partial recaptures separate. Validate source URLs, prior-batch references, section order, tags and provenance. Commit the artifact and audit, then update this log. No Supabase import.
