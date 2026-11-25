@@ -559,3 +559,22 @@ No Supabase writes or application changes.
 ## Restart point — Stage 2AC2
 
 Rebuild the consolidated 131-hero dry run with Batch 25, close the 12 open profile statuses at the section-capture level, preserve indexed-source/direct-fetch limitations, and add the secondary Season Skill observations without merging them into Season Charm. Re-run the full structural/tag/provenance validation. Then prioritize direct page fetch or patch-version verification before any import proposal.
+
+## Stage 2AC2 — standardize Batch 25 recapture input
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATION_PART_25.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATION_PART_25_AUDIT.md`
+
+- 12 complete capture records standardized.
+- 22 new/recaptured section records preserved.
+- Two verified page-level absence records retained for Hammie and Chippy.
+- Five AFK.global profile cross-checks and three separate Season Skill observations retained as supplemental evidence.
+- All 12 source URLs match the manifest.
+- Direct-page cache-miss limitation is preserved.
+
+No Supabase writes or application changes.
+
+## Restart point — Stage 2AC3
+
+Rebuild the consolidated dataset with Part 25, update the 131-profile statuses, preserve the secondary Season Skill observations separately from Season Charm, and rerun all structural/provenance/tag validation.
