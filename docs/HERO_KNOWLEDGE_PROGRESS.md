@@ -208,11 +208,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Source URLs match the manifest; no unmatched mappings, duplicate section keys or missing summaries.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2J
+## Stage 2J — Batch 15 normalization
 
-Next, inspect **Batch 15**. Separate complete captures from partial recaptures, preserve any prior-batch references, and normalize only profiles explicitly marked complete. Keep partial records supplemental. Validate source URLs, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_15.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_15_NORMALIZATION_AUDIT.md`
 
+- One complete profile normalized: Pang, combining Batch 15 with the earlier Batch 6 capture.
+- 7 new sections, 3 explicitly tagged sections and 3 raw per-skill tag records.
+- Nine partial recaptures (Evie, Aster, Soren, Florabelle, Zandrok, Sylphira, Brutus, Alna and Lorsan) remain supplemental: 30 sections, 16 explicitly tagged sections and 25 raw per-skill tag records.
+- 6 page-level tag records are retained separately and are not copied onto abilities.
+- Manifest IDs, source URLs and locales match; no duplicate section keys, missing summaries or non-null raw descriptions.
+- No Supabase writes or application code changes.
 
-Next, inspect **Batch 16**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+## Restart point — Stage 2K
 
-
+Next, inspect **Batch 14**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
