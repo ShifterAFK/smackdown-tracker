@@ -696,3 +696,12 @@ No Supabase writes or application changes.
 ## Restart point — Stage 2AD3
 
 Standardize Batch 27, rebuild V4 shards, update the Contess type/content reconciliation register, and rerun section/tag validation.
+
+## Stage 2AD2b — standardize Batch 27 input
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATION_PART_27.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATION_PART_27_AUDIT.md`
+
+One Contess capture record with eight section records was standardized. Mandatory Civility is a new logical section; seven existing sections were refreshed. The misattributed effect evidence remains preserved and correctly assigned.
+
