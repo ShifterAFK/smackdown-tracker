@@ -1,7 +1,7 @@
 # Hero Knowledge — Section Type Reconciliation
 
 **Date:** 2026-11-25  
-**Status:** 9 same-name base-skill/Ultimate duplicates found; 8 resolved, 1 content variant retained for review.
+**Status:** 9 same-name base-skill/Ultimate duplicates reconciled; Contess's separate base-skill effect corrected in Batch 27.
 
 | Hero | Ability | Conflicting captures | Current primary-page label |
 |---|---|---|---|
@@ -17,9 +17,11 @@
 
 ## Resolution
 
-The current AFK Stargazer pages explicitly label each named ability as the Ultimate and list different base skills. The duplicate `base_skill` logical record is therefore merged into the corresponding `ultimate` record. All source evidence, summaries, source ability keys and order observations are retained.
+The current AFK Stargazer pages explicitly label each named ability as the Ultimate and list other base skills separately. The duplicate `base_skill` evidence is merged into the Ultimate record while preserving every source variant and provenance.
 
-**Contess exception:** Batch 16's same-name record contains an additional active-effect description not present in the current indexed primary page. It is preserved as a description variant and marked for content review; it is not silently discarded or treated as verified current behavior.
+### Contess correction
+
+The extra active effect previously included in Batch 16/21 Detention Pass summaries is not a historical Ultimate variant. It is the active effect of the separate base skill **Mandatory Civility**. Batch 27 captures Mandatory Civility and reassigns the historical evidence to that section. The current Detention Pass summary remains separate.
 
 ## Primary source pages
 
