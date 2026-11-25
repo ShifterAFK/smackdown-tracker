@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-25",
+  "status": "resolved_by_primary_source_section_type_reconciliation",
+  "count": 9,
+  "rule": "When the current primary page explicitly labels a named ability as Ultimate and lists no same-name base skill, merge same-name base_skill evidence into the ultimate record while preserving all source evidence and description variants.",
+  "profiles": [
+    {
+      "hero_id": "atalanta",
+      "ability_name": "Wild Sniper",
+      "source_url": "https://afkstargazer.com/en/skill/atalanta",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 20,
+        "ultimate_capture_batch": 1
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Wild Sniper as the Ultimate and lists Sweet Encounter as the base skill; the Batch 20 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    },
+    {
+      "hero_id": "berial",
+      "ability_name": "Scared Swamp",
+      "source_url": "https://afkstargazer.com/en/skill/berial",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 23,
+        "ultimate_capture_batch": 17
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Scared Swamp as the Ultimate and lists Shadow Trick as the base skill; the Batch 17 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    },
+    {
+      "hero_id": "contess",
+      "ability_name": "Detention Pass",
+      "source_url": "https://afkstargazer.com/en/skill/contess",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 16,
+        "ultimate_capture_batch": 9
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Detention Pass as the Ultimate and lists no same-name base skill. Batch 16 also includes an extra active-effect summary not present in the current indexed page; retain that as a conflicting historical description variant.",
+      "review_status": "needs_content_variant_review"
+    },
+    {
+      "hero_id": "igor",
+      "ability_name": "Funereal Ring",
+      "source_url": "https://afkstargazer.com/en/skill/igor",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 18,
+        "ultimate_capture_batch": 7
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Funereal Ring as the Ultimate and lists Ghastly Explosion and Specter Guard as base skills; the Batch 18 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    },
+    {
+      "hero_id": "marilee",
+      "ability_name": "Mid-Air Shot",
+      "source_url": "https://afkstargazer.com/en/skill/marilee",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 18,
+        "ultimate_capture_batch": 9
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Mid-Air Shot as the Ultimate and lists Mighty Arrow and Hyperfocus as base skills; the Batch 18 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    },
+    {
+      "hero_id": "orion",
+      "ability_name": "Fatal Waltz",
+      "source_url": "https://afkstargazer.com/en/skill/orion",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 21,
+        "ultimate_capture_batch": 17
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Fatal Waltz as the Ultimate and lists Fervent Flurry and Velvet Glove as base skills; the Batch 17 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    },
+    {
+      "hero_id": "thoran",
+      "ability_name": "Soul Retaliation",
+      "source_url": "https://afkstargazer.com/en/skill/thoran",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 17,
+        "ultimate_capture_batch": 7
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Soul Retaliation as the Ultimate and lists Soul Plunder as a base skill; the Batch 17 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    },
+    {
+      "hero_id": "valka",
+      "ability_name": "Blooming Terror",
+      "source_url": "https://afkstargazer.com/en/skill/valka",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 18,
+        "ultimate_capture_batch": 3
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels Blooming Terror as the Ultimate and lists Spectral Bulwark as a base skill; the Batch 18 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    },
+    {
+      "hero_id": "voracia",
+      "ability_name": "The Main Course",
+      "source_url": "https://afkstargazer.com/en/skill/voracia",
+      "previous_type_conflict": {
+        "types": [
+          "base_skill",
+          "ultimate"
+        ],
+        "base_skill_capture_batch": 18,
+        "ultimate_capture_batch": 7
+      },
+      "resolution": "merge_base_skill_capture_evidence_into_ultimate",
+      "resolved_section_type": "ultimate",
+      "source_confirmation": "Current indexed AFK Stargazer page labels this ability as Ultimate and lists other base skills separately.",
+      "review_note": "The current page labels The Main Course as the Ultimate and lists Prime Cut and Vino Inferno as base skills; the Batch 18 base_skill entry duplicates the Ultimate.",
+      "review_status": "resolved"
+    }
+  ]
+}
