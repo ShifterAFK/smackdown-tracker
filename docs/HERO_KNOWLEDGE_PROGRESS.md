@@ -450,7 +450,24 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 
 No Supabase writes, application code changes, indicator/tier changes or main-branch changes.
 
-### Restart point — Stage 2AA
+#
+## Stage 2AA — reconcile source coverage and normalization gaps
+
+**Status: complete — 12 gaps explicitly registered.**  
+**Artifacts:**  
+- `docs/data/HERO_KNOWLEDGE_NORMALIZATION_GAP_REGISTER.json`
+- `docs/HERO_KNOWLEDGE_NORMALIZATION_GAP_REGISTER.md`
+
+The 131/131 source audit statement is page/source coverage, not proof that every ability/progression section is complete. Twelve normalized profiles remain partial because their detailed extraction records explicitly identify missing, incomplete or unheaded sections:
+
+Talene, Cecia, Granny Dahnie, Valka, Indris, Reinier, Satrana, Nerion, Mehira, Hammie, Bryon and Chippy.
+
+The gap register records each exact issue, source URL, capture batch and required action. No profile was promoted and no missing ability/tag/value was inferred. The source manifest remains a locator index; its initial heading marker does not override explicit capture-gap notes.
+
+## Restart point — Stage 2AB
+
+Standardize the batch envelope and consolidate the 131 heroes into one dry-run dataset. Merge repeated section evidence by `hero_id + ability_key`, preserve provenance variants, compare explicit tag mappings, and keep the 12 gap-register profiles in `needs_review`. The final report must distinguish 131 source records from the number of complete normalized kits. No Supabase import.
+
 
 Reconcile the 12 source-audit-complete / normalized-partial profiles without inventing absent sections; standardize the batch envelope; merge repeated section evidence; then produce one canonical 131-hero consolidated dry-run JSON and validation report. No Supabase import.
 
