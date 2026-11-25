@@ -11,7 +11,7 @@
 **Last confirmed development HEAD before this handoff update:** `4bef2c21ef9355012d192ff30b5fe3ab7627a3c6`  
 **Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
 **Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
-**Current stage:** five-hero pilot accepted as the reference method; roster-wide coverage audit completed; second bounded batch approved (Cecia, Granny Dahnie, Indris, Nerion, Solise); analysis not started  
+**Current stage:** five-hero pilot accepted as the reference method; roster-wide coverage audit completed; second bounded batch approved and source analysis completed for Cecia, Granny Dahnie, Indris, Nerion and Solise; structured artifact draft not yet created  
 **Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
@@ -319,7 +319,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0013
+## 10. Current restart point after ACTION 0014
 
 **Task:** ability-based composition analysis; five-hero pilot accepted as the reference method; roster-wide coverage audit completed; second bounded batch selected and approved.
 
@@ -712,8 +712,12 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Decision / interpretation: V4 has broad structural roster coverage and source provenance, but it is not a ready-made ability-mechanics model. Its descriptions are paraphrased and its structured mechanics/functions/interactions are absent. The pilot method must be applied conservatively in bounded hero batches; unknowns remain unknown and no automatic bulk conversion is justified.
 - Scope protection: read-only inspection only. No repository data artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
 - The user approved the second bounded batch: Cecia, Granny Dahnie, Indris, Nerion and Solise. Contess is excluded because she is banned in the mode under consideration.
-- Selection approval does not mean the analysis has started; no new hero mechanics, functions, interactions or data records have been created.
-- Next single action: begin the approved bounded analysis batch for Cecia, Granny Dahnie, Indris, Nerion and Solise, following the accepted pilot method and existing scope constraints.
+- Source review and capability analysis have now been performed against the current V4 shards and the relevant extraction batches (02, 03, 06, 07, 18 and 25). The primary descriptions are paraphrased AFK Stargazer captures; the Batch 25 captures use indexed primary-source content where direct page opens returned cache misses. Patch research remains closed.
+- AFK.global secondary observations exist for Cecia (Focus Hit), Granny Dahnie (Lock-on Projectiles), Indris (core-kit cross-check) and Nerion (partial core-kit cross-check). Solise has no recorded secondary-source observation in the reviewed V4 profile. Season Skill observations remain separate from Season Charm; Season Charm is excluded from active mechanics.
+- Analysis findings: Cecia's kit centers on Mr. Carlyle summon/entangle/DoT and attack-speed/DEF-Penetration support; Granny Dahnie combines conditional taunt/self-healing, retaliation debuff and an area control/energy-denial/self-heal Ultimate; Indris combines multi-ally-debuff-conditioned exposed weakness with silence/buff denial/DEF reduction and control; Nerion converts sustained control into Drowning, then amplifies damage and chains it, with additional knockback/stun/airborne control; Solise provides distributed ally healing, Bulb/Bulbsprite growth, conditional shields and Bulbsprite-linked damage.
+- Exact unknowns remain unknown: Cecia, Granny Dahnie and Nerion Rivalry Mode summaries are too thin to atomize; Indris Rivalry Mode is partially modelable (10-stack normal-attack ATK SPD/damage), while Refine 4 Execution details remain underspecified. Solise Rivalry Mode has a concrete first-low-HP ally heal/shield effect and can be modeled, with Refine bonuses recorded only at the stated level of detail. Hero Focus summaries are not being promoted into mechanics in this batch, consistent with the pilot's mechanic scope. Unknown source tags remain null.
+- No new structured mechanics/functions/interactions JSON has yet been written. No V4 data, pilot JSON, application code, Supabase schema/data, migrations, existing indicators, Tier List, TOP Picks or `main` branch has been changed by the analysis.
+- Next single action: prepare a separate second-batch JSON artifact using the accepted pilot schema, with source evidence, derived functions/interactions and explicit unmodeled sections; show its path and minimal diff before committing.
 
 
 ## 21. Second bounded batch selection — 2026-11-25
@@ -730,3 +734,25 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Decision: exclude Contess from this mode-specific batch; include Solise. Continue to apply the accepted five-hero pilot method, with Season Charm excluded and existing model limitations preserved.
 - Scope protection: this update changes only the Handoff document. No pilot JSON, V4 shard, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch is changed.
 - Next single action: start the approved analysis batch for Cecia, Granny Dahnie, Indris, Nerion and Solise.
+
+## 22. Second bounded batch source analysis — 2026-11-25
+
+### ACTION 0014 — Analyze Cecia, Granny Dahnie, Indris, Nerion and Solise
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / second bounded hero batch
+- Status: SOURCE REVIEW AND ANALYSIS COMPLETED; STRUCTURED ARTIFACT NOT YET CREATED
+- Purpose: apply the accepted five-hero descriptive pilot method to the user-approved second batch, without expanding the roster or changing application/database behavior.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; V4 shards `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_01.json` through `PART_04.json`; source captures `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_02.md`, `03.md`, `06.md`, `07.md`, `18.md`, `25.md`; pilot schema `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`.
+- Inputs / prior state: development HEAD `5a82c7ae852c1f4b7dd2e1c061606bc8ce440f95`; Handoff blob SHA `2947a4f5c8ce9b8ca5b8f0e683dba838adff82e3`; pilot blob SHA `66e4aed61d5904d904c76cd2471c56e75dc71071`; V4 shards read from development.
+- Operation: re-read the accepted analysis plan and pilot schema; fetched and parsed all four V4 shards; extracted the five selected hero profiles and their section evidence; read the relevant extraction-batch Markdown sources and secondary-source observations. No external patch research was performed.
+- Result:
+  - Cecia: Mr. Carlyle summon, entangle/DoT/immobilization, attack-speed and DEF-Penetration effects, and conditional stat stealing are present in the captured summaries. Focus Hit is a separate AFK.global Season Skill observation. Rivalry Mode summary remains too vague to atomize.
+  - Granny Dahnie: Angry Taunt prioritizes the enemy targeting the weakest ally and heals Granny; Seed Cannon is damage-triggered and applies Haste reduction; Threshold of Jade combines area control, Energy denial, HP loss and self-recovery; Enhance Force adds self-healing/Energy/Haste and stronger ATK reduction. Lock-on Projectiles is a separate Season Skill observation. Rivalry Mode remains too vague to atomize.
+  - Indris: Spellbane Shot damages, disables target stat buffs for 8 seconds, permanently reduces Phys/Magic DEF by 20% (unstackable), and has a conditional max-HP true-damage effect against exposed weakness; True Sight exposes weakness after stat-reduction debuffs from more than three different allies; Arcane Binding displaces and immobilizes; Windpiercer and Enhance Force amplify the exposed-weakness sequence. Rivalry Mode states 10 normal-attack stacks of ATK SPD/normal-attack damage; Refine 4 Execution detail is underspecified.
+  - Nerion: Drowning Doom converts sufficiently long control into Drowning, increases damage against Drowning targets and adds a 12-second empowered/Deluge chain sequence; Tidal Rebuke and Riptide Wrath add knockback, stun, delayed airborne and area damage; Abyssal Embrace applies Drowning to the rearmost enemy at battle start; Enhance Force has an all/threshold Drowning trigger for 1000 Energy and permanent empowerment. Rivalry Mode remains too vague to atomize.
+  - Solise: Lifebloom Buds distributes Bulbs to non-summoned allies, healing and storing excess healing until Bulbsprite growth grants permanent ATK; Floral Favor heals the two weakest allies and conditionally grants capped permanent shields; Life's Embrace heals in three waves and causes Bulbsprite-linked area damage; Resonant Bloom adds permanent defenses/ATK/HP; Enhance Force adds Bulbsprite damage based on stored excess healing; Rivalry Mode describes a first ally below 40% HP receiving 160% ATK healing and a 160% ATK shield, with additional refine stats.
+  - Secondary evidence: AFK.global independently cross-checks the visible core-kit sections for Cecia, Granny Dahnie and Indris; Nerion cross-check is partial and does not cover the two additional base skills. No secondary observation is recorded for Solise in the reviewed V4 profile.
+  - Season Charm remains excluded. Season Skill observations are preserved as a distinct source category and are not mapped onto Season Charm or mixed into the active mechanic set. Unknown per-ability tags remain unknown/null.
+- Decision / interpretation: all five profiles have sufficient captured material for a bounded capability-based mapping, but some Rivalry Mode details remain unmodeled. Position-dependent selectors and activation triggers are recorded as conditional capabilities only; no formation, timing or match-outcome prediction is inferred.
+- Scope protection: read-only source review and analysis only. No structured data artifact, V4 shard, pilot artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
+- Next single action: prepare the separate second-batch JSON artifact using the accepted pilot schema and show its path/minimal diff before committing.
