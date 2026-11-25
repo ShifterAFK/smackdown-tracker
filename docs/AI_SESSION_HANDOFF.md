@@ -1,0 +1,351 @@
+# AI Session Handoff — AFK Journey Tracker
+
+> **READ THIS FILE FIRST after every context loss, Retry, new chat, or resumed work.**
+>
+> This is the operational restart document. It is not a replacement for source data, technical specifications, or detailed work logs. It tells the next assistant what the project is actually about, which records are authoritative, what must not be repeated, and how to resume without restarting completed work.
+
+**Repository:** `ShifterAFK/smackdown-tracker`  
+**Working branch:** `development`  
+**Production branch:** `main` — do not modify unless the user explicitly authorizes it  
+**Last repository audit recorded here:** 2026-11-25  
+**Audited development HEAD:** `68eb9ea7e6b073dcb0eec8069ad3dc1af8cad210`  
+**Current task family:** new, independent team/composition indicator grounded in what heroes' abilities actually do  
+**Current implementation status of that new analysis:** not implemented; planning document says planning only
+
+---
+
+## 1. First rule: recover context before doing work
+
+When a session starts, context is missing, or the user presses Retry:
+
+1. Read this file from top to bottom.
+2. Read the current versions of the linked source-of-truth documents in the repository. Do not rely on an old chat summary if the repository has moved.
+3. Check the current `development` branch HEAD and compare it with the audited HEAD recorded above.
+4. Inspect the latest entries in the relevant progress log and this file's action log.
+5. Identify the last **confirmed completed** action and the first **not completed** action.
+6. Verify whether an action marked STARTED/INTERRUPTED actually changed anything before retrying it.
+7. Continue from that exact point. Do not restart a phase, batch, extraction, audit, or analysis that is already complete.
+
+**Retry is not permission to replay the whole workflow.** It means recover the state, verify the last operation, and resume only the unfinished part.
+
+If the current repository contradicts this file, the repository's current contents and commit history take precedence. Update this file with the discrepancy before proceeding.
+
+## 2. What we are trying to build
+
+The target is a **new and independent indicator/analysis of team composition based on the actual functions and effects of heroes' abilities**.
+
+The intent is to move beyond treating official class labels or raw hero win-rate correlations as an explanation of what a team can do.
+
+The analysis should be grounded in evidence about ability behavior, for example:
+
+- damage profile: burst, sustained, area, single-target, execute/finisher;
+- control and disruption: interruption, disable, silence, crowd control, displacement, ultimate denial;
+- support: ally buffs, attack/speed amplification, energy/ultimate support, healing, shielding;
+- durability and protection: damage reduction, self-sustain, peel, resurrection/survival effects;
+- specialist mechanics: summons, marks/focus targets, anti-heal, anti-shield, anti-summon, conditional/counter effects;
+- triggers, targets, conditions, duration, range, cooldowns and restrictions where the source provides them;
+- interactions between abilities and whether team members can exploit another hero's effects.
+
+These are examples of candidate descriptive dimensions from the project plan, **not a final approved taxonomy, score, or weighting system**.
+
+A hero can perform multiple functions. Do not force every hero into one exclusive role. Official class is metadata, not a substitute for kit analysis.
+
+Keep three kinds of output distinct:
+
+1. **Descriptive:** what abilities and functions are present in a team.
+2. **Predictive:** whether derived team features improve out-of-sample prediction against honest baselines.
+3. **Explanatory:** which interactions may help explain observed results, with confounders and uncertainty stated.
+
+A correlation is not automatically a synergy, counter, cause, or guaranteed advantage.
+
+### Important ambiguity to preserve
+
+The current plan describes analysis derived from ability descriptions and effects. It does **not** establish that the tracker has frame-by-frame combat logs or telemetry of actions actually executed during matches. Do not claim that such telemetry exists. Inspect the available data before deciding whether the indicator can use actual in-match action events or must initially infer functional capabilities from documented abilities.
+
+## 3. Keep these workstreams separate
+
+### A. Hero Knowledge Base — supporting data work
+
+This is the long historical effort to collect, normalize, reconcile and validate hero ability knowledge.
+
+It is a supporting data foundation. It is **not itself the new indicator**, and completing data normalization does not mean the composition model exists.
+
+### B. New Hero/Composition Analysis — actual target
+
+The current planning document is:
+
+- `docs/HERO_KNOWLEDGE_AND_COMPOSITION_ANALYSIS_PLAN.md`
+
+Its recorded status is:
+
+- **Proposed — planning only; implementation not started.**
+- It proposes a knowledge layer followed by read-only composition feature extraction, exploratory analysis, chronological predictive evaluation, and only later a separate experimental UI.
+- Its next action says Phase 0: inspect the hero catalogue, sources and patch/version handling, then prepare a schema proposal and coverage checklist.
+- It explicitly says not to change existing indicators, Tier List or TOP Picks.
+
+Do not silently promote proposed phases or candidate features into approved requirements. Confirm decisions with the user when approval is required.
+
+### C. Existing indicators — protected, not the target
+
+Existing Match Indicator and Showdown Draft Indicator are separate, already-existing workstreams.
+
+Do not:
+- rename the old indicator and call it the new model;
+- reuse its formula as if it were the action-based model;
+- alter its code, RPCs, UI, weights or behavior as part of this task;
+- change Tier List or TOP Picks;
+- assume that the old Draft Indicator roadmap is the current task.
+
+Relevant existing implementation files include:
+- `assets/js/modules/08-draft-indicator-rules-v1.js`
+- `assets/js/modules/09-showdown-draft-indicator-v1.js`
+
+These paths are context only. Do not edit them without a separately approved reason.
+
+## 4. Verified repository state at the last audit
+
+The following facts were read from `development` on 2026-11-25. They are a dated snapshot and must be rechecked before relying on them after the branch advances.
+
+### Hero knowledge progress
+
+Source of truth:
+- `docs/HERO_KNOWLEDGE_PROGRESS.md`
+
+At the audited revision, its latest restart instruction is **Stage 2AD4**:
+- try alternate retrieval routes for 20 profiles whose direct Stargazer page fetches were unavailable;
+- verify source version and patch applicability per hero;
+- expand AFK.global cross-checks beyond the five reviewed profiles;
+- preserve Season Skill separately from Season Charm;
+- only then consider an import schema/dry-run.
+
+This Stage 2AD4 instruction belongs to the **hero-source verification workstream**. It is not permission to restart the extraction or to import data.
+
+### Consolidated V4 dry run
+
+Canonical index:
+- `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN.json`
+
+Validation:
+- `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json`
+
+Audit:
+- `docs/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_AUDIT.md`
+
+Recorded V4 state:
+- 131 tracker heroes represented; no missing or unexpected hero IDs;
+- 237 capture records;
+- 1,329 section evidence records;
+- 1,032 unique logical sections;
+- 301 sections with consistent explicit per-section tags;
+- 731 sections with unknown per-section tags;
+- zero tag conflicts;
+- zero unresolved section-type conflicts;
+- zero source/locale/provenance mismatches;
+- 20 profiles pending direct page retrieval;
+- 131 profiles pending patch verification;
+- 126 profiles pending broader secondary-source review;
+- five profiles cross-checked against a secondary source;
+- three AFK.global Season Skill observations kept separate from Stargazer Season Charm.
+
+**Critical limitation:** V4 is explicitly `consolidated_dry_run_not_for_import`. It must not be imported into Supabase. Descriptions are paraphrased summaries, not verbatim source text. No source patch/version was verified for any of the 131 profiles. Unknown tags must remain unknown; they do not mean that an ability has no mechanic.
+
+The V4 shards are:
+- `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_01.json`
+- `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_02.json`
+- `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_03.json`
+- `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V4_PART_04.json`
+
+The canonical index, not an old V1/V2/V3 shard or a chat summary, identifies the current consolidated data set.
+
+### New analysis plan
+
+Source of truth:
+- `docs/HERO_KNOWLEDGE_AND_COMPOSITION_ANALYSIS_PLAN.md`
+
+This plan was created on 2026-11-25 and is marked planning only. It says:
+- do not equate official class with practical function;
+- record ability facts, conditions, targets, durations and limitations;
+- permit multiple functions per hero;
+- keep facts separate from hypotheses;
+- version knowledge by patch;
+- preserve provenance and confidence;
+- do not claim causation from correlation;
+- begin composition analysis only after adequate, verified knowledge coverage;
+- test hypotheses against match data with sample sizes, uncertainty and opponent context;
+- evaluate predictive value chronologically/out of sample;
+- only consider a separate UI after the analytical gates pass.
+
+Initial Lily May + Ravion observations are explicitly illustrative and based on only three matches. They are not established synergy rules and must not be hard-coded.
+
+## 5. What is not established or approved
+
+Unless a newer source document or explicit user decision proves otherwise, treat these as OPEN / NOT APPROVED:
+
+- final functional taxonomy and exact schema for the action/ability model;
+- final indicator formula and all weights;
+- any fixed hero role or one-role-per-hero assignment;
+- any hard-coded synergy or counter bonus;
+- whether match-level combat action telemetry is available;
+- minimum sample thresholds and shrinkage settings;
+- whether high-rank matches should receive extra weight;
+- whether the eventual output should be a single score, multiple dimensions, or both;
+- whether/when to create a UI;
+- any Supabase schema, RPC, table, or data import;
+- any change to existing indicators or other production-facing features.
+
+Do not invent answers to these questions. Search the repository and available data first; ask the user only when the decision genuinely requires their approval.
+
+## 6. Mandatory operating rules
+
+### One active task
+
+- Work on one explicitly identified task at a time.
+- Do not expand scope into unrelated tracker features.
+- Before a tool operation, know which task and phase it belongs to.
+
+### Before touching code or data
+
+- Identify the active file, function, call path and script/module load order.
+- Inspect the existing implementation in place.
+- Prefer modifying an existing implementation in place only when the change is approved.
+- Do not add duplicate functions, overrides, CSS/JS files, or script/link tags without explicit approval.
+- Do not touch Supabase, `main`, migrations, production RPCs or existing indicators unless explicitly authorized and justified.
+
+### Evidence and status language
+
+Every claim must be labelled correctly:
+- **PROPOSAL** — suggested, not approved;
+- **APPROVED** — user accepted the decision;
+- **EXECUTED** — a tool confirmed the operation;
+- **TESTED** — a named test ran and its result is recorded;
+- **BLOCKED** — cannot proceed, with the reason;
+- **SUPERSEDED** — replaced by a newer decision/result, with a pointer to it.
+
+Never describe a plan as implementation, a code write as a passing test, a static inspection as runtime verification, or a rendered layout as visually approved. Visual appearance is not verified until the user confirms it in Live Preview.
+
+### Small, recoverable operations
+
+- Break long tasks into small batches with explicit boundaries.
+- Before each meaningful operation, record what is about to be done and its exact target.
+- After each operation, record the actual result, including errors, counts, file paths, commit IDs, query/RPC names, test commands and test output as applicable.
+- Do not leave a 30-minute chain of uncheckpointed work.
+- Do not launch multiple dependent writes in parallel.
+- Keep the last known-good state and the next single action explicit.
+
+### Retry / timeout / interruption protocol
+
+If a tool call times out, a response is truncated, the model is interrupted, or the user presses Retry:
+
+1. Mark the operation `INTERRUPTED/UNKNOWN`, not FAILED, unless the tool explicitly confirms failure.
+2. Do not immediately repeat it.
+3. Inspect the target resource: fetch the file, check the branch HEAD/commit history, query the relevant read-only state, or inspect the operation's status.
+4. Decide whether the operation:
+   - completed despite the lost response;
+   - did not happen;
+   - partially completed;
+   - remains genuinely unknown.
+5. If it completed, record the confirmed result and continue with the next action.
+6. If it did not happen, retry only that operation.
+7. If it partially completed, reconcile the partial result before doing anything else.
+8. For non-idempotent actions (commits, inserts, migrations, imports, file creation), never blindly replay. Check for the created artifact/commit/row first.
+9. Preserve the original action ID and add a retry attempt entry. Do not erase the failed/interrupted attempt.
+
+**Never restart a whole batch or phase because the conversation context was lost.**
+
+## 7. Required action log format
+
+Append a record for every meaningful operation: repository/file read, search, data query, analysis run, code edit, document edit, test, commit, deployment, or external mutation.
+
+Use this format:
+
+```md
+### ACTION <monotonic-id> — <short verb + target>
+- Started: <date/time + timezone, if known>
+- Task / phase: <one active task and phase>
+- Status: STARTED | COMPLETED | FAILED | INTERRUPTED/UNKNOWN | BLOCKED
+- Purpose: <why this operation is necessary>
+- Exact target: <repo, branch, path, function, query, RPC, dataset, or test>
+- Inputs / prior state: <commit SHA, file SHA, row count, parameters, source refs>
+- Operation: <what was actually called or changed>
+- Result: <measured output, exact error, counts, or explicit no-change>
+- Evidence: <tool result, commit SHA, test output, file path>
+- Decision: <what this result means; separate fact from interpretation>
+- Next single action: <one precise next operation>
+```
+
+Rules:
+- Never write `done` without describing what was done and the evidence.
+- Never overwrite an earlier action record. Append a correction or superseding record and link to the old ID.
+- If an operation has several independent substeps, log each substep separately.
+- If work is interrupted before the result is known, leave the action open as INTERRUPTED/UNKNOWN and make verification the next action.
+- Keep a concise current-state block near the top of this file updated after each completed stage. The detailed action history remains append-only.
+
+## 8. Required checkpoint after every stage
+
+At the end of each coherent stage, update the relevant progress document and this handoff file with:
+
+1. what was executed;
+2. exact files/data/functions touched;
+3. what was tested and exact result;
+4. what was not done;
+5. decisions approved by the user;
+6. blockers and unresolved questions;
+7. exact next action;
+8. commit SHA / migration ID / test artifact, if any.
+
+Commit one coherent documentation or code change at a time on `development`. Before committing, show the user the exact paths and a minimal diff. Do not commit unrelated changes.
+
+## 9. Resume checklist — use this verbatim
+
+- [ ] Read `docs/AI_SESSION_HANDOFF.md` first.
+- [ ] Check current `development` HEAD; compare with the recorded SHA.
+- [ ] Read `docs/HERO_KNOWLEDGE_AND_COMPOSITION_ANALYSIS_PLAN.md`.
+- [ ] Read `docs/HERO_KNOWLEDGE_PROGRESS.md` and identify its latest restart point.
+- [ ] Read the canonical V4 index and validation only if hero-data state is relevant to the next action.
+- [ ] Inspect the action log for STARTED or INTERRUPTED/UNKNOWN operations.
+- [ ] Verify whether the last operation took effect before retrying anything.
+- [ ] State the one active task, current phase, last confirmed result and next single action.
+- [ ] Do not edit code or Supabase until the exact target and approval are clear.
+
+## 10. Current restart point at file creation
+
+**Task:** establish a reliable restart mechanism and recover the actual status of the new ability/action-based composition analysis.
+
+**Confirmed:**
+- The hero knowledge V4 dry-run exists and passed its recorded structural/tag/provenance checks, with the limitations listed above.
+- The hero knowledge source-verification workstream's latest recorded restart point is Stage 2AD4.
+- The new composition-analysis plan exists but is marked planning only; implementation is not started in that plan.
+- Existing Match Indicator and Showdown Draft Indicator are separate protected systems.
+
+**Not confirmed:**
+- No approved final indicator formula.
+- No verified availability of actual in-match combat action telemetry.
+- No implemented composition feature extractor or validated predictive model established by the planning document.
+- No approval to import V4 or change Supabase.
+
+**Next single action after this handoff is committed:**
+Reconcile the current repository history and the user's `afk.txt` conversation history against the composition-analysis plan to identify any later attempts, failures, decisions or artifacts that are not represented in the current plan. Record those findings before proposing or executing a new technical step. Do not restart hero extraction or begin implementation during this reconciliation.
+
+---
+
+## 11. Initial audit log
+
+### ACTION 0001 — Audit history and current repository state
+- Started: 2026-11-25
+- Task / phase: context recovery / repository audit
+- Status: COMPLETED
+- Purpose: distinguish historical hero-data work, the actual new composition-analysis target, and existing indicators before creating a durable handoff.
+- Exact target: uploaded `afk.txt`; repository `ShifterAFK/smackdown-tracker`, branch `development`.
+- Inputs / prior state: audited development HEAD `68eb9ea7e6b073dcb0eec8069ad3dc1af8cad210`.
+- Operation: read the supplied history; fetched the hero knowledge progress log, composition-analysis plan, consolidated V4 audit/index/validation, existing indicator roadmap, README, repository tree and branch metadata.
+- Result: confirmed the distinct workstreams and the V4 data limitations recorded above. The composition-analysis plan is planning only. No application code, Supabase data/schema, or existing indicator was changed during this audit.
+- Evidence:
+  - `docs/HERO_KNOWLEDGE_PROGRESS.md`
+  - `docs/HERO_KNOWLEDGE_AND_COMPOSITION_ANALYSIS_PLAN.md`
+  - `docs/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_AUDIT.md`
+  - `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN.json`
+  - `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json`
+  - `docs/NEW_DRAFT_INDICATOR_ROADMAP.md`
+  - development HEAD: `68eb9ea7e6b073dcb0eec8069ad3dc1af8cad210`
+- Decision: this handoff is the first document to read after context loss; it does not mark the proposed composition analysis as implemented.
+- Next single action: reconcile the remaining history and artifacts for the action-based composition analysis before starting any new implementation.
