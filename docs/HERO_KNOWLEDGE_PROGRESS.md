@@ -83,8 +83,19 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 
 
 
-**Next action — Stage 2: normalized dry-run dataset.**
+## Stage 2A — pilot audit
 
-Use the manifest to organize the 24 extraction batches into machine-readable hero/section/ability/tag records. Preserve section order, raw descriptions, exact tag labels and qualifiers. Keep Ultimate/base skills separate from Hero Focus, Exclusive Equipment, Enhance Force, Season Charm, and Rivalry Mode. Leave unknown values null and flag incomplete/ambiguous material as `needs_review`.
+**Status: complete — PASS.**  
+**Report:** `docs/HERO_KNOWLEDGE_NORMALIZATION_PILOT_AUDIT.md`
 
-Before calling Stage 2 complete, validate 131 unique hero IDs, unique ability keys per hero version, no orphan abilities/tags, and source provenance for every normalized claim. Do not import into Supabase.
+- Read-only comparison of the 3-hero / 24-section pilot against Batch 24.
+- Exact section names/order and all explicit per-skill tag mappings match the batch.
+- 13 page-level tags remain separate; 15 section-level tag records are retained across 9 explicitly tagged sections.
+- 15 sections correctly retain `tags: null` where Batch 24 has no per-skill mapping.
+- All 24 summaries have source URL provenance; `description_raw` remains null throughout.
+- No duplicate section keys, missing summaries, or mapping mismatches.
+- This validates consistency with Batch 24 only; it does not independently re-open Stargazer pages or cross-check another source.
+
+## Restart point — Stage 2B
+
+Next, inspect and normalize **Batch 23** as a separate unit. Use only facts, section ordering, and per-skill tag mappings explicitly present in that batch. Validate the normalized records against the batch, commit the artifact, and update this log before moving to another batch. Keep unknown descriptions/fields/tags null or `needs_review`; do not import to Supabase.
