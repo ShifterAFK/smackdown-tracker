@@ -602,3 +602,35 @@ Baden, Saida and Perseus gained additional source details but remain partial bec
 This is source-capture completeness only. It does not imply second-source validation, in-game patch verification, or database readiness.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 31. First-pass roster source capture completed (2026-11-25)
+
+Twenty-fourth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_24.md` — final recapture for Baden, Saida and Perseus.
+
+All three remaining tracker profiles have been upgraded from partial to complete first-pass captures:
+- `baden`
+- `saida`
+- `perseus`
+
+**First-pass source capture: 131/131 tracker heroes complete (100%); 0 partial tracker profiles remain.** The extra Thane page is retained as an out-of-roster source record and excluded from the tracker coverage denominator.
+
+Important scope distinction:
+- Complete first-pass source capture means the available Stargazer page sections have been captured and summarized into the extraction artifacts.
+- It does **not** mean a normalized hero → ability → tag dataset has been generated.
+- It does **not** mean every value has been independently cross-checked against AFK.global, official patch notes or the live game.
+- It does **not** imply a specific patch version has been verified.
+- No Supabase schema/data changes have been made.
+
+All 24 extraction batches and this audit update are documentation-only commits on `development`. **No Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+### Next phase gate
+
+Before database import:
+1. Normalize the 131 hero profiles into machine-readable hero, ability, tag and source-evidence records.
+2. Preserve exact Stargazer tag strings and qualifiers at ability level.
+3. Keep baseline abilities separate from Hero Focus, Exclusive Equipment, Enhance Force, Season Charm and Rivalry Mode.
+4. Record retrieval timestamp, source URL, language and any patch/version evidence.
+5. Cross-check a prioritized sample against AFK.global and official patch notes; record conflicts instead of silently reconciling them.
+6. Review the schema proposal and coverage report before any Supabase migration or import.
