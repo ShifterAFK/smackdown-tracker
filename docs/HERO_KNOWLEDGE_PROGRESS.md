@@ -602,3 +602,20 @@ No Supabase writes or application changes.
 ## Restart point — Stage 2AD
 
 Verify the 12 indexed-only primary source captures by direct page retrieval when possible; verify source patch/season applicability; then perform broader secondary-source comparison for high-impact heroes. Preserve differences between Season Charm and Season Skill. Only after review should an import schema/dry-run be proposed.
+
+## Stage 2AC4 — reconcile same-name Ultimate/base-skill duplicates
+
+**Status: complete — 9 type conflicts identified; 8 straightforward, 1 retained for content review.**  
+**Artifacts:** `docs/data/HERO_KNOWLEDGE_SECTION_TYPE_RECONCILIATION_REGISTER.json`, `docs/HERO_KNOWLEDGE_SECTION_TYPE_RECONCILIATION_AUDIT.md`
+
+A semantic audit found nine heroes where the same ability name appeared once as `base_skill` and once as `ultimate`. Current AFK Stargazer pages explicitly label these abilities as Ultimate and list other base skills separately:
+
+Atalanta / Wild Sniper; Berial / Scared Swamp; Contess / Detention Pass; Igor / Funereal Ring; Marilee / Mid-Air Shot; Orion / Fatal Waltz; Thoran / Soul Retaliation; Valka / Blooming Terror; Voracia / The Main Course.
+
+The consolidation must merge the duplicate base-skill evidence into the Ultimate record, preserving all summaries and provenance. Contess's Batch 16 summary includes an additional active-effect description not present in the current page; keep that variant and flag it for content review.
+
+No source tag values or Supabase data changed.
+
+## Restart point — Stage 2AC5
+
+Rebuild V3 shards with the nine section-type reconciliations. Retain Contess's content variant as a review flag. Re-run duplicate-name/type, tag, source provenance and roster validation.
