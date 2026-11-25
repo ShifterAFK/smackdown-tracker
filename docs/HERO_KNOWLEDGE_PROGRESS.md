@@ -725,6 +725,19 @@ One Contess capture record with eight section records was standardized. Mandator
 
 No Supabase writes or application changes.
 
-## Restart point — Stage 2AD4
+## Stage 2AD5 — bounded source-verification follow-up
 
-Try alternate retrieval routes for the 20 indexed-only pages; verify the source version and patch applicability per hero; expand AFK.global cross-checks beyond the five reviewed profiles. Preserve Season Skill versus Season Charm. Only after those gates should an import schema/dry-run be proposed.
+**Status: complete for this mode; patch verification intentionally closed by project decision.**
+
+- The second bounded pass found indexed AFK Stargazer evidence for all eight sections previously left unresolved across Lily May, Ravion, Odie, Himmel and Valka.
+- The eight sections comprise five `season_charm` records, two `rivalry_mode` records and Ravion's auxiliary `targeting_rule`.
+- For this project mode, Season Charm is out of scope and is not treated as an active combat mechanic. Keep it distinct from Season Skill; do not map one category onto the other.
+- The indexed evidence for the two Rivalry Mode sections and Ravion's auxiliary targeting rule is retained as supporting reference material. The targeting rule remains auxiliary, not a standalone ability.
+- The project accepts the available current hero-skill descriptions as sufficiently up to date for this task. No further patch/version research or per-hero patch mapping will be pursued.
+- Stargazer's public repository inspection showed that skill text is supplied through an external, commit-pinned data pack; the pinned pack commit has no verified game-patch mapping. This is recorded as a limitation, not an open task.
+- No V4 data, source manifest, application code, Supabase schema/data, migrations, existing indicators, Tier List, TOP Picks or `main` branch were changed.
+- No import is authorized by this action.
+
+## Restart point — Stage 2AD5
+
+Continue the approved ability-based composition-analysis work using the available hero-skill descriptions. Exclude Season Charm from this mode. Do not reopen patch-version research unless the user explicitly changes this decision. V4 remains a dry-run artifact and is not approved for import.
