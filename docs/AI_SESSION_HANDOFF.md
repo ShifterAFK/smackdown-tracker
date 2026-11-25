@@ -7,10 +7,11 @@
 **Repository:** `ShifterAFK/smackdown-tracker`  
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
-**Last repository audit recorded here:** 2026-11-25  
-**Audited development HEAD before this documentation update:** `30c05bf1d28b1b4c3e97d11922ca22754012a922`  
-**Current task family:** new, independent team/composition indicator grounded in what heroes' abilities actually do  
-**Current implementation status of that new analysis:** not implemented; the three-layer model and its detailed ability schema/tagging rules are user-approved. Scoring formula, weights and implementation remain open
+**Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
+**Last confirmed development HEAD before this handoff update:** `6578abae02538cf873849a2b24f479e7a7599141`  
+**Current task family:** independent team/composition analysis grounded in what heroes' abilities can do  
+**Current analysis artifact:** `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json` — five-hero descriptive pilot completed  
+**Current implementation status:** pilot data artifact exists; no application indicator, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
 
@@ -232,6 +233,16 @@ Never describe a plan as implementation, a code write as a passing test, a stati
 - Do not launch multiple dependent writes in parallel.
 - Keep the last known-good state and the next single action explicit.
 
+
+
+### Mandatory Handoff update after every project interaction
+
+- Treat every user turn about this project as an interaction that must be reflected in this file before the response is considered complete.
+- Record user decisions, approvals, scope changes, corrections, blockers and next-step instructions in the action log, even when the interaction does not trigger a repository or database operation.
+- Record each meaningful tool operation and its actual result. For a discussion-only interaction, add a concise interaction/action entry stating what was decided or clarified and whether repository state changed.
+- Update the current-state and restart-point blocks whenever the status, constraints, completed work or next action changes.
+- Do not end a project task response while this handoff is stale. If an operation is interrupted or blocked, record that state and the verification/next action before ending the turn.
+
 ### Retry / timeout / interruption protocol
 
 If a tool call times out, a response is truncated, the model is interrupted, or the user presses Retry:
@@ -307,30 +318,36 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0007
+## 10. Current restart point after ACTION 0009
 
-**Task:** continue the approved ability-based composition analysis using the available hero-skill descriptions; Season Charm is excluded from this mode.
+**Task:** five-hero ability-based composition analysis pilot; descriptive capability model only.
 
-**Confirmed:**
-- The approved three-layer ability model and detailed schema/tagging rules remain recorded in sections 13–14.
-- V4 remains a structural index and is still `consolidated_dry_run_not_for_import`.
-- ACTION 0006 completed the bounded five-hero cross-check: 32/40 section summaries had external corroboration; eight sections remained unresolved at that point.
-- ACTION 0007 found indexed AFK Stargazer evidence for all eight: five Season Charm records, two Rivalry Mode records and Ravion's auxiliary targeting rule.
-- Season Charm does not affect the mode in scope and is excluded from the composition model. Keep Season Charm distinct from Season Skill; do not map one category onto the other.
-- The two Rivalry Mode sections and Ravion's targeting rule have indexed supporting evidence. Ravion's targeting rule remains auxiliary, not a standalone ability.
-- The project accepts the available current hero-skill descriptions as sufficiently up to date for this task. Further patch/version research and per-hero patch mapping are explicitly closed unless the user reopens that decision.
-- Stargazer's public repository uses an external, commit-pinned data pack for skill text. Its pinned commit has no verified mapping to a game patch; this is a documented limitation, not an active blocker.
+**Confirmed current state:**
+- The approved three-layer model and detailed schema/tagging rules remain recorded in sections 13–14.
+- The five-hero pilot artifact is present at `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`.
+- Pilot coverage: 5 heroes (Lily May, Ravion, Odie, Himmel and Valka), 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections.
+- Season Charm is excluded (zero Season Charm mechanics in the pilot); it remains distinct from Season Skill.
+- Every mechanic is tied to a hero and ability and has source evidence; team functions reference mechanics; interactions reference supporting mechanics.
+- Pilot validation checks passed for mechanic anchors, mechanic evidence, team-function references, interaction references, Season Charm exclusion and the two prediction limitations.
+- The artifact's current constraints are explicit: `formation_prediction: not_supported`, `ability_activation_prediction: not_supported`, `actual_match_effects: not_observed`, and `capability_based_analysis_only: true`.
+- Interactions dependent on position or timing are conditional capabilities only. The model does not predict formations, ability activation, target selection or combat timelines.
+- No named hero-pair synergy, composition score or weighting is asserted.
+
+**Approved scope and closed decisions:**
+- Available current hero-skill descriptions are accepted as sufficiently up to date for this task; patch/version research remains closed unless the user reopens it.
+- Season Charm is out of scope and excluded.
+- The model describes kit capabilities, not actual match execution or guaranteed effects.
 - Existing Match Indicator and Showdown Draft Indicator remain separate protected systems.
 
-**Not approved / unchanged:**
-- No V4 import or Supabase schema/data change.
-- No application implementation, indicator formula/weights, predictive thresholds or UI change.
-- No claim of primary-source direct-page retrieval or per-hero patch verification.
-- No changes to Tier List, TOP Picks, migrations or `main`.
+**Not done / not authorized:**
+- No application implementation, scoring formula/weights, predictive thresholds or UI.
+- No V4 import, Supabase schema/data change, migration or production RPC change.
+- No changes to Tier List, TOP Picks or `main`.
+- No in-game verification or Live Preview validation.
 
-**Completed actions:** reconciliation ACTION 0002; approved model ACTION 0003; approved schema ACTION 0004; V4 coverage assessment ACTION 0005; bounded source-verification pilot ACTION 0006; second bounded indexed-source pass and scope decision ACTION 0007.
+**Completed actions:** ACTION 0002–0007 as recorded below; ACTION 0008 reconciled the five-hero pilot artifact and branch state; ACTION 0009 updated this handoff and made per-interaction documentation mandatory.
 
-**Next single action:** continue the already approved composition-analysis work from the current hero-skill evidence, excluding Season Charm. Do not resume patch research or expand the scope without explicit user direction.
+**Next single action:** await the user's review or next explicit instruction for the pilot. Do not expand the roster, implement the indicator, change scoring, or touch Supabase without separate approval.
 
 ---
 
@@ -592,3 +609,42 @@ Commit one coherent documentation or code change at a time on `development`. Bef
   - No import was performed or authorized.
 - Next single action: continue the approved ability-based composition-analysis work using the available hero-skill descriptions, with Season Charm excluded. Reopen patch research only if the user explicitly changes this decision.
 
+## 18. Five-hero ability composition pilot and handoff process correction — 2026-11-25
+
+### ACTION 0008 — Reconcile the five-hero pilot artifact and development state
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / state reconciliation
+- Status: COMPLETED
+- Purpose: verify the pilot artifact and its commit history before correcting the stale restart point in this handoff.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`.
+- Inputs / prior state:
+  - development HEAD: `6578abae02538cf873849a2b24f479e7a7599141`
+  - prior handoff blob SHA: `5bbd0d1c2fe63713c25bfb969e12ad47a9e09242`
+  - pilot blob SHA: `66e4aed61d5904d904c76cd2471c56e75dc71071`
+- Operation: checked the `development` branch ref; inspected the two pilot commits; fetched and parsed the pilot JSON; checked mechanic, function and interaction references and the approved scope constraints.
+- Result:
+  - `development` HEAD is `6578abae02538cf873849a2b24f479e7a7599141`.
+  - Commit `41e6a87369a805690fb9c9ba3912a392d1cbfcf3` added the pilot JSON (1,489 insertions); commit `6578abae02538cf873849a2b24f479e7a7599141` corrected/extended that same file (215 additions, 10 deletions). The second commit is the current branch HEAD.
+  - The pilot contains 43 mechanics, 15 team functions, 10 interactions and 6 unmodeled sections for Lily May, Ravion, Odie, Himmel and Valka.
+  - Validation passed: every mechanic has a hero/ability anchor and source evidence; all team-function and interaction mechanic references resolve; Season Charm mechanics are absent; formation and ability-activation prediction are explicitly unsupported.
+  - During the check, the first limitation assertion looked under `constraints`; inspection showed the actual JSON key is `analysis_constraints`. The assertion was corrected and all six validation checks passed. This was a check-path error, not a pilot-data defect.
+- Evidence: pilot file at `docs/data/HERO_COMPOSITION_ABILITY_PILOT_5_HEROES.json`; commits `41e6a87369a805690fb9c9ba3912a392d1cbfcf3` and `6578abae02538cf873849a2b24f479e7a7599141`.
+- Decision: the pilot is a completed descriptive data artifact, not an implemented application indicator. No app, Supabase, `main`, Tier List or TOP Picks change is included.
+- Next single action: update this handoff with the verified pilot state, approved prediction limitations and the mandatory per-interaction update rule.
+
+### ACTION 0009 — Update this handoff after the pilot and process decision
+- Started: 2026-11-25
+- Task / phase: ability-based composition analysis / handoff maintenance
+- Status: COMPLETED
+- Purpose: make the operational restart document reflect the latest confirmed project state and prevent future project interactions from leaving it stale.
+- Exact target: `docs/AI_SESSION_HANDOFF.md`, repository `ShifterAFK/smackdown-tracker`, branch `development`.
+- Inputs / prior state: development HEAD `6578abae02538cf873849a2b24f479e7a7599141`; handoff blob SHA `5bbd0d1c2fe63713c25bfb969e12ad47a9e09242`.
+- Operation:
+  - Updated the top-level current-state summary and the section 10 restart point to reflect the completed five-hero pilot.
+  - Recorded the explicit limits on formation prediction, ability-activation prediction and actual match-effect observation.
+  - Added a mandatory rule requiring a Handoff update after every project-relevant user interaction, including discussion-only turns and decisions that cause no repository change.
+  - Preserved the existing action history and appended ACTION 0008 and ACTION 0009.
+- Result: the Handoff now identifies the pilot artifact, its measured counts, validation status, approved limitations, unchanged areas and the correct next step (await the user's next instruction).
+- Evidence: this file, `docs/AI_SESSION_HANDOFF.md`; resulting GitHub contents commit is the commit created by this update.
+- Decision: future project responses must leave this file current before the response ends. A discussion-only interaction must also be logged; a tool operation must be logged with its actual result.
+- Next single action: await the user's review or next explicit instruction. No additional project work is authorized by this documentation update.
