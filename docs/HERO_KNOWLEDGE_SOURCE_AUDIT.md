@@ -507,3 +507,20 @@ Four further pages supplied useful missing sections but remain partial:
 **Updated first-pass capture coverage: 92/131 complete (70.2%); 39/131 partial (29.8%).** This is a source-capture completeness metric only; no second-source cross-check, in-game patch verification, or database readiness is implied.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 25. Partial-profile recapture pass 5 (2026-11-25)
+
+Eighteenth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_18.md` — fifth recapture pass.
+
+Three tracker profiles upgraded to complete first-pass captures:
+- `solise`
+- `marcille`
+- `elijah-lailah`
+
+Additional source details were captured for Voracia, Igor, Marilee, Aster and Pandora. Valka was also rechecked as a cross-reference, but was not part of the outstanding partial-profile count. The profiles not fully recaptured remain partial.
+
+**Updated first-pass capture coverage: 95/131 complete (72.5%); 36/131 partial (27.5%).** This is a source-capture metric only; it does not imply second-source validation, in-game patch verification, or database readiness.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
