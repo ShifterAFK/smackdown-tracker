@@ -578,3 +578,27 @@ No Supabase writes or application changes.
 ## Restart point — Stage 2AC3
 
 Rebuild the consolidated dataset with Part 25, update the 131-profile statuses, preserve the secondary Season Skill observations separately from Season Charm, and rerun all structural/provenance/tag validation.
+
+## Stage 2AC3 — rebuild consolidated dataset with Batch 25
+
+**Status: complete — structural PASS; direct-source/patch review pending.**  
+**Index:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN.json`  
+**V2 shards:** `HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V2_PART_01.json` through `PART_04.json`  
+**Validation:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATED_VALIDATION.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_AUDIT.md`
+
+- All 131 profiles now have normalized-complete source records; no open section-capture gaps.
+- 12 profiles remain pending direct page fetch and patch verification because Batch 25 used indexed page content after direct page opens returned cache misses.
+- Two page-level absence records are retained (Hammie, Chippy).
+- Five profiles have AFK.global cross-checks; three Season Skill observations remain separate from Season Charm.
+- 235 capture records and 1,320 section evidence records merge into 1,040 logical sections.
+- 300 sections have consistent explicit tags; 740 remain unknown; zero tag conflicts.
+- 217 logical sections preserve multiple paraphrased summary variants.
+- No roster, source URL, locale or section provenance mismatches.
+- V2 shards supersede the earlier V1 shards; the index is the canonical entry point.
+
+No Supabase writes or application changes.
+
+## Restart point — Stage 2AD
+
+Verify the 12 indexed-only primary source captures by direct page retrieval when possible; verify source patch/season applicability; then perform broader secondary-source comparison for high-impact heroes. Preserve differences between Season Charm and Season Skill. Only after review should an import schema/dry-run be proposed.
