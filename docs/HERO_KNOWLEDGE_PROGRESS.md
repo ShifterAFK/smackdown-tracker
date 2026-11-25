@@ -473,3 +473,17 @@ Reconcile the 12 source-audit-complete / normalized-partial profiles without inv
 
 
 Audit all normalized batch artifacts 01–24 for schema consistency, duplicate hero/section keys, tag mapping parity, source URL/locale agreement, provenance, and cross-batch completeness. Resolve discrepancies before proposing a Supabase import. No Supabase writes or application changes.
+
+## Stage 2AB1 — standardize consolidation input 01–08
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_CONSOLIDATION_PART_01_08.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_CONSOLIDATION_PART_01_08_AUDIT.md`
+
+- 85 capture records across 8 source batches; 85 unique hero IDs.
+- 40 complete and 45 partial capture records.
+- 488 section records preserved.
+- Profile records are wrapped in one canonical `hero_capture_record_v1` envelope; original normalized records remain intact.
+- All source URLs, locales and section evidence URLs match the source manifest.
+- No Supabase writes or application changes.
+
