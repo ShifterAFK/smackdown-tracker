@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "generated_at": "2026-11-25",
   "dataset_status": "consolidated_dry_run_not_for_import",
   "counts": {
@@ -7,17 +7,21 @@
     "consolidated_heroes": 131,
     "missing_hero_ids": 0,
     "unexpected_hero_ids": 0,
-    "capture_records": 223,
-    "complete_capture_records": 119,
+    "capture_records": 235,
+    "complete_capture_records": 131,
     "partial_capture_records": 104,
-    "normalized_complete_profiles": 119,
-    "profiles_needing_review": 12,
-    "section_evidence_records": 1298,
-    "unique_logical_sections": 1019,
+    "normalized_complete_profiles": 131,
+    "profiles_needing_review": 0,
+    "profiles_pending_direct_page_fetch": 12,
+    "verified_absence_profiles": 2,
+    "secondary_source_profiles": 5,
+    "secondary_season_skill_observations": 3,
+    "section_evidence_records": 1320,
+    "unique_logical_sections": 1040,
     "sections_with_consistent_explicit_tags": 300,
-    "sections_with_unknown_tags": 719,
+    "sections_with_unknown_tags": 740,
     "sections_with_tag_conflicts": 0,
-    "sections_with_multiple_paraphrase_variants": 216,
+    "sections_with_multiple_paraphrase_variants": 217,
     "profiles_with_page_tag_set_variance": 0,
     "source_manifest_mismatches": 0
   },
@@ -28,31 +32,32 @@
   },
   "shards": [
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_PART_01.json",
-      "bytes": 812193,
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V2_PART_01.json",
+      "bytes": 830546,
       "hero_count": 33
     },
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_PART_02.json",
-      "bytes": 801760,
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V2_PART_02.json",
+      "bytes": 821302,
       "hero_count": 33
     },
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_PART_03.json",
-      "bytes": 789308,
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V2_PART_03.json",
+      "bytes": 815424,
       "hero_count": 33
     },
     {
-      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_PART_04.json",
-      "bytes": 757510,
+      "path": "docs/data/HERO_KNOWLEDGE_CONSOLIDATED_DRY_RUN_V2_PART_04.json",
+      "bytes": 773304,
       "hero_count": 32
     }
   ],
   "limitations": [
     "Descriptions are paraphrased summaries, not verbatim source text.",
     "No source patch/version has been verified.",
-    "No second-source cross-check or in-game verification has been performed.",
-    "The 12 gap-register profiles remain needs_review; unseen sections and tags are not inferred.",
+    "No second-source cross-check or in-game verification has been performed for all 131 profiles.",
+    "Batch 25 primary recaptures use indexed page content because direct page opens returned cache misses; 12 profiles remain pending direct-page and patch verification.",
+    "AFK.global Season Skill observations are kept separate from AFK Stargazer Season Charm records.",
     "Page tags are an observed union with per-capture observations retained.",
     "This is a dry-run artifact only and must not be imported into Supabase."
   ]
