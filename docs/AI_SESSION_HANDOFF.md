@@ -10,7 +10,7 @@
 **Last repository audit recorded here:** 2026-11-25  
 **Audited development HEAD before this documentation update:** `30c05bf1d28b1b4c3e97d11922ca22754012a922`  
 **Current task family:** new, independent team/composition indicator grounded in what heroes' abilities actually do  
-**Current implementation status of that new analysis:** not implemented; the three-layer ability-analysis model is user-approved, while the detailed tag vocabulary, schema fields, formula and weights remain to be designed
+**Current implementation status of that new analysis:** not implemented; the three-layer model and its detailed ability schema/tagging rules are user-approved. Scoring formula, weights and implementation remain open
 
 ---
 
@@ -181,7 +181,7 @@ Initial Lily May + Ravion observations are explicitly illustrative and based on 
 
 Unless a newer source document or explicit user decision proves otherwise, treat these as OPEN / NOT APPROVED:
 
-- final functional taxonomy and exact schema for the action/ability model;
+- final scoring formula and weights for the action/ability model;
 - final indicator formula and all weights;
 - any fixed hero role or one-role-per-hero assignment;
 - any hard-coded synergy or counter bonus;
@@ -406,6 +406,47 @@ Commit one coherent documentation or code change at a time on `development`. Bef
   - Preserve provenance, patch/version, confidence and unknown values. V4 is a paraphrased, unverified dry run and must not be treated as patch-verified facts or imported.
   - A documented ability capability is not proof that the ability activated in a particular match. The currently documented capture pipeline does not record ordered ability activations.
   - Descriptive coverage, predictive value and explanatory hypotheses remain separate evaluation questions.
-- **Still OPEN / not approved:** exact controlled vocabulary and tag list; detailed schema fields; interaction matching rules; any numerical synergy/counter bonus; indicator formula and weights; predictive thresholds; UI or implementation.
+- **Still OPEN / not approved:** final controlled vocabulary beyond the approved candidate labels; interaction matching/evaluation rules; any numerical synergy/counter bonus; indicator formula and weights; predictive thresholds; UI or implementation.
 - Scope protection: this documentation decision does not authorize changes to application code, existing indicators, Tier List, TOP Picks, Supabase, migrations or `main`.
 - Next single action: define the concrete field schema and tagging rules for the three approved layers using existing V4 evidence, and record which distinctions V4 can and cannot support without repeating extraction or normalization.
+
+
+## 14. Approved ability schema and tagging rules — 2026-11-25
+
+### ACTION 0004 — Record approved detailed schema and tagging rules
+- Started: 2026-11-25
+- Task / phase: new ability-based composition analysis / detailed schema definition
+- Status: COMPLETED
+- Purpose: record the user's approval of the concrete representation for the three-layer ability model.
+- Exact target: `docs/AI_SESSION_HANDOFF.md`, repository `ShifterAFK/smackdown-tracker`, branch `development`.
+- Inputs / prior state: current handoff blob SHA `32fd68031c8261914eb4dd72565ad9fb23ac0f77`.
+- Operation: documented the approved ability-mechanics, team-function and interaction fields, plus evidence and tagging rules. No application or database implementation was performed.
+- Result: the user approved the proposed detailed schema and tagging rules. The approval is for the descriptive data model and its tagging discipline; it does not approve scoring, prediction thresholds, hard-coded synergies, UI or implementation.
+- **APPROVED — Layer 1: ability effect / mechanic**
+  - Each record is anchored to a specific `hero_id` and `ability_key`; retain `ability_type`.
+  - Represent mechanics as atomic codes (candidate examples include `damage`, `interrupt`, `energy_drain`, `buff`, `debuff`, `healing`, `shielding`, `control`, `summon`, `mark`, and `execute`). Do not collapse distinct effects into a single broad label.
+  - Preserve the supported target side and target selector, trigger, conditions, duration, range, cooldown and restrictions. Leave unavailable attributes unknown rather than guessing.
+  - Keep source evidence/provenance attached to the ability and to the claims derived from it.
+- **APPROVED — Layer 2: team function**
+  - Allow multiple function labels for the same ability or hero; never force a single exclusive role.
+  - Candidate function groups: `damage` (including burst, sustained, area, single-target, execute and DoT); `support` (ally buffs, energy support, healing and shielding); `control_disruption` (interruption, silence, stun, knockdown, displacement and debuff); `durability` (protection, damage reduction, self-sustain and survival); and `specialist` (summon interaction, mark/focus, anti-heal, anti-shield and conditional counter).
+  - A function label must identify the underlying mechanic(s) that justify it. Treat function labels as derived interpretation, not as a verbatim source fact; retain rationale and supporting evidence references.
+  - Official class remains metadata and is not sufficient evidence for a team-function label.
+- **APPROVED — Layer 3: interactions**
+  - Each interaction records `direction` (`ally` or `opponent`), `interaction_type`, `target_selector`, `trigger`, `conditions`, and `effect_mechanics`; record `beneficiary_capability` when the evidence supports it.
+  - Ally interactions describe enabling, amplifying, protecting, sustaining or creating an opportunity for an ally.
+  - Opponent interactions describe disrupting, weakening, interrupting, controlling, denying or conditionally countering an opponent.
+  - Keep target and conditions explicit. Store generic capability relationships, not hard-coded named hero pairs such as Lily May + Odie. Any composition-level pairing evaluation is a later analysis step.
+- **APPROVED — evidence and tagging discipline**
+  1. Every mechanic is tied to a specific ability, not merely to the hero.
+  2. Every derived function label points to one or more supporting mechanics and evidence references.
+  3. Every interaction retains direction, target and applicable conditions.
+  4. Missing or unverified information is `unknown`, not a negative claim or an empty-effect assertion.
+  5. Preserve original Stargazer tags and their qualifiers as a separate source layer; do not silently replace or reinterpret them as the new function labels.
+  6. Keep source facts, derived interpretations and composition hypotheses distinguishable, with explicit status.
+  7. Retain source/provenance, patch/version, observation date and verification/confidence status. V4 descriptions remain paraphrased and patch-unverified; do not promote them to verified facts or import them.
+  8. Do not infer synergy or counter solely from class labels or co-occurrence in a lineup.
+- **Candidate labels are not a claim that V4 already supports them.** Populate only what the available evidence supports; preserve unknowns and record coverage gaps. Where the source provides no value for an attribute, do not manufacture one.
+- **Still OPEN / not approved:** final matching/evaluation rules between interactions; numerical synergy/counter bonuses; indicator formula and weights; predictive thresholds; UI and application/database implementation.
+- Scope protection: no application code, existing indicators, Tier List, TOP Picks, Supabase, migrations or `main` branch were changed by this action.
+- Next single action: map the approved fields against the existing V4 structure and produce a field-coverage/gap assessment, without repeating extraction or normalization.
