@@ -650,3 +650,24 @@ The proposal defines separate logical entities for hero knowledge versions, sour
 - a no-write normalization workflow before any database import.
 
 **This is a proposal only.** No Supabase schema migration, data import or frontend integration has been performed. The next implementation artifact should be a machine-readable source manifest and then a normalized dry-run dataset with structural validation, not a direct production import.
+
+
+## 9. Machine-readable source manifest (2026-11-25)
+
+The first-pass roster-to-source mapping is now stored in `docs/data/HERO_KNOWLEDGE_SOURCE_MANIFEST.json`.
+
+### Manifest validation
+
+- **131/131** tracker hero IDs match the current read-only `public.ss_heroes` roster exactly.
+- **131** unique tracker hero records; no missing IDs, URLs, locales, or conflicting source URLs.
+- **229** capture occurrences across Batches 01–24.
+- **52** tracker profiles have later recapture batches.
+- **51** profiles were initially marked partial in their earliest capture; all have a later recapture and the Batch 24 audit marks all 131 first-pass profiles complete.
+- First-pass source mappings occur in Batches 01–13; later recaptures are recorded per hero.
+- Captured roster-page locales: 130 English URLs and one Polish URL (`hepler` → `https://afkstargazer.com/pl/skill/hepler`).
+- Identity aliases remain explicit: `gala` → Galahad, `taichi` → Taichi & Agumon, `yamato` → Yamato & Gabumon.
+- Thane is retained separately as an out-of-roster source record (`https://afkstargazer.com/id/skill/thane`) and is excluded from the 131 tracker heroes.
+
+### Limits
+
+The manifest is a source locator/provenance index, not a normalized ability dataset. Source patch/update labels remain unknown. It does not establish second-source validation or in-game verification. The only Supabase operation in this stage was a read-only roster query; no schema or data writes were performed.
