@@ -487,3 +487,23 @@ Seven additional profiles yielded useful missing sections but remain partial:
 **Updated first-pass capture coverage: 87/131 complete (66.4%); 44/131 partial (33.6%).** This is only a source-capture completeness measure. It does not imply second-source cross-check, patch verification, or database readiness.
 
 All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
+
+
+## 24. Partial-profile recapture pass 4 (2026-11-25)
+
+Seventeenth extraction artifact committed:
+- `docs/HERO_KNOWLEDGE_EXTRACTION_BATCH_17.md` — fourth recapture pass.
+
+Five tracker profiles upgraded to complete first-pass captures:
+- `seth`
+- `karma`
+- `silvina`
+- `natsu`
+- `rhys`
+
+Four further pages supplied useful missing sections but remain partial:
+- `berial`, `thoran`, `orion`, `walker`.
+
+**Updated first-pass capture coverage: 92/131 complete (70.2%); 39/131 partial (29.8%).** This is a source-capture completeness metric only; no second-source cross-check, in-game patch verification, or database readiness is implied.
+
+All changes remain documentation-only on `development`. **No Supabase schema/data, Match Indicator, Showdown Draft Indicator, Tier List, or TOP Picks code was changed.**
