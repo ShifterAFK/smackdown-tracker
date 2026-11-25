@@ -307,25 +307,30 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0005
+## 10. Current restart point after ACTION 0006
 
-**Task:** advance the approved ability-based composition analysis from schema coverage assessment to a bounded source-verification pilot proposal.
+**Task:** advance the approved ability-based composition analysis after the bounded five-hero source-verification pilot.
 
 **Confirmed:**
-- The hero knowledge V4 dry-run exists and its schema coverage/gaps are recorded in ACTION 0005 and section 15.
-- The approved three-layer model and detailed schema/tagging rules are recorded in sections 13–14.
-- The hero knowledge source-verification workstream's latest recorded restart point is Stage 2AD4; it remains a distinct workstream.
-- Existing Match Indicator and Showdown Draft Indicator are separate protected systems.
+- The approved three-layer ability model and detailed schema/tagging rules remain recorded in sections 13–14.
+- V4 remains a structural index and is still `consolidated_dry_run_not_for_import`.
+- ACTION 0006 completed a bounded cross-check of 40 V4 sections for Lily May, Ravion, Odie, Himmel and Valka against available secondary hero references.
+- 32/40 section summaries received external corroboration; 8 remain unverified, including one auxiliary `targeting_rule`.
+- Direct AFK Stargazer page retrieval failed with cache misses for all five profiles. Per-hero source patch/version remains unestablished.
+- Public patch references identify 1.8.2 as the latest published patch notes found; 1.8.3 was only a preview with no release date in the reviewed announcement.
+- Existing Match Indicator and Showdown Draft Indicator remain separate protected systems.
 
 **Not confirmed:**
+- No per-hero source patch/version verification.
+- No primary-source direct-page confirmation for the five profiles.
 - No approved final indicator formula or weights.
 - No verified availability of actual in-match combat action telemetry.
 - No implemented composition feature extractor or validated predictive model.
-- No approval to import V4, change Supabase, or begin the proposed source-verification pilot.
+- No approval to import V4, change Supabase, or implement the composition model.
 
-**Completed reconciliation:** ACTION 0002. **Completed V4 schema coverage assessment:** ACTION 0005.
+**Completed actions:** reconciliation ACTION 0002; approved model ACTION 0003; approved schema ACTION 0004; V4 coverage assessment ACTION 0005; bounded source-verification pilot ACTION 0006.
 
-**Next single action:** prepare a bounded source-verification pilot proposal for selected heroes, using existing V4 records as an index. Do not start the pilot, repeat extraction/normalization, or import data until separately authorized.
+**Next single action:** obtain authorization for a second, narrowly scoped evidence pass on the eight unresolved sections and per-hero patch applicability. Do not expand the roster, import data, or change application/database code without separate approval.
 
 ---
 
@@ -499,3 +504,58 @@ Commit one coherent documentation or code change at a time on `development`. Bef
   - The coverage assessment does not approve interaction-evaluation rules, numerical synergy/counter values, an indicator formula, weights, predictive thresholds, UI or implementation.
 - Scope protection: no application code, existing indicators, Tier List, TOP Picks, Supabase, migrations or `main` branch were changed.
 - Next single action: prepare a bounded source-verification pilot proposal for selected heroes, using existing V4 records as an index; do not start the pilot, repeat extraction/normalization, or import data until separately authorized.
+
+
+## 16. Bounded source-verification pilot — 2026-11-25
+
+### ACTION 0006 — Cross-check five hero profiles against available current references
+- Started: 2026-11-25
+- Task / phase: new ability-based composition analysis / bounded source-verification pilot
+- Status: COMPLETED WITH GAPS
+- Purpose: test whether the approved three-layer model can be populated from externally corroborated ability descriptions for the five agreed profiles, using V4 only as an index.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; V4 shards for `lily-may`, `ravion`, `odie`, `himmel`, `valka`; external AFK Stargazer, AFK.global, Prydwen and Gacha.gg references.
+- Inputs / prior state:
+  - development HEAD: `1a8ec10c94b028b95f4e67d60572d8918ec84de3`
+  - V4 part 02: `9fd97e95f6020d333a0d7f31336d9e48ee5ef640` (Lily May, Himmel)
+  - V4 part 03: `74f4c14cb8171a6a1f07bb782cb0d39936e9ca59` (Ravion, Odie)
+  - V4 part 04: `122cfba6a4953e2dfa043e054d3bbe8f54c5a072` (Valka)
+  - source manifest: `2de9cbb5cda90370c6cabf9f43af6761aa86ebe6`
+- Operation:
+  - Re-read the five profiles in the existing V4 shards and their source manifest entries; did not repeat extraction or normalization.
+  - Attempted direct retrieval of all five AFK Stargazer URLs. Each returned a cache miss, so no direct page text was obtained.
+  - Cross-checked the accessible indexed AFK.global and Prydwen hero pages; used Gacha.gg as an additional secondary reference for Himmel.
+  - Reviewed the public AFK Journey 1.8.2 patch notes and the 1.8.3 preview announcement for patch context.
+  - Compared each of the 40 existing V4 sections with the accessible external references and assigned an explicit supported/unverified status.
+- Result — coverage:
+  - Lily May: 6/8 supported; `rivalry_mode` and `season_charm` remain unverified.
+  - Ravion: 7/9 supported; `season_charm` and `targeting_rule-rearmost-ally-targeting-order` remain unverified.
+  - Odie: 7/8 supported; `season_charm` remains unverified.
+  - Himmel: 6/8 supported; `rivalry_mode` and `season_charm` remain unverified.
+  - Valka: 6/7 supported; `season_charm` remains unverified.
+  - Total: 32/40 section summaries corroborated by the reviewed secondary references; 8/40 remain unverified. The Ravion `targeting_rule` is auxiliary and must not be treated as an ability.
+- Result — source and patch limitations:
+  - Direct AFK Stargazer retrieval failed with cache misses for all five hero URLs.
+  - AFK.global profile references were available for Lily May, Ravion, Odie and Valka; Prydwen references were available for all five. Himmel was additionally cross-checked against Gacha.gg.
+  - Prydwen profile pages reviewed identify 2026-07-30 as their last-updated date. AFK.global pages were indexed during this review but did not expose a per-hero source patch label or reliable per-page update timestamp in the retrieved content.
+  - The public patch-note reference reviewed identifies version 1.8.2 (2026-10-28); the 1.8.3 announcement dated 2026-11-19 is a preview and gives no release date. The reviewed 1.8.2 notes do not list ability changes for these five heroes, but this does not establish that every ability description is patch-verified.
+  - V4 `season_charm` records were not silently mapped to current AFK.global `season skill` entries. Odie's `Arcane Barrage` and Valka's `Soul-lifting Touch` are kept distinct from V4 Season Charm records.
+- Result — model feasibility examples:
+  - Lily May: `interrupt`, `energy_drain`, `damage` support `control_disruption` and `damage`; opponent interaction is the conditional interruption/energy denial of a non-summoned enemy Ultimate, with the boss restriction retained.
+  - Ravion: Objective completion by two rearmost allies enables Energy recovery and an ATK buff; the later Mortal Ace adds opponent debuff, damage and knockdown. Ally and opponent relations remain separate.
+  - Odie: Dart Poison, stacking poison amplification and Heart Crusher support sustained damage and conditional execute; the target and poison conditions remain explicit.
+  - Himmel: Hero Party has class/adjacency conditions and combines ally stat buffs, a shared shield and healing; Heroic Dash and Heroic Slash retain their own damage/control effects.
+  - Valka: Spectral Bulwark provides self-protection and an ally ATK SPD buff; Panic gates the opponent control/damage sequence, while the Ultimate also supports self-healing.
+  - These are ability-level capability mappings, not named-hero synergy claims or measured match outcomes.
+- Decision / interpretation:
+  - The approved three-layer model can represent the externally corroborated mechanics, derived team functions and ally/opponent interactions without forcing one role per hero.
+  - The pilot is complete as a bounded cross-check with explicit gaps; it is not a full primary-source or patch-verification pass.
+  - Keep all 8 unresolved sections unknown. Do not infer missing mechanics from V4 paraphrases or from class/co-occurrence.
+  - Preserve the one auxiliary targeting rule separately from ability records.
+  - V4 remains `consolidated_dry_run_not_for_import`; no import is authorized.
+- External references reviewed:
+  - AFK.global hero profiles: `https://www.afk.global/afk-journey/characters/lily-may`, `https://www.afk.global/afk-journey/characters/ravion`, `https://www.afk.global/afk-journey/characters/odie`, `https://www.afk.global/afk-journey/characters/valka`.
+  - Prydwen hero profiles: `https://www.prydwen.gg/afk-journey/characters/lily-may`, `https://www.prydwen.gg/afk-journey/characters/ravion`, `https://www.prydwen.gg/afk-journey/characters/odie`, `https://www.prydwen.gg/afk-journey/characters/himmel`, `https://www.prydwen.gg/afk-journey/characters/valka`.
+  - Himmel additional reference: `https://www.gacha.gg/afk-journey/characters/himmel`.
+  - Patch context: `https://www.afk.global/afk-journey/patch-notes/1-8-2` and `https://www.afk.global/afk-journey/news`.
+- Scope protection: no V4 shard, manifest, application code, existing indicator, Tier List, TOP Picks, Supabase schema/data, migration or `main` branch was changed. No automated test or in-game visual verification was performed.
+- Next single action: request authorization before any second evidence pass beyond this completed five-hero pilot.
