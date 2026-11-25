@@ -194,10 +194,25 @@ The pilot demonstrates a conservative ability-level shape that preserves tag unc
 - Source URLs match the manifest; no unmatched mappings, duplicate section keys or missing summaries.
 - No Supabase writes or application code changes.
 
-## Restart point — Stage 2I
+
+## Stage 2I — Batch 16 normalization
+
+**Status: complete — PASS.**  
+**Artifact:** `docs/data/HERO_KNOWLEDGE_NORMALIZED_BATCH_16.json`  
+**Audit:** `docs/HERO_KNOWLEDGE_BATCH_16_NORMALIZATION_AUDIT.md`
+
+- Three complete profiles normalized: Lucius, Lucca and Gunnar.
+- 24 sections, 7 explicitly tagged sections, 10 raw per-section tag records and 3 page-level tag records.
+- Seven partial recaptures (Contess, Gwyneth, Saida, Laios, Pippa, Himmel and Kruger) remain separate: 24 sections, 9 tagged sections, 12 raw tag records and 17 page-level tag records.
+- Gunnar's four per-skill mappings are preserved; page-level tags remain separate.
+- Source URLs match the manifest; no unmatched mappings, duplicate section keys or missing summaries.
+- No Supabase writes or application code changes.
+
+## Restart point — Stage 2J
+
+Next, inspect **Batch 15**. Separate complete captures from partial recaptures, preserve any prior-batch references, and normalize only profiles explicitly marked complete. Keep partial records supplemental. Validate source URLs, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
+
 
 Next, inspect **Batch 16**. Separate complete captures from partial recaptures, preserve earlier-batch references, and normalize only profiles explicitly established as complete. Keep partial records supplemental. Validate source URL/manifest agreement, section order, tag mappings and qualifiers, and provenance. Commit the artifact and audit, then update this log. No Supabase import.
 
-
-Next, inspect **Batch 17**. Separate complete profiles from partial recaptures, preserve prior-batch references where supplied, and normalize only profiles whose complete capture status is explicit. Keep partial records supplemental. Validate tag qualifiers, section order, provenance and manifest URLs. Commit the artifact and audit, then update this log. No Supabase import.
 
