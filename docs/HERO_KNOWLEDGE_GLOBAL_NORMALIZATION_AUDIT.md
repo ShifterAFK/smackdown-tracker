@@ -46,9 +46,9 @@ These IDs have source material in the normalized artifacts, but no complete-prof
 - `talene`
 - `valka`
 
-The final source audit states **131/131 first-pass captures complete** in section 31. It also records 80/131 sufficiently complete profiles after Batch 13, whereas the normalized Batch 01–13 artifacts contain only 68 profiles explicitly placed in their complete groups. The same 12-profile difference persists through the later recapture stages.
+The final source audit's 131/131 figure is a **roster-to-source/page coverage statement**, not proof that all ability/progression sections are complete. The detailed extraction batches explicitly retain unresolved gaps for the 12 profiles listed above. The 80/131 first-pass-summary figure after Batch 13 also differs from the 68 profiles placed in the normalized complete groups at that point.
 
-This indicates the normalized status classifier is more conservative than the source-audit completion decision. Some of these source captures include notes such as “not visible in the returned excerpt” or “verify whether absent or beyond excerpt.” Those notes must remain visible. Do not fill missing ability descriptions, tags, cooldowns, or progression sections by inference.
+The normalization decision remains conservative and is correct for the evidence currently present: keep these 12 profiles partial/needs-review until their missing or ambiguous source sections are recaptured or their absence is verified. Do not fill missing ability descriptions, tags, cooldowns, or progression sections by inference. The machine-readable gap register is `docs/data/HERO_KNOWLEDGE_NORMALIZATION_GAP_REGISTER.json`.
 
 **Resolution rule for the next stage:** distinguish:
 - `first_pass_capture_status` — whether the source audit considers the available page material captured;
