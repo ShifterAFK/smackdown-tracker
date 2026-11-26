@@ -11,7 +11,7 @@
 **Last confirmed development HEAD before ACTION 0024:** `d12fd655a1ecf39fb8522e9ef9640689a25b0bc1`  
 **Current task family:** empirical evaluation of 3v3 Showdown match outcomes, separating hero baselines, teammate effects, ability-derived relations and opponent/context effects  
 **Current analysis artifacts:** the approved ability-analysis pilot and second batch cover 10 heroes; these remain supporting evidence only. The approximately 50 unrecorded matches are reserved as an independent test set and must remain unused until model freeze.  
-**Current stage:** read-only/offline M0–M3 backtest and robustness analysis plus M4–M6 ability-feature feasibility analysis completed on the 1,421-match complete-order sample (910 out-of-fold predictions across three expanding chronological folds). M3 remains provisional. M4 team-function features did not improve pooled log loss/Brier over M3; M5 directed ally-interaction estimation and M6 opponent-interaction estimation are not supported by current profile coverage/interaction annotations and match telemetry. No model freeze or production implementation is approved. The approximately 50 unrecorded matches remain reserved and untouched.  
+**Current stage:** read-only/offline M0–M3 backtest, robustness/sensitivity and diagnostic analyses, plus M4–M6 ability-feature feasibility analysis completed on the 1,421-match complete-order sample (910 out-of-fold predictions across three expanding chronological folds). M3 is reproducible but remains a weak, provisional discriminator: predictions cluster near 0.5, calibration shifts across time folds, and slot-permutation reliance is small/non-uniform. M4 team-function features did not improve pooled log loss/Brier over M3; M5/M6 interaction estimation is not supported by current profile coverage, annotations and match telemetry. No model freeze or production implementation is approved. The approximately 50 unrecorded matches remain reserved and untouched.  
 **Current draft rules confirmed by the user:** Blue picks 1 hero, Red picks 2, Blue picks 2, Red picks 1; the random 20-hero pool is not an available/savable model input and must not be assumed  
 **Current model direction:** compare a Blue-side baseline, context, class composition and regularized hero effects first (M0–M3); test ability functions, directed teammate interactions and directed opponent interactions only when coverage supports them (M4–M6). Use chronological walk-forward validation and ablation; distinguish association from causation.  
 **Current implementation status:** fixed-penalty offline model fitting has been performed for evaluation only. No production model, scoring weights, prediction, UI, application code, schema, RPC, migration or Supabase write is approved or implemented.
@@ -322,7 +322,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0028
+## 10. Current restart point after ACTION 0029
 
 **Task:** evaluate 3v3 Showdown match outcomes empirically, separating individual hero performance from teammate-dependent effects and testing whether ability-derived relations add value beyond hero identity, official class and match context.
 
@@ -409,6 +409,15 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - No Supabase writes, application/code changes, prediction-row changes, model freeze, production implementation, V4/hero JSON edits, existing indicator changes, Tier List/TOP Picks changes or `main` changes occurred.
 
 **Decision / interpretation:** M4 is not supported as incremental predictive signal beyond M3 on the current sample. M5 and M6 are NO-GO for predictive interaction estimation with current coverage and evidence. Do not treat same-team or cross-team co-occurrence as proof of synergy, counter, trigger or causation. M3 remains provisional and is not frozen.
+
+**M3 diagnostic analysis (2026-11-26; read-only):**
+- Re-extracted and validated the same 1,421 approved complete-order matches, six distinct picks per match and 110 observed heroes; generated 910 out-of-fold predictions on the same expanding chronological folds (511/270, 781/366, 1,147/274 train/validation).
+- Corrected an initial transient in-memory feature-indexing defect (the intercept shared an index with the first category); the corrected fit reproduced M0 and M3 to the previously reported precision. The faulty prototype output was discarded; no source data was changed.
+- M3 fold log loss/Brier/accuracy: fold 1, 0.688672/0.247710/54.07%; fold 2, 0.690504/0.248615/54.37%; fold 3, 0.683992/0.245435/55.11%. Pooled metrics remain 0.687999/0.247389 and 54.51% accuracy.
+- Mean predicted Blue win probability was 55.69% against an observed 53.63% Blue win rate (calibration-in-the-large +2.06 percentage points). M3 overpredicted Blue in the first two validation folds and underpredicted in the third. 84.5% of predictions fell between 0.40 and 0.60; 15.5% were at least 0.60, only two exceeded 0.70, and none exceeded 0.80.
+- Slot-permutation diagnostics (300 permutations per global slot per fold) showed small, non-uniform model reliance; Blue pick 3 had no consistent positive contribution. This measures model reliance under permutation, not causal contribution or a universal hero ranking.
+- Interpretation: M3 is reproducible but has weak out-of-fold discrimination and time-varying calibration. It may support experimental complete-draft evaluation, but is not yet suitable for next-pick recommendations or a reliable hero ranking. Earlier paired intervals still do not establish a conclusive improvement over M0.
+- The approximately 50 reserved unrecorded matches were not accessed or used. No Supabase writes, code changes, prediction-row changes, persistent analysis artifacts, model freeze or production implementation occurred.
 
 **Next single action:** await the user's decision on the next analytical phase. Do not freeze a model, access the reserved independent test set or begin production implementation without separate authorization.
 ## 11. Initial audit log
@@ -1085,3 +1094,27 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - Decision: M4 does not demonstrate incremental predictive value beyond M3 on this sample; its pooled primary metrics are worse. M5 and M6 are NO-GO for predictive interaction estimation with current profile coverage, missing beneficiary/opponent annotations and absence of combat activation/target telemetry. Do not infer synergy/counter from co-occurrence. M3 remains provisional and is not frozen.
 - Scope protection: read-only Supabase queries and offline computation plus this user-approved Handoff documentation update only. No Supabase writes/schema changes, application code, prediction rows, reserved test set, V4 data, hero JSON, existing indicators, Tier List, TOP Picks or `main` branch were modified.
 - Next single action: await the user's decision on the next analytical phase. Do not freeze a model, access the reserved independent test set or begin production implementation without separate authorization.
+
+## 35. M3 diagnostic analysis — 2026-11-26
+
+### ACTION 0029 — Complete read-only M3 diagnostic analysis
+- Started: 2026-11-26
+- Task / phase: 3v3 Showdown empirical evaluation / M3 diagnostics
+- Status: COMPLETED — read-only SQL extraction and offline diagnostics; Handoff synchronization approved by the user
+- Purpose: assess the stability, calibration, prediction concentration and draft-slot reliance of the provisional M3 model before deciding whether it is useful for experimental draft evaluation.
+- Exact target: Supabase project `rwnbxhrkjjlfuljhwdpt`; approved historical matches and hero selections; repository `ShifterAFK/smackdown-tracker`, branch `development`, Handoff `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `8c4234c7d5d933c192fc52744213ceff2b9aa226`; Handoff blob SHA `9d48e946daf970bef2ea0c3d99fb7b3c4029f7e9`; user approved read-only M3 diagnostic analysis and then approved this Handoff update/commit.
+- Operation: re-extracted the approved complete-order historical sample using read-only queries; reconstructed the established global slots and three expanding chronological folds; refit M3 with training-only map, class-by-slot and hero-by-slot features at fixed L2 lambda=0.1; generated the 910 out-of-fold predictions; calculated fold metrics, calibration and probability concentration; ran 300 slot permutations per global slot per fold.
+- Result:
+  - Revalidated 1,421 matches, six distinct picks per match and 110 observed heroes; folds remained 511/270, 781/366 and 1,147/274 (train/validation), totaling 910 OOF predictions.
+  - The first transient in-memory prototype incorrectly assigned the intercept the same feature index as the first category. That output was discarded. After assigning the intercept its own index, the corrected fit reproduced M0 and M3 to the previously reported precision. No persistent analysis artifact or source-data change resulted from the prototype defect.
+  - M3 fold log loss/Brier/accuracy: 0.688672/0.247710/54.07%; 0.690504/0.248615/54.37%; 0.683992/0.245435/55.11%. Pooled M3 remained log loss 0.687999, Brier 0.247389 and accuracy 54.51%.
+  - Mean predicted Blue win probability was 55.69%, compared with observed Blue win rate 53.63%, a +2.06 percentage-point calibration-in-the-large difference. M3 overpredicted Blue in folds 1 and 2 and underpredicted in fold 3.
+  - Prediction distribution: 84.5% between 0.40 and 0.60; 15.5% at least 0.60; only two predictions above 0.70; none above 0.80.
+  - Slot permutation diagnostics used 300 permutations for each global pick slot in each fold. Most slot effects were small and not uniform; Blue pick 3 showed no consistent positive contribution. These are model-reliance diagnostics, not causal effects.
+  - The approximately 50 reserved unrecorded matches were not accessed or used. No Supabase writes, code changes, prediction-row changes, persistent artifacts, model freeze or production implementation occurred.
+- Evidence: corrected in-memory fit reproduced the established M0/M3 pooled metrics; 910 OOF predictions and fold-level diagnostic outputs were calculated on the same validated sample and chronological folds.
+- Decision: M3 is reproducible but remains a weak provisional discriminator. Prediction probabilities cluster near 0.5 and calibration changes across time folds; slot reliance is small/non-uniform. M3 may be considered for experimental complete-draft evaluation only, not next-pick recommendations or reliable hero ranking. Previously recorded paired intervals still do not establish conclusive improvement over M0. Do not freeze or deploy M3 based on these diagnostics.
+- Scope protection: read-only Supabase extraction and offline computation plus this user-approved Handoff update only. No Supabase schema/data writes, application code, prediction rows, reserved test set, V4/hero JSON, existing indicators, Tier List, TOP Picks or `main` branch were modified.
+- Next single action: await the user's decision on the next analytical phase; keep the reserved independent test set untouched and do not freeze, deploy or implement a model without separate authorization.
+
