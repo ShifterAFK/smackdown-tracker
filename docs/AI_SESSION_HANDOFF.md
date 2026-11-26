@@ -11,7 +11,7 @@
 **Last confirmed development HEAD before ACTION 0024:** `d12fd655a1ecf39fb8522e9ef9640689a25b0bc1`  
 **Current task family:** empirical evaluation of 3v3 Showdown match outcomes, separating hero baselines, teammate effects, ability-derived relations and opponent/context effects  
 **Current analysis artifacts:** the approved ability-analysis pilot and second batch cover 10 heroes; these remain supporting evidence only. The approximately 50 unrecorded matches are reserved as an independent test set and must remain unused until model freeze.  
-**Current stage:** empirical model-design direction M0–M6 approved; next action is read-only baseline-model feasibility analysis. No implementation is approved.  
+**Current stage:** read-only M0–M3 feasibility analysis completed. No model fitting, tuning or implementation has been performed or approved. Awaiting separate authorization for an offline M0–M3 backtest.  
 **Current draft rules confirmed by the user:** Blue picks 1 hero, Red picks 2, Blue picks 2, Red picks 1; the random 20-hero pool is not an available/savable model input and must not be assumed  
 **Current model direction:** compare a Blue-side baseline, context, class composition and regularized hero effects first (M0–M3); test ability functions, directed teammate interactions and directed opponent interactions only when coverage supports them (M4–M6). Use chronological walk-forward validation and ablation; distinguish association from causation.  
 **Current implementation status:** model design only. No scoring weights, production prediction, UI, application code, schema, RPC, migration or Supabase change is approved or implemented.
@@ -322,37 +322,57 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0024
+## 10. Current restart point after ACTION 0025
 
-**Task:** evaluate 3v3 Showdown match outcomes empirically, with the goal of separating individual hero performance from teammate-dependent effects and testing whether ability-derived relations add value beyond hero identity, official class and match context.
+**Task:** evaluate 3v3 Showdown match outcomes empirically, separating individual hero performance from teammate-dependent effects and testing whether ability-derived relations add value beyond hero identity, official class and match context.
 
 **Approved model-design direction (analysis design only; no implementation approved):**
-- **M0 — side baseline:** start with the observed Blue win baseline (784/1,425, approximately 55.0%) as a reference, not as a model claim or guarantee.
-- **M1 — match context:** add side, map and exact pick-order context where reliably available.
-- **M2 — official classes:** test whether class composition adds explanatory/predictive value beyond the simpler baselines.
-- **M3 — hero identity:** estimate individual hero effects with regularization / hierarchical pooling, allowing heroes within the same class to differ.
+- **M0 — side baseline:** observed Blue win baseline is 784/1,425 (55.02%); on the 1,421-match complete-order sample it is 782/1,421 (55.03%). For every validation fold, calculate the baseline from that fold's training data only.
+- **M1 — match context:** map, side and exact pick-order context are available, but map is strongly confounded with calendar period. The event field has only one observed value and adds no variation. The global pick sequence is fixed (Blue 1, Red 2, Blue 2, Red 1); only the selected heroes' slot assignments vary.
+- **M2 — official classes:** class composition is sufficiently varied for an initial ablation: 54/56 possible three-hero class compositions occur for Blue and 55/56 for Red; 44 Blue and 43 Red compositions occur at least 10 times.
+- **M3 — hero identity:** 110 observed heroes. Median overall appearances per hero: 72. In the first training window all 110 are represented, median 25.5 appearances; 93 have at least 10 appearances. Use regularized or hierarchical hero effects, not unpooled independent estimates.
 - **M4 — ability-derived team functions:** test only when hero-profile coverage is adequate; unknown or missing profile information must remain unknown, not be encoded as absence of a mechanic.
-- **M5 — teammate interactions:** estimate incremental teammate contribution beyond both heroes' individual baselines. Keep A→B and B→A directions separate; do not use raw pair win rates as proof of synergy.
-- **M6 — opponent interactions:** test candidate kit-derived relations against opposing heroes as hypotheses, not as proof that an ability triggered or caused a result.
-- Compare feature blocks with nested ablations using the same validation splits. Prefer a transparent regularized logistic or hierarchical model over a black-box first model.
+- **M5 — teammate interactions:** estimate incremental teammate contribution beyond both heroes' individual baselines. Keep A→B and B→A directions separate; raw pair win rates are not proof of synergy.
+- **M6 — opponent interactions:** test candidate kit-derived relations as hypotheses, not as proof that an ability triggered or caused a result.
+- Compare feature blocks with nested ablations on identical splits. Prefer a transparent regularized logistic or hierarchical model over a black-box first model.
 
-**Current data coverage and limits (read-only audit snapshot, 2026-11-26):**
-- 1,425 approved historical matches, 8,550 hero selections, 110 observed heroes and five maps.
-- Exact pick order is known on both sides in 1,421 matches; four have neither side's order known.
-- 3,564 unique same-team pairs; only 16 appear at least 10 times and none at least 20. Exact-pair effects will be sparse and require strong pooling/shrinkage and uncertainty.
-- The accepted pilot and second batch contain structured ability analysis for 10 heroes. 694 matches contain at least one of these heroes (845 selections), but **zero matches contain all six heroes covered** by these 10 profiles. Current coverage therefore cannot support complete six-hero ability-composition evaluation.
-- V4 contains 131 profiles, but many section tags remain unknown and patch applicability is not verified. Do not equate unknown with absent and do not automatically convert all V4 material into model features.
-- Existing historical predictions: 1,425 rows in `ss_match_predictions`; `ss_showdown_draft_predictions` has 0 rows and model comparison reports 0 paired matches. Existing historical rows were calculated with the outcome already known and are not a prospective benchmark.
-- Existing application modules 08, 09 and 10 are not the proposed empirical model and do not currently evaluate the approved M4–M6 ability-derived feature blocks.
+**Read-only feasibility findings (2026-11-26):**
+- 1,425 approved historical matches have six distinct hero selections, a 3v3 split, a winner and map context. All 1,425 have a non-null played_at; timestamps are unique, so chronology has no timestamp ties.
+- Both sides' exact draft order is complete in 1,421 matches. Four matches have neither side's order complete; no partial-order cases were observed. The proposed common M0–M3 evaluation sample is therefore 1,421 matches.
+- Five maps are represented. Map occurrence is strongly time-segmented in the recorded period: Tranquil Grounds appears Nov 11–13, Top Defender Nov 14–16, Siegebreaker Nov 17–19, Fierce Duel Nov 20–22, and Tactical Grounds Nov 22–25. The first fold has no Fierce Duel training examples; the second has no Tactical Grounds training examples. Map effects therefore cannot be cleanly separated from calendar-period effects in these data.
+- The event field has one observed value (showdown-current), so it cannot explain between-match variation in this sample.
+- The official class catalogue has six classes, with 15–23 heroes per class. Three-hero class composition has broad support: 54/56 possible Blue combinations and 55/56 Red combinations appear; 44 Blue and 43 Red combinations have at least 10 observations.
+- Hero frequency is sufficient for a regularized first identity model but remains uneven: 110 observed heroes, 9–174 appearances overall, median 72; in the first training window median appearances are 25.5, four heroes have fewer than five appearances, and 93 have at least ten.
+- The existing ss_match_predictions rows are not a prospective benchmark: all 1,425 historical prediction rows were calculated with the outcome already known. Do not use them as out-of-sample predictions.
+- created_at is not a substitute for match chronology: 1,046 records have played_at < created_at. The chronology must use played_at. At each proposed fold cutoff, all training matches were already created before that cutoff, so the selected expanding-window training sets do not include records first created after their cutoff.
+- The reserved approximately 50 unrecorded matches were not accessed, entered or used.
+
+**Proposed common chronological expanding-window splits (UTC cutoffs; complete-order sample only):**
+
+| Fold | Training matches | Validation matches | Validation period |
+|---|---:|---:|---|
+| 1 | 511 | 270 | Nov 20–21 |
+| 2 | 781 | 366 | Nov 22–23 |
+| 3 | 1,147 | 274 | Nov 24–25 |
+
+The three validation windows are disjoint and cover 910 matches. In fold 1, the training-only Blue baseline is 294/511 (57.53%); validation Blue rates are 147/270 (54.44%), 191/366 (52.19%) and 150/274 (54.74%) in the three successive validation windows. These are descriptive baselines, not fitted model results.
+
+**Leakage-safe feature rules:**
+- Use played_at for chronological ordering. For each fold, fit all parameters, class/hero effects, encoders and any historical aggregates on training rows only.
+- Calculate the Blue-side baseline separately from the training portion of each fold; do not use the global 55.02% baseline as a fold prediction.
+- For any future rolling hero/class/map win-rate feature, use only matches strictly earlier than the target match and ensure the data record was available by the prediction cutoff. Exclude the target match itself.
+- Treat map as an available categorical input but flag the period confounding and unseen-map problem in folds 1 and 2. Do not interpret its fitted coefficient as a causal map effect.
+- The fixed global pick sequence is not a varying feature. If testing draft-order effects, use hero/class identity by pick slot and only matches with complete order.
+- Compare M0–M3 on identical folds and identical rows. No model has been fitted or tuned in this feasibility stage.
 
 **Validation and test-set rules:**
-- Use chronological walk-forward / expanding-window splits. Every feature and aggregate used to predict a match must be derived only from information available before that match; no future leakage.
-- Compare M0–M6 on identical time splits. Primary metrics: log loss and Brier score; secondary: accuracy and AUC. Inspect calibration and uncertainty, not only point accuracy.
-- Account for side, map, pick order and opponent composition where the data supports them. Match-level associations cannot establish that an ability interaction actually occurred or caused a win.
-- Approximately 50 unrecorded matches are reserved as a later independent test set. Do not enter, inspect for tuning, or otherwise use them before a model version is frozen. The count is approximate and user-reported, not independently verified.
-- Keep the 1,425 recorded matches as development/analysis data. Do not alter existing indicators, Tier List, TOP Picks, application code, Supabase schema/data, migrations, V4 data or hero JSON artifacts without separate approval.
+- Use chronological walk-forward / expanding-window splits and prevent future leakage.
+- Compare feature blocks on identical splits. Primary metrics remain log loss and Brier score; secondary metrics accuracy and AUC. Inspect calibration and uncertainty.
+- Match-level associations cannot establish that an ability interaction actually occurred or caused a win.
+- Approximately 50 unrecorded matches remain reserved as an independent test set. Do not enter, inspect for tuning, or otherwise use them before a model version is frozen.
+- Do not alter existing indicators, Tier List, TOP Picks, application code, Supabase schema/data, migrations, V4 data or hero JSON artifacts without separate approval.
 
-**Next single action:** perform a read-only feasibility analysis of the M0–M3 baseline on the historical match data, including chronological split design and leakage-safe feature availability. Do not implement or tune a production model, and do not use the reserved unrecorded matches.
+**Next single action:** await the user's separate authorization for a read-only/offline M0–M3 backtest using the recorded 1,421-match chronological folds. Do not implement or tune a production model, and do not use the reserved unrecorded matches.
 ## 11. Initial audit log
 
 ### ACTION 0001 — Audit history and current repository state
@@ -931,3 +951,30 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Operation: update the top-level current-state summary, replace section 10 with the approved model design, coverage constraints, validation rules and next action, then append this ACTION record. Earlier ACTION history remains unchanged.
 - Scope protection: no match data, reserved test matches, application code, Supabase schema/data, migrations, V4 files, pilot/batch JSON, existing indicators, Tier List, TOP Picks or `main` branch are modified.
 - Next single action: perform read-only M0–M3 baseline feasibility analysis on historical data; no implementation or use of the reserved independent test set.
+
+
+## 32. M0–M3 baseline feasibility analysis — 2026-11-26
+
+### ACTION 0025 — Complete read-only M0–M3 feasibility analysis
+- Started: 2026-11-26
+- Task / phase: 3v3 Showdown empirical evaluation / M0–M3 baseline feasibility
+- Status: COMPLETED — read-only feasibility analysis; no model fitting, tuning or implementation
+- Purpose: determine whether the recorded historical data supports a leakage-aware chronological evaluation of side baseline, match context, official class composition and regularized hero identity.
+- Exact target: Supabase project rwnbxhrkjjlfuljhwdpt, approved historical matches and hero selections; repository ShifterAFK/smackdown-tracker, branch development, Handoff file docs/AI_SESSION_HANDOFF.md.
+- Inputs / prior state: development HEAD ff71d5f21457b75a11a58652278ecee6ccd5fc4b; Handoff blob SHA 75335832b66a0a8d27908262b6c9b4bab36c9bd7. The live branch comparison against the recorded HEAD returned identical before this documentation update.
+- Operation: ran read-only SQL queries to inspect match counts, match timestamps, winner/side balance, map/event distribution, draft-order completeness, hero frequency, official class composition and chronological feature availability. No SQL write, model fit, tuning, application execution or code change was performed.
+- Result:
+  - 1,425 approved matches and 8,550 hero selections; all matches had six distinct picks split 3v3, a winner, map context and unique non-null played_at timestamps.
+  - 1,421 matches have complete exact draft order on both sides; four have neither side's order complete. Use the same 1,421-match sample for M0–M3 comparisons.
+  - Blue wins: 784/1,425 (55.02%); complete-order subset: 782/1,421 (55.03%).
+  - Five maps are strongly segmented by date (Tranquil Grounds Nov 11–13; Top Defender Nov 14–16; Siegebreaker Nov 17–19; Fierce Duel Nov 20–22; Tactical Grounds Nov 22–25). Map and calendar period are confounded; first and second validation folds each contain a map not present in their training data.
+  - Only one event value is present (showdown-current), so event is not a useful varying feature in this sample.
+  - Class composition support: 54/56 possible Blue and 55/56 possible Red three-hero class combinations; 44 Blue and 43 Red combinations occur at least ten times.
+  - 110 observed heroes; 9–174 appearances overall, median 72. First training window: all 110 observed, median 25.5 appearances, four heroes below five appearances and 93 with at least ten.
+  - Complete-order expanding folds (UTC): 511 train / 270 validate; 781 / 366; 1,147 / 274. The disjoint validation windows cover 910 matches. Fold 1 training Blue baseline is 294/511 (57.53%); validation Blue rates are 54.44%, 52.19% and 54.74%.
+  - played_at is the correct chronology; timestamps are unique. 1,046 records have played_at < created_at, so created_at must not be used as match chronology. At each proposed fold cutoff, all earlier training matches were already created before the cutoff.
+  - All 1,425 existing historical prediction rows have outcome-known-at-calculation status; they are not prospective validation evidence.
+  - Approximately 50 reserved unrecorded matches were not accessed or used.
+- Decision: M0–M3 are feasible for a first offline backtest on the common 1,421-match complete-order sample. M3 needs regularization/hierarchical pooling. M1 map coefficients must be treated cautiously because map is confounded with period and unseen in early training folds. The global pick sequence is fixed; only hero/class slot assignments vary. No model performance conclusion is available because no model was fitted.
+- Scope protection: read-only Supabase queries and Handoff documentation only. No Supabase data/schema, application code, prediction rows, reserved test set, V4 files, pilot/batch JSON, existing indicators, Tier List, TOP Picks or main branch were changed.
+- Next single action: await separate user authorization before conducting an offline M0–M3 backtest; keep the reserved unrecorded matches isolated until model freeze.
