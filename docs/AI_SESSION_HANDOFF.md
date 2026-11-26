@@ -8,12 +8,13 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before ACTION 0020:** `130a5693f02c87829e02fe6f5a5611260c63b398`  
+**Last confirmed development HEAD before ACTION 0022:** `080384fe5a5114cbf40a48b73327cba02d209a8e`  
 **Current task family:** draft-state evaluation for the 3v3 Showdown pick sequence, using hero capabilities, synergies and counters  
-**Current analysis artifacts:** accepted ability-analysis pilot and two bounded hero batches remain supporting knowledge artifacts; third-batch JSON is paused pending draft-model clarification  
-**Current stage:** clarify the draft evaluation model before creating further hero-batch artifacts or implementation  
+**Current analysis artifacts:** accepted ability-analysis pilot and two bounded hero batches remain supporting knowledge artifacts; third-batch JSON remains paused pending draft-model agreement  
+**Current stage:** conceptual draft-state model proposed; awaiting user decision on the model structure before schema, scoring or implementation work  
 **Current draft rules confirmed by the user:** Blue picks 1 hero, Red picks 2, Blue picks 2, Red picks 1; the random 20-hero pool is not an available/savable model input and must not be assumed  
-**Current implementation status:** no new draft model, scoring formula, weights, predictive thresholds, UI or database implementation is approved or implemented
+**Current model proposal:** after each of the six picks, update both team rosters and report team capabilities, conditional ally synergies, opponent counters, composition gaps and uncertainty; do not rank unavailable pool options  
+**Current implementation status:** no draft scoring formula, weights, pick-value calculation, predictive thresholds, UI or database implementation is approved or implemented
 
 ---
 
@@ -321,23 +322,40 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0021
+## 10. Current restart point after ACTION 0022
 
-**Task:** define a draft-state evaluation model for the 3v3 Showdown pick sequence. The accepted hero ability pilot remains supporting knowledge, not the complete target model.
+**Task:** agree the conceptual draft-state evaluation model for the 3v3 Showdown pick sequence. This is a draft-analysis task, not a return to bulk hero-batch creation.
 
-**Confirmed current state:**
-- The user clarified the actual problem: compare draft options in a 3v3 pick sequence where synergy and counters can have substantial influence, and hero strength varies in context rather than being a fixed count of strong heroes in every pool.
-- Exact pick order is available and must be represented: Blue picks 1 hero; Red picks 2; Blue picks 2; Red picks 1. Each side finishes with 3 heroes.
-- The random pool of 20 heroes drawn from approximately 130 available heroes is not an available/savable model input. Do not define that random pool as a required stored input or assume the model can inspect all 20 options.
-- The model's scope must distinguish hero capability, ally synergy, opponent counters, and the evolving draft state as picks are made. It must not assume a fixed number of strong heroes in a pool.
-- AFK Stargazer labels were intended as clues for understanding whether and how an ability benefits particular allies or affects opponents; they are not themselves a draft score or universal synergy label.
-- Formation/position and exact ability activation during a match cannot be predicted. Conditional ability relations must not be presented as guaranteed fight outcomes.
-- The five-hero pilot and two batch artifacts remain reusable supporting evidence about hero kits. They do not by themselves define the draft evaluation model.
-- Third alphabetical batch source review is complete for Aliceth, Alna, Alsa, Antandra and Arden, but its structured JSON artifact is paused. Do not prepare it until the draft-model direction is agreed.
-- No new draft scoring formula, weights, role values, pick-value calculation, predictive thresholds, UI or database implementation is approved or implemented.
+**Confirmed draft rules and input boundaries:**
+- The pick sequence is six picks: Blue 1, Red 2, Blue 2, Red 1. Each side finishes with three heroes.
+- The random pool of 20 heroes drawn from approximately 130 available heroes is not available/savable as a model input. The model must not require it, infer its contents, or claim to rank all options in it.
+- At each stage, the known roster consists only of heroes already selected by Blue and Red. The model may evaluate those current rosters and their interactions.
+- A hypothetical candidate can be assessed if explicitly supplied, but this does not imply access to the other unseen pool candidates.
+- The current map may change the importance of synergy and counters, but map-specific conclusions require an available map identifier/context. Do not invent it.
+- Hero ability knowledge, pilot and two completed batches are supporting evidence; they are not by themselves the draft evaluation model.
+- AFK Stargazer labels are evidence clues for ability-to-ally and ability-to-opponent relations, not universal synergy labels or a score.
 
-**Next single action:** agree the conceptual draft-state model and identify which data is actually available at each pick stage, without assuming access to the random 20-hero pool.
+**Conceptual model proposed in ACTION 0022 (not yet approved as a final specification):**
+- Treat each pick as a state transition that updates the two three-hero rosters.
+- After each pick, produce a descriptive state report covering:
+  1. current Blue and Red rosters;
+  2. each side's ability-derived capabilities and functional coverage;
+  3. conditional ally-enabling/amplifying/protecting/sustaining interactions;
+  4. conditional opponent-disrupting/weakening/controlling/denying/countering interactions;
+  5. composition gaps, exposed weaknesses and capabilities not covered;
+  6. uncertainty and unavailable information.
+- State whether the available evidence suggests a draft advantage for Blue, Red, or an unresolved/indeterminate position only when supported. Do not force a numeric score or a winner prediction.
+- Keep source facts, derived kit-level relations and draft-state interpretation distinguishable.
+- Describe conditional interactions as possibilities, not guaranteed combat outcomes.
 
+**Hard limitations:**
+- Do not predict hero placement, formation, exact target selection or ability activation timing.
+- Do not claim that a conditional ability interaction will occur in a match.
+- Do not infer the contents of the unavailable random pool or recommend the best unseen pick.
+- No scoring formula, weights, pick-value calculation, predictive thresholds, UI, database schema or application implementation has been approved.
+- Third alphabetical hero batch (Aliceth, Alna, Alsa, Antandra, Arden) remains paused; do not resume its JSON artifact until the draft-model direction is agreed.
+
+**Next single action:** obtain the user's decision on the proposed conceptual model and its stage-by-stage report. Only after that decision should a more detailed model/schema proposal be prepared.
 
 ## 11. Initial audit log
 
@@ -863,3 +881,23 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Existing limitation remains: formation/position and actual ability activation during a match cannot be predicted; conditional relations are not guaranteed outcomes.
 - Scope protection: this was a documentation clarification only. No hero JSON artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch was changed.
 - Next single action: agree the conceptual draft-state model and establish which inputs are actually available at each pick stage; do not resume third-batch JSON preparation until that direction is agreed.
+
+
+## 29. Draft-state evaluation model proposal — 2026-11-26
+
+### ACTION 0022 — Propose the evolving 3v3 Showdown draft-state model
+- Started: 2026-11-26
+- Task / phase: 3v3 Showdown draft evaluation / conceptual model definition
+- Status: PROPOSAL PREPARED; USER DECISION PENDING
+- Purpose: translate the confirmed pick order and unavailable random-pool constraint into a practical conceptual model without assuming access to unseen options.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `080384fe5a5114cbf40a48b73327cba02d209a8e`; Handoff blob SHA `a9237a28d41eaddb32ddc9f322cf8e22f0bc0338`.
+- User approval: user approved proceeding with the conceptual draft-state model discussion and approved this Handoff synchronization; this does not approve the model proposal as a final specification or authorize implementation.
+- Confirmed sequence: six picks — Blue 1, Red 2, Blue 2, Red 1 — with three heroes per side at completion.
+- Input constraint: the random 20-hero pool is not an available/savable model input. The model must not require or infer it. It can evaluate already-selected rosters; a hypothetical candidate can be evaluated only when explicitly supplied.
+- Proposed operation/model: represent each pick as a state transition. After each pick, report current rosters, ability-derived capabilities, conditional ally synergies, conditional opponent counters, composition gaps and uncertainty. A draft-advantage interpretation may be stated only when supported; no numeric score or winner prediction is implied.
+- Context handling: map context can affect the importance of interactions, but map-specific conclusions require actual map information. AFK Stargazer labels remain clues for interpreting ability-to-ally/opponent relations, not universal synergy labels or a score.
+- Limitations retained: no formation/placement, target-selection, ability-activation timing or match-outcome prediction; conditional relations are not guaranteed outcomes.
+- Scope protection: discussion and Handoff documentation only. No hero JSON, third-batch artifact, application code, Supabase schema/data, migration, existing indicator, Tier List, TOP Picks or `main` branch changed.
+- Verification: the exact diff was prepared against the live Handoff on `development`; commit/readback verification will be recorded after the write.
+- Next single action: obtain the user's decision on the conceptual model proposal before preparing a detailed schema or implementation.
