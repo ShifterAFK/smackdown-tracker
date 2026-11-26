@@ -11,7 +11,7 @@
 **Last confirmed development HEAD before ACTION 0024:** `d12fd655a1ecf39fb8522e9ef9640689a25b0bc1`  
 **Current task family:** empirical evaluation of 3v3 Showdown match outcomes, separating hero baselines, teammate effects, ability-derived relations and opponent/context effects  
 **Current analysis artifacts:** the approved ability-analysis pilot and second batch cover 10 heroes; these remain supporting evidence only. The approximately 50 unrecorded matches are reserved as an independent test set and must remain unused until model freeze.  
-**Current stage:** read-only/offline M0–M3 backtest completed on 1,421 complete-order matches, with 910 out-of-fold validation predictions across three expanding chronological folds. M3 improved over M2 on both primary metrics in all three folds; paired bootstrap intervals favored M3 over M2, while improvement over M0 remains uncertain. The approximately 50 unrecorded test matches remain untouched.  
+**Current stage:** read-only/offline M0–M3 backtest and robustness/sensitivity analysis completed on 1,421 complete-order matches, with 910 out-of-fold validation predictions across three expanding chronological folds. M3 improved over M2 across all five tested L2 penalties (0.01, 0.03, 0.1, 0.3, 1.0); versus M0, improvement was present at 0.03–1.0 but not 0.01. Removing map effects slightly improved M3 at every tested penalty. Findings remain provisional; no model freeze or production implementation is approved. The approximately 50 unrecorded test matches remain untouched.  
 **Current draft rules confirmed by the user:** Blue picks 1 hero, Red picks 2, Blue picks 2, Red picks 1; the random 20-hero pool is not an available/savable model input and must not be assumed  
 **Current model direction:** compare a Blue-side baseline, context, class composition and regularized hero effects first (M0–M3); test ability functions, directed teammate interactions and directed opponent interactions only when coverage supports them (M4–M6). Use chronological walk-forward validation and ablation; distinguish association from causation.  
 **Current implementation status:** fixed-penalty offline model fitting has been performed for evaluation only. No production model, scoring weights, prediction, UI, application code, schema, RPC, migration or Supabase write is approved or implemented.
@@ -322,7 +322,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0025
+## 10. Current restart point after ACTION 0027
 
 **Task:** evaluate 3v3 Showdown match outcomes empirically, separating individual hero performance from teammate-dependent effects and testing whether ability-derived relations add value beyond hero identity, official class and match context.
 
@@ -385,7 +385,20 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - Caveats: map is confounded with calendar period and is unseen in validation folds 1 and 2; no player identifiers or execution telemetry are available. Bootstrap intervals are conditional on the generated out-of-fold predictions and do not refit models inside each resample. Match-level associations are not causal evidence.
 - The reserved approximately 50 unrecorded matches were not accessed, entered or used. No database writes, code changes, prediction-row changes or production implementation occurred.
 
-**Next single action:** await the user's decision on whether to authorize a separate robustness/sensitivity analysis of the provisional M0–M3 results. Do not advance to M4–M6 or production implementation automatically; keep the reserved unrecorded matches isolated until model freeze.
+**Robustness/sensitivity analysis (2026-11-26; read-only):**
+- Re-fetched and validated the same 1,421 approved complete-order matches with six distinct heroes and complete per-side pick order; 910 out-of-fold validation rows remained split across the same three expanding chronological folds (511/270, 781/366, 1,147/274 train/validation).
+- Reproduced the original M1–M3 pooled metrics at the original fixed L2 penalty lambda=0.1, including M3 log loss 0.687999 and Brier 0.247389. The M0 baseline was unchanged.
+- Refit M1, M2 and M3 at lambda values 0.01, 0.03, 0.1, 0.3 and 1.0, using the same training-only encoders, chronological folds and non-intercept L2 penalty. No value was selected and no tuning was performed.
+- Pooled M3 log loss / Brier by lambda: 0.01 = 0.699725 / 0.251548; 0.03 = 0.689791 / 0.247983; 0.1 = 0.687999 / 0.247389; 0.3 = 0.689649 / 0.248250; 1.0 = 0.691274 / 0.249059. M3 improved over M2 on both primary metrics at all five penalties. Relative to M0 (0.692305 / 0.249568), M3 improved at 0.03–1.0 but not at 0.01.
+- Ablation without map effects (class-by-slot plus hero-by-slot) slightly outperformed M3 with map effects on pooled log loss and Brier at all five penalties. At lambda=0.1, no-map M3 was 0.687342 / 0.247070 versus 0.687999 / 0.247389 with map effects. This is a small observational difference, not proof that maps have no predictive value; map/calendar confounding and unseen validation maps remain.
+- At lambda=0.1, M3 with map effects improved on M0 and M2 in each of the three validation folds. The fold-level direction was consistent with the original backtest.
+- Sensitivity findings are conditional on this dataset and fixed chronological folds. No paired bootstrap was rerun for every lambda/ablation; do not infer statistical significance for those new comparisons. The earlier paired bootstrap result for M3 versus M2 at lambda=0.1 remains the only interval estimate recorded in ACTION 0026.
+- An initial SQL filter used lowercase side/winner values and returned zero rows; the filter was corrected to the stored uppercase enum values, then the expected 1,421 records were retrieved and validated before analysis. No source data was changed.
+- The approximately 50 reserved unrecorded matches were not accessed or used. No database writes, code changes, prediction-row changes, persistent analysis artifacts or production implementation occurred.
+
+**Decision / interpretation:** the hero-identity-by-pick-slot signal beyond class is directionally robust across moderate L2 penalties and all three time folds. Very weak regularization (lambda=0.01) overfits and loses to M0. Removing map effects produces a small improvement in this sample, but map/calendar confounding prevents a strong conclusion. M3 remains provisional: improvement over M0 is not established by the earlier paired intervals, and no model is frozen or approved for deployment.
+
+**Next single action:** await the user's decision on the next analytical phase. Do not start M4–M6, freeze a model, access the reserved independent test set or begin production implementation without separate authorization.
 ## 11. Initial audit log
 
 ### ACTION 0001 — Audit history and current repository state
@@ -1010,3 +1023,28 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - Evidence: read-only SQL result contained 1,421 rows; offline evaluation returned 910 validation predictions and converged fits for all 9 trained fold/model combinations. No persistent analysis artifact was created.
 - Decision: hero identity by draft slot shows incremental predictive signal beyond class in this sample, but M3 has not demonstrated a conclusive improvement over M0. Treat all findings as provisional; do not freeze or deploy a model based on this run.
 - Next single action: await the user's decision on a separate robustness/sensitivity analysis; do not start M4–M6, production implementation or reserved-test evaluation without separate authorization.
+
+
+## 33. M0–M3 robustness and sensitivity analysis — 2026-11-26
+
+### ACTION 0027 — Complete read-only M0–M3 robustness/sensitivity analysis
+- Started: 2026-11-26
+- Task / phase: 3v3 Showdown empirical evaluation / M0–M3 robustness and sensitivity
+- Status: COMPLETED — read-only SQL extraction and offline model evaluation; Handoff synchronization authorized by user
+- Purpose: assess whether the provisional M0–M3 results depend materially on the fixed L2 penalty or map feature block, and whether the direction of improvement is consistent across the existing chronological validation windows.
+- Exact target: Supabase project `rwnbxhrkjjlfuljhwdpt`; `public.ss_matches`, `public.ss_match_heroes`, `public.ss_heroes`; repository `ShifterAFK/smackdown-tracker`, branch `development`, Handoff `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `0dc833a2b7dee0e3fcad14f713f9d0fe7e82370e`; Handoff blob SHA `4777265834d563bb77d62d9bef95d8699595e748`; user authorized the separate robustness/sensitivity analysis. The current development HEAD and Handoff blob were re-fetched before this documentation write.
+- Operation: re-extracted the approved complete-order sample using read-only SQL; validated six distinct picks and three unique ordered picks per side; reconstructed global slots Blue 1, Red 1, Red 2, Blue 2, Blue 3, Red 3. Refit M1–M3 on the same three expanding chronological folds at L2 penalties 0.01, 0.03, 0.1, 0.3 and 1.0, with all encoders and coefficients fitted on each training fold only. Compared M3 with map effects against an otherwise equivalent class/hero-by-slot model without map effects. M0 remained the fold-specific training-only Blue baseline.
+- Result:
+  - Revalidated 1,421 approved complete-order matches and 910 disjoint out-of-fold validation predictions across folds 511/270, 781/366 and 1,147/274 (train/validation). The extracted rows cover 110 distinct heroes and the same chronology as ACTION 0026.
+  - Reproduced the original lambda=0.1 results: M1 log loss/Brier 0.692916/0.249869; M2 0.690742/0.248753; M3 0.687999/0.247389. M0 remains 0.692305/0.249568.
+  - M3 pooled log loss/Brier by lambda: 0.01 = 0.699725/0.251548; 0.03 = 0.689791/0.247983; 0.1 = 0.687999/0.247389; 0.3 = 0.689649/0.248250; 1.0 = 0.691274/0.249059. M3 improved over M2 on both metrics at all five tested values. Against M0, M3 improved at 0.03–1.0 but was worse at 0.01.
+  - M3 without map effects slightly outperformed M3 with map effects on both pooled primary metrics at all five tested penalties. At lambda=0.1, no-map M3 was 0.687342/0.247070 versus 0.687999/0.247389 with map effects.
+  - At lambda=0.1, M3 with map effects improved over M0 and M2 on both primary metrics in each of the three validation folds.
+  - No new paired bootstrap intervals were computed for the alternative penalties or map ablation. The previously recorded paired bootstrap intervals from ACTION 0026 remain specific to lambda=0.1 and the original M3-versus-M2 comparison.
+  - An initial SQL filter used lowercase values for side/winner and returned zero rows; the predicates were corrected to match the stored uppercase values. The corrected extraction returned and validated 1,421 rows before any fitting.
+  - The approximately 50 reserved unrecorded matches were not accessed, entered or used. No Supabase writes, application/code changes, prediction-row changes or persistent analysis artifacts were made.
+- Evidence: read-only SQL extraction returned 1,421 validated rows; offline fitting returned pooled metrics for five penalties and the map ablation across the three existing folds. Original lambda=0.1 M1–M3 pooled metrics were reproduced.
+- Decision: the hero-identity-by-slot signal beyond class is directionally robust across moderate penalties and the three time folds, but lambda=0.01 demonstrates overfitting. The small no-map advantage is not evidence that map has no predictive value because map is confounded with calendar period and validation includes unseen maps. No new uncertainty intervals were computed for the sensitivity comparisons. M3 remains provisional; no model freeze, reserved-test evaluation or deployment is approved.
+- Scope protection: read-only Supabase queries, offline computation and the user-approved Handoff documentation update only. No Supabase schema/data, code, V4 files, hero JSON, existing indicators, Tier List, TOP Picks, prediction rows, reserved test set or `main` branch were modified.
+- Next single action: await the user's decision on the next analytical phase; do not start M4–M6, freeze a model, access the reserved test set or implement production changes without separate approval.
