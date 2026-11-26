@@ -11,10 +11,10 @@
 **Last confirmed development HEAD before ACTION 0024:** `d12fd655a1ecf39fb8522e9ef9640689a25b0bc1`  
 **Current task family:** empirical evaluation of 3v3 Showdown match outcomes, separating hero baselines, teammate effects, ability-derived relations and opponent/context effects  
 **Current analysis artifacts:** the approved ability-analysis pilot and second batch cover 10 heroes; these remain supporting evidence only. The approximately 50 unrecorded matches are reserved as an independent test set and must remain unused until model freeze.  
-**Current stage:** read-only M0–M3 feasibility analysis completed. No model fitting, tuning or implementation has been performed or approved. Awaiting separate authorization for an offline M0–M3 backtest.  
+**Current stage:** read-only/offline M0–M3 backtest completed on 1,421 complete-order matches, with 910 out-of-fold validation predictions across three expanding chronological folds. M3 improved over M2 on both primary metrics in all three folds; paired bootstrap intervals favored M3 over M2, while improvement over M0 remains uncertain. The approximately 50 unrecorded test matches remain untouched.  
 **Current draft rules confirmed by the user:** Blue picks 1 hero, Red picks 2, Blue picks 2, Red picks 1; the random 20-hero pool is not an available/savable model input and must not be assumed  
 **Current model direction:** compare a Blue-side baseline, context, class composition and regularized hero effects first (M0–M3); test ability functions, directed teammate interactions and directed opponent interactions only when coverage supports them (M4–M6). Use chronological walk-forward validation and ablation; distinguish association from causation.  
-**Current implementation status:** model design only. No scoring weights, production prediction, UI, application code, schema, RPC, migration or Supabase change is approved or implemented.
+**Current implementation status:** fixed-penalty offline model fitting has been performed for evaluation only. No production model, scoring weights, prediction, UI, application code, schema, RPC, migration or Supabase write is approved or implemented.
 
 ---
 
@@ -372,7 +372,20 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - Approximately 50 unrecorded matches remain reserved as an independent test set. Do not enter, inspect for tuning, or otherwise use them before a model version is frozen.
 - Do not alter existing indicators, Tier List, TOP Picks, application code, Supabase schema/data, migrations, V4 data or hero JSON artifacts without separate approval.
 
-**Next single action:** await the user's separate authorization for a read-only/offline M0–M3 backtest using the recorded 1,421-match chronological folds. Do not implement or tune a production model, and do not use the reserved unrecorded matches.
+**Offline M0–M3 backtest results (2026-11-26; fixed exploratory specification):**
+- Common sample: 1,421 approved matches with all six distinct picks and complete order on both sides. Three disjoint expanding-window validation folds: 511/270, 781/366 and 1,147/274 (train/validation), totaling 910 out-of-fold validation predictions.
+- Global pick slots encoded in the order Blue 1, Red 1, Red 2, Blue 2, Blue 3, Red 3. M0: training-only Blue win-rate intercept. M1: map categorical effects. M2: M1 plus official class indicators by global pick slot. M3: M2 plus hero-identity indicators by global pick slot. L2 penalty lambda=0.1 on non-intercept coefficients, fixed for this run; no hyperparameter tuning. All fitted models reached the gradient tolerance.
+- Pooled out-of-fold metrics (log loss / Brier primary; accuracy / AUC secondary):
+  - M0: 0.692305 / 0.249568; accuracy 53.63%; AUC 0.4987.
+  - M1: 0.692916 / 0.249869; accuracy 53.63%; AUC 0.4908.
+  - M2: 0.690742 / 0.248753; accuracy 53.52%; AUC 0.5318.
+  - M3: 0.687999 / 0.247389; accuracy 54.51%; AUC 0.5539.
+- M1 did not improve on M0. M2 showed small point improvements over M1/M0, but paired bootstrap intervals for M2 versus M1 and M0 included zero. M3 improved on M2 in each fold; paired bootstrap for M3 minus M2 gave log-loss difference -0.002743 (95% interval -0.004643 to -0.000767) and Brier difference -0.001364 (-0.002286 to -0.000405). M3 versus M0 was directionally better (log-loss -0.004290; Brier -0.002140), but both paired intervals included zero.
+- Interpretation: the hero-identity-by-pick-slot block contains incremental predictive signal beyond official class in this sample. The evidence does not yet establish a reliable improvement over the side-only baseline, nor does it justify freezing or deploying M3.
+- Caveats: map is confounded with calendar period and is unseen in validation folds 1 and 2; no player identifiers or execution telemetry are available. Bootstrap intervals are conditional on the generated out-of-fold predictions and do not refit models inside each resample. Match-level associations are not causal evidence.
+- The reserved approximately 50 unrecorded matches were not accessed, entered or used. No database writes, code changes, prediction-row changes or production implementation occurred.
+
+**Next single action:** await the user's decision on whether to authorize a separate robustness/sensitivity analysis of the provisional M0–M3 results. Do not advance to M4–M6 or production implementation automatically; keep the reserved unrecorded matches isolated until model freeze.
 ## 11. Initial audit log
 
 ### ACTION 0001 — Audit history and current repository state
@@ -978,3 +991,22 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - Decision: M0–M3 are feasible for a first offline backtest on the common 1,421-match complete-order sample. M3 needs regularization/hierarchical pooling. M1 map coefficients must be treated cautiously because map is confounded with period and unseen in early training folds. The global pick sequence is fixed; only hero/class slot assignments vary. No model performance conclusion is available because no model was fitted.
 - Scope protection: read-only Supabase queries and Handoff documentation only. No Supabase data/schema, application code, prediction rows, reserved test set, V4 files, pilot/batch JSON, existing indicators, Tier List, TOP Picks or main branch were changed.
 - Next single action: await separate user authorization before conducting an offline M0–M3 backtest; keep the reserved unrecorded matches isolated until model freeze.
+
+### ACTION 0026 — Run offline M0–M3 chronological backtest
+- Started: 2026-11-26
+- Task / phase: 3v3 Showdown empirical evaluation / offline M0–M3 backtest
+- Status: COMPLETED — read-only data extraction and offline model evaluation; no repository or database writes
+- Purpose: measure whether map context, official class composition and regularized hero identity improve prospective prediction over a fold-specific Blue-side baseline.
+- Exact target: Supabase project `rwnbxhrkjjlfuljhwdpt`; `public.ss_matches`, `public.ss_match_heroes`, `public.ss_heroes`, `public.ss_themes`; repository `ShifterAFK/smackdown-tracker`, branch `development`, Handoff `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `86be88a86032087619001d237b3c30dae57343ee`; Handoff blob SHA `9fb196a811353d8c5026c62f8069d738c82be886`; user approved the offline M0–M3 backtest. The branch comparison against the recorded HEAD returned `identical`.
+- Operation: executed a read-only SELECT to retrieve the approved complete-order sample with six distinct picks, map, outcome, official class and reconstructed global pick slots. Fit M0–M3 independently within each recorded expanding-window training fold; generated out-of-fold predictions and calculated log loss, Brier score, accuracy, AUC, calibration summaries and paired bootstrap intervals. The initial result parser treated the SQL aggregate wrapper as a row array; corrected the parser to unwrap the single aggregate row and verified the expected 1,421 match records before fitting.
+- Result:
+  - 1,421 unique approved matches passed the complete-order/six-distinct-pick validation; 910 disjoint validation predictions were generated across folds 511/270, 781/366 and 1,147/274 (train/validation).
+  - Global slots were encoded as Blue 1, Red 1, Red 2, Blue 2, Blue 3, Red 3. M0 used the training-only Blue win rate; M1 added map effects; M2 added official class-by-slot indicators; M3 added hero-identity-by-slot indicators. The L2 penalty was fixed at 0.1 for non-intercept coefficients; no hyperparameter tuning was performed. All fits reached maximum gradient below 1e-7.
+  - Pooled out-of-fold metrics (log loss / Brier; accuracy / AUC): M0 0.692305 / 0.249568; 53.63% / 0.4987. M1 0.692916 / 0.249869; 53.63% / 0.4908. M2 0.690742 / 0.248753; 53.52% / 0.5318. M3 0.687999 / 0.247389; 54.51% / 0.5539.
+  - M1 did not improve over M0. M2's point improvements over M1/M0 were uncertain. M3 improved over M2 in all three folds; paired bootstrap intervals for M3 minus M2 excluded zero for both log loss (-0.002743; 95% interval -0.004643 to -0.000767) and Brier (-0.001364; -0.002286 to -0.000405). M3's improvements over M0 were directionally favorable but the paired intervals included zero.
+  - Map/calendar confounding and unseen validation maps remain limitations. Player identity and action-execution telemetry are unavailable. Bootstrap intervals condition on the fixed out-of-fold predictions and do not refit each model in every resample.
+  - The approximately 50 reserved unrecorded matches were not accessed or used.
+- Evidence: read-only SQL result contained 1,421 rows; offline evaluation returned 910 validation predictions and converged fits for all 9 trained fold/model combinations. No persistent analysis artifact was created.
+- Decision: hero identity by draft slot shows incremental predictive signal beyond class in this sample, but M3 has not demonstrated a conclusive improvement over M0. Treat all findings as provisional; do not freeze or deploy a model based on this run.
+- Next single action: await the user's decision on a separate robustness/sensitivity analysis; do not start M4–M6, production implementation or reserved-test evaluation without separate authorization.
