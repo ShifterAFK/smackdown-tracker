@@ -8,13 +8,13 @@
 **Working branch:** `development`  
 **Production branch:** `main` — do not modify unless the user explicitly authorizes it  
 **Last repository audit recorded here:** 2026-11-25 (historical audit snapshot; later state reconciled in ACTION 0008)  
-**Last confirmed development HEAD before ACTION 0022:** `080384fe5a5114cbf40a48b73327cba02d209a8e`  
-**Current task family:** draft-state evaluation for the 3v3 Showdown pick sequence, using hero capabilities, synergies and counters  
-**Current analysis artifacts:** accepted ability-analysis pilot and two bounded hero batches remain supporting knowledge artifacts; third-batch JSON remains paused pending draft-model agreement  
-**Current stage:** conceptual draft-state model proposed; awaiting user decision on the model structure before schema, scoring or implementation work  
+**Last confirmed development HEAD before ACTION 0024:** `d12fd655a1ecf39fb8522e9ef9640689a25b0bc1`  
+**Current task family:** empirical evaluation of 3v3 Showdown match outcomes, separating hero baselines, teammate effects, ability-derived relations and opponent/context effects  
+**Current analysis artifacts:** the approved ability-analysis pilot and second batch cover 10 heroes; these remain supporting evidence only. The approximately 50 unrecorded matches are reserved as an independent test set and must remain unused until model freeze.  
+**Current stage:** empirical model-design direction M0–M6 approved; next action is read-only baseline-model feasibility analysis. No implementation is approved.  
 **Current draft rules confirmed by the user:** Blue picks 1 hero, Red picks 2, Blue picks 2, Red picks 1; the random 20-hero pool is not an available/savable model input and must not be assumed  
-**Current model direction:** evaluate actual match outcomes using individual hero baselines, teammate-dependent and asymmetric interactions, ability-derived features, opponent/map/pick-order context and uncertainty; the detailed model remains to be proposed and approved  
-**Current implementation status:** no draft scoring formula, weights, pick-value calculation, predictive thresholds, UI or database implementation is approved or implemented
+**Current model direction:** compare a Blue-side baseline, context, class composition and regularized hero effects first (M0–M3); test ability functions, directed teammate interactions and directed opponent interactions only when coverage supports them (M4–M6). Use chronological walk-forward validation and ablation; distinguish association from causation.  
+**Current implementation status:** model design only. No scoring weights, production prediction, UI, application code, schema, RPC, migration or Supabase change is approved or implemented.
 
 ---
 
@@ -322,38 +322,37 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0023
+## 10. Current restart point after ACTION 0024
 
-**Task:** design an empirical evaluation of 3v3 Showdown drafts from actual match outcomes. The goal is to understand which picks perform well, when performance depends on teammates, and whether ability-derived relations help explain outcomes beyond individual hero baselines, class labels and opponent context.
+**Task:** evaluate 3v3 Showdown match outcomes empirically, with the goal of separating individual hero performance from teammate-dependent effects and testing whether ability-derived relations add value beyond hero identity, official class and match context.
 
-**Available match evidence (read-only audit snapshot, 2026-11-26):**
-- 1,425 approved historical matches and 8,550 hero selections; all audited matches contain six selections (three per side).
-- 1,421 matches have known exact pick order on both sides.
-- 110 distinct heroes observed across five maps.
-- There are 3,564 unique same-team hero pairs, but only 16 pairs have at least 10 appearances and none has 20. Direct pair-specific synergy estimates will therefore be sparse and must not be presented as reliable without suitable uncertainty/shrinkage and broader evidence.
-- Existing historical predictions: 1,425 rows in `ss_match_predictions`; `ss_showdown_draft_predictions` has 0 rows and model comparison reports 0 paired matches.
-- Existing application modules 08 (draft indicator rules), 09 (Showdown draft indicator) and 10 (model comparison) are loaded by the current app, but none evaluates ability tags or kit-derived asymmetric ally/opponent interactions as explanatory features. They are existing code, not the intended new model.
-- Treat all counts as an audit snapshot, not permanent current truth; recheck before relying on them later.
+**Approved model-design direction (analysis design only; no implementation approved):**
+- **M0 — side baseline:** start with the observed Blue win baseline (784/1,425, approximately 55.0%) as a reference, not as a model claim or guarantee.
+- **M1 — match context:** add side, map and exact pick-order context where reliably available.
+- **M2 — official classes:** test whether class composition adds explanatory/predictive value beyond the simpler baselines.
+- **M3 — hero identity:** estimate individual hero effects with regularization / hierarchical pooling, allowing heroes within the same class to differ.
+- **M4 — ability-derived team functions:** test only when hero-profile coverage is adequate; unknown or missing profile information must remain unknown, not be encoded as absence of a mechanic.
+- **M5 — teammate interactions:** estimate incremental teammate contribution beyond both heroes' individual baselines. Keep A→B and B→A directions separate; do not use raw pair win rates as proof of synergy.
+- **M6 — opponent interactions:** test candidate kit-derived relations against opposing heroes as hypotheses, not as proof that an ability triggered or caused a result.
+- Compare feature blocks with nested ablations using the same validation splits. Prefer a transparent regularized logistic or hierarchical model over a black-box first model.
 
-**User-confirmed objective and boundaries:**
-- Evaluate whether a hero performs well independently or appears to benefit from specific teammates.
-- Investigate asymmetric relationships: A may benefit from B more than B benefits from A.
-- Test whether ability labels/mechanics and observed ally/opponent interactions add explanatory or predictive value beyond hero identity, official class, pick order, map and opponent composition.
-- Distinguish individual hero baseline, teammate contribution, opponent context and map context; do not infer synergy/counter from class or co-occurrence alone.
-- Exact pick order is available: Blue 1, Red 2, Blue 2, Red 1. The random pool of 20 drawn from approximately 130 heroes is not available/savable and must not be required or inferred.
-- Formation/placement, actual ability activation, target selection and combat sequence are unknown. Match outcomes alone do not prove that a kit interaction occurred or caused a win.
-- Approximately 50 unrecorded matches are reserved as a later independent test set. Do not enter them, inspect their outcomes for model tuning, or otherwise use them before a model version is frozen. The count is approximate, not an exact verified total.
+**Current data coverage and limits (read-only audit snapshot, 2026-11-26):**
+- 1,425 approved historical matches, 8,550 hero selections, 110 observed heroes and five maps.
+- Exact pick order is known on both sides in 1,421 matches; four have neither side's order known.
+- 3,564 unique same-team pairs; only 16 appear at least 10 times and none at least 20. Exact-pair effects will be sparse and require strong pooling/shrinkage and uncertainty.
+- The accepted pilot and second batch contain structured ability analysis for 10 heroes. 694 matches contain at least one of these heroes (845 selections), but **zero matches contain all six heroes covered** by these 10 profiles. Current coverage therefore cannot support complete six-hero ability-composition evaluation.
+- V4 contains 131 profiles, but many section tags remain unknown and patch applicability is not verified. Do not equate unknown with absent and do not automatically convert all V4 material into model features.
+- Existing historical predictions: 1,425 rows in `ss_match_predictions`; `ss_showdown_draft_predictions` has 0 rows and model comparison reports 0 paired matches. Existing historical rows were calculated with the outcome already known and are not a prospective benchmark.
+- Existing application modules 08, 09 and 10 are not the proposed empirical model and do not currently evaluate the approved M4–M6 ability-derived feature blocks.
 
-**Evaluation constraints:**
-- Treat ability tags as candidate explanatory features, not universal synergy/counter labels or guaranteed in-match effects.
-- Separate descriptive evidence, explanatory association and out-of-sample predictive performance.
-- Account for opponent strength/composition, map, pick order and uncertainty where data supports it. A result may reflect opponent quality, luck or unknown positioning; do not attribute a match outcome to one pick without evidence.
-- Sparse hero-pair observations require cautious estimation; do not publish unsupported exact-pair scores.
-- The existing 1,425 historical matches are development/analysis data. Keep the approximately 50 unrecorded matches isolated for independent testing after model freeze.
-- Do not modify existing indicators, Tier List, TOP Picks, application code, Supabase schema/data, migrations, V4 data or hero JSON artifacts as part of model design without separate approval.
+**Validation and test-set rules:**
+- Use chronological walk-forward / expanding-window splits. Every feature and aggregate used to predict a match must be derived only from information available before that match; no future leakage.
+- Compare M0–M6 on identical time splits. Primary metrics: log loss and Brier score; secondary: accuracy and AUC. Inspect calibration and uncertainty, not only point accuracy.
+- Account for side, map, pick order and opponent composition where the data supports them. Match-level associations cannot establish that an ability interaction actually occurred or caused a win.
+- Approximately 50 unrecorded matches are reserved as a later independent test set. Do not enter, inspect for tuning, or otherwise use them before a model version is frozen. The count is approximate and user-reported, not independently verified.
+- Keep the 1,425 recorded matches as development/analysis data. Do not alter existing indicators, Tier List, TOP Picks, application code, Supabase schema/data, migrations, V4 data or hero JSON artifacts without separate approval.
 
-**Next single action:** prepare a model-design proposal grounded in the audited match data and current implementation, defining baselines, candidate ability/interaction features, confounder handling, uncertainty and chronological validation. No implementation or Supabase changes are authorized by this restart point.
-
+**Next single action:** perform a read-only feasibility analysis of the M0–M3 baseline on the historical match data, including chronological split design and leakage-safe feature availability. Do not implement or tune a production model, and do not use the reserved unrecorded matches.
 ## 11. Initial audit log
 
 ### ACTION 0001 — Audit history and current repository state
@@ -916,3 +915,19 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - Result: documentation update only. No matches were entered; no model was tuned or frozen; no code, Supabase schema/data, migrations, V4 files, pilot/batch JSON, existing indicators, Tier List, TOP Picks or `main` branch were modified.
 - Decision: the next phase is a model-design proposal grounded in the audited data and existing implementation. It must distinguish individual hero baseline, teammate contribution, asymmetric interactions, opponent/map/pick-order context and uncertainty; it must not claim causation from match-level associations.
 - Next single action: prepare that model-design proposal; do not begin implementation until separately approved.
+
+## 31. Empirical model-design direction approved — 2026-11-26
+
+### ACTION 0024 — Record approval of M0–M6 model design and synchronize restart point
+- Started: 2026-11-26
+- Task / phase: 3v3 Showdown empirical evaluation / model-design approval and Handoff synchronization
+- Status: COMPLETED — user-approved model-design and documentation update; no implementation authorized
+- Purpose: record the user's approval of the empirical model-design proposal and establish a precise, evidence-based restart point for the next analysis phase.
+- Exact target: repository `ShifterAFK/smackdown-tracker`, branch `development`; `docs/AI_SESSION_HANDOFF.md` only.
+- Inputs / prior state: confirmed development HEAD `d12fd655a1ecf39fb8522e9ef9640689a25b0bc1`; live Handoff blob SHA `95c380a69448c76ed58f014f3902adab4e866bd1`.
+- User decision: approved the M0–M6 direction: side baseline; match context; official classes; regularized hero identity effects; ability-derived team functions; directed teammate interactions; directed opponent interactions. This is approval of the analytical design, not approval of implementation, scoring weights, production predictions, UI or database changes.
+- Evidence constraints recorded: 1,425 approved matches; 8,550 selections; 1,421 matches with both sides' exact order known and four with neither; 110 observed heroes; five maps; 3,564 unique same-team pairs, only 16 with at least 10 appearances and none with at least 20. Ten heroes have structured pilot/batch analysis; 694 matches include at least one and zero matches have all six heroes covered by those ten profiles.
+- Validation decision: use chronological walk-forward / expanding-window validation, prevent future leakage, compare feature blocks on identical splits, prioritize log loss and Brier score, and inspect calibration/uncertainty. Keep approximately 50 unrecorded matches isolated until model freeze.
+- Operation: update the top-level current-state summary, replace section 10 with the approved model design, coverage constraints, validation rules and next action, then append this ACTION record. Earlier ACTION history remains unchanged.
+- Scope protection: no match data, reserved test matches, application code, Supabase schema/data, migrations, V4 files, pilot/batch JSON, existing indicators, Tier List, TOP Picks or `main` branch are modified.
+- Next single action: perform read-only M0–M3 baseline feasibility analysis on historical data; no implementation or use of the reserved independent test set.
