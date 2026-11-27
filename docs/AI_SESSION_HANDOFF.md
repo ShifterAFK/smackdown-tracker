@@ -322,7 +322,7 @@ Commit one coherent documentation or code change at a time on `development`. Bef
 - [ ] State the one active task, current phase, last confirmed result and next single action.
 - [ ] Do not edit code or Supabase until the exact target and approval are clear.
 
-## 10. Current restart point after ACTION 0033
+## 10. Current restart point after ACTION 0034
 
 **M3 day-level robustness analysis (2026-11-27; read-only):**
 - Re-extracted and validated the same 1,421 approved matches with six distinct heroes and complete order for both sides. Reconstructed global slots Blue 1, Red 1, Red 2, Blue 2, Blue 3, Red 3; generated 910 OOF predictions across the established expanding chronological folds (511/270, 781/366, 1,147/274 train/validation).
@@ -450,7 +450,14 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - Interpretation: M3's small pooled probabilistic advantage does not translate into robust confidence gating. Thresholded accuracy is often comparable to the always-Blue direction because M3 predicts Blue in 91.21% of cases. Higher-confidence subsets do not consistently improve proper scores over M0. M3 is not suitable as a next-pick recommender, reliable hero ranking or strong draft-selection filter. Keep it provisional; do not freeze, recalibrate or deploy it.
 - The approximately 50 reserved unrecorded matches were not accessed, entered or used. No Supabase writes, schema changes, code changes, prediction-row changes, persistent analysis artifacts or production implementation occurred.
 
-**Next single action:** continue read-only evaluation of the same approved empirical model goal using already-recorded data only; identify remaining validity limitations or whether a materially different evaluation is justified before any model-freeze discussion. Do not change the M3 specification, use the reserved independent test set, recalibrate, freeze, deploy or begin production implementation without separate authorization.
+**Complete-order exclusion sensitivity check (2026-11-27; read-only):**
+- Grouped approved match metadata and per-match hero rows. Of 1,425 approved matches, 1,421 have complete draft-order flags for both sides; four have `blue_draft_known=false` and `red_draft_known=false`. All four still contain six distinct hero picks.
+- The four incomplete-order matches comprise two Blue wins and two Red wins. They were played Nov 14–17, 2026: three on Top Defender and one on Siegebreaker. They belong to an earlier calendar/map segment than the 910-match OOF validation period.
+- Blue win rate is 782/1,421 = 55.03% in the complete-order sample and 784/1,425 = 55.02% when the four incomplete-order matches are included. The difference is approximately -0.01 percentage points (all-match rate minus complete-order rate), effectively negligible for the side baseline.
+- Interpretation: excluding these four matches does not materially shift the overall Blue/Red outcome balance. Their unknown pick order still prevents valid reconstruction of their six global draft slots, so this check does not quantify their effect on hero-by-slot coefficients or M3 predictions. Their early dates and concentration on two maps remain a data-coverage limitation.
+- Scope: read-only SELECT only. No Supabase writes, model refit, code changes, prediction-row changes, reserved independent test-set access or persistent analysis artifacts. The approximately 50 reserved unrecorded matches remain untouched.
+
+**Next single action:** continue read-only assessment of remaining validity limits of the same empirical Showdown model using already-recorded data only. Keep the approximately 50 unrecorded matches reserved; do not change M3, recalibrate, freeze, deploy or implement production changes without separate authorization.
 ## 11. Initial audit log
 
 ### ACTION 0001 — Audit history and current repository state
@@ -1249,3 +1256,24 @@ The three validation windows are disjoint and cover 910 matches. In fold 1, the 
 - Decision: M3's small pooled probabilistic advantage does not translate into robust confidence gating or balanced directional selection. Higher-confidence subsets do not consistently outperform M0 on log loss/Brier, and observed outcomes across confidence bands are non-monotonic. M3 is not suitable as a next-pick recommender, reliable hero ranking or strong draft-selection filter. Keep M3 provisional; no recalibration, model freeze or deployment is approved.
 - Scope protection: read-only Supabase SELECTs and offline computation plus this user-approved Handoff update only. No Supabase writes/schema changes, application code, prediction rows, reserved test set, V4/hero JSON, existing indicators, Tier List, TOP Picks or `main` branch were modified.
 - Next single action: continue read-only evaluation of the same approved empirical model goal on already-recorded data only, focusing on remaining validity limitations before any model-freeze discussion. Keep the reserved independent test set untouched; do not change M3, recalibrate, freeze, deploy or implement production changes without separate authorization.
+
+## 40. Complete-order exclusion sensitivity check — 2026-11-27
+
+### ACTION 0034 — Complete read-only check of four approved matches with unknown draft order
+- Started: 2026-11-27
+- Task / phase: 3v3 Showdown empirical evaluation / assess whether excluding approved matches with unknown per-side draft order materially shifts the observed side outcome balance.
+- Status: COMPLETED — read-only Supabase metadata and hero-row aggregation; Handoff synchronization approved by the user.
+- Purpose: quantify the observed outcome composition of the four approved matches excluded from the 1,421-match complete-order M0–M3 sample, while preserving the restriction against inferring unknown pick order.
+- Exact target: Supabase project `rwnbxhrkjjlfuljhwdpt`; `public.ss_matches`, `public.ss_match_heroes`, `public.ss_themes`; repository `ShifterAFK/smackdown-tracker`, branch `development`, Handoff `docs/AI_SESSION_HANDOFF.md`.
+- Inputs / prior state: development HEAD `534fe8c2ceba9b663ff45ba6d4fb71254e45c625`; Handoff blob SHA `1f8b1a579436f79a3da637023a3dcd933bb96a1b`. Branch `main` was separately fetched and left unchanged. The full Handoff, Section 10 and latest ACTION 0033 were read before this approved update.
+- Operation: used read-only SQL to group approved match rows by status, draft-known flags, winner and map, while aggregating per-match hero-row counts and distinct picks. No draft order was inferred for matches whose order-known flags were false.
+- Result:
+  - The database contained 1,425 approved matches. 1,421 had both `blue_draft_known=true` and `red_draft_known=true`; four had both flags false. No partial-known-order group appeared in this grouped result.
+  - All four incomplete-order matches nevertheless had six distinct hero picks. Two were won by Blue and two by Red.
+  - Their played_at dates ranged from Nov 14 to Nov 17, 2026. Three were on Top Defender and one on Siegebreaker.
+  - Complete-order sample Blue win rate: 782/1,421 = 55.03%. Including all four incomplete-order matches: 784/1,425 = 55.02%. The overall side balance is essentially unchanged.
+  - Because exact global pick slots are unavailable for these four matches, this comparison cannot measure their effect on hero-by-slot estimates or M3 prediction quality. Their early chronology and map concentration remain potential coverage limitations.
+- Evidence: SQL grouped results reported counts by approval status, known-order flags, winner and map, plus per-match six-distinct-pick validation; the complete-order and all-approved Blue win rates were calculated from those counts.
+- Decision: the four excluded matches do not materially change the overall Blue-side baseline. Keep them out of the slot-based M0–M3 evaluation unless their true pick order can be recovered from a trustworthy source; do not fabricate or infer the missing order.
+- Scope protection: read-only Supabase SELECTs and offline arithmetic plus this user-approved Handoff update only. No Supabase writes/schema changes, application code, prediction rows, reserved independent test set, V4/hero JSON, existing indicators, Tier List, TOP Picks or `main` branch were modified. The approximately 50 unrecorded matches were not accessed.
+- Next single action: continue read-only assessment of remaining validity limits of the same empirical Showdown model using already-recorded data only. Keep the approximately 50 unrecorded matches reserved; do not change M3, recalibrate, freeze, deploy or implement production changes without separate authorization.
